@@ -20,12 +20,14 @@ public class Game {
 				maxPoints = players[i].points;
 			} 
 		}
+		boolean tieBreaker = false;
 		for (int i = 0; i < players.length; i++) {
 			if (players[i].points==maxPoints && winner==null) {
 				winner = players[i].name;
-			} else if (i==this.currentPlayer && this.players[i].points == maxPoints) {
+			} else if (i>=this.currentPlayer && this.players[i].points == maxPoints && !tieBreaker) {
 				winner = players[i].name;
-			}
+				tieBreaker = true;
+			} 
 			else if (players[i].points==maxPoints) {
 				winner = winner + "&&" + players[i].name; 
 			}

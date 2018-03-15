@@ -18,15 +18,16 @@ public class test {
 		g.players[3].points = 1;
 		assertEquals("0",g.endGame());
 	}
-	@Test
-	public void testWinnableTieWoTiebreakers(){
-		Game g = new Game(4);
-		g.players[0].points = 5;
-		g.players[1].points = 5;
-		g.players[2].points = 5;
-		g.players[3].points = 5;
-		assertEquals("0&&1&&2&&3",g.endGame());
-	}
+//	@Test 
+//	OUTDATED
+//	public void testWinnableTieWoTiebreakers(){
+//		Game g = new Game(4);
+//		g.players[0].points = 5;
+//		g.players[1].points = 5;
+//		g.players[2].points = 5;
+//		g.players[3].points = 5;
+//		assertEquals("0&&1&&2&&3",g.endGame());
+//	}
 	@Test
 	public void testWinnableTieWTiebreakers(){
 		Game g = new Game(4);
@@ -37,6 +38,17 @@ public class test {
 		g.players[2].points = 5;
 		g.players[3].points = 5;
 		assertEquals("2&&3",g.endGame());
+	}
+	@Test
+	public void testWinnableOneWinnerTiebreaker(){
+		Game g = new Game(4);
+		g.endTurn();
+		g.endTurn();
+		g.players[0].points = 5;
+		g.players[1].points = 3;
+		g.players[2].points = 3;
+		g.players[3].points = 5;
+		assertEquals("3",g.endGame());
 	}
 
 }
