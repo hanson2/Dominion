@@ -1,6 +1,7 @@
 
 public class Game {
 	Player[] players;
+	int currentPlayer;
 	
 	
 	public Game(int playerCount){
@@ -21,14 +22,22 @@ public class Game {
 		}
 		for (int i = 0; i < players.length; i++) {
 			if (players[i].points==maxPoints && winner==null) {
-				winner= players[i].name;
-			}else if (players[i].points==maxPoints) {
+				winner = players[i].name;
+			} else if (i==this.currentPlayer && this.players[i].points == maxPoints) {
+				winner = players[i].name;
+			}
+			else if (players[i].points==maxPoints) {
 				winner = winner + "&&" + players[i].name; 
 			}
 			
 		}
 		return winner;
 		
+	}
+
+	public void endTurn() {
+		this.currentPlayer++;
+		this.currentPlayer = this.currentPlayer % this.players.length;
 	}
 
 }
