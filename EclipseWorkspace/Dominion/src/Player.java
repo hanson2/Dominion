@@ -1,7 +1,7 @@
 
 public class Player {
 
-	public int points;
+	public int points;//replace with a tallying function eventually
 	public String name;
 	
 	public Player(String name){
