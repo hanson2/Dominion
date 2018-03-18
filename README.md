@@ -59,7 +59,7 @@
           if there are less than 5 cards in draw pile and discard shuffles, if
           there are no cards in draw or discards, you cannot draw a card.
 	
- * Have a number displayed on top of the draw pile to show how many cards are
+* Have a number displayed on top of the draw pile to show how many cards are
    remaining in the draw pile.
 	
 	* BVA: No cards left to draw
