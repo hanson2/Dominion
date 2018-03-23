@@ -1,62 +1,109 @@
 import static org.junit.Assert.*;
 
+import org.easymock.EasyMock;
 import org.junit.Test;
 
 public class GameTest {
 
 	@Test
 	public void testWinnable() {
-		Game g = new Game(2);
+		Player[] list = new Player[2];
+		for (int i = 0; i < 2; i++) {
+			list[i] = EasyMock.mock(Player.class);
+			EasyMock.expect(list[i].getPoints()).andStubReturn(0);
+			EasyMock.expect(list[i].getName()).andStubReturn(String.format("%d", i));
+			EasyMock.replay(list[i]);
+		}
+
+		Game g = new Game(list);
 		assertEquals("0&&1", g.endGame());
+
+		for (Player p : list) {
+			EasyMock.verify(p);
+		}
 	}
 
 	@Test
 	public void testWinnableWPoints() {
-		Game g = new Game(4);
-		g.players[0].points = 5;
-		g.players[1].points = 3;
-		g.players[2].points = 2;
-		g.players[3].points = 1;
+		Player[] list = new Player[4];
+		int[] points = { 5, 3, 2, 1 };
+		for (int i = 0; i < 4; i++) {
+			list[i] = EasyMock.mock(Player.class);
+			EasyMock.expect(list[i].getPoints()).andStubReturn(points[i]);
+			EasyMock.expect(list[i].getName()).andStubReturn(String.format("%d", i));
+			EasyMock.replay(list[i]);
+		}
+
+		Game g = new Game(list);
 		assertEquals("0", g.endGame());
+
+		for (Player p : list) {
+			EasyMock.verify(p);
+		}
 	}
 
 	@Test
 	public void testWinnableTieWTiebreakers() {
-		Game g = new Game(4);
+		Player[] list = new Player[4];
+		int[] points = { 5, 5, 5, 5 };
+		for (int i = 0; i < 4; i++) {
+			list[i] = EasyMock.mock(Player.class);
+			EasyMock.expect(list[i].getPoints()).andStubReturn(points[i]);
+			EasyMock.expect(list[i].getName()).andStubReturn(String.format("%d", i));
+			EasyMock.replay(list[i]);
+		}
+
+		Game g = new Game(list);
 		g.endTurn();
 		g.endTurn();
-		g.players[0].points = 5;
-		g.players[1].points = 5;
-		g.players[2].points = 5;
-		g.players[3].points = 5;
 		assertEquals("2&&3", g.endGame());
+
+		for (Player p : list) {
+			EasyMock.verify(p);
+		}
 	}
 
 	@Test
 	public void testWinnableOneWinnerTiebreaker() {
-		Game g = new Game(4);
+		Player[] list = new Player[4];
+		int[] points = { 5, 3, 3, 5 };
+		for (int i = 0; i < 4; i++) {
+			list[i] = EasyMock.mock(Player.class);
+			EasyMock.expect(list[i].getPoints()).andStubReturn(points[i]);
+			EasyMock.expect(list[i].getName()).andStubReturn(String.format("%d", i));
+			EasyMock.replay(list[i]);
+		}
+
+		Game g = new Game(list);
 		g.endTurn();
 		g.endTurn();
-		g.players[0].points = 5;
-		g.players[1].points = 3;
-		g.players[2].points = 3;
-		g.players[3].points = 5;
 		assertEquals("3", g.endGame());
+
+		for (Player p : list) {
+			EasyMock.verify(p);
+		}
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testMoreThan4Players() {
-		Game g = new Game(5);
+		Player[] list = new Player[5];
+		for (int i = 0; i < 5; i++) {
+			list[i] = EasyMock.mock(Player.class);
+			EasyMock.expect(list[i].getPoints()).andStubReturn(0);
+			EasyMock.expect(list[i].getName()).andStubReturn(String.format(" %d", i));
+			EasyMock.replay(list[i]);
+		}
+
+		Game g = new Game(list);
+
+		for (Player p : list) {
+			EasyMock.verify(p);
+		}
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testLessThan2Players() {
-		Game g = new Game(0);
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void testLessThan0Players() {
-		Game g = new Game(-1);
+		Game g = new Game(new Player[0]);
 	}
 
 }
