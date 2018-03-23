@@ -4,12 +4,13 @@ public class Game {
 	private int currentPlayer;
 
 	/**
-	 * Purpose: Creates a new game
+	 * Creates a new game.
 	 * 
-	 * @param playerCount
-	 *            int number of Players in game (2-4)
+	 * @param players
+	 *            List of players to use (2-4 players)
 	 * @throws IllegalArgumentException
-	 *             when playerCount is out of range
+	 *             Thrown when the number of players is less than two or greater
+	 *             than four
 	 */
 	public Game(Player... players) throws IllegalArgumentException {
 		if (players.length > 4 || players.length < 2) {
@@ -19,7 +20,7 @@ public class Game {
 	}
 
 	/**
-	 * Purpose: Determines winner
+	 * Determines winner of current game.
 	 * 
 	 * @return String containing all winners "Names"
 	 */
@@ -57,7 +58,7 @@ public class Game {
 	}
 
 	/**
-	 * Purpose: Progress the turn counter and keep it within valid values
+	 * Progress the turn counter and keep it within valid values
 	 */
 	public void endTurn() {
 		this.currentPlayer++;
