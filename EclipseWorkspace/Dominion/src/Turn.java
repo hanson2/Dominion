@@ -2,23 +2,24 @@
 public class Turn {
 	Player player;
 	int buys;
+	int actions;
 
 	public Turn(Player player) {
 		this.player = player;
 		this.buys = 1;
+		this.actions = 1;
 	}
 
 	public void run() {
 
 		// action phase
-		String card = this.player.playCard();// eventually card object not
+		String card = "";// eventually card object not
 												// string
 		// a card is played
-		if (card == "addAction") {
+		while (this.actions > 0) {
 			card = this.player.playCard();
-		}
-		if (card == "addBuy") {
 			this.handleCard(card);
+			this.actions--;
 		}
 		// buy phase
 		while (this.buys > 0) {
@@ -37,7 +38,13 @@ public class Turn {
 
 	private void handleCard(String card) {
 		// TODO determine how to play cards
-		this.buys++;
+		if (card == "addAction") {
+			this.actions++;
+		} else if (card == "addBuy") {
+			this.buys++;
+		}else if(card == ""){
+			this.actions=0;
+		}
 
 	}
 

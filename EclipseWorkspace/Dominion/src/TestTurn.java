@@ -102,4 +102,31 @@ public class TestTurn {
 
 		EasyMock.verify(player);
 	}
+	@Test
+	public void testAddManyAction(){
+		Player player = EasyMock.strictMock(Player.class);
+
+		EasyMock.expect(player.playCard()).andReturn("addAction");//action phase
+		EasyMock.expect(player.playCard()).andReturn("addAction");
+		EasyMock.expect(player.playCard()).andReturn("addAction");
+		EasyMock.expect(player.playCard()).andReturn("addAction");
+		EasyMock.expect(player.playCard()).andReturn("");
+		
+		EasyMock.expect(player.buy()).andReturn(true);//buy phase
+
+		EasyMock.expect(player.discardHand()).andReturn(false);//end cycle
+
+		EasyMock.expect(player.drawACard()).andReturn(true);
+		EasyMock.expect(player.drawACard()).andReturn(true);
+		EasyMock.expect(player.drawACard()).andReturn(true);
+		EasyMock.expect(player.drawACard()).andReturn(true);
+		EasyMock.expect(player.drawACard()).andReturn(true);
+
+		EasyMock.replay(player);
+
+		Turn turn = new Turn(player);
+		turn.run();
+
+		EasyMock.verify(player);
+	}
 }
