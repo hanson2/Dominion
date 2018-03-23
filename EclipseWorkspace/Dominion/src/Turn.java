@@ -14,14 +14,15 @@ public class Turn {
 		String card = this.player.playCard();// eventually card object not
 												// string
 		// a card is played
+		if (card == "addAction") {
+			card = this.player.playCard();
+		}
 		if (card == "addBuy") {
 			this.handleCard(card);
-		}if (card == "addTurn"){
-			
 		}
 		// buy phase
-		while(this.buys>0){
-			if(!this.player.buy()){
+		while (this.buys > 0) {
+			if (!this.player.buy()) {
 				this.buys = 0;
 			}
 			this.buys--;
