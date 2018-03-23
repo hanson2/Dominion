@@ -14,7 +14,7 @@ public class Turn {
 
 		// action phase
 		String card = "";// eventually card object not
-												// string
+							// string
 		// a card is played
 		while (this.actions > 0) {
 			card = this.player.playCard();
@@ -42,8 +42,8 @@ public class Turn {
 			this.actions++;
 		} else if (card == "addBuy") {
 			this.buys++;
-		}else if(card == ""){
-			this.actions=0;
+		} else if (card == "") {
+			this.actions = 0;
 		}
 
 	}
