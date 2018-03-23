@@ -1,8 +1,8 @@
 
 public class Player {
 
-	public int points;// replace with a tallying function eventually
-	public String name;
+	private int points;// replace with a tallying function eventually
+	private String name;
 
 	public Player(String name) {
 		this.points = 0;
@@ -27,7 +27,14 @@ public class Player {
 	public boolean buy() {
 		// TODO Auto-generated method stub
 		return false;
-		
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 }
