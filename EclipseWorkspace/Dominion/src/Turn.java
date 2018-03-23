@@ -9,7 +9,7 @@ public class Turn {
 	public void run(){
 		
 		//action phase
-		
+		String card = this.player.playCard();
 		
 		//buy phase
 		

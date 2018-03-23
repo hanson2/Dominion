@@ -19,4 +19,9 @@ public class Player {
 		// TODO Auto-generated method stub
 	}
 
+	public String playCard() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

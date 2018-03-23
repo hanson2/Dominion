@@ -6,9 +6,11 @@ import org.junit.Test;
 public class TestTurn {
 
 	@Test
-	public void testTurn() {
+	public void testTurnAllPass() {
 
 		Player player = EasyMock.strictMock(Player.class);
+		
+		EasyMock.expect(player.playCard()).andReturn("");
 
 		EasyMock.expect(player.discardHand()).andReturn(true);
 
