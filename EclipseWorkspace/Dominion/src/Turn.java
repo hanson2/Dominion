@@ -16,6 +16,8 @@ public class Turn {
 		// a card is played
 		if (card == "addBuy") {
 			this.handleCard(card);
+		}if (card == "addTurn"){
+			
 		}
 		// buy phase
 		while(this.buys>0){
