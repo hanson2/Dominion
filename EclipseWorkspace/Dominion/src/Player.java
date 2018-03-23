@@ -24,4 +24,10 @@ public class Player {
 		return null;
 	}
 
+	public boolean buy() {
+		// TODO Auto-generated method stub
+		return false;
+		
+	}
+
 }
