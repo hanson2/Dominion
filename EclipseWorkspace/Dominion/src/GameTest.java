@@ -84,6 +84,7 @@ public class GameTest {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testMoreThan4Players() {
 		Player[] list = new Player[5];
@@ -101,6 +102,7 @@ public class GameTest {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testLessThan2Players() {
 		Game g = new Game(new Player[0]);
