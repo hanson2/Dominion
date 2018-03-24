@@ -7,6 +7,8 @@ public class Supply {
 	Stack silverSupply;
 	Stack goldSupply;
 	Stack estateSupply;
+	Stack duchySupply;
+	Stack provinceSupply;
 	
 	public Supply(){
 		setUpBaseCards();
@@ -17,6 +19,8 @@ public class Supply {
 		this.silverSupply = new Stack<Card>();
 		this.goldSupply = new Stack<Card>();
 		this.estateSupply = new Stack<Card>();
+		this.duchySupply = new Stack<Card>();
+		this.provinceSupply = new Stack<Card>();
 		
 		for(int i = 0; i < 60; i++){
 			this.copperSupply.push(new Copper());
@@ -29,6 +33,12 @@ public class Supply {
 		}
 		for(int i = 0; i < 24; i++){
 			this.estateSupply.push(new Estate());
+		}
+		for(int i = 0; i < 12; i++){
+			this.duchySupply.push(new Duchy());
+		}
+		for(int i = 0; i < 12; i++){
+			this.provinceSupply.push(new Province());
 		}
 	}
 	
@@ -59,24 +69,22 @@ public class Supply {
 		return this.estateSupply;
 	}
 
-	public Stack getDuchieSupply() {
-		Stack duchieSupply = new Stack<String>();
-		
-		for(int i = 0; i < 12; i++){
-			duchieSupply.push(""+i);
-		}
-		
-		return duchieSupply;
+	public Stack<Card> getDuchySupply() {
+		return this.duchySupply;
 	}
 
-	public Stack getProvinceSupply() {
-		Stack provinceSupply = new Stack<String>();
+	public Stack<Card> getProvinceSupply() {
+		return this.provinceSupply;
+	}
+
+	public Stack getCurseSupply() {
+		Stack curseSupply = new Stack<String>();
 		
-		for(int i = 0; i < 12; i++){
-			provinceSupply.push(""+i);
+		for(int i = 0; i < 30; i++){
+			curseSupply.push("" + i);
 		}
 		
-		return provinceSupply;
+		return curseSupply;
 	}
 
 }

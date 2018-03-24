@@ -15,8 +15,9 @@ public class SupplyPileTest {
 		assertTrue(supply.getGoldSupply().size() == 30);
 		
 		assertTrue(supply.getEstateSupply().size() == 24);
-		assertTrue(supply.getDuchieSupply().size() == 12);
+		assertTrue(supply.getDuchySupply().size() == 12);
 		assertTrue(supply.getProvinceSupply().size() == 12);
+		assertTrue(supply.getCurseSupply().size() == 30);
 	}
 	
 	@Test
@@ -73,5 +74,33 @@ public class SupplyPileTest {
 		assertTrue(top.getCardsAdded() == 0);
 		assertTrue(top.getVictoryValue() == 1);
 		assertTrue(supply.getEstateSupply() == supply.getEstateSupply());
+	}
+	
+	@Test
+	public void testDuchyValidity(){
+		Supply supply = new Supply();
+		Card top = supply.getDuchySupply().pop();
+		
+		assertTrue(top.getType().equals("VICTORY"));
+		assertTrue(top.getCoinsAdded() == 0);
+		assertTrue(top.getActionsAdded() == 0);
+		assertTrue(top.getBuysAdded() == 0);
+		assertTrue(top.getCardsAdded() == 0);
+		assertTrue(top.getVictoryValue() == 3);
+		assertTrue(supply.getDuchySupply() == supply.getDuchySupply());
+	}
+	
+	@Test
+	public void testProvinceValidity(){
+		Supply supply = new Supply();
+		Card top = supply.getProvinceSupply().pop();
+		
+		assertTrue(top.getType().equals("VICTORY"));
+		assertTrue(top.getCoinsAdded() == 0);
+		assertTrue(top.getActionsAdded() == 0);
+		assertTrue(top.getBuysAdded() == 0);
+		assertTrue(top.getCardsAdded() == 0);
+		assertTrue(top.getVictoryValue() == 6);
+		assertTrue(supply.getProvinceSupply() == supply.getProvinceSupply());
 	}
 }
