@@ -1,9 +1,9 @@
 
-public class Copper extends Card {
+public class Silver extends Card {
 
 	@Override
 	public int getCoinsAdded() {
-		return 1;
+		return 2;
 	}
 
 	@Override

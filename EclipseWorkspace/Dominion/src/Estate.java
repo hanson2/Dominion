@@ -1,19 +1,18 @@
 
-public class Copper extends Card {
+public class Estate extends Card {
 
 	@Override
 	public int getCoinsAdded() {
-		return 1;
+		return 0;
 	}
 
 	@Override
 	public String getType() {
-		return "TREASURE";
+		return "VICTORY";
 	}
 
 	@Override
 	public int getVictoryValue() {
-		return 0;
+		return 1;
 	}
-
 }

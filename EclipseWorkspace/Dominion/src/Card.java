@@ -1,12 +1,22 @@
 
 public abstract class Card {
 
-	public String getType() {
-		return "TREASURE";
+	public abstract String getType();
+
+	public abstract int getCoinsAdded();
+
+	public int getActionsAdded() {
+		return 0;
 	}
 
-	public int getCoinValue() {
-		return 1;
+	public int getBuysAdded() {
+		return 0;
 	}
+
+	public int getCardsAdded() {
+		return 0;
+	}
+
+	public abstract int getVictoryValue();
 	
 }

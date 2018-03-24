@@ -3,6 +3,35 @@ import java.util.List;
 import java.util.Stack;
 
 public class Supply {
+	Stack copperSupply;
+	Stack silverSupply;
+	Stack goldSupply;
+	Stack estateSupply;
+	
+	public Supply(){
+		setUpBaseCards();
+	}
+	
+	private void setUpBaseCards(){
+		this.copperSupply = new Stack<Card>();
+		this.silverSupply = new Stack<Card>();
+		this.goldSupply = new Stack<Card>();
+		this.estateSupply = new Stack<Card>();
+		
+		for(int i = 0; i < 60; i++){
+			this.copperSupply.push(new Copper());
+		}
+		for(int i = 0; i < 40; i++){
+			this.silverSupply.push(new Silver());
+		}
+		for(int i = 0; i < 30; i++){
+			this.goldSupply.push(new Gold());
+		}
+		for(int i = 0; i < 24; i++){
+			this.estateSupply.push(new Estate());
+		}
+	}
+	
 
 	public List getKingdomCardList() {
 		List kingdomCardList = new ArrayList<String>();
@@ -15,43 +44,19 @@ public class Supply {
 	}
 
 	public Stack<Card> getCopperSupply() {
-		Stack copperSupply = new Stack<Card>();
-		
-		for(int i = 0; i < 60; i++){
-			copperSupply.push(new Copper());
-		}
-		
-		return copperSupply;
+		return this.copperSupply;
 	}
 
-	public Stack getSilverSupply() {
-		Stack silverSupply = new Stack<String>();
-		
-		for(int i = 0; i < 40; i++){
-			silverSupply.push(""+i);
-		}
-		
-		return silverSupply;
+	public Stack<Card> getSilverSupply() {
+		return this.silverSupply;
 	}
 
-	public Stack getGoldSupply() {
-		Stack goldSupply = new Stack<String>();
-		
-		for(int i = 0; i < 30; i++){
-			goldSupply.push(""+i);
-		}
-		
-		return goldSupply;
+	public Stack<Card> getGoldSupply() {
+		return this.goldSupply;
 	}
 
-	public Stack getEstateSupply() {
-		Stack estateSupply = new Stack<String>();
-		
-		for(int i = 0; i < 24; i++){
-			estateSupply.push(""+i);
-		}
-		
-		return estateSupply;
+	public Stack<Card> getEstateSupply() {
+		return this.estateSupply;
 	}
 
 	public Stack getDuchieSupply() {
