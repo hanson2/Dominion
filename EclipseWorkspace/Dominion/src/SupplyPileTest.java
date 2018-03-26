@@ -127,4 +127,63 @@ public class SupplyPileTest {
 		assertTrue(top.getCost() == 0);
 		assertTrue(supply.getCurseSupply() == supply.getCurseSupply());
 	}
+	
+	@Test
+	public void testGameOverProvinceGone(){
+		Supply supply = new Supply();
+		
+		for(int i = 0; i < 12; i++){
+			supply.getProvinceSupply().pop();
+		}
+		
+		assertTrue(supply.isGameOver());
+	}
+	
+	@Test
+	public void testGameOverNoPilesGone(){
+		Supply supply = new Supply();
+		assertFalse(supply.isGameOver());
+	}
+	
+	@Test
+	public void testGameOverOneBaseSupplyGoneNotProvince(){
+		Supply supply = new Supply();
+		for(int i = 0; i < 12; i++){
+			supply.getDuchySupply().pop();
+		}
+		assertFalse(supply.isGameOver());
+	}
+	
+	@Test
+	public void testGameOverThreeBaseSupplyGoneNotProvince(){
+		Supply supply = new Supply();
+		for(int i = 0; i < 12; i++){
+			supply.getDuchySupply().pop();
+		}
+		for(int i = 0; i < 30; i++){
+			supply.getGoldSupply().pop();
+		}
+		for(int i = 0; i < 60; i++){
+			supply.getCopperSupply().pop();
+		}
+		assertTrue(supply.isGameOver());
+	}
+	
+	@Test 
+	public void testGameOverMoreThanThreeBaseSupplyGoneNotProvince(){
+		Supply supply = new Supply();
+		for(int i = 0; i < 12; i++){
+			supply.getDuchySupply().pop();
+		}
+		for(int i = 0; i < 30; i++){
+			supply.getGoldSupply().pop();
+		}
+		for(int i = 0; i < 60; i++){
+			supply.getCopperSupply().pop();
+		}
+		for(int i = 0; i < 24; i++){
+			supply.getEstateSupply().pop();
+		}
+		assertTrue(supply.isGameOver());
+	}
 }

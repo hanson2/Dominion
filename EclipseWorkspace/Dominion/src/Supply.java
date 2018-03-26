@@ -86,4 +86,41 @@ public class Supply {
 		return this.curseSupply;
 	}
 
+	public boolean isGameOver() {
+		if(this.provinceSupply.isEmpty()){
+			return true;
+		}
+		if(this.isThreePilesGone()){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isThreePilesGone(){
+		int numPilesGone = 0;
+		if(this.copperSupply.isEmpty()){
+			numPilesGone++;
+		}
+		if(this.silverSupply.isEmpty()){
+			numPilesGone++;
+		}
+		if(this.goldSupply.isEmpty()){
+			numPilesGone++;
+		}
+		if(this.estateSupply.isEmpty()){
+			numPilesGone++;
+		}
+		if(this.duchySupply.isEmpty()){
+			numPilesGone++;
+		}
+		if(this.curseSupply.isEmpty()){
+			numPilesGone++;
+		}
+		
+		if(numPilesGone >= 3){
+			return true;
+		}
+		return false;
+	}
+
 }
