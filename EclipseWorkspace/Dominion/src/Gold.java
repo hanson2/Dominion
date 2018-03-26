@@ -16,4 +16,9 @@ public class Gold extends Card {
 		return 0;
 	}
 
+	@Override
+	public int getCost() {
+		return 6;
+	}
+
 }

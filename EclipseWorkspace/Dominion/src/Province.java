@@ -16,4 +16,9 @@ public class Province extends Card {
 		return 6;
 	}
 
+	@Override
+	public int getCost() {
+		return 8;
+	}
+
 }

@@ -15,4 +15,9 @@ public class Estate extends Card {
 	public int getVictoryValue() {
 		return 1;
 	}
+
+	@Override
+	public int getCost() {
+		return 2;
+	}
 }

@@ -18,5 +18,7 @@ public abstract class Card {
 	}
 
 	public abstract int getVictoryValue();
+
+	public abstract int getCost();
 	
 }

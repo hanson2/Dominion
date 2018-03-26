@@ -16,4 +16,9 @@ public class Duchy extends Card {
 		return 3;
 	}
 
+	@Override
+	public int getCost() {
+		return 5;
+	}
+
 }

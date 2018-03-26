@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 
 public class SupplyPileTest {
@@ -7,8 +9,9 @@ public class SupplyPileTest {
 	@Test
 	public void testSupplySetup() {
 		Supply supply = new Supply();
+		List kingdomeCardList = supply.getKingdomCardList();
 		
-		assertTrue(supply.getKingdomCardList().size() == 10);
+		assertTrue(kingdomeCardList.size() == 10);
 		
 		assertTrue(supply.getCopperSupply().size() == 60);
 		assertTrue(supply.getSilverSupply().size() == 40);
@@ -31,6 +34,7 @@ public class SupplyPileTest {
 		assertTrue(top.getBuysAdded() == 0);
 		assertTrue(top.getCardsAdded() == 0);
 		assertTrue(top.getVictoryValue() == 0);
+		assertTrue(top.getCost() == 0);
 		assertTrue(supply.getCopperSupply() == supply.getCopperSupply());
 	}
 	
@@ -45,6 +49,7 @@ public class SupplyPileTest {
 		assertTrue(top.getBuysAdded() == 0);
 		assertTrue(top.getCardsAdded() == 0);
 		assertTrue(top.getVictoryValue() == 0);
+		assertTrue(top.getCost() == 3);
 		assertTrue(supply.getSilverSupply() == supply.getSilverSupply());
 	}
 	
@@ -59,6 +64,7 @@ public class SupplyPileTest {
 		assertTrue(top.getBuysAdded() == 0);
 		assertTrue(top.getCardsAdded() == 0);
 		assertTrue(top.getVictoryValue() == 0);
+		assertTrue(top.getCost() == 6);
 		assertTrue(supply.getGoldSupply() == supply.getGoldSupply());
 	}
 	
@@ -73,6 +79,7 @@ public class SupplyPileTest {
 		assertTrue(top.getBuysAdded() == 0);
 		assertTrue(top.getCardsAdded() == 0);
 		assertTrue(top.getVictoryValue() == 1);
+		assertTrue(top.getCost() == 2);
 		assertTrue(supply.getEstateSupply() == supply.getEstateSupply());
 	}
 	
@@ -87,6 +94,7 @@ public class SupplyPileTest {
 		assertTrue(top.getBuysAdded() == 0);
 		assertTrue(top.getCardsAdded() == 0);
 		assertTrue(top.getVictoryValue() == 3);
+		assertTrue(top.getCost() == 5);
 		assertTrue(supply.getDuchySupply() == supply.getDuchySupply());
 	}
 	
@@ -101,6 +109,22 @@ public class SupplyPileTest {
 		assertTrue(top.getBuysAdded() == 0);
 		assertTrue(top.getCardsAdded() == 0);
 		assertTrue(top.getVictoryValue() == 6);
+		assertTrue(top.getCost() == 8);
 		assertTrue(supply.getProvinceSupply() == supply.getProvinceSupply());
+	}
+	
+	@Test
+	public void testCurseValidity(){
+		Supply supply = new Supply();
+		Card top = supply.getCurseSupply().pop();
+		
+		assertTrue(top.getType().equals("CURSE"));
+		assertTrue(top.getCoinsAdded() == 0);
+		assertTrue(top.getActionsAdded() == 0);
+		assertTrue(top.getBuysAdded() == 0);
+		assertTrue(top.getCardsAdded() == 0);
+		assertTrue(top.getVictoryValue() == -1);
+		assertTrue(top.getCost() == 0);
+		assertTrue(supply.getCurseSupply() == supply.getCurseSupply());
 	}
 }

@@ -16,4 +16,9 @@ public class Silver extends Card {
 		return 0;
 	}
 
+	@Override
+	public int getCost() {
+		return 3;
+	}
+
 }
