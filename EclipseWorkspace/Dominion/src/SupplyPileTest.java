@@ -186,4 +186,67 @@ public class SupplyPileTest {
 		}
 		assertTrue(supply.isGameOver());
 	}
+	
+	@Test
+	public void testGameOverThreeKingdomSupplyGone(){
+		Supply supply = new Supply();
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < 10; j++){
+				supply.getKingdomCardList().get(i).pop();
+			}
+		}
+		assertTrue(supply.isGameOver());
+	}
+	
+	@Test
+	public void testGameOverFourKingdomSupplyGone(){
+		Supply supply = new Supply();
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j < 10; j++){
+				supply.getKingdomCardList().get(i).pop();
+			}
+		}
+		assertTrue(supply.isGameOver());
+	}
+	
+	@Test
+	public void testGameOverOneKingdomSupplyGone(){
+		Supply supply = new Supply();
+		for(int j = 0; j < 10; j++){
+			supply.getKingdomCardList().get(0).pop();
+		}
+		assertFalse(supply.isGameOver());
+	}
+	
+	@Test
+	public void testGameOverMixedThreeSupplyGone(){
+		Supply supply = new Supply();
+		for(int j = 0; j < 10; j++){
+			supply.getKingdomCardList().get(0).pop();
+		}
+		for(int i = 0; i < 12; i++){
+			supply.getDuchySupply().pop();
+		}
+		for(int i = 0; i < 30; i++){
+			supply.getGoldSupply().pop();
+		}
+		assertTrue(supply.isGameOver());
+	}
+	
+	@Test
+	public void testGameOverMixedFourSupplyGone(){
+		Supply supply = new Supply();
+		for(int i = 0; i < 2; i++){
+			for(int j = 0; j < 10; j++){
+				supply.getKingdomCardList().get(i).pop();
+			}
+		}
+		for(int i = 0; i < 12; i++){
+			supply.getDuchySupply().pop();
+		}
+		for(int i = 0; i < 30; i++){
+			supply.getGoldSupply().pop();
+		}
+		assertTrue(supply.isGameOver());
+	}
 }

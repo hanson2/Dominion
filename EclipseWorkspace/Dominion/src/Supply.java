@@ -3,13 +3,14 @@ import java.util.List;
 import java.util.Stack;
 
 public class Supply {
-	Stack copperSupply;
-	Stack silverSupply;
-	Stack goldSupply;
-	Stack estateSupply;
-	Stack duchySupply;
-	Stack provinceSupply;
-	Stack curseSupply;
+	Stack<Card> copperSupply;
+	Stack<Card> silverSupply;
+	Stack<Card> goldSupply;
+	Stack<Card> estateSupply;
+	Stack<Card> duchySupply;
+	Stack<Card> provinceSupply;
+	Stack<Card> curseSupply;
+	List<Stack<Card>> kingdomCardList;
 	
 	public Supply(){
 		setUpBaseCards();
@@ -23,6 +24,7 @@ public class Supply {
 		this.duchySupply = new Stack<Card>();
 		this.provinceSupply = new Stack<Card>();
 		this.curseSupply = new Stack<Card>();
+		this.kingdomCardList = new ArrayList<Stack<Card>>();
 		
 		for(int i = 0; i < 60; i++){
 			this.copperSupply.push(new Copper());
@@ -45,17 +47,17 @@ public class Supply {
 		for(int i = 0; i < 30; i++){
 			this.curseSupply.push(new Curse());
 		}
+		for(int i = 0; i < 10; i++){
+			this.kingdomCardList.add(new Stack<Card>());
+			for(int j = 0; j < 10; j++){//Change this 10 to whatever the real number is
+				this.kingdomCardList.get(i).push(new Copper());				
+			}
+		}
 	}
 	
 
-	public List getKingdomCardList() {
-		List kingdomCardList = new ArrayList<String>();
-		
-		for(int i = 0; i < 10; i++){
-			kingdomCardList.add(""+ i);
-		}
-		
-		return kingdomCardList;
+	public List<Stack<Card>> getKingdomCardList() {		
+		return this.kingdomCardList;
 	}
 
 	public Stack<Card> getCopperSupply() {
@@ -98,6 +100,12 @@ public class Supply {
 	
 	private boolean isThreePilesGone(){
 		int numPilesGone = 0;
+		
+		for(int i = 0; i < 10; i++){
+			if(this.getKingdomCardList().get(i).isEmpty()){
+				numPilesGone++;
+			}
+		}
 		if(this.copperSupply.isEmpty()){
 			numPilesGone++;
 		}
