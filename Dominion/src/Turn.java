@@ -11,41 +11,38 @@ public class Turn {
 	}
 
 	public void run() {
-
-		// action phase
-		String card = "";// eventually card object not
-							// string
-		// a card is played
+		this.handleActions();
+		this.handleBuys();
+		this.handleCleanup();
+	}
+	
+	void handleActions(){
 		while (this.actions > 0) {
-			card = this.player.playCard();
+			Card card = this.player.playCard();
 			this.handleCard(card);
 			this.actions--;
 		}
-		// buy phase
+	}
+	
+	void handleBuys(){
 		while (this.buys > 0) {
 			if (!this.player.buy()) {
 				this.buys = 0;
 			}
 			this.buys--;
 		}
-
-		// Cleanup Phase
+	}
+	
+	void handleCleanup(){
 		this.player.discardHand();
 		for (int i = 0; i < 5; i++) {
 			this.player.drawACard();
 		}
 	}
 
-	private void handleCard(String card) {
-		// TODO determine how to play cards
-		if (card == "addAction") {
-			this.actions++;
-		} else if (card == "addBuy") {
-			this.buys++;
-		} else if (card == "") {
-			this.actions = 0;
-		}
-
+	void handleCard(Card card) {
+		this.actions += card.getActionsAdded();
+		this.buys += card.getBuysAdded();
 	}
 
 	public String getCurrentStateType() {

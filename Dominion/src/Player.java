@@ -11,21 +11,17 @@ public class Player {
 
 	public boolean drawACard() {
 		return false;
-		// TODO Auto-generated method stub
 	}
 
 	public boolean discardHand() {
 		return false;
-		// TODO Auto-generated method stub
 	}
 
-	public String playCard() {
-		// TODO Auto-generated method stub
+	public Card playCard() {
 		return null;
 	}
 
 	public boolean buy() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
