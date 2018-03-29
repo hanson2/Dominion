@@ -134,4 +134,12 @@ public class TestTurn {
 
 		EasyMock.verify(player);
 	}
+	
+	@Test
+	public void testInitialStateSetup() {
+		Player player = EasyMock.strictMock(Player.class);
+		
+		Turn turn = new Turn(player);
+		assertTrue(turn.getCurrentStateType().equals("ACTION"));
+	}
 }

@@ -48,4 +48,8 @@ public class Turn {
 
 	}
 
+	public String getCurrentStateType() {
+		return "ACTION";
+	}
+
 }
