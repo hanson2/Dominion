@@ -14,8 +14,10 @@ public class Player {
 	}
 
 	public void drawACard() {
-		this.sizeOfDrawPile--;
-		this.sizeOfHand++;
+		if(this.sizeOfDrawPile > 0){
+			this.sizeOfDrawPile--;
+			this.sizeOfHand++;			
+		}
 	}
 
 	public void discardHand() {

@@ -22,4 +22,16 @@ public class PlayerTest {
 		assertTrue(player.sizeOfHand() == 1);
 		assertTrue(player.sizeOfDiscardPile() == 0);
 	}
+	
+	@Test
+	public void testDrawManyCardsEmptyDiscard(){
+		Player player = new Player("John");
+		for(int i = 0; i < 12; i++){
+			player.drawACard();
+		}
+		
+		assertTrue(player.sizeOfDrawPile() == 0);
+		assertTrue(player.sizeOfHand() == 10);
+		assertTrue(player.sizeOfDiscardPile() == 0);
+	}
 }
