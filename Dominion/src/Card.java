@@ -25,6 +25,6 @@ public abstract class Card {
 
 	public abstract int getCost();
 
-	public abstract TurnState getPlayState();
+	public abstract CardPlayState getPlayState();
 
 }

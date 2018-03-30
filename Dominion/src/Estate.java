@@ -17,7 +17,7 @@ public class Estate extends Card {
 	}
 
 	@Override
-	public TurnState getPlayState() {
+	public CardPlayState getPlayState() {
 		return new EstatePlayState();
 	}
 }

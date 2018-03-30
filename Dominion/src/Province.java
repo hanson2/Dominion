@@ -17,7 +17,7 @@ public class Province extends Card {
 	}
 
 	@Override
-	public TurnState getPlayState() {
+	public CardPlayState getPlayState() {
 		return new ProvincePlayState();
 	}
 

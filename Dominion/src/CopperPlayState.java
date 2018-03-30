@@ -1,5 +1,5 @@
 
-public class CopperPlayState extends TurnState {
+public class CopperPlayState extends CardPlayState {
 
 	@Override
 	public void run() {

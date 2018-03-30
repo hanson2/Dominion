@@ -1,5 +1,5 @@
 
-public class GoldPlayState extends TurnState {
+public class GoldPlayState extends CardPlayState {
 
 	@Override
 	public void run() {
