@@ -84,6 +84,15 @@ public class PlayerTest {
 	}
 	
 	@Test
+	public void testGetPointsOneEstateAdded(){
+		Player player = new Player("John");
+		
+		player.gainCard(new Estate());
+		
+		assertEquals(player.getPoints(), 4);
+	}
+	
+	@Test
 	public void testContentsOfHandOneCard(){
 		Player player = new Player("John");
 		
@@ -110,5 +119,15 @@ public class PlayerTest {
 		Player player = new Player("John");
 		
 		assertTrue(player.getHand().isEmpty());
+	}
+	
+	@Test
+	public void testGainCard(){
+		Player player = new Player("John");
+		
+		int discardPileSizeBefore = player.sizeOfDiscardPile();		
+		player.gainCard(new Estate());
+		
+		assertEquals(player.sizeOfDiscardPile(), discardPileSizeBefore + 1);
 	}
 }

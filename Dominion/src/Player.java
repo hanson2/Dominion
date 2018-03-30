@@ -1,39 +1,46 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Player {
 
-	private int points;// replace with a tallying function eventually
 	private String name;
-	private int sizeOfDrawPile;
-	private int sizeOfHand;
-	private int sizeOfDiscardPile;
+	private List<Card> hand;
+	private Stack<Card> drawPile;
+	private Stack<Card> discardPile;
 
 	public Player(String name) {
-		this.sizeOfDrawPile = 10;
-		this.sizeOfHand = 0;
-		this.sizeOfDiscardPile = 0;
-		this.points = 3;
+		this.hand = new ArrayList<Card>();
+		this.drawPile = new Stack<Card>();
+		this.discardPile = new Stack<Card>();
+		this.addStarterCards();
 		this.name = name;
+	}
+	
+	private void addStarterCards(){
+		for(int i = 0; i < 7; i++){
+			//TODO Change Supply to include less of the starter cards based on num players
+			this.drawPile.push(new Copper());
+		}
+		for(int i = 0; i < 3; i++){
+			this.drawPile.push(new Estate());
+		}
 	}
 
 	public void drawACard() {
-		if(this.sizeOfDrawPile > 0){
-			this.sizeOfDrawPile--;
-			this.sizeOfHand++;			
+		if(this.drawPile.size() > 0){
+			this.hand.add(this.drawPile.pop());		
 		}
-		else if(this.sizeOfDiscardPile > 0){
-			this.sizeOfDrawPile = this.sizeOfDiscardPile - 1;
-			this.sizeOfDiscardPile = 0;			
-			this.sizeOfHand++;
+		else if(this.discardPile.size() > 0){
+			this.drawPile.addAll(this.discardPile);
+			this.discardPile.clear();
+			this.drawACard();
 		}
 	}
 
 	public void discardHand() {
-		while(this.sizeOfHand > 0){
-			this.sizeOfDiscardPile++;
-			this.sizeOfHand--;
-		}
+		this.discardPile.addAll(this.hand);
+		this.hand.clear();
 	}
 
 	public Card playCard() {
@@ -45,7 +52,17 @@ public class Player {
 	}
 
 	public int getPoints() {
-		return points;
+		int totalPoints = 0;
+		for(Card card : this.drawPile){
+			totalPoints += card.getVictoryValue();
+		}
+		for(Card card : this.hand){
+			totalPoints += card.getVictoryValue();
+		}
+		for(Card card : this.discardPile){
+			totalPoints += card.getVictoryValue();
+		}
+		return totalPoints;
 	}
 
 	public String getName() {
@@ -53,22 +70,23 @@ public class Player {
 	}
 
 	public int sizeOfDrawPile() {
-		return this.sizeOfDrawPile;
+		return this.drawPile.size();
 	}
 
 	public int sizeOfHand() {
-		return this.sizeOfHand;
+		return this.hand.size();
 	}
 
 	public int sizeOfDiscardPile() {
-		return this.sizeOfDiscardPile;
+		return this.discardPile.size();
 	}
 
 	public List<Card> getHand() {
-		List<Card> toReturn = new ArrayList<Card>();
-		toReturn.add(new Copper());
-		toReturn.add(new Estate());
-		return toReturn;
+		return this.hand;
+	}
+
+	public void gainCard(Card card) {
+		this.discardPile.push(card);
 	}
 
 }
