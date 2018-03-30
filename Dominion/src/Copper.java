@@ -16,4 +16,9 @@ public class Copper extends Card {
 		return 0;
 	}
 
+	@Override
+	public TurnState getPlayState() {
+		return new CopperPlayState();
+	}
+
 }

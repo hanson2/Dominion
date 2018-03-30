@@ -9,6 +9,7 @@ public class CopperTest {
 		Card card = new Copper();
 
 		assertTrue(card.getType().equals("TREASURE"));
+		assertTrue(card.getPlayState().getClass().equals(CopperPlayState.class));
 		assertTrue(card.getCoinsAdded() == 1);
 		assertTrue(card.getActionsAdded() == 0);
 		assertTrue(card.getBuysAdded() == 0);

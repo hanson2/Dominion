@@ -16,4 +16,9 @@ public class Silver extends Card {
 		return 3;
 	}
 
+	@Override
+	public TurnState getPlayState() {
+		return new SilverPlayState();
+	}
+
 }
