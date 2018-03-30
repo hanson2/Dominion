@@ -12,11 +12,6 @@ public class Silver extends Card {
 	}
 
 	@Override
-	public int getVictoryValue() {
-		return 0;
-	}
-
-	@Override
 	public int getCost() {
 		return 3;
 	}
