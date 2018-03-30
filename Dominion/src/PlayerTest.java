@@ -114,6 +114,17 @@ public class PlayerTest {
 				&& (player.getHand().get(1).getClass().equals(Copper.class)
 						|| player.getHand().get(1).getClass().equals(Estate.class)));
 	}
+	
+	@Test
+	public void testContentsOfStarterHand() {
+		Player player = new Player("John");
+		
+		player.drawNewHand();
+		
+		for(Card card : player.getHand()){
+			assertTrue(card.getClass().equals(Copper.class) || card.getClass().equals(Estate.class));
+		}
+	}
 
 	@Test
 	public void testContentsOfHandNoCards() {

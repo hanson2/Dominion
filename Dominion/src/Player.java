@@ -28,6 +28,12 @@ public class Player {
 		}
 	}
 
+	public void drawNewHand() {
+		for(int i = 0; i < 5; i++){
+			this.drawACard();
+		}
+	}
+
 	public void discardHand() {
 		this.discardPile.addAll(this.hand);
 		this.hand.clear();
