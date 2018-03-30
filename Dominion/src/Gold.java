@@ -16,4 +16,9 @@ public class Gold extends Card {
 		return 6;
 	}
 
+	@Override
+	public TurnState getPlayState() {
+		return new GoldPlayState();
+	}
+
 }
