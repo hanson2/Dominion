@@ -8,7 +8,7 @@ public class SilverTest {
 	public void testSilverValues() {
 		Card card = new Silver();
 
-		assertTrue(card.getType().equals("TREASURE"));
+		assertTrue(card.getType().contains(CardType.TREASURE));
 		assertTrue(card.getPlayState().getClass().equals(SilverPlayState.class));
 		assertTrue(card.getCoinsAdded() == 2);
 		assertTrue(card.getActionsAdded() == 0);
