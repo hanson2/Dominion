@@ -19,10 +19,9 @@ public class Player {
 	}
 
 	public void drawACard() {
-		if(this.drawPile.size() > 0){
-			this.hand.add(this.drawPile.pop());		
-		}
-		else if(this.discardPile.size() > 0){
+		if (this.drawPile.size() > 0) {
+			this.hand.add(this.drawPile.pop());
+		} else if (this.discardPile.size() > 0) {
 			this.drawPile.addAll(this.discardPile);
 			this.discardPile.clear();
 			this.drawACard();
@@ -38,7 +37,7 @@ public class Player {
 		return null;
 	}
 
-	public boolean buy() {		
+	public boolean buy() {
 		return false;
 	}
 
@@ -72,20 +71,21 @@ public class Player {
 	public void gainCard(Card card) {
 		this.discardPile.push(card);
 	}
-	
-	private void addStarterCards(){
-		for(int i = 0; i < 7; i++){
-			//TODO Change Supply to include less of the starter cards based on num players
+
+	private void addStarterCards() {
+		for (int i = 0; i < 7; i++) {
+			// TODO Change Supply to include less of the starter cards based on
+			// num players
 			this.drawPile.push(new Copper());
 		}
-		for(int i = 0; i < 3; i++){
+		for (int i = 0; i < 3; i++) {
 			this.drawPile.push(new Estate());
 		}
 	}
-	
-	private int addPointsFromPile(Collection<Card> cards){
+
+	private int addPointsFromPile(Collection<Card> cards) {
 		int totalPoints = 0;
-		for(Card card : cards){
+		for (Card card : cards) {
 			totalPoints += card.getVictoryValue();
 		}
 		return totalPoints;
