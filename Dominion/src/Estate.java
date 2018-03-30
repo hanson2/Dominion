@@ -1,10 +1,7 @@
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Estate extends Card {
-
-	@Override
-	public String getType() {
-		return "VICTORY";
-	}
 
 	@Override
 	public int getVictoryValue() {
@@ -19,5 +16,12 @@ public class Estate extends Card {
 	@Override
 	public CardPlayState getPlayState() {
 		return new EstatePlayState();
+	}
+
+	@Override
+	public Set<CardType> getType() {
+		Set<CardType> toReturn = new TreeSet<CardType>();
+		toReturn.add(CardType.VICTORY);
+		return toReturn;
 	}
 }

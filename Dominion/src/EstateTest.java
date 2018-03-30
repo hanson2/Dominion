@@ -8,7 +8,7 @@ public class EstateTest {
 	public void testEstateValues() {
 		Card card = new Estate();
 
-		assertTrue(card.getType().equals("VICTORY"));
+		assertTrue(card.getType().contains(CardType.VICTORY));
 		assertTrue(card.getPlayState().getClass().equals(EstatePlayState.class));
 		assertTrue(card.getCoinsAdded() == 0);
 		assertTrue(card.getActionsAdded() == 0);
