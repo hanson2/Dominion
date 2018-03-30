@@ -16,4 +16,9 @@ public class Duchy extends Card {
 		return 5;
 	}
 
+	@Override
+	public TurnState getPlayState() {
+		return new DuchyPlayState();
+	}
+
 }
