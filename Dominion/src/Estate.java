@@ -15,4 +15,9 @@ public class Estate extends Card {
 	public int getCost() {
 		return 2;
 	}
+
+	@Override
+	public TurnState getPlayState() {
+		return new EstatePlayState();
+	}
 }
