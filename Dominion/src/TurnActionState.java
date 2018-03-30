@@ -19,16 +19,18 @@ public class TurnActionState extends TurnState {
 			}
 			this.handleCard(card);
 			this.turn.actions--;
-			
+
 		}
+
+		this.turn.state = new TurnBuyState(this.player, this.turn);
+		this.turn.run();
 	}
-	
-	
+
 	private void handleCard(Card card) {
-		
+
 		this.turn.actions += card.getActionsAdded();
 		this.turn.buys += card.getBuysAdded();
-		
+
 	}
 
 }

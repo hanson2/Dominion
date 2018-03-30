@@ -1,14 +1,12 @@
 
 public class TurnCleanupState extends TurnState {
 
-	private Turn turn;
 	private Player player;
-	
-	public TurnCleanupState(Player player, Turn turn) {
-		this.turn = turn;
+
+	public TurnCleanupState(Player player) {
 		this.player = player;
 	}
-	
+
 	@Override
 	public void run() {
 		this.player.discardHand();

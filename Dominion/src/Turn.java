@@ -3,28 +3,21 @@ public class Turn {
 	Player player;
 	int buys;
 	int actions;
-	TurnState[] states = new TurnState[3];
-	int state;
+	TurnState state;
 
 	public Turn(Player player) {
 		this.player = player;
 		this.buys = 1;
 		this.actions = 1;
-		this.states[0] = new TurnActionState(player, this);
-		this.states[1] = new TurnBuyState(player, this);
-		this.states[2] = new TurnCleanupState(player, this);
-		this.state = 0;
+		this.state = new TurnActionState(player, this);
 	}
 
 	public void run() {
-		for (int i = 0; i < states.length; i++) {
-			this.state = i;
-			this.states[i].run();
-		}
+		this.state.run();
 	}
 
-	public String getCurrentStateType() {
-		return "ACTION";
+	public Class<? extends TurnState> getCurrentStateType() {
+		return this.state.getClass();
 	}
 
 }
