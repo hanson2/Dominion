@@ -3,14 +3,19 @@ public class Player {
 
 	private int points;// replace with a tallying function eventually
 	private String name;
+	private int sizeOfDrawPile;
+	private int sizeOfHand;
 
 	public Player(String name) {
+		this.sizeOfDrawPile = 10;
+		this.sizeOfHand = 0;
 		this.points = 0;
 		this.name = name;
 	}
 
 	public void drawACard() {
-		
+		this.sizeOfDrawPile--;
+		this.sizeOfHand++;
 	}
 
 	public void discardHand() {
@@ -34,11 +39,11 @@ public class Player {
 	}
 
 	public int sizeOfDrawPile() {
-		return 10;
+		return this.sizeOfDrawPile;
 	}
 
 	public int sizeOfHand() {
-		return 0;
+		return this.sizeOfHand;
 	}
 
 	public int sizeOfDiscardPile() {

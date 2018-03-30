@@ -12,4 +12,14 @@ public class PlayerTest {
 		assertTrue(player.sizeOfHand() == 0);
 		assertTrue(player.sizeOfDiscardPile() == 0);
 	}
+	
+	@Test
+	public void testDrawCard(){
+		Player player = new Player("John");
+		player.drawACard();
+		
+		assertTrue(player.sizeOfDrawPile() == 9);
+		assertTrue(player.sizeOfHand() == 1);
+		assertTrue(player.sizeOfDiscardPile() == 0);
+	}
 }
