@@ -27,45 +27,27 @@ public class SupplyPileTest {
 	@Test
 	public void testCopperValidity() {
 		Supply supply = new Supply();
-		Card top = supply.getBaseSupply("COPPER").pop();
+		Card top = supply.getBaseSupply("COPPER").peek();
 
-		assertTrue(top.getType().equals("TREASURE"));
-		assertTrue(top.getCoinsAdded() == 1);
-		assertTrue(top.getActionsAdded() == 0);
-		assertTrue(top.getBuysAdded() == 0);
-		assertTrue(top.getCardsAdded() == 0);
-		assertTrue(top.getVictoryValue() == 0);
-		assertTrue(top.getCost() == 0);
+		assertTrue(top.getClass().equals(Copper.class));
 		assertTrue(supply.getBaseSupply("COPPER") == supply.getBaseSupply("COPPER"));
 	}
 
 	@Test
 	public void testSilverValidity() {
 		Supply supply = new Supply();
-		Card top = supply.getBaseSupply("SILVER").pop();
+		Card top = supply.getBaseSupply("SILVER").peek();
 
-		assertTrue(top.getType().equals("TREASURE"));
-		assertTrue(top.getCoinsAdded() == 2);
-		assertTrue(top.getActionsAdded() == 0);
-		assertTrue(top.getBuysAdded() == 0);
-		assertTrue(top.getCardsAdded() == 0);
-		assertTrue(top.getVictoryValue() == 0);
-		assertTrue(top.getCost() == 3);
+		assertTrue(top.getClass().equals(Silver.class));
 		assertTrue(supply.getBaseSupply("SILVER") == supply.getBaseSupply("SILVER"));
 	}
 
 	@Test
 	public void testGoldValidity() {
 		Supply supply = new Supply();
-		Card top = supply.getBaseSupply("GOLD").pop();
+		Card top = supply.getBaseSupply("GOLD").peek();
 
-		assertTrue(top.getType().equals("TREASURE"));
-		assertTrue(top.getCoinsAdded() == 3);
-		assertTrue(top.getActionsAdded() == 0);
-		assertTrue(top.getBuysAdded() == 0);
-		assertTrue(top.getCardsAdded() == 0);
-		assertTrue(top.getVictoryValue() == 0);
-		assertTrue(top.getCost() == 6);
+		assertTrue(top.getClass().equals(Gold.class));
 		assertTrue(supply.getBaseSupply("GOLD") == supply.getBaseSupply("GOLD"));
 	}
 
