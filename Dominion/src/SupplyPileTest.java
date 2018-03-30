@@ -54,60 +54,36 @@ public class SupplyPileTest {
 	@Test
 	public void testEstateValidity() {
 		Supply supply = new Supply();
-		Card top = supply.getBaseSupply("ESTATE").pop();
+		Card top = supply.getBaseSupply("ESTATE").peek();
 
-		assertTrue(top.getType().equals("VICTORY"));
-		assertTrue(top.getCoinsAdded() == 0);
-		assertTrue(top.getActionsAdded() == 0);
-		assertTrue(top.getBuysAdded() == 0);
-		assertTrue(top.getCardsAdded() == 0);
-		assertTrue(top.getVictoryValue() == 1);
-		assertTrue(top.getCost() == 2);
+		assertTrue(top.getClass().equals(Estate.class));
 		assertTrue(supply.getBaseSupply("ESTATE") == supply.getBaseSupply("ESTATE"));
 	}
 
 	@Test
 	public void testDuchyValidity() {
 		Supply supply = new Supply();
-		Card top = supply.getBaseSupply("DUCHY").pop();
+		Card top = supply.getBaseSupply("DUCHY").peek();
 
-		assertTrue(top.getType().equals("VICTORY"));
-		assertTrue(top.getCoinsAdded() == 0);
-		assertTrue(top.getActionsAdded() == 0);
-		assertTrue(top.getBuysAdded() == 0);
-		assertTrue(top.getCardsAdded() == 0);
-		assertTrue(top.getVictoryValue() == 3);
-		assertTrue(top.getCost() == 5);
+		assertTrue(top.getClass().equals(Duchy.class));
 		assertTrue(supply.getBaseSupply("DUCHY") == supply.getBaseSupply("DUCHY"));
 	}
 
 	@Test
 	public void testProvinceValidity() {
 		Supply supply = new Supply();
-		Card top = supply.getBaseSupply("PROVINCE").pop();
+		Card top = supply.getBaseSupply("PROVINCE").peek();
 
-		assertTrue(top.getType().equals("VICTORY"));
-		assertTrue(top.getCoinsAdded() == 0);
-		assertTrue(top.getActionsAdded() == 0);
-		assertTrue(top.getBuysAdded() == 0);
-		assertTrue(top.getCardsAdded() == 0);
-		assertTrue(top.getVictoryValue() == 6);
-		assertTrue(top.getCost() == 8);
+		assertTrue(top.getClass().equals(Province.class));
 		assertTrue(supply.getBaseSupply("PROVINCE") == supply.getBaseSupply("PROVINCE"));
 	}
 
 	@Test
 	public void testCurseValidity() {
 		Supply supply = new Supply();
-		Card top = supply.getBaseSupply("CURSE").pop();
+		Card top = supply.getBaseSupply("CURSE").peek();
 
-		assertTrue(top.getType().equals("CURSE"));
-		assertTrue(top.getCoinsAdded() == 0);
-		assertTrue(top.getActionsAdded() == 0);
-		assertTrue(top.getBuysAdded() == 0);
-		assertTrue(top.getCardsAdded() == 0);
-		assertTrue(top.getVictoryValue() == -1);
-		assertTrue(top.getCost() == 0);
+		assertTrue(top.getClass().equals(Curse.class));
 		assertTrue(supply.getBaseSupply("CURSE") == supply.getBaseSupply("CURSE"));
 	}
 
