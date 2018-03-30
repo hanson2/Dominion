@@ -18,7 +18,7 @@ public class TestTurnState {
 
 		turn.actions = 1;// base value
 
-		TurnActionState state = new TurnActionState(player, turn);
+		TurnActionState state = new TurnActionState(turn);
 
 		state.run();
 
@@ -43,7 +43,7 @@ public class TestTurnState {
 
 		turn.actions = 1;// base value
 
-		TurnActionState state = new TurnActionState(player, turn);
+		TurnActionState state = new TurnActionState(turn);
 
 		state.run();
 
@@ -68,7 +68,7 @@ public class TestTurnState {
 
 		turn.actions = 1;// base value
 
-		TurnActionState state = new TurnActionState(player, turn);
+		TurnActionState state = new TurnActionState(turn);
 
 		state.run();
 
@@ -88,7 +88,7 @@ public class TestTurnState {
 
 		turn.buys = 1;
 
-		TurnBuyState state = new TurnBuyState(player, turn);
+		TurnBuyState state = new TurnBuyState(turn);
 
 		state.run();
 
@@ -109,7 +109,7 @@ public class TestTurnState {
 
 		turn.buys = 2;
 
-		TurnBuyState state = new TurnBuyState(player, turn);
+		TurnBuyState state = new TurnBuyState(turn);
 
 		state.run();
 
@@ -129,31 +129,32 @@ public class TestTurnState {
 
 		turn.buys = 2;
 
-		TurnBuyState state = new TurnBuyState(player, turn);
+		TurnBuyState state = new TurnBuyState(turn);
 
 		state.run();
 
 		EasyMock.verify(player, turn);
 	}
-	
+
 	@Test
-	public void testTurnCleanupState(){
+	public void testTurnCleanupState() {
 		Player player = EasyMock.mock(Player.class);
-		
+		Turn turn = new Turn(player);
+
 		player.discardHand();
-		
+
 		player.drawACard();
 		player.drawACard();
 		player.drawACard();
 		player.drawACard();
 		player.drawACard();
-		
+
 		EasyMock.replay(player);
-		
-		TurnCleanupState state = new TurnCleanupState(player);
-		
+
+		TurnCleanupState state = new TurnCleanupState(turn);
+
 		state.run();
-		
+
 		EasyMock.verify(player);
 	}
 

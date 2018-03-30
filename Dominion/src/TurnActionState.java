@@ -4,9 +4,9 @@ public class TurnActionState extends TurnState {
 	private Turn turn;
 	private Player player;
 
-	public TurnActionState(Player player, Turn turn) {
+	public TurnActionState(Turn turn) {
 		this.turn = turn;
-		this.player = player;
+		this.player = turn.player;
 	}
 
 	@Override
@@ -19,7 +19,7 @@ public class TurnActionState extends TurnState {
 
 		}
 
-		this.turn.state = new TurnBuyState(this.player, this.turn);
+		this.turn.state = new TurnBuyState(this.turn);
 		this.turn.run();
 	}
 

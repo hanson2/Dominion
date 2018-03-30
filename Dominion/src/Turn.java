@@ -9,7 +9,7 @@ public class Turn {
 		this.player = player;
 		this.buys = 1;
 		this.actions = 1;
-		this.state = new TurnActionState(player, this);
+		this.state = new TurnActionState(this);
 	}
 
 	public void run() {
