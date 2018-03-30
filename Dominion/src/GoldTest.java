@@ -8,7 +8,7 @@ public class GoldTest {
 	public void testGoldValues() {
 		Card card = new Gold();
 
-		assertTrue(card.getType().equals("TREASURE"));
+		assertTrue(card.getType().contains(CardType.TREASURE));
 		assertTrue(card.getPlayState().getClass().equals(GoldPlayState.class));
 		assertTrue(card.getCoinsAdded() == 3);
 		assertTrue(card.getActionsAdded() == 0);
