@@ -5,10 +5,12 @@ public class Player {
 	private String name;
 	private int sizeOfDrawPile;
 	private int sizeOfHand;
+	private int sizeOfDiscardPile;
 
 	public Player(String name) {
 		this.sizeOfDrawPile = 10;
 		this.sizeOfHand = 0;
+		this.sizeOfDiscardPile = 0;
 		this.points = 0;
 		this.name = name;
 	}
@@ -21,7 +23,10 @@ public class Player {
 	}
 
 	public void discardHand() {
-		
+		while(this.sizeOfHand > 0){
+			this.sizeOfDiscardPile++;
+			this.sizeOfHand--;
+		}
 	}
 
 	public Card playCard() {
@@ -49,7 +54,7 @@ public class Player {
 	}
 
 	public int sizeOfDiscardPile() {
-		return 0;
+		return this.sizeOfDiscardPile;
 	}
 
 }
