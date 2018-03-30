@@ -60,4 +60,19 @@ public class PlayerTest {
 		assertTrue(player.sizeOfHand() == 0);
 		assertTrue(player.sizeOfDiscardPile() == 1);
 	}
+	
+	@Test
+	public void testDrawManyCardsNonEmptyDiscard(){
+		Player player = new Player("John");
+		
+		player.drawACard();
+		player.discardHand();
+		for(int i = 0; i < 11; i++){
+			player.drawACard();
+		}
+		
+		assertTrue(player.sizeOfDrawPile() == 0);
+		assertTrue(player.sizeOfHand() == 10);
+		assertTrue(player.sizeOfDiscardPile() == 0);
+	}
 }

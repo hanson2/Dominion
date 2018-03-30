@@ -20,6 +20,11 @@ public class Player {
 			this.sizeOfDrawPile--;
 			this.sizeOfHand++;			
 		}
+		else if(this.sizeOfDiscardPile > 0){
+			this.sizeOfDrawPile = this.sizeOfDiscardPile - 1;
+			this.sizeOfDiscardPile = 0;			
+			this.sizeOfHand++;
+		}
 	}
 
 	public void discardHand() {
