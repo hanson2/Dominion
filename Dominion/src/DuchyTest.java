@@ -8,7 +8,7 @@ public class DuchyTest {
 	public void testDuchyValues() {
 		Card card = new Duchy();
 
-		assertTrue(card.getType().equals("VICTORY"));
+		assertTrue(card.getType().contains(CardType.VICTORY));
 		assertTrue(card.getPlayState().getClass().equals(DuchyPlayState.class));
 		assertTrue(card.getCoinsAdded() == 0);
 		assertTrue(card.getActionsAdded() == 0);
