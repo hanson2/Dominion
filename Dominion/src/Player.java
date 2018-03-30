@@ -29,7 +29,7 @@ public class Player {
 	}
 
 	public void drawNewHand() {
-		for(int i = 0; i < 5; i++){
+		for (int i = 0; i < 5; i++) {
 			this.drawACard();
 		}
 	}
