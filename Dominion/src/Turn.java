@@ -19,6 +19,9 @@ public class Turn {
 	void handleActions(){
 		while (this.actions > 0) {
 			Card card = this.player.playCard();
+			if(card == null){
+				break;
+			}
 			this.handleCard(card);
 			this.actions--;
 		}

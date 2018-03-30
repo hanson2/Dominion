@@ -9,12 +9,12 @@ public class Player {
 		this.name = name;
 	}
 
-	public boolean drawACard() {
-		return false;
+	public void drawACard() {
+		
 	}
 
-	public boolean discardHand() {
-		return false;
+	public void discardHand() {
+		
 	}
 
 	public Card playCard() {
