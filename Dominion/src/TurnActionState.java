@@ -15,7 +15,9 @@ public class TurnActionState extends TurnState {
 		while (this.turn.actions > 0) {
 			Card card = this.player.playCard();
 			this.handleCard(card);
-			this.turn.actions--;
+			if (card.getType().equals("ACTION")) {
+				this.turn.actions--;
+			}
 
 		}
 
@@ -27,6 +29,7 @@ public class TurnActionState extends TurnState {
 
 		this.turn.actions += card.getActionsAdded();
 		this.turn.buys += card.getBuysAdded();
+		this.turn.coins += card.getCoinsAdded();
 
 	}
 
