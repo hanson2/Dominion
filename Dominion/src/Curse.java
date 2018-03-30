@@ -1,10 +1,7 @@
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Curse extends Card {
-
-	@Override
-	public String getType() {
-		return "CURSE";
-	}
 
 	@Override
 	public int getVictoryValue() {
@@ -19,6 +16,13 @@ public class Curse extends Card {
 	@Override
 	public CardPlayState getPlayState() {
 		return new CursePlayState();
+	}
+
+	@Override
+	public Set<CardType> getType() {
+		Set<CardType> toReturn = new TreeSet<CardType>();
+		toReturn.add(CardType.CURSE);
+		return toReturn;
 	}
 
 }

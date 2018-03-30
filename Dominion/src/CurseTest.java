@@ -8,7 +8,7 @@ public class CurseTest {
 	public void testCurseValues() {
 		Card card = new Curse();
 
-		assertTrue(card.getType().equals("CURSE"));
+		assertTrue(card.getType().contains(CardType.CURSE));
 		assertTrue(card.getPlayState().getClass().equals(CursePlayState.class));
 		assertTrue(card.getCoinsAdded() == 0);
 		assertTrue(card.getActionsAdded() == 0);
