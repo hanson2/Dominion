@@ -6,153 +6,155 @@ import org.junit.Test;
 public class TestTurnState {
 
 	@Test
-	public void testTurnAllPass() {
+	public void testTurnActionStateBaseCard() {
 
 		Player player = EasyMock.mock(Player.class);
+		Turn turn = EasyMock.mock(Turn.class);
 
-		EasyMock.expect(player.buy()).andReturn(false);// buy phase
-
-		player.discardHand();
-
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-
-		EasyMock.replay(player);
-
-		Turn turn = new Turn(player);
-		turn.run();
+		EasyMock.expect(player.playCard()).andReturn(new Copper());
 		turn.run();
 
-		EasyMock.verify(player);
+		EasyMock.replay(player, turn);
+
+		turn.actions = 1;// base value
+
+		TurnActionState state = new TurnActionState(player, turn);
+
+		state.run();
+
+		EasyMock.verify(player, turn);
 
 	}
 
 	@Test
-	public void testTurnAllPlay() {
+	public void testTurnActionStateAddOneAction() {
 		Player player = EasyMock.mock(Player.class);
-		Card cardToPlay = EasyMock.mock(Card.class);
-		EasyMock.expect(cardToPlay.getBuysAdded()).andReturn(1);
-		EasyMock.expect(cardToPlay.getBuysAdded()).andReturn(0);
+		Turn turn = EasyMock.mock(Turn.class);
+		Card card = EasyMock.mock(Card.class);
 
-		EasyMock.expect(player.playCard()).andReturn(cardToPlay);
+		EasyMock.expect(player.playCard()).andReturn(card);
+		EasyMock.expect(card.getActionsAdded()).andReturn(1);
+		EasyMock.expect(card.getBuysAdded()).andReturn(0);
+		EasyMock.expect(player.playCard()).andReturn(new Copper());
 
-		EasyMock.expect(player.buy()).andReturn(true);
-		EasyMock.expect(player.buy()).andReturn(true);
-
-		player.discardHand();
-
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-
-		EasyMock.replay(player);
-		EasyMock.replay(cardToPlay);
-
-		Turn turn = new Turn(player);
 		turn.run();
 
-		EasyMock.verify(player);
-		EasyMock.verify(cardToPlay);
+		EasyMock.replay(player, turn, card);
+
+		turn.actions = 1;// base value
+
+		TurnActionState state = new TurnActionState(player, turn);
+
+		state.run();
+
+		EasyMock.verify(player, turn);
 	}
 
 	@Test
-	public void testTurnPassBuy() {
+	public void testTurnActionStateAddTwoActions() {
 		Player player = EasyMock.mock(Player.class);
-		Card cardToPlay = EasyMock.mock(Card.class);
-		EasyMock.expect(cardToPlay.getBuysAdded()).andReturn(1);
+		Turn turn = EasyMock.mock(Turn.class);
+		Card card = EasyMock.mock(Card.class);
 
-		EasyMock.expect(player.playCard()).andReturn(cardToPlay);
+		EasyMock.expect(player.playCard()).andReturn(card);
+		EasyMock.expect(card.getActionsAdded()).andReturn(2);
+		EasyMock.expect(card.getBuysAdded()).andReturn(0);
+		EasyMock.expect(player.playCard()).andReturn(new Copper());
+		EasyMock.expect(player.playCard()).andReturn(new Copper());
+
+		turn.run();
+
+		EasyMock.replay(player, turn, card);
+
+		turn.actions = 1;// base value
+
+		TurnActionState state = new TurnActionState(player, turn);
+
+		state.run();
+
+		EasyMock.verify(player, turn);
+	}
+
+	@Test
+	public void testTurnBuyStateBase() {
+		Player player = EasyMock.mock(Player.class);
+		Turn turn = EasyMock.mock(Turn.class);
+
+		EasyMock.expect(player.buy()).andReturn(true);
+
+		turn.run();
+
+		EasyMock.replay(player, turn);
+
+		turn.buys = 1;
+
+		TurnBuyState state = new TurnBuyState(player, turn);
+
+		state.run();
+
+		EasyMock.verify(player, turn);
+	}
+
+	@Test
+	public void testTurnBuyStateMultipleBuys() {
+		Player player = EasyMock.mock(Player.class);
+		Turn turn = EasyMock.mock(Turn.class);
+
+		EasyMock.expect(player.buy()).andReturn(true);
+		EasyMock.expect(player.buy()).andReturn(true);
+
+		turn.run();
+
+		EasyMock.replay(player, turn);
+
+		turn.buys = 2;
+
+		TurnBuyState state = new TurnBuyState(player, turn);
+
+		state.run();
+
+		EasyMock.verify(player, turn);
+	}
+
+	@Test
+	public void testTurnBuyStateExitBuyEarly() {
+		Player player = EasyMock.mock(Player.class);
+		Turn turn = EasyMock.mock(Turn.class);
 
 		EasyMock.expect(player.buy()).andReturn(false);
 
-		player.discardHand();
-
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-
-		EasyMock.replay(player);
-		EasyMock.replay(cardToPlay);
-
-		Turn turn = new Turn(player);
 		turn.run();
 
-		EasyMock.verify(player);
-		EasyMock.verify(cardToPlay);
+		EasyMock.replay(player, turn);
+
+		turn.buys = 2;
+
+		TurnBuyState state = new TurnBuyState(player, turn);
+
+		state.run();
+
+		EasyMock.verify(player, turn);
 	}
-
+	
 	@Test
-	public void testAdd1Action() {
+	public void testTurnCleanupState(){
 		Player player = EasyMock.mock(Player.class);
-		Card cardToPlay = EasyMock.mock(Card.class);
-		EasyMock.expect(cardToPlay.getActionsAdded()).andReturn(1);
-		EasyMock.expect(cardToPlay.getBuysAdded()).andReturn(0);
-
-		EasyMock.expect(player.playCard()).andReturn(cardToPlay);
-
-		EasyMock.expect(player.buy()).andReturn(true);// buy phase
-
+		
 		player.discardHand();
-
+		
 		player.drawACard();
 		player.drawACard();
 		player.drawACard();
 		player.drawACard();
 		player.drawACard();
-
+		
 		EasyMock.replay(player);
-		EasyMock.replay(cardToPlay);
-
-		Turn turn = new Turn(player);
-		turn.run();
-
+		
+		TurnCleanupState state = new TurnCleanupState(player);
+		
+		state.run();
+		
 		EasyMock.verify(player);
-		EasyMock.verify(cardToPlay);
-	}
-
-	@Test
-	public void testAddManyAction() {
-		Player player = EasyMock.mock(Player.class);
-		Card cardToPlay = EasyMock.mock(Card.class);
-		EasyMock.expect(cardToPlay.getActionsAdded()).andReturn(3);
-		EasyMock.expect(cardToPlay.getActionsAdded()).andReturn(0);
-		EasyMock.expect(cardToPlay.getActionsAdded()).andReturn(0);
-		EasyMock.expect(cardToPlay.getActionsAdded()).andReturn(0);
-		EasyMock.expect(cardToPlay.getBuysAdded()).andReturn(0);
-		EasyMock.expect(cardToPlay.getBuysAdded()).andReturn(0);
-		EasyMock.expect(cardToPlay.getBuysAdded()).andReturn(0);
-		EasyMock.expect(cardToPlay.getBuysAdded()).andReturn(0);
-
-		EasyMock.expect(player.playCard()).andReturn(cardToPlay);
-		EasyMock.expect(player.playCard()).andReturn(cardToPlay);
-		EasyMock.expect(player.playCard()).andReturn(cardToPlay);
-		EasyMock.expect(player.playCard()).andReturn(cardToPlay);
-
-		EasyMock.expect(player.buy()).andReturn(true);// buy phase
-
-		player.discardHand();
-
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-
-		EasyMock.replay(player);
-		EasyMock.replay(cardToPlay);
-
-		Turn turn = new Turn(player);
-		turn.run();
-
-		EasyMock.verify(player);
-		EasyMock.verify(cardToPlay);
 	}
 
 }

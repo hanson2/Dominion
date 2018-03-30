@@ -14,9 +14,6 @@ public class TurnActionState extends TurnState {
 
 		while (this.turn.actions > 0) {
 			Card card = this.player.playCard();
-			if (card == null) {
-				break;
-			}
 			this.handleCard(card);
 			this.turn.actions--;
 
