@@ -9,6 +9,7 @@ public class ProvinceTest {
 		Card card = new Province();
 
 		assertTrue(card.getType().equals("VICTORY"));
+		assertTrue(card.getPlayState().getClass().equals(ProvincePlayState.class));
 		assertTrue(card.getCoinsAdded() == 0);
 		assertTrue(card.getActionsAdded() == 0);
 		assertTrue(card.getBuysAdded() == 0);
