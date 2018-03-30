@@ -82,4 +82,33 @@ public class PlayerTest {
 		
 		assertEquals(player.getPoints(), 3);
 	}
+	
+	@Test
+	public void testContentsOfHandOneCard(){
+		Player player = new Player("John");
+		
+		player.drawACard();
+		
+		assertTrue(player.getHand().get(0).getClass().equals(Copper.class) || player.getHand().get(0).getClass().equals(Estate.class));
+	}
+	
+	@Test
+	public void testContentsOfHandTwoCards(){
+		Player player = new Player("John");
+		
+		player.drawACard();
+		player.drawACard();
+		
+		assertTrue((player.getHand().get(0).getClass().equals(Copper.class) 
+				|| player.getHand().get(0).getClass().equals(Estate.class))
+				&& (player.getHand().get(1).getClass().equals(Copper.class) 
+						|| player.getHand().get(1).getClass().equals(Estate.class)));
+	}
+	
+	@Test
+	public void testContentsOfHandNoCards(){
+		Player player = new Player("John");
+		
+		assertTrue(player.getHand().isEmpty());
+	}
 }

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
 
@@ -60,6 +62,13 @@ public class Player {
 
 	public int sizeOfDiscardPile() {
 		return this.sizeOfDiscardPile;
+	}
+
+	public List<Card> getHand() {
+		List<Card> toReturn = new ArrayList<Card>();
+		toReturn.add(new Copper());
+		toReturn.add(new Estate());
+		return toReturn;
 	}
 
 }
