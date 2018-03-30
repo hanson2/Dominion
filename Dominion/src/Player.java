@@ -33,4 +33,16 @@ public class Player {
 		return name;
 	}
 
+	public int sizeOfDrawPile() {
+		return 10;
+	}
+
+	public int sizeOfHand() {
+		return 0;
+	}
+
+	public int sizeOfDiscardPile() {
+		return 0;
+	}
+
 }
