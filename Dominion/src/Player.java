@@ -11,7 +11,7 @@ public class Player {
 		this.sizeOfDrawPile = 10;
 		this.sizeOfHand = 0;
 		this.sizeOfDiscardPile = 0;
-		this.points = 0;
+		this.points = 3;
 		this.name = name;
 	}
 
@@ -38,7 +38,7 @@ public class Player {
 		return null;
 	}
 
-	public boolean buy() {
+	public boolean buy() {		
 		return false;
 	}
 

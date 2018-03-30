@@ -75,4 +75,11 @@ public class PlayerTest {
 		assertTrue(player.sizeOfHand() == 10);
 		assertTrue(player.sizeOfDiscardPile() == 0);
 	}
+	
+	@Test
+	public void testGetPointsStarter(){
+		Player player = new Player("John");
+		
+		assertEquals(player.getPoints(), 3);
+	}
 }
