@@ -8,7 +8,7 @@ public class CopperTest {
 	public void testCopperValues() {
 		Card card = new Copper();
 
-		assertTrue(card.getType().equals("TREASURE"));
+		assertTrue(card.getType().contains(CardType.TREASURE));
 		assertTrue(card.getPlayState().getClass().equals(CopperPlayState.class));
 		assertTrue(card.getCoinsAdded() == 1);
 		assertTrue(card.getActionsAdded() == 0);

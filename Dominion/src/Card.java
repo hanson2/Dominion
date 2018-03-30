@@ -1,7 +1,8 @@
+import java.util.Set;
 
 public abstract class Card {
 
-	public abstract String getType();
+	public abstract Set<CardType> getType();
 
 	public int getCoinsAdded() {
 		return 0;

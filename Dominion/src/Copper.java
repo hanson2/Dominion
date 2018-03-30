@@ -1,3 +1,5 @@
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Copper extends Card {
 
@@ -7,8 +9,10 @@ public class Copper extends Card {
 	}
 
 	@Override
-	public String getType() {
-		return "TREASURE";
+	public Set<CardType> getType() {
+		Set<CardType> toReturn = new TreeSet<CardType>();
+		toReturn.add(CardType.TREASURE);
+		return toReturn;
 	}
 
 	@Override
