@@ -9,7 +9,7 @@ public class TestTurn {
 		Player player = new Player("John");
 		Turn turn = new Turn(player);
 
-		assertEquals(new TurnActionState(player, turn).getClass(), turn.getCurrentStateType());
+		assertEquals(TurnActionState.class, turn.getCurrentStateType());
 	}
 
 	@Test
@@ -19,7 +19,7 @@ public class TestTurn {
 
 		turn.run();
 
-		assertEquals(new TurnCleanupState(player).getClass(), turn.getCurrentStateType());
+		assertEquals(TurnCleanupState.class, turn.getCurrentStateType());
 	}
 
 }
