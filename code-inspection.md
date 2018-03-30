@@ -10,7 +10,7 @@
     * They will be posted within the gitlab pull request.
 
 ## Criteria:
-4. What are the code smells?
+1. What are the code smells?
 
 ### Names
 * Method names: keep them clear and unambiguous
@@ -102,14 +102,14 @@
     * Work to make code as expressive as possible.
     * Work to keep classes and methods simple -- minimize them in number.
 
-5. Will everyone apply all criteria from every chapter from Clean Code? Or will
+2. Will everyone apply all criteria from every chapter from Clean Code? Or will
    each person specialize in a few criteria?
     * Everyone should try to apply everything to their code, but each person
       will inevitably have strong and weak points.  Code reviews will strengthen
       individual weak areas.
 
 ## Scope
-6. Will your team inspect every file in your codebase? Every file you touch in
+1. Will your team inspect every file in your codebase? Every file you touch in
    your feature branch? Or something else entirely?
     * Changes will be inspected as they are going into the master branch by the
       team in a code review session.  Everyone will be able to make comments and
@@ -119,18 +119,18 @@
       reasonability.  This will be done the weekend after milestones are due
       before features for the next milestone are implemented.
 
-7. Of those files, will each person look at every file in consideration? Or will
+2. Of those files, will each person look at every file in consideration? Or will
    your team assign different files to different people?
     * Files will be split among the team.  They will be divided based on the
       various review strengths of each member of the team.
 
 ## Tools:
-8. To what extent can your inspection criteria be automated? Automation will
+1. To what extent can your inspection criteria be automated? Automation will
    increase your inspection's speed and reliability.
     * Formatting can be automated, and linters can be run to help check the
       code.  However, much of the actual review process will require team
       intervention.
 
-9. Which aspects of your inspection criteria will need human intervention?
+2. Which aspects of your inspection criteria will need human intervention?
     * Method naming, the SRP, dead function spotting, hiding method
       implementation, etc., will all require human interaction and intervention.
