@@ -155,65 +155,6 @@ public class TestTurn {
 	}
 
 	@Test
-	public void testActionPhaseNoAdditionalActions() {
-		Player player = EasyMock.mock(Player.class);
-		Card cardToPlay = EasyMock.niceMock(Card.class);
-		EasyMock.expect(cardToPlay.getActionsAdded()).andReturn(0);
-
-		EasyMock.expect(player.playCard()).andReturn(cardToPlay);
-
-		EasyMock.replay(player, cardToPlay);
-
-		Turn turn = new Turn(player);
-		turn.handleActions();
-
-		EasyMock.verify(player, cardToPlay);
-	}
-	
-	@Test
-	public void testActionPhaseNoActionsPlayed() {
-		Player player = EasyMock.mock(Player.class);
-
-		Turn turn = new Turn(player);
-		turn.handleActions();
-
-		EasyMock.verify(player);
-	}
-
-	@Test
-	public void testBuyPhase() {
-		Player player = EasyMock.mock(Player.class);
-		
-		EasyMock.expect(player.buy()).andReturn(true);
-		
-		EasyMock.replay(player);
-		
-		Turn turn = new Turn(player);
-		turn.handleBuys();
-		
-		EasyMock.verify(player);
-	}
-	
-	@Test
-	public void testCleanupPhase(){
-		Player player = EasyMock.mock(Player.class);
-		
-		player.discardHand();		
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-		player.drawACard();
-		
-		EasyMock.replay(player);
-		
-		Turn turn = new Turn(player);
-		turn.handleCleanup();
-		
-		EasyMock.verify(player);
-	}
-
-	@Test
 	public void testInitialStateSetup() {
 		Player player = EasyMock.mock(Player.class);
 
