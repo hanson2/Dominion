@@ -1,9 +1,12 @@
+import java.util.Set;
 
 public abstract class Card {
 
-	public abstract String getType();
+	public abstract Set<CardType> getType();
 
-	public abstract int getCoinsAdded();
+	public int getCoinsAdded() {
+		return 0;
+	}
 
 	public int getActionsAdded() {
 		return 0;
@@ -17,8 +20,12 @@ public abstract class Card {
 		return 0;
 	}
 
-	public abstract int getVictoryValue();
+	public int getVictoryValue() {
+		return 0;
+	}
 
 	public abstract int getCost();
+
+	public abstract CardPlayState getPlayState();
 
 }

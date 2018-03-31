@@ -1,3 +1,5 @@
+import java.util.Set;
+import java.util.HashSet;
 
 public class Copper extends Card {
 
@@ -7,18 +9,20 @@ public class Copper extends Card {
 	}
 
 	@Override
-	public String getType() {
-		return "TREASURE";
-	}
-
-	@Override
-	public int getVictoryValue() {
-		return 0;
+	public Set<CardType> getType() {
+		Set<CardType> toReturn = new HashSet<CardType>();
+		toReturn.add(CardType.TREASURE);
+		return toReturn;
 	}
 
 	@Override
 	public int getCost() {
 		return 0;
+	}
+
+	@Override
+	public CardPlayState getPlayState() {
+		return new CopperPlayState();
 	}
 
 }

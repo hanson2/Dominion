@@ -1,3 +1,5 @@
+import java.util.Set;
+import java.util.HashSet;
 
 public class Silver extends Card {
 
@@ -7,18 +9,20 @@ public class Silver extends Card {
 	}
 
 	@Override
-	public String getType() {
-		return "TREASURE";
-	}
-
-	@Override
-	public int getVictoryValue() {
-		return 0;
-	}
-
-	@Override
 	public int getCost() {
 		return 3;
+	}
+
+	@Override
+	public CardPlayState getPlayState() {
+		return new SilverPlayState();
+	}
+
+	@Override
+	public Set<CardType> getType() {
+		Set<CardType> toReturn = new HashSet<CardType>();
+		toReturn.add(CardType.TREASURE);
+		return toReturn;
 	}
 
 }
