@@ -50,7 +50,7 @@ public class Player {
 	public int getPoints() {
 		int totalPoints = this.addPointsFromPile(this.drawPile);
 		totalPoints += this.addPointsFromPile(this.hand);
-		totalPoints += this.addPointsFromPile(discardPile);
+		totalPoints += this.addPointsFromPile(this.discardPile);
 		return totalPoints;
 	}
 
