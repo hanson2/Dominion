@@ -1,8 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
-
 import org.easymock.EasyMock;
 import org.junit.Test;
 
@@ -224,9 +223,9 @@ public class TestTurnState {
 
 		EasyMock.verify(player);
 	}
-	
-	private Set<CardType> getCardTypeSet(CardType type){
-		Set<CardType> toReturn = new TreeSet<CardType>();
+
+	private Set<CardType> getCardTypeSet(CardType type) {
+		Set<CardType> toReturn = new HashSet<CardType>();
 		toReturn.add(type);
 		return toReturn;
 	}
