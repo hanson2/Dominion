@@ -10,7 +10,7 @@ public class SupplyPileTest {
 	@Test
 	public void testSupplySetup() {
 		Supply supply = new Supply();
-		List kingdomeCardList = supply.getKingdomCardList();
+		List<Stack<Card>> kingdomeCardList = supply.getKingdomCardList();
 
 		assertTrue(kingdomeCardList.size() == 10);
 
