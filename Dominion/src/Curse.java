@@ -1,15 +1,7 @@
+import java.util.Set;
+import java.util.HashSet;
 
 public class Curse extends Card {
-
-	@Override
-	public String getType() {
-		return "CURSE";
-	}
-
-	@Override
-	public int getCoinsAdded() {
-		return 0;
-	}
 
 	@Override
 	public int getVictoryValue() {
@@ -19,6 +11,18 @@ public class Curse extends Card {
 	@Override
 	public int getCost() {
 		return 0;
+	}
+
+	@Override
+	public CardPlayState getPlayState() {
+		return new CursePlayState();
+	}
+
+	@Override
+	public Set<CardType> getType() {
+		Set<CardType> toReturn = new HashSet<CardType>();
+		toReturn.add(CardType.CURSE);
+		return toReturn;
 	}
 
 }

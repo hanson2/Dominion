@@ -1,15 +1,7 @@
+import java.util.Set;
+import java.util.HashSet;
 
 public class Estate extends Card {
-
-	@Override
-	public int getCoinsAdded() {
-		return 0;
-	}
-
-	@Override
-	public String getType() {
-		return "VICTORY";
-	}
 
 	@Override
 	public int getVictoryValue() {
@@ -19,5 +11,17 @@ public class Estate extends Card {
 	@Override
 	public int getCost() {
 		return 2;
+	}
+
+	@Override
+	public CardPlayState getPlayState() {
+		return new EstatePlayState();
+	}
+
+	@Override
+	public Set<CardType> getType() {
+		Set<CardType> toReturn = new HashSet<CardType>();
+		toReturn.add(CardType.VICTORY);
+		return toReturn;
 	}
 }

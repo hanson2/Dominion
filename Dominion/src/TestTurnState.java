@@ -1,5 +1,8 @@
 import static org.junit.Assert.*;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 import org.easymock.EasyMock;
 import org.junit.Test;
 
@@ -16,7 +19,7 @@ public class TestTurnState {
 		EasyMock.expect(card.getActionsAdded()).andReturn(0);
 		EasyMock.expect(card.getBuysAdded()).andReturn(0);
 		EasyMock.expect(card.getCoinsAdded()).andReturn(0);
-		EasyMock.expect(card.getType()).andReturn("ACTION");
+		EasyMock.expect(card.getType()).andReturn(this.getCardTypeSet(CardType.ACTION));
 
 		turn.run();
 
@@ -44,13 +47,13 @@ public class TestTurnState {
 		EasyMock.expect(card.getActionsAdded()).andReturn(1);
 		EasyMock.expect(card.getBuysAdded()).andReturn(0);
 		EasyMock.expect(card.getCoinsAdded()).andReturn(0);
-		EasyMock.expect(card.getType()).andReturn("ACTION");
+		EasyMock.expect(card.getType()).andReturn(this.getCardTypeSet(CardType.ACTION));
 
 		EasyMock.expect(player.playCard()).andReturn(action);
 		EasyMock.expect(action.getActionsAdded()).andReturn(0);
 		EasyMock.expect(action.getBuysAdded()).andReturn(0);
 		EasyMock.expect(action.getCoinsAdded()).andReturn(0);
-		EasyMock.expect(action.getType()).andReturn("ACTION");
+		EasyMock.expect(action.getType()).andReturn(this.getCardTypeSet(CardType.ACTION));
 
 		turn.run();
 
@@ -77,19 +80,19 @@ public class TestTurnState {
 		EasyMock.expect(card.getActionsAdded()).andReturn(2);
 		EasyMock.expect(card.getBuysAdded()).andReturn(0);
 		EasyMock.expect(card.getCoinsAdded()).andReturn(0);
-		EasyMock.expect(card.getType()).andReturn("ACTION");
+		EasyMock.expect(card.getType()).andReturn(this.getCardTypeSet(CardType.ACTION));
 
 		EasyMock.expect(player.playCard()).andReturn(action);
 		EasyMock.expect(action.getActionsAdded()).andReturn(0);
 		EasyMock.expect(action.getBuysAdded()).andReturn(0);
 		EasyMock.expect(action.getCoinsAdded()).andReturn(0);
-		EasyMock.expect(action.getType()).andReturn("ACTION");
+		EasyMock.expect(action.getType()).andReturn(this.getCardTypeSet(CardType.ACTION));
 
 		EasyMock.expect(player.playCard()).andReturn(action);
 		EasyMock.expect(action.getActionsAdded()).andReturn(0);
 		EasyMock.expect(action.getBuysAdded()).andReturn(0);
 		EasyMock.expect(action.getCoinsAdded()).andReturn(0);
-		EasyMock.expect(action.getType()).andReturn("ACTION");
+		EasyMock.expect(action.getType()).andReturn(this.getCardTypeSet(CardType.ACTION));
 
 		turn.run();
 
@@ -116,13 +119,13 @@ public class TestTurnState {
 		EasyMock.expect(coin.getActionsAdded()).andReturn(0);
 		EasyMock.expect(coin.getBuysAdded()).andReturn(0);
 		EasyMock.expect(coin.getCoinsAdded()).andReturn(1);
-		EasyMock.expect(coin.getType()).andReturn("TREASURE");
+		EasyMock.expect(coin.getType()).andReturn(this.getCardTypeSet(CardType.TREASURE));
 
 		EasyMock.expect(player.playCard()).andReturn(action);
 		EasyMock.expect(action.getActionsAdded()).andReturn(0);
 		EasyMock.expect(action.getBuysAdded()).andReturn(0);
 		EasyMock.expect(action.getCoinsAdded()).andReturn(0);
-		EasyMock.expect(action.getType()).andReturn("ACTION");
+		EasyMock.expect(action.getType()).andReturn(this.getCardTypeSet(CardType.ACTION));
 
 		turn.run();
 
@@ -220,6 +223,12 @@ public class TestTurnState {
 		state.run();
 
 		EasyMock.verify(player);
+	}
+	
+	private Set<CardType> getCardTypeSet(CardType type){
+		Set<CardType> toReturn = new TreeSet<CardType>();
+		toReturn.add(type);
+		return toReturn;
 	}
 
 }
