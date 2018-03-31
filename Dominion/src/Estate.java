@@ -1,5 +1,5 @@
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.HashSet;
 
 public class Estate extends Card {
 
@@ -20,7 +20,7 @@ public class Estate extends Card {
 
 	@Override
 	public Set<CardType> getType() {
-		Set<CardType> toReturn = new TreeSet<CardType>();
+		Set<CardType> toReturn = new HashSet<CardType>();
 		toReturn.add(CardType.VICTORY);
 		return toReturn;
 	}
