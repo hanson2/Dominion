@@ -1,17 +1,10 @@
+import java.util.HashSet;
+import java.util.Set;
 
 public class Game {
 	private Player[] players;
 	private int currentPlayer;
 
-	/**
-	 * Creates a new game.
-	 * 
-	 * @param players
-	 *            List of players to use (2-4 players)
-	 * @throws IllegalArgumentException
-	 *             Thrown when the number of players is less than two or greater
-	 *             than four
-	 */
 	public Game(Player... players) throws IllegalArgumentException {
 		if (players.length > 4 || players.length < 2) {
 			throw new IllegalArgumentException();
@@ -19,14 +12,9 @@ public class Game {
 		this.players = players;
 	}
 
-	/**
-	 * Determines winner of current game.
-	 * 
-	 * @return String containing all winners "Names"
-	 */
-	public String endGame() {
+	public Set<Player> endGame() {
 		int maxPoints = 0;
-		String winner = null;
+		Set<Player> winners = new HashSet<>();
 
 		for (int i = 0; i < this.players.length; i++) {
 			if (players[i].getPoints() > maxPoints) {
@@ -39,27 +27,25 @@ public class Game {
 		}
 		for (int i = 0; i < players.length; i++) {
 			// first winner
-			if (players[i].getPoints() == maxPoints && winner == null) {
-				winner = players[i].getName();
+			if (players[i].getPoints() == maxPoints && winners.isEmpty()) {
+				winners.add(players[i]);
 			}
 			// winner with fewest turns
 			else if (i >= this.currentPlayer && this.players[i].getPoints() == maxPoints && !tieBreaker) {
-				winner = players[i].getName();
+				winners.clear();
+				winners.add(players[i]);
 				tieBreaker = true;
 			}
 			// co-winners
 			else if (players[i].getPoints() == maxPoints) {
-				winner = winner + "&&" + players[i].getName();
+				winners.add(players[i]);
 			}
 
 		}
-		return winner;
+		return winners;
 
 	}
 
-	/**
-	 * Progress the turn counter and keep it within valid values
-	 */
 	public void endTurn() {
 		this.currentPlayer++;
 		this.currentPlayer = this.currentPlayer % this.players.length;
