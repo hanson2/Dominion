@@ -9,12 +9,12 @@ public class EstateTest {
 		Card card = new Estate();
 
 		assertTrue(card.getType().contains(CardType.VICTORY));
-		assertTrue(card.getPlayState().getClass().equals(EstatePlayState.class));
-		assertTrue(card.getCoinsAdded() == 0);
-		assertTrue(card.getActionsAdded() == 0);
-		assertTrue(card.getBuysAdded() == 0);
-		assertTrue(card.getCardsAdded() == 0);
-		assertTrue(card.getVictoryValue() == 1);
-		assertTrue(card.getCost() == 2);
+		assertEquals(card.getPlayState().getClass(), CardPlayState.class);
+		assertEquals(card.getCoinsAdded(), 0);
+		assertEquals(card.getActionsAdded(), 0);
+		assertEquals(card.getBuysAdded(), 0);
+		assertEquals(card.getCardsAdded(), 0);
+		assertEquals(card.getVictoryValue(), 1);
+		assertEquals(card.getCost(), 2);
 	}
 }

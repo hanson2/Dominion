@@ -9,12 +9,12 @@ public class SilverTest {
 		Card card = new Silver();
 
 		assertTrue(card.getType().contains(CardType.TREASURE));
-		assertTrue(card.getPlayState().getClass().equals(SilverPlayState.class));
-		assertTrue(card.getCoinsAdded() == 2);
-		assertTrue(card.getActionsAdded() == 0);
-		assertTrue(card.getBuysAdded() == 0);
-		assertTrue(card.getCardsAdded() == 0);
-		assertTrue(card.getVictoryValue() == 0);
-		assertTrue(card.getCost() == 3);
+		assertEquals(card.getPlayState().getClass(), CardPlayState.class);
+		assertEquals(card.getCoinsAdded(), 2);
+		assertEquals(card.getActionsAdded(), 0);
+		assertEquals(card.getBuysAdded(), 0);
+		assertEquals(card.getCardsAdded(), 0);
+		assertEquals(card.getVictoryValue(), 0);
+		assertEquals(card.getCost(), 3);
 	}
 }

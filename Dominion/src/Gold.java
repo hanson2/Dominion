@@ -14,11 +14,6 @@ public class Gold extends Card {
 	}
 
 	@Override
-	public CardPlayState getPlayState() {
-		return new GoldPlayState();
-	}
-
-	@Override
 	public Set<CardType> getType() {
 		Set<CardType> toReturn = new HashSet<CardType>();
 		toReturn.add(CardType.TREASURE);

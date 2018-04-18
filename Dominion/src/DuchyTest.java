@@ -9,12 +9,12 @@ public class DuchyTest {
 		Card card = new Duchy();
 
 		assertTrue(card.getType().contains(CardType.VICTORY));
-		assertTrue(card.getPlayState().getClass().equals(DuchyPlayState.class));
-		assertTrue(card.getCoinsAdded() == 0);
-		assertTrue(card.getActionsAdded() == 0);
-		assertTrue(card.getBuysAdded() == 0);
-		assertTrue(card.getCardsAdded() == 0);
-		assertTrue(card.getVictoryValue() == 3);
-		assertTrue(card.getCost() == 5);
+		assertEquals(card.getPlayState().getClass(), CardPlayState.class);
+		assertEquals(card.getCoinsAdded(), 0);
+		assertEquals(card.getActionsAdded(), 0);
+		assertEquals(card.getBuysAdded(), 0);
+		assertEquals(card.getCardsAdded(), 0);
+		assertEquals(card.getVictoryValue(), 3);
+		assertEquals(card.getCost(), 5);
 	}
 }

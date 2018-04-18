@@ -9,12 +9,12 @@ public class GoldTest {
 		Card card = new Gold();
 
 		assertTrue(card.getType().contains(CardType.TREASURE));
-		assertTrue(card.getPlayState().getClass().equals(GoldPlayState.class));
-		assertTrue(card.getCoinsAdded() == 3);
-		assertTrue(card.getActionsAdded() == 0);
-		assertTrue(card.getBuysAdded() == 0);
-		assertTrue(card.getCardsAdded() == 0);
-		assertTrue(card.getVictoryValue() == 0);
-		assertTrue(card.getCost() == 6);
+		assertEquals(card.getPlayState().getClass(), CardPlayState.class);
+		assertEquals(card.getCoinsAdded(), 3);
+		assertEquals(card.getActionsAdded(), 0);
+		assertEquals(card.getBuysAdded(), 0);
+		assertEquals(card.getCardsAdded(), 0);
+		assertEquals(card.getVictoryValue(), 0);
+		assertEquals(card.getCost(), 6);
 	}
 }
