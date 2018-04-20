@@ -5,9 +5,9 @@ public class Laboratory extends Card {
 
 	@Override
 	public Set<CardType> getType() {
-		Set<CardType> s = new HashSet<>();
-		s.add(CardType.ACTION);
-		return s;
+		Set<CardType> set = new HashSet<>();
+		set.add(CardType.ACTION);
+		return set;
 	}
 
 	@Override
