@@ -9,9 +9,9 @@ public class PlayerTest {
 	public void testPlayerSetup() {
 		Player player = new Player("John");
 
-		assertTrue(player.sizeOfDrawPile() == 10);
-		assertTrue(player.sizeOfHand() == 0);
-		assertTrue(player.sizeOfDiscardPile() == 0);
+		assertEquals(player.sizeOfDrawPile(), 10);
+		assertEquals(player.sizeOfHand(), 0);
+		assertEquals(player.sizeOfDiscardPile(), 0);
 	}
 
 	@Test
@@ -20,9 +20,9 @@ public class PlayerTest {
 
 		player.drawACard();
 
-		assertTrue(player.sizeOfDrawPile() == 9);
-		assertTrue(player.sizeOfHand() == 1);
-		assertTrue(player.sizeOfDiscardPile() == 0);
+		assertEquals(player.sizeOfDrawPile(), 9);
+		assertEquals(player.sizeOfHand(), 1);
+		assertEquals(player.sizeOfDiscardPile(), 0);
 	}
 
 	@Test
@@ -33,9 +33,9 @@ public class PlayerTest {
 			player.drawACard();
 		}
 
-		assertTrue(player.sizeOfDrawPile() == 0);
-		assertTrue(player.sizeOfHand() == 10);
-		assertTrue(player.sizeOfDiscardPile() == 0);
+		assertEquals(player.sizeOfDrawPile(), 0);
+		assertEquals(player.sizeOfHand(), 10);
+		assertEquals(player.sizeOfDiscardPile(), 0);
 	}
 
 	@Test
@@ -44,9 +44,9 @@ public class PlayerTest {
 
 		player.discardHand();
 
-		assertTrue(player.sizeOfDrawPile() == 10);
-		assertTrue(player.sizeOfHand() == 0);
-		assertTrue(player.sizeOfDiscardPile() == 0);
+		assertEquals(player.sizeOfDrawPile(), 10);
+		assertEquals(player.sizeOfHand(), 0);
+		assertEquals(player.sizeOfDiscardPile(), 0);
 	}
 
 	@Test
@@ -56,9 +56,9 @@ public class PlayerTest {
 		player.drawACard();
 		player.discardHand();
 
-		assertTrue(player.sizeOfDrawPile() == 9);
-		assertTrue(player.sizeOfHand() == 0);
-		assertTrue(player.sizeOfDiscardPile() == 1);
+		assertEquals(player.sizeOfDrawPile(), 9);
+		assertEquals(player.sizeOfHand(), 0);
+		assertEquals(player.sizeOfDiscardPile(), 1);
 	}
 
 	@Test
@@ -71,9 +71,9 @@ public class PlayerTest {
 			player.drawACard();
 		}
 
-		assertTrue(player.sizeOfDrawPile() == 0);
-		assertTrue(player.sizeOfHand() == 10);
-		assertTrue(player.sizeOfDiscardPile() == 0);
+		assertEquals(player.sizeOfDrawPile(), 0);
+		assertEquals(player.sizeOfHand(), 10);
+		assertEquals(player.sizeOfDiscardPile(), 0);
 	}
 
 	@Test
@@ -109,10 +109,10 @@ public class PlayerTest {
 		player.drawACard();
 		player.drawACard();
 
-		assertTrue((player.getHand().get(0).getClass().equals(Copper.class)
-				|| player.getHand().get(0).getClass().equals(Estate.class))
-				&& (player.getHand().get(1).getClass().equals(Copper.class)
-						|| player.getHand().get(1).getClass().equals(Estate.class)));
+		assertTrue(player.getHand().get(0).getClass().equals(Copper.class)
+				|| player.getHand().get(0).getClass().equals(Estate.class));
+		assertTrue(player.getHand().get(1).getClass().equals(Copper.class)
+						|| player.getHand().get(1).getClass().equals(Estate.class));
 	}
 
 	@Test
