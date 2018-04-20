@@ -26,6 +26,8 @@ public abstract class Card {
 
 	public abstract int getCost();
 
-	public abstract CardPlayState getPlayState();
+	public CardPlayState getPlayState() {
+		return new CardPlayState();
+	}
 
 }

@@ -1,3 +1,6 @@
-*/.metadata/
+.metadata/
+.recommenders/
 EclipseWorkspace/bin/
-*/RemoteSystemsTempFiles/
+RemoteSystemsTempFiles/
+Dominion/RemoteSystemsTempFiles/
+

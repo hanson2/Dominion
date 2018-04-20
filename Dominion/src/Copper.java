@@ -20,9 +20,4 @@ public class Copper extends Card {
 		return 0;
 	}
 
-	@Override
-	public CardPlayState getPlayState() {
-		return new CopperPlayState();
-	}
-
 }

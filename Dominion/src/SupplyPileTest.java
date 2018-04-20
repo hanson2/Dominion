@@ -12,16 +12,16 @@ public class SupplyPileTest {
 		Supply supply = new Supply();
 		List<Stack<Card>> kingdomeCardList = supply.getKingdomCardList();
 
-		assertTrue(kingdomeCardList.size() == 10);
+		assertEquals(kingdomeCardList.size(), 10);
 
-		assertTrue(supply.getBaseSupply("COPPER").size() == 60);
-		assertTrue(supply.getBaseSupply("SILVER").size() == 40);
-		assertTrue(supply.getBaseSupply("GOLD").size() == 30);
+		assertEquals(supply.getBaseSupply("COPPER").size(), 60);
+		assertEquals(supply.getBaseSupply("SILVER").size(), 40);
+		assertEquals(supply.getBaseSupply("GOLD").size(), 30);
 
-		assertTrue(supply.getBaseSupply("ESTATE").size() == 24);
-		assertTrue(supply.getBaseSupply("DUCHY").size() == 12);
-		assertTrue(supply.getBaseSupply("PROVINCE").size() == 12);
-		assertTrue(supply.getBaseSupply("CURSE").size() == 30);
+		assertEquals(supply.getBaseSupply("ESTATE").size(), 24);
+		assertEquals(supply.getBaseSupply("DUCHY").size(), 12);
+		assertEquals(supply.getBaseSupply("PROVINCE").size(), 12);
+		assertEquals(supply.getBaseSupply("CURSE").size(), 30);
 	}
 
 	@Test
@@ -29,8 +29,8 @@ public class SupplyPileTest {
 		Supply supply = new Supply();
 		Card top = supply.getBaseSupply("COPPER").peek();
 
-		assertTrue(top.getClass().equals(Copper.class));
-		assertTrue(supply.getBaseSupply("COPPER") == supply.getBaseSupply("COPPER"));
+		assertEquals(top.getClass(), Copper.class);
+		assertEquals(supply.getBaseSupply("COPPER"), supply.getBaseSupply("COPPER"));
 	}
 
 	@Test
@@ -38,8 +38,8 @@ public class SupplyPileTest {
 		Supply supply = new Supply();
 		Card top = supply.getBaseSupply("SILVER").peek();
 
-		assertTrue(top.getClass().equals(Silver.class));
-		assertTrue(supply.getBaseSupply("SILVER") == supply.getBaseSupply("SILVER"));
+		assertEquals(top.getClass(), Silver.class);
+		assertEquals(supply.getBaseSupply("SILVER"), supply.getBaseSupply("SILVER"));
 	}
 
 	@Test
@@ -47,8 +47,8 @@ public class SupplyPileTest {
 		Supply supply = new Supply();
 		Card top = supply.getBaseSupply("GOLD").peek();
 
-		assertTrue(top.getClass().equals(Gold.class));
-		assertTrue(supply.getBaseSupply("GOLD") == supply.getBaseSupply("GOLD"));
+		assertEquals(top.getClass(), Gold.class);
+		assertEquals(supply.getBaseSupply("GOLD"), supply.getBaseSupply("GOLD"));
 	}
 
 	@Test
@@ -56,8 +56,8 @@ public class SupplyPileTest {
 		Supply supply = new Supply();
 		Card top = supply.getBaseSupply("ESTATE").peek();
 
-		assertTrue(top.getClass().equals(Estate.class));
-		assertTrue(supply.getBaseSupply("ESTATE") == supply.getBaseSupply("ESTATE"));
+		assertEquals(top.getClass(), Estate.class);
+		assertEquals(supply.getBaseSupply("ESTATE"), supply.getBaseSupply("ESTATE"));
 	}
 
 	@Test
@@ -65,8 +65,8 @@ public class SupplyPileTest {
 		Supply supply = new Supply();
 		Card top = supply.getBaseSupply("DUCHY").peek();
 
-		assertTrue(top.getClass().equals(Duchy.class));
-		assertTrue(supply.getBaseSupply("DUCHY") == supply.getBaseSupply("DUCHY"));
+		assertEquals(top.getClass(), Duchy.class);
+		assertEquals(supply.getBaseSupply("DUCHY"), supply.getBaseSupply("DUCHY"));
 	}
 
 	@Test
@@ -74,8 +74,8 @@ public class SupplyPileTest {
 		Supply supply = new Supply();
 		Card top = supply.getBaseSupply("PROVINCE").peek();
 
-		assertTrue(top.getClass().equals(Province.class));
-		assertTrue(supply.getBaseSupply("PROVINCE") == supply.getBaseSupply("PROVINCE"));
+		assertEquals(top.getClass(), Province.class);
+		assertEquals(supply.getBaseSupply("PROVINCE"), supply.getBaseSupply("PROVINCE"));
 	}
 
 	@Test
@@ -83,8 +83,8 @@ public class SupplyPileTest {
 		Supply supply = new Supply();
 		Card top = supply.getBaseSupply("CURSE").peek();
 
-		assertTrue(top.getClass().equals(Curse.class));
-		assertTrue(supply.getBaseSupply("CURSE") == supply.getBaseSupply("CURSE"));
+		assertEquals(top.getClass(), Curse.class);
+		assertEquals(supply.getBaseSupply("CURSE"), supply.getBaseSupply("CURSE"));
 	}
 
 	@Test

@@ -14,11 +14,6 @@ public class Estate extends Card {
 	}
 
 	@Override
-	public CardPlayState getPlayState() {
-		return new EstatePlayState();
-	}
-
-	@Override
 	public Set<CardType> getType() {
 		Set<CardType> toReturn = new HashSet<CardType>();
 		toReturn.add(CardType.VICTORY);

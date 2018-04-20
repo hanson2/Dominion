@@ -100,34 +100,6 @@ public class Supply {
 		return this.supplyPiles.get(cardName);
 	}
 
-	public Stack<Card> getCopperSupply() {
-		return this.supplyPiles.get("COPPER");
-	}
-
-	public Stack<Card> getSilverSupply() {
-		return this.supplyPiles.get("SILVER");
-	}
-
-	public Stack<Card> getGoldSupply() {
-		return this.supplyPiles.get("GOLD");
-	}
-
-	public Stack<Card> getEstateSupply() {
-		return this.supplyPiles.get("ESTATE");
-	}
-
-	public Stack<Card> getDuchySupply() {
-		return this.supplyPiles.get("DUCHY");
-	}
-
-	public Stack<Card> getProvinceSupply() {
-		return this.supplyPiles.get("PROVINCE");
-	}
-
-	public Stack<Card> getCurseSupply() {
-		return this.supplyPiles.get("CURSE");
-	}
-
 	public boolean isGameOver() {
 		if (this.supplyPiles.get("PROVINCE").isEmpty()) {
 			return true;
