@@ -38,6 +38,11 @@ public class Player {
 		this.discardPile.addAll(this.hand);
 		this.hand.clear();
 	}
+	
+	public void discardDrawPile() {
+		this.discardPile.addAll(this.drawPile);
+		this.drawPile.clear();
+	}
 
 	public Card playCard() {
 		return null;
@@ -95,5 +100,9 @@ public class Player {
 			totalPoints += card.getVictoryValue();
 		}
 		return totalPoints;
+	}
+
+	public boolean promptYesNo(String message) {
+		return false;
 	}
 }
