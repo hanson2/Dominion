@@ -11,11 +11,11 @@ public class Turn {
 		this.buys = 1;
 		this.actions = 1;
 		this.coins = 0;
-		this.state = new TurnActionState(this);
+		this.state = new TurnActionState();
 	}
 
 	public void run() {
-		this.state.run();
+		this.state.run(this);
 	}
 
 	public Class<? extends TurnState> getCurrentStateType() {

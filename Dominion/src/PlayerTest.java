@@ -60,6 +60,36 @@ public class PlayerTest {
 		assertEquals(player.sizeOfHand(), 0);
 		assertEquals(player.sizeOfDiscardPile(), 1);
 	}
+	
+	@Test
+	public void testDiscardDrawPileEmpty() {
+		Player player = new Player("John");
+		
+		for(int i = 0; i < 10; i++){
+			player.drawACard();
+		}
+		
+		player.discardDrawPile();
+		
+		assertEquals(player.sizeOfDiscardPile(), 0);
+		assertEquals(player.sizeOfDrawPile(), 0);
+		assertEquals(player.sizeOfHand(), 10);
+	}
+	
+	@Test
+	public void testDiscardDrawPileOneCard() {
+		Player player = new Player("John");
+		
+		for(int i = 0; i < 9; i++){
+			player.drawACard();
+		}
+		
+		player.discardDrawPile();
+		
+		assertEquals(player.sizeOfDiscardPile(), 1);
+		assertEquals(player.sizeOfDrawPile(), 0);
+		assertEquals(player.sizeOfHand(), 9);
+	}
 
 	@Test
 	public void testDrawManyCardsNonEmptyDiscard() {

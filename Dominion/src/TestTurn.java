@@ -26,6 +26,7 @@ public class TestTurn {
 		EasyMock.expect(card.getBuysAdded()).andReturn(0);
 		EasyMock.expect(card.getCoinsAdded()).andReturn(0);
 		EasyMock.expect(card.getType()).andReturn(this.getCardTypeSet(CardType.ACTION));
+		EasyMock.expect(card.getPlayState()).andReturn(new CardPlayState());
 		EasyMock.expect(player.buy()).andReturn(true);
 		player.discardHand();
 		player.drawNewHand();

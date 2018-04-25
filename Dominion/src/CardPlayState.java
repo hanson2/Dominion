@@ -2,7 +2,7 @@
 public class CardPlayState extends TurnState {
 
 	@Override
-	public void run() {
+	public void run(Turn turn) {
 
 	}
 
