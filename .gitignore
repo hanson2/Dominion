@@ -1,6 +1,9 @@
-.metadata/
 Dominion/.gradle/
+Dominion/.classpath
+Dominion/.project
+
 .recommenders/
+.metadata/
 EclipseWorkspace/bin/
 RemoteSystemsTempFiles/
 Dominion/RemoteSystemsTempFiles/
