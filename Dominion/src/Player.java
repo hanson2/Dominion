@@ -106,12 +106,12 @@ public class Player {
 		return false;
 	}
 //TODO
-//	public void trashCardFromHand(Class<Card> cardClass) {
-//		for(Card c : this.hand){
-//			if(c.getClass() == cardClass){
-//				this.hand.remove(c);
-//				return;
-//			}
-//		}
-//	}
+	public void trashCardFromHand(Class<? extends Card> cardClass) {
+		for(Card c : this.hand){
+			if(c.getClass() == cardClass){
+				this.hand.remove(c);
+				return;
+			}
+		}
+	}
 }
