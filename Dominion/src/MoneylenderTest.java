@@ -1,5 +1,9 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.easymock.EasyMock;
 import org.junit.Test;
 
 public class MoneylenderTest {
@@ -59,5 +63,34 @@ public class MoneylenderTest {
 		
 		assertEquals(card.getPlayState().getClass(), MoneylenderPlayState.class);
 	}
+	
+//	@Test
+//	public void testPlayStateDoActionCopperInHandYes() {
+//		List<Card> hand = new ArrayList<Card>();
+//		hand.add(new Copper());
+//		Player player = EasyMock.partialMockBuilder(Player.class)
+//				.withConstructor("test")
+//				.addMockedMethod("promptYesNo")
+//				.addMockedMethod("getHand")
+//				.createMock();
+//		Turn turn = EasyMock.mock(Turn.class);
+//		
+//		EasyMock.expect(player.promptYesNo("Would you like to trash a Copper for 3 Coins?")).andReturn(true);
+//		EasyMock.expect(player.getHand()).andReturn(hand);
+//		
+//		player.trashCardFromHand(Copper.class);
+//		
+//		EasyMock.replay(player, turn);
+//		
+//		turn.player = player;
+//		
+//		MoneylenderPlayState state = new MoneylenderPlayState();
+//		
+//		state.run(turn);
+//		
+//		assertEquals(player.getHand().size(), 0);
+//		
+//		EasyMock.verify(turn, player);
+//	}
 
 }
