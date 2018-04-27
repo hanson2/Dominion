@@ -63,7 +63,7 @@ public class MoneylenderTest {
 		
 		assertEquals(card.getPlayState().getClass(), MoneylenderPlayState.class);
 	}
-	
+//TODO
 //	@Test
 //	public void testPlayStateDoActionCopperInHandYes() {
 //		List<Card> hand = new ArrayList<Card>();

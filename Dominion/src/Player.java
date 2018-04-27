@@ -105,7 +105,7 @@ public class Player {
 	public boolean promptYesNo(String message) {
 		return false;
 	}
-
+//TODO
 //	public void trashCardFromHand(Class<Card> cardClass) {
 //		for(Card c : this.hand){
 //			if(c.getClass() == cardClass){
