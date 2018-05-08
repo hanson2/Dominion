@@ -74,8 +74,6 @@ public class MoneylenderTest {
 		EasyMock.expect(player.promptYesNo("Would you like to trash a Copper card from your hand for 3 coins?"))
 				.andReturn(true);
 
-		player.trashCardFromHand(Copper.class);
-
 		EasyMock.replay(player);
 
 		MoneylenderPlayState state = new MoneylenderPlayState();
