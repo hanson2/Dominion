@@ -172,4 +172,22 @@ public class PlayerTest {
 
 		assertEquals(player.sizeOfDiscardPile(), discardPileSizeBefore + 1);
 	}
+	
+	@Test
+	public void testTrashCardInHand() {
+		Player player = new Player("John");
+		
+		player.drawNewHand();
+		
+		assertTrue(player.trashCardFromHand(Copper.class));
+	}
+	
+	@Test
+	public void testTrashCardNotInHand(){
+		Player player = new Player("John");
+		
+		player.drawNewHand();
+		
+		assertFalse(player.trashCardFromHand(Silver.class));
+	}
 }
