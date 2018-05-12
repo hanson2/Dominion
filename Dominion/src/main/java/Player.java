@@ -1,14 +1,15 @@
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Stack;
 
 public class Player {
 
-	private String name;
-	private List<Card> hand;
-	private Stack<Card> drawPile;
-	private Stack<Card> discardPile;
+	String name;
+	List<Card> hand;
+	Stack<Card> drawPile;
+	Stack<Card> discardPile;
 
 	public Player(String name) {
 		this.hand = new ArrayList<Card>();
@@ -38,7 +39,7 @@ public class Player {
 		this.discardPile.addAll(this.hand);
 		this.hand.clear();
 	}
-	
+
 	public void discardDrawPile() {
 		this.discardPile.addAll(this.drawPile);
 		this.drawPile.clear();
@@ -105,14 +106,28 @@ public class Player {
 	public boolean promptYesNo(String message) {
 		return false;
 	}
-	
+
 	public boolean trashCardFromHand(Class<? extends Card> cardClass) {
-		for(Card c : this.hand){
-			if(c.getClass() == cardClass){
+		for (Card c : this.hand) {
+			if (c.getClass() == cardClass) {
 				this.hand.remove(c);
 				return true;
 			}
 		}
 		return false;
+	}
+
+	public Optional<Card> discardTopCardOfDrawPile() {
+		if (this.sizeOfDrawPile() == 0 && this.sizeOfDiscardPile() == 0) {
+			return Optional.empty();
+		} else if (this.sizeOfDrawPile() == 0) {
+			this.drawPile.addAll(this.discardPile);
+			this.discardPile.clear();
+			return this.discardTopCardOfDrawPile();
+		} else {
+			Card toMove = this.drawPile.pop();
+			this.discardPile.push(toMove);
+			return Optional.of(toMove);
+		}
 	}
 }
