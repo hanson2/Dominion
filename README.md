@@ -1,27 +1,27 @@
 # Definition of Done
 
-* Have a game the chooses a winner once 3 or more of the supply piles run out
+- [ ] Have a game the chooses a winner once 3 or more of the supply piles run out
   or all the Province cards run out and that turn ends. In case of a tie, the
   player with the fewest turns of tied players wins, if still a tie, all still
   tied players win.	
 
-    * BVA: 0 pile, 1 pile, 3 pile, 4 pile
+    - [ ] BVA: 0 pile, 1 pile, 3 pile, 4 pile
 	
-* Have a design that incredibly easy to expand, thus utilizing card keywords in
+- [ ] Have a design that incredibly easy to expand, thus utilizing card keywords in
   design.
   
-    * Thinking out the design well such that it is particularly easy to add
+    - [ ] Thinking out the design well such that it is particularly easy to add
       cards. It should be easy enough to add new game mechanics, but because
       expansions are primarily cards and minor game mechanics.
 	 
-    * Ability to have 2 to 4 players and generates the proper setup for a game
+    - [ ] Ability to have 2 to 4 players and generates the proper setup for a game
       including randomly choosing 10 supply piles, or choosing from preselected
       recommended sets.
 
-        * Have turns consisting of an action phase, a buy phase, and a cleanup
+        - [ ] Have turns consisting of an action phase, a buy phase, and a cleanup
           phase.  At no point should it go in any other order than that.
 	
-    * The action phase begins automatically when the turn is passed to a new
+    - [ ] The action phase begins automatically when the turn is passed to a new
       player. Each player starts the action phase with one buy and one action.
       Actions can be used to play action cards, where they give bonuses to the
       player. These include more actions, more buys, more cards, and more
@@ -31,11 +31,11 @@
       the player has no more actions, has no more action cards, or decides to
       move to the buy phase via a gui button.
 	
-        * BVA: if the players actions are done (0 actions remaining), If they
+        - [ ] BVA: if the players actions are done (0 actions remaining), If they
           have no action cards, if they voluntarily end phase with card and
           action, cards and action, card and actions, cards and actions
 	
-    * The buy phase begins once a player exits the action phase. All that
+    - [ ] The buy phase begins once a player exits the action phase. All that
       player’s remaining treasure cards get put into play at this point. That
       player has as many buys as they have accumulated during the action phase
       plus their automatic 1 buy. The player may use their treasure from the
@@ -43,10 +43,10 @@
       money, out of buys, or doesn’t want to buy anything more, the buy phase
       ends.
 	
-        * BVA: If the player has buys or money remaining after they have exited
+        - [ ] BVA: If the player has buys or money remaining after they have exited
           the buy phase, their buys and money are set to 0.
 	
-    * The cleanup phase begins once the buy phase is over. The player has no
+    - [ ] The cleanup phase begins once the buy phase is over. The player has no
       input over this phase, but what happens is all played cards are discarded
       and all cards remaining in hand are discarded. The player then receives 5
       new cards off the top of their deck. If there are not five cards. The
@@ -55,11 +55,11 @@
       player has 5 new cards in their hand. The turn then gets passed to the
       next player to have their action phase.
 	
-        * Edges cases: if there are no cards in draw pile and discard shuffles,
+        - [ ] Edges cases: if there are no cards in draw pile and discard shuffles,
           if there are less than 5 cards in draw pile and discard shuffles, if
           there are no cards in draw or discards, you cannot draw a card.
 	
-* Have a number displayed on top of the draw pile to show how many cards are
+- [ ] Have a number displayed on top of the draw pile to show how many cards are
    remaining in the draw pile.
 	
-	* BVA: No cards left to draw
+	- [ ] BVA: No cards left to draw
