@@ -52,7 +52,7 @@ public class ThroneRoomPlayStateTest {
 
 		EasyMock.verify(player, turn, card);
 	}
-	
+
 	@Test
 	public void testUseAction() {
 		ThroneRoomPlayState state = new ThroneRoomPlayState();
