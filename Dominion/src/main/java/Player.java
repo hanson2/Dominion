@@ -38,7 +38,7 @@ public class Player {
 		this.discardPile.addAll(this.hand);
 		this.hand.clear();
 	}
-	
+
 	public void discardDrawPile() {
 		this.discardPile.addAll(this.drawPile);
 		this.drawPile.clear();
@@ -105,14 +105,20 @@ public class Player {
 	public boolean promptYesNo(String message) {
 		return false;
 	}
-	
+
 	public boolean trashCardFromHand(Class<? extends Card> cardClass) {
-		for(Card c : this.hand){
-			if(c.getClass() == cardClass){
+		for (Card c : this.hand) {
+			if (c.getClass() == cardClass) {
 				this.hand.remove(c);
 				return true;
 			}
 		}
 		return false;
 	}
+
+	public Card chooseCardFromHand() {
+		// TODO will eventually interact with the GUI
+		return new Copper();
+	}
+
 }
