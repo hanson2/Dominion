@@ -115,4 +115,21 @@ public class Player {
 		}
 		return false;
 	}
+	
+	public Card chooseCardFromHand() {
+		// TODO will eventually interact with the GUI
+		return new Copper();
+	}
+
+	public boolean discardCardFromHand(Class<? extends Card> cardClass) {
+		for(Card c : this.hand){
+			if(c.getClass() == cardClass){
+				this.hand.remove(c);
+				this.discardPile.push(c);				
+				return true;
+			}
+		}
+		return false;
+	}
+
 }
