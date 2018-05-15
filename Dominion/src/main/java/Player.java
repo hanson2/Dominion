@@ -123,9 +123,9 @@ public class Player {
 
 	public boolean discardCardFromHand(Class<? extends Card> cardClass) {
 		for(Card c : this.hand){
-			if(c.getClass() == cardClass){
-				this.hand.remove(c);
-				this.discardPile.push(c);				
+			if(c.getClass() == cardClass){	
+				this.hand.remove(c);	
+				this.discardPile.push(c);
 				return true;
 			}
 		}
