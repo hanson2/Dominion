@@ -22,41 +22,41 @@ public class WoodcutterTest {
 	public void testWoodcutterActionsAdded() {
 		Card card = new Woodcutter();
 
-		assertEquals(card.getActionsAdded(), 0);
+		assertEquals(card.getActionsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testWoodcutterCoinsAdded() {
 		Card card = new Woodcutter();
 
-		assertEquals(card.getCoinsAdded(), 2);
+		assertEquals(card.getCoinsAdded(), GameConstants.WOODCUTTERCOINSADDED);
 	}
 
 	@Test
 	public void testWoodcutterBuysAdded() {
 		Card card = new Woodcutter();
 
-		assertEquals(card.getBuysAdded(), 1);
+		assertEquals(card.getBuysAdded(), GameConstants.WOODCUTTERBUYSADDED);
 	}
 
 	@Test
 	public void testWoodcutterCardsAdded() {
 		Card card = new Woodcutter();
 
-		assertEquals(card.getCardsAdded(), 0);
+		assertEquals(card.getCardsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testWoodcutterVictoryValue() {
 		Card card = new Woodcutter();
 
-		assertEquals(card.getVictoryValue(), 0);
+		assertEquals(card.getVictoryValue(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testWoodcutterCost() {
 		Card card = new Woodcutter();
 
-		assertEquals(card.getCost(), 3);
+		assertEquals(card.getCost(), GameConstants.WOODCUTTERCOST);
 	}
 }

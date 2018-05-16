@@ -22,41 +22,41 @@ public class SmithyTest {
 	public void testSmithyCoinsAdded() {
 		Card card = new Smithy();
 		
-		assertEquals(card.getCoinsAdded(), 0);
+		assertEquals(card.getCoinsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 	
 	@Test
 	public void testSmithyActionsAdded() {
 		Card card = new Smithy();
 		
-		assertEquals(card.getActionsAdded(), 0);
+		assertEquals(card.getActionsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 	
 	@Test
 	public void testSmithyBuysAdded() {
 		Card card = new Smithy();
 		
-		assertEquals(card.getBuysAdded(), 0);
+		assertEquals(card.getBuysAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 	
 	@Test
 	public void testSmithyCardsAdded() {
 		Card card = new Smithy();
 		
-		assertEquals(card.getCardsAdded(), 3);
+		assertEquals(card.getCardsAdded(), GameConstants.SMITHYCARDSADDED);
 	}
 	
 	@Test
 	public void testSmithyVictoryValue() {
 		Card card = new Smithy();
 		
-		assertEquals(card.getVictoryValue(), 0);
+		assertEquals(card.getVictoryValue(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 	
 	@Test
 	public void testSmithyCost() {
 		Card card = new Smithy();
 		
-		assertEquals(card.getCost(), 4);
+		assertEquals(card.getCost(), GameConstants.SMITHYCOST);
 	}
 }

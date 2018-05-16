@@ -10,11 +10,11 @@ public class DuchyTest {
 
 		assertTrue(card.getType().contains(CardType.VICTORY));
 		assertEquals(card.getPlayState().getClass(), CardPlayState.class);
-		assertEquals(card.getCoinsAdded(), 0);
-		assertEquals(card.getActionsAdded(), 0);
-		assertEquals(card.getBuysAdded(), 0);
-		assertEquals(card.getCardsAdded(), 0);
-		assertEquals(card.getVictoryValue(), 3);
-		assertEquals(card.getCost(), 5);
+		assertEquals(card.getCoinsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getActionsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getBuysAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getCardsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getVictoryValue(), GameConstants.DUCHYVICTORYVALUE);
+		assertEquals(card.getCost(), GameConstants.DUCHYCOST);
 	}
 }

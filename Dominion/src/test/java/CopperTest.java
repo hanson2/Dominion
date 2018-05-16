@@ -10,11 +10,11 @@ public class CopperTest {
 
 		assertTrue(card.getType().contains(CardType.TREASURE));
 		assertEquals(card.getPlayState().getClass(), CardPlayState.class);
-		assertEquals(card.getCoinsAdded(), 1);
-		assertEquals(card.getActionsAdded(), 0);
-		assertEquals(card.getBuysAdded(), 0);
-		assertEquals(card.getCardsAdded(), 0);
-		assertEquals(card.getVictoryValue(), 0);
-		assertEquals(card.getCost(), 0);
+		assertEquals(card.getCoinsAdded(), GameConstants.COPPERCOINSADDED);
+		assertEquals(card.getActionsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getBuysAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getCardsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getVictoryValue(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getCost(), GameConstants.COPPERCOST);
 	}
 }

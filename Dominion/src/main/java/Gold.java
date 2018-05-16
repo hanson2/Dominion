@@ -5,12 +5,12 @@ public class Gold extends Card {
 
 	@Override
 	public int getCoinsAdded() {
-		return 3;
+		return GameConstants.GOLDCOINSADDED;
 	}
 
 	@Override
 	public int getCost() {
-		return 6;
+		return GameConstants.GOLDCOST;
 	}
 
 	@Override

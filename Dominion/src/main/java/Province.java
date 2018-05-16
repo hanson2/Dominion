@@ -5,12 +5,12 @@ public class Province extends Card {
 
 	@Override
 	public int getVictoryValue() {
-		return 6;
+		return GameConstants.PROVINCEVICTORYVALUE;
 	}
 
 	@Override
 	public int getCost() {
-		return 8;
+		return GameConstants.PROVINCECOST;
 	}
 
 	@Override

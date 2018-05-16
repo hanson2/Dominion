@@ -12,12 +12,12 @@ public class Smithy extends Card {
 
 	@Override
 	public int getCost() {
-		return 4;
+		return GameConstants.SMITHYCOST;
 	}
 
 	@Override
 	public int getCardsAdded() {
-		return 3;
+		return GameConstants.SMITHYCARDSADDED;
 	}
 
 }

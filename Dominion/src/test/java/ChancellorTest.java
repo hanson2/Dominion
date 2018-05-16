@@ -16,42 +16,42 @@ public class ChancellorTest {
 	public void testGetCost() {
 		Card card = new Chancellor();
 		
-		assertEquals(card.getCost(), 3);
+		assertEquals(card.getCost(), GameConstants.CHANCELLORCOST);
 	}
 
 	@Test
 	public void testGetCoinsAdded() {
 		Card card = new Chancellor();
 		
-		assertEquals(card.getCoinsAdded(), 2);
+		assertEquals(card.getCoinsAdded(), GameConstants.CHANCELLORCOINSADDED);
 	}
 
 	@Test
 	public void testGetActionsAdded() {
 		Card card = new Chancellor();
 		
-		assertEquals(card.getActionsAdded(), 0);
+		assertEquals(card.getActionsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetBuysAdded() {
 		Card card = new Chancellor();
 		
-		assertEquals(card.getBuysAdded(), 0);
+		assertEquals(card.getBuysAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetCardsAdded() {
 		Card card = new Chancellor();
 		
-		assertEquals(card.getCardsAdded(), 0);
+		assertEquals(card.getCardsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetVictoryValue() {
 		Card card = new Chancellor();
 		
-		assertEquals(card.getVictoryValue(), 0);
+		assertEquals(card.getVictoryValue(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test

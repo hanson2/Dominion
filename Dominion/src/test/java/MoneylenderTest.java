@@ -19,42 +19,42 @@ public class MoneylenderTest {
 	public void testGetCost() {
 		Card card = new Moneylender();
 
-		assertEquals(card.getCost(), 4);
+		assertEquals(card.getCost(), GameConstants.MONEYLENDERCOST);
 	}
 
 	@Test
 	public void testGetCoinsAdded() {
 		Card card = new Moneylender();
 
-		assertEquals(card.getCoinsAdded(), 0);
+		assertEquals(card.getCoinsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetActionsAdded() {
 		Card card = new Moneylender();
 
-		assertEquals(card.getActionsAdded(), 0);
+		assertEquals(card.getActionsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetBuysAdded() {
 		Card card = new Moneylender();
 
-		assertEquals(card.getBuysAdded(), 0);
+		assertEquals(card.getBuysAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetCardsAdded() {
 		Card card = new Moneylender();
 
-		assertEquals(card.getCardsAdded(), 0);
+		assertEquals(card.getCardsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetVictoryValue() {
 		Card card = new Moneylender();
 
-		assertEquals(card.getVictoryValue(), 0);
+		assertEquals(card.getVictoryValue(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
