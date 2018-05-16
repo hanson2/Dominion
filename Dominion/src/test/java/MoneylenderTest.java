@@ -71,7 +71,7 @@ public class MoneylenderTest {
 		Turn turn = new Turn(player);
 		player.drawNewHand();
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a Copper card from your hand for 3 coins?"))
+		EasyMock.expect(player.promptYesNo(GameConstants.messages.getString("moneylenderPrompt")))
 				.andReturn(true);
 
 		EasyMock.replay(player);
@@ -94,7 +94,7 @@ public class MoneylenderTest {
 		player.gainCard(new Silver());
 		player.drawACard();
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a Copper card from your hand for 3 coins?"))
+		EasyMock.expect(player.promptYesNo(GameConstants.messages.getString("moneylenderPrompt")))
 				.andReturn(true);
 
 		player.trashCardFromHand(Copper.class);
@@ -118,7 +118,7 @@ public class MoneylenderTest {
 		Turn turn = new Turn(player);
 		player.drawNewHand();
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a Copper card from your hand for 3 coins?"))
+		EasyMock.expect(player.promptYesNo(GameConstants.messages.getString("moneylenderPrompt")))
 				.andReturn(false);
 
 		EasyMock.replay(player);
@@ -139,7 +139,7 @@ public class MoneylenderTest {
 				.createMock();
 		Turn turn = new Turn(player);
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a Copper card from your hand for 3 coins?"))
+		EasyMock.expect(player.promptYesNo(GameConstants.messages.getString("moneylenderPrompt")))
 				.andReturn(false);
 
 		EasyMock.replay(player);

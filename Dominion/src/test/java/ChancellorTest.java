@@ -69,7 +69,7 @@ public class ChancellorTest {
 				.createMock();
 		Turn turn = EasyMock.mock(Turn.class);
 		
-		EasyMock.expect(player.promptYesNo("Would you like to discard your draw pile?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo(GameConstants.messages.getString("chancellorPrompt"))).andReturn(true);
 		
 		player.discardDrawPile();
 		
