@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Graphical User Interface implementation for the game Dominion.
@@ -9,6 +12,7 @@ import java.awt.event.ActionListener;
  * @author bakerne, hanson2
  */
 
+@SuppressWarnings("serial")
 public class GUI extends JFrame {
 	private Container pane;
 	JButton quitB;
@@ -22,28 +26,98 @@ public class GUI extends JFrame {
 		quitB.addActionListener(quitBH);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pane.add(quitB);
-
-		start();
 	}
 
 	private class QuitButtonHandler implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
 			System.exit(DISPOSE_ON_CLOSE);
 		}
 
 	}
 
-	public Card displayCards(List supply, String message, String name) {
-		return null;
-		// TODO: have it draw each card and return a completable future card to
-		// the player
+	public CompletableFuture<Card> displayCards(ArrayList<Card> supply, String message, String name) {
+		this.setTitle(message);
+		CompletableFuture<Card> ans = new CompletableFuture<Card>();
+		int supplySize = supply.size();
+
+		for (int i = 0; i < supplySize; i++) {
+			drawCard(supply.get(i), ans);
+		}
+		drawExitButton(ans);
+		return ans;
 	}
 
-	private void drawCard(Card card, Point point) {
-		// TODO: draw a card with the top right corner as the point
+	private void drawExitButton(CompletableFuture<Card> future) {
+		JButton end = new JButton();
+		end.setText("Do Nothing");
+		end.addActionListener(new EndTurnListener(future));
+
+	}
+
+	private void drawCard(Card card, CompletableFuture<Card> future) {
+		JButton box = new JButton();
+		String text = this.makeText(card);
+		box.setText(text);
+		box.addActionListener(new CardListener(future, card));
+		this.pane.add(box, -1);// add at the end
+	}
+
+	private class EndTurnListener implements ActionListener {
+		CompletableFuture<Card> future;
+
+		public EndTurnListener(CompletableFuture<Card> future) {
+			this.future = future;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			future.cancel(true);
+
+		}
+
+	}
+
+	private class CardListener implements ActionListener {
+		@SuppressWarnings("rawtypes")
+		CompletableFuture future;
+		Card card;
+
+		public CardListener(CompletableFuture<Card> future, Card card) {
+			this.future = future;
+			this.card = card;
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			this.future.complete(card);
+		}
+
+	}
+
+	private String makeText(Card card) {
+		String ans = "";
+		if (card.getCost() != 0) {
+			ans = "Cost = " + card.getCost() + '\n';
+		}
+		if (card.getActionsAdded() != 0) {
+			ans = "Actions +" + card.getActionsAdded() + '\n';
+		}
+		if (card.getBuysAdded() != 0) {
+			ans = "Buys +" + card.getBuysAdded() + '\n';
+		}
+		if (card.getCardsAdded() != 0) {
+			ans = "Draw +" + card.getCardsAdded() + '\n';
+		}
+		if (card.getCoinsAdded() != 0) {
+			ans = "Coins +" + card.getCoinsAdded() + '\n';
+		}
+		if (card.getVictoryValue() != 0) {
+			ans = "Victory Points = " + card.getVictoryValue() + '\n';
+		}
+		return ans;
 	}
 
 	public void start() {
@@ -62,6 +136,21 @@ public class GUI extends JFrame {
 		setSize(300, 200);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+
+	private class StartButtonHandler implements ActionListener {
+		GUI gui;
+
+		StartButtonHandler(GUI gui) {
+			this.gui = gui;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			this.gui.init();
+
+		}
+
 	}
 
 	public void init() {
