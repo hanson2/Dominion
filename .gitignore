@@ -1,6 +1,8 @@
 Dominion/.gradle/
 Dominion/.classpath
 Dominion/.project
+Dominion/build/reports
+Dominion/build/tmp
 
 .recommenders/
 .metadata/
