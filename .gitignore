@@ -3,10 +3,13 @@ Dominion/.classpath
 Dominion/.project
 Dominion/build/reports
 Dominion/build/tmp
+Dominion/build/classes
+Dominion/build/test-results
+Dominion/build/jacoco
+
 
 .recommenders/
 .metadata/
 EclipseWorkspace/bin/
 RemoteSystemsTempFiles/
 Dominion/RemoteSystemsTempFiles/
-
