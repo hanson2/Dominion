@@ -12,12 +12,12 @@ public class Cellar extends Card {
 
 	@Override
 	public int getCost() {
-		return 2;
+		return GameConstants.CELLARCOST;
 	}
 	
 	@Override
 	public int getActionsAdded() {
-		return 1;
+		return GameConstants.CELLARACTIONSADDED;
 	}
 	
 	@Override

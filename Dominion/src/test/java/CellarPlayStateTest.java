@@ -14,7 +14,7 @@ public class CellarPlayStateTest {
 		turn.state = state;
 		
 		EasyMock.expect(player.sizeOfHand()).andReturn(5);
-		EasyMock.expect(player.promptYesNo("Would you like to discard a card from your hand for +1 Card?")).andReturn(false);
+		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(false);
 		
 		EasyMock.replay(player, turn);
 		
@@ -50,7 +50,7 @@ public class CellarPlayStateTest {
 		turn.state = state;
 		
 		EasyMock.expect(player.sizeOfHand()).andReturn(1);
-		EasyMock.expect(player.promptYesNo("Would you like to discard a card from your hand for +1 Card?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(card);
 		EasyMock.expect(player.discardCardFromHand(card.getClass())).andReturn(true);
 		
@@ -76,12 +76,12 @@ public class CellarPlayStateTest {
 		turn.state = state;
 		
 		EasyMock.expect(player.sizeOfHand()).andReturn(2);
-		EasyMock.expect(player.promptYesNo("Would you like to discard a card from your hand for +1 Card?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(card);
 		EasyMock.expect(player.discardCardFromHand(card.getClass())).andReturn(true);
 		
 		EasyMock.expect(player.sizeOfHand()).andReturn(1);
-		EasyMock.expect(player.promptYesNo("Would you like to discard a card from your hand for +1 Card?")).andReturn(false);
+		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(false);
 		
 		player.drawACard();
 		EasyMock.expectLastCall();
@@ -103,12 +103,12 @@ public class CellarPlayStateTest {
 		turn.state = state;
 		
 		EasyMock.expect(player.sizeOfHand()).andReturn(2);
-		EasyMock.expect(player.promptYesNo("Would you like to discard a card from your hand for +1 Card?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(card);
 		EasyMock.expect(player.discardCardFromHand(card.getClass())).andReturn(true);
 		
 		EasyMock.expect(player.sizeOfHand()).andReturn(1);
-		EasyMock.expect(player.promptYesNo("Would you like to discard a card from your hand for +1 Card?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(card);
 		EasyMock.expect(player.discardCardFromHand(card.getClass())).andReturn(true);
 		
@@ -136,17 +136,17 @@ public class CellarPlayStateTest {
 		turn.state = state;
 		
 		EasyMock.expect(player.sizeOfHand()).andReturn(5);
-		EasyMock.expect(player.promptYesNo("Would you like to discard a card from your hand for +1 Card?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(card);
 		EasyMock.expect(player.discardCardFromHand(card.getClass())).andReturn(true);
 		
 		EasyMock.expect(player.sizeOfHand()).andReturn(4);
-		EasyMock.expect(player.promptYesNo("Would you like to discard a card from your hand for +1 Card?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(card);
 		EasyMock.expect(player.discardCardFromHand(card.getClass())).andReturn(true);
 		
 		EasyMock.expect(player.sizeOfHand()).andReturn(3);
-		EasyMock.expect(player.promptYesNo("Would you like to discard a card from your hand for +1 Card?")).andReturn(false);
+		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(false);
 		
 		player.drawACard();
 		EasyMock.expectLastCall();

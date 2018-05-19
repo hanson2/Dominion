@@ -19,32 +19,32 @@ public class CellarTest {
 
 	@Test
 	public void testGetCost() {
-		assertEquals(card.getCost(), 2);
+		assertEquals(card.getCost(), GameConstants.CELLARCOST);
 	}
 
 	@Test
 	public void testGetCoinsAdded() {
-		assertEquals(card.getCoinsAdded(), 0);
+		assertEquals(card.getCoinsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetActionsAdded() {
-		assertEquals(card.getActionsAdded(), 1);
+		assertEquals(card.getActionsAdded(), GameConstants.CELLARACTIONSADDED);
 	}
 
 	@Test
 	public void testGetBuysAdded() {
-		assertEquals(card.getBuysAdded(), 0);
+		assertEquals(card.getBuysAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetCardsAdded() {
-		assertEquals(card.getCardsAdded(), 0);
+		assertEquals(card.getCardsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetVictoryValue() {
-		assertEquals(card.getVictoryValue(), 0);
+		assertEquals(card.getVictoryValue(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
