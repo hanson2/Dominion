@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 
 import org.easymock.EasyMock;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,6 +12,21 @@ public class PlayerTest {
 	@Before
 	public void setup() {
 		player = new Player("test");
+	}
+
+	GUI gui;
+	Player player;
+
+	@Before
+	public void setup() {
+		gui = EasyMock.mock(GUI.class);
+		player = new Player("Test", gui);
+	}
+
+	@After
+	public void tearDown() {
+		EasyMock.replay(gui);
+		EasyMock.verify(gui);
 	}
 
 	@Test
@@ -72,28 +88,28 @@ public class PlayerTest {
 		assertEquals(player.sizeOfHand(), 0);
 		assertEquals(player.sizeOfDiscardPile(), 1);
 	}
-	
+
 	@Test
 	public void testDiscardDrawPileEmpty() {
-		for(int i = 0; i < 10; i++){
+		for (int i = 0; i < 10; i++) {
 			player.drawACard();
 		}
-		
+
 		player.discardDrawPile();
-		
+
 		assertEquals(player.sizeOfDiscardPile(), 0);
 		assertEquals(player.sizeOfDrawPile(), 0);
 		assertEquals(player.sizeOfHand(), 10);
 	}
-	
+
 	@Test
 	public void testDiscardDrawPileOneCard() {
-		for(int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++) {
 			player.drawACard();
 		}
-		
+
 		player.discardDrawPile();
-		
+
 		assertEquals(player.sizeOfDiscardPile(), 1);
 		assertEquals(player.sizeOfDrawPile(), 0);
 		assertEquals(player.sizeOfHand(), 9);
@@ -161,7 +177,7 @@ public class PlayerTest {
 		assertTrue(player.getHand().get(0).getClass().equals(Copper.class)
 				|| player.getHand().get(0).getClass().equals(Estate.class));
 		assertTrue(player.getHand().get(1).getClass().equals(Copper.class)
-						|| player.getHand().get(1).getClass().equals(Estate.class));
+				|| player.getHand().get(1).getClass().equals(Estate.class));
 	}
 
 	@Test

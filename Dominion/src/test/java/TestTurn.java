@@ -14,8 +14,12 @@ public class TestTurn {
 		Player player = EasyMock.mock(Player.class);
 		Supply supply = EasyMock.mock(Supply.class);
 		Turn turn = new Turn(player, supply);
+		
+		EasyMock.replay(player);
 
 		assertEquals(TurnActionState.class, turn.getCurrentStateType());
+		
+		EasyMock.verify(player);
 	}
 
 	@Test

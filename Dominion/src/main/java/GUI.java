@@ -147,10 +147,10 @@ public class GUI extends JFrame {
 	}
 
 	public CompletableFuture<Integer> initNumPlayers() {
-		setTitle("# OF PLAYERS?");
-		setSize(300, 300);
-		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setTitle("# OF PLAYERS?");
+		this.setSize(300, 300);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		pane.setLayout(new GridLayout(0, 3));
 		
@@ -187,6 +187,17 @@ public class GUI extends JFrame {
 			this.numPlayersFuture.complete(this.numPlayers);
 		}
 
+	}
+
+	public CompletableFuture<String> getPlayerXName(int number) {
+		this.setVisible(false);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		CompletableFuture<String> playerXNameFuture = new CompletableFuture<>();
+		
+		playerXNameFuture.complete((String) JOptionPane.showInputDialog(null, String.format("Enter Player %d's Name", number)));
+		
+		return playerXNameFuture;
 	}
 
 	public void game(int players) {

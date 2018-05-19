@@ -18,7 +18,8 @@ public class Main {
 	}
 
 	static Player createPlayer(int number) {
-		return null;
+		String name = gui.getPlayerXName(number).join();
+		return new Player(name, gui);
 	}
 
 }
