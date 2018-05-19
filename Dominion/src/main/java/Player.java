@@ -45,8 +45,8 @@ public class Player {
 		this.drawPile.clear();
 	}
 
-	public Card playCard() {
-		return null;
+	public Optional<Card> chooseCardToPlay() {
+		return Optional.empty();
 	}
 
 	public Optional<Card> buy() {

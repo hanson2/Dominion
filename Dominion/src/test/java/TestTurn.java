@@ -25,7 +25,7 @@ public class TestTurn {
 		Card card = EasyMock.mock(Card.class);
 		Turn turn = new Turn(player, supply);
 
-		EasyMock.expect(player.playCard()).andReturn(card);
+		EasyMock.expect(player.chooseCardToPlay()).andReturn(Optional.of(card));
 		EasyMock.expect(card.getActionsAdded()).andReturn(0);
 		EasyMock.expect(card.getBuysAdded()).andReturn(0);
 		EasyMock.expect(card.getCoinsAdded()).andReturn(0);
