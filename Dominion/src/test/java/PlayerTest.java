@@ -6,13 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PlayerTest {
-	
-	Player player;
-	
-	@Before
-	public void setup() {
-		player = new Player("test");
-	}
 
 	GUI gui;
 	Player player;
@@ -58,8 +51,6 @@ public class PlayerTest {
 	
 	@Test
 	public void testDrawCardsEmptyDrawFullDiscard() {
-		Player player = new Player("John");
-		
 		player.drawNewHand();
 		player.discardHand();
 		player.drawNewHand();
@@ -142,8 +133,6 @@ public class PlayerTest {
 	
 	@Test
 	public void testGetPointsAllCardsInHand() {
-		Player player = new Player("John");
-		
 		player.drawNewHand();
 		player.drawNewHand();
 		
@@ -152,8 +141,6 @@ public class PlayerTest {
 	
 	@Test
 	public void testGetPointsAllCardInDiscard() {
-		Player player = new Player("John");
-		
 		player.drawNewHand();
 		player.drawNewHand();
 		player.discardHand();
@@ -220,8 +207,6 @@ public class PlayerTest {
 	
 	@Test
 	public void testDiscardCardInHand() {
-		Player player = new Player("John");
-		
 		player.drawNewHand();
 		
 		assertTrue(player.discardCardFromHand(Copper.class));
@@ -231,8 +216,6 @@ public class PlayerTest {
 	
 	@Test
 	public void testDiscardCardNotInHand(){
-		Player player = new Player("John");
-		
 		player.drawNewHand();
 		
 		assertFalse(player.discardCardFromHand(Silver.class));

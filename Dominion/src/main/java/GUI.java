@@ -11,10 +11,10 @@ public class GUI extends JFrame {
 	JButton quitB;
 
 	public GUI() {
-		setTitle("DOMINION");
+		setTitle(GameConstants.messages.getString("guiDominionTitle"));
 		pane = getContentPane();
 
-		quitB = new JButton("QUIT");
+		quitB = new JButton(GameConstants.messages.getString("guiQuit"));
 		QuitButtonHandler quitBH = new QuitButtonHandler();
 		quitB.addActionListener(quitBH);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -44,7 +44,7 @@ public class GUI extends JFrame {
 
 	private void drawExitButton(CompletableFuture<Card> future) {
 		JButton end = new JButton();
-		end.setText("Do Nothing");
+		end.setText(GameConstants.messages.getString("guiEndPhase"));
 		end.addActionListener(new EndTurnListener(future));
 
 	}
@@ -73,8 +73,7 @@ public class GUI extends JFrame {
 	}
 
 	private class CardListener implements ActionListener {
-		@SuppressWarnings("rawtypes")
-		CompletableFuture future;
+		CompletableFuture<Card> future;
 		Card card;
 
 		public CardListener(CompletableFuture<Card> future, Card card) {
@@ -82,7 +81,6 @@ public class GUI extends JFrame {
 			this.card = card;
 		}
 
-		@SuppressWarnings("unchecked")
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			this.future.complete(card);
@@ -91,30 +89,36 @@ public class GUI extends JFrame {
 	}
 
 	private String makeText(Card card) {
-		String ans = "";
+		StringBuilder cardText = new StringBuilder();
 		if (card.getCost() != 0) {
-			ans = "Cost = " + card.getCost() + '\n';
+			cardText.append(String.format(GameConstants.messages.getString("guiCardCost"), card.getCost()));
+			cardText.append(System.lineSeparator());
 		}
 		if (card.getActionsAdded() != 0) {
-			ans = "Actions +" + card.getActionsAdded() + '\n';
+			cardText.append(String.format(GameConstants.messages.getString("guiCardActions"), card.getActionsAdded()));
+			cardText.append(System.lineSeparator());
 		}
 		if (card.getBuysAdded() != 0) {
-			ans = "Buys +" + card.getBuysAdded() + '\n';
+			cardText.append(String.format(GameConstants.messages.getString("guiCardBuys"), card.getBuysAdded()));
+			cardText.append(System.lineSeparator());
 		}
 		if (card.getCardsAdded() != 0) {
-			ans = "Draw +" + card.getCardsAdded() + '\n';
+			cardText.append(String.format(GameConstants.messages.getString("guiCardCards"), card.getCardsAdded()));
+			cardText.append(System.lineSeparator());
 		}
 		if (card.getCoinsAdded() != 0) {
-			ans = "Coins +" + card.getCoinsAdded() + '\n';
+			cardText.append(String.format(GameConstants.messages.getString("guiCardCoins"), card.getCoinsAdded()));
+			cardText.append(System.lineSeparator());
 		}
 		if (card.getVictoryValue() != 0) {
-			ans = "Victory Points = " + card.getVictoryValue() + '\n';
+			cardText.append(String.format(GameConstants.messages.getString("guiCardVictoryPoints"), card.getVictoryValue()));
+			cardText.append(System.lineSeparator());
 		}
-		return ans;
+		return cardText.toString();
 	}
 
 	public void start() {
-		JButton startB = new JButton("START THE GAME OF DOMINION");
+		JButton startB = new JButton(GameConstants.messages.getString("guiStartGame"));
 		StartButtonHandler startBH = new StartButtonHandler(this);
 		startB.addActionListener(startBH);
 
@@ -122,8 +126,6 @@ public class GUI extends JFrame {
 		pane.setLayout(layout);
 
 		pane.add(startB, BorderLayout.CENTER);
-		//
-		// Adds QuitButton
 		pane.add(quitB, BorderLayout.PAGE_END);
 
 		setSize(300, 200);
@@ -147,7 +149,7 @@ public class GUI extends JFrame {
 	}
 
 	public CompletableFuture<Integer> initNumPlayers() {
-		this.setTitle("# OF PLAYERS?");
+		this.setTitle(GameConstants.messages.getString("guiNumPlayersTitle"));
 		this.setSize(300, 300);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -195,13 +197,15 @@ public class GUI extends JFrame {
 		
 		CompletableFuture<String> playerXNameFuture = new CompletableFuture<>();
 		
-		playerXNameFuture.complete((String) JOptionPane.showInputDialog(null, String.format("Enter Player %d's Name", number)));
+		String textPrompt = String.format(GameConstants.messages.getString("guiPlayerNamePrompt"), number);
+		playerXNameFuture.complete((String) JOptionPane.showInputDialog(null, textPrompt));
 		
 		return playerXNameFuture;
 	}
 
-	public void game(int players) {
-		setTitle("DOMINION W/ " + players + " PLAYERS");
+	public void game(int numPlayers) {
+		String title = String.format(GameConstants.messages.getString("guiGameTitle"), numPlayers);
+		setTitle(title);
 		setSize(500, 500);
 		setVisible(true);
 
