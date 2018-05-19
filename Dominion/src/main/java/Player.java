@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Stack;
 
 public class Player {
@@ -48,8 +49,8 @@ public class Player {
 		return null;
 	}
 
-	public boolean buy() {
-		return false;
+	public Optional<Card> buy() {
+		return Optional.empty();
 	}
 
 	public int getPoints() {

@@ -1,3 +1,4 @@
+import java.util.Optional;
 
 public class TurnBuyState extends TurnState {
 
@@ -10,10 +11,16 @@ public class TurnBuyState extends TurnState {
 		this.player = turn.player;
 		
 		while (this.turn.buys > 0) {
-			if (!this.player.buy()) {
-				this.turn.buys = 0;
+			Optional<Card> possiblyBoughtCard = this.player.buy();
+			if (!possiblyBoughtCard.isPresent()) {
+				break;
 			}
-			this.turn.buys--;
+			Card card = possiblyBoughtCard.get();
+			if(card.getCost() <= this.turn.coins) {
+				this.turn.buys--;
+				this.turn.coins -= card.getCost();
+				this.player.gainCard(card);
+			}
 		}
 
 		this.turn.state = new TurnCleanupState();
