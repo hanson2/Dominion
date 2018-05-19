@@ -140,48 +140,51 @@ public class GUI extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			this.gui.init();
+			this.gui.initNumPlayers();
 
 		}
 
 	}
 
-	public void init() {
+	public CompletableFuture<Integer> initNumPlayers() {
 		setTitle("# OF PLAYERS?");
 		setSize(300, 300);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		pane.setLayout(new GridLayout(0, 3));
+		
+		CompletableFuture<Integer> numPlayersFuture = new CompletableFuture<>();
 
 		JButton two = new JButton("2");
-		two.addActionListener(new InitButtonHandler(this, 2));
+		two.addActionListener(new InitNumPlayersButtonListener(2, numPlayersFuture));
 		JButton three = new JButton("3");
-		three.addActionListener(new InitButtonHandler(this, 3));
+		three.addActionListener(new InitNumPlayersButtonListener(3, numPlayersFuture));
 		JButton four = new JButton("4");
-		four.addActionListener(new InitButtonHandler(this, 4));
+		four.addActionListener(new InitNumPlayersButtonListener(4, numPlayersFuture));
 
 		pane.add(two);
 		pane.add(three);
 		pane.add(four);
 
 		pane.repaint();
+		
+		return numPlayersFuture;
 	}
 
-	private class InitButtonHandler implements ActionListener {
+	private class InitNumPlayersButtonListener implements ActionListener {
 
-		GUI gui;
 		int numPlayers;
+		CompletableFuture<Integer> numPlayersFuture;
 
-		InitButtonHandler(GUI gui, int numPlayers) {
-			this.gui = gui;
+		InitNumPlayersButtonListener(int numPlayers, CompletableFuture<Integer> numPlayersFuture) {
 			this.numPlayers = numPlayers;
+			this.numPlayersFuture = numPlayersFuture;
 		}
 
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-
+		public void actionPerformed(ActionEvent buttonPress) {
+			this.numPlayersFuture.complete(this.numPlayers);
 		}
 
 	}

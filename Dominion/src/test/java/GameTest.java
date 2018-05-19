@@ -14,8 +14,9 @@ public class GameTest {
 		for (int i = 0; i < 2; i++) {
 			list[i] = EasyMock.mock(Player.class);
 			EasyMock.expect(list[i].getPoints()).andStubReturn(0);
-			EasyMock.replay(list[i]);
 		}
+
+		EasyMock.replay(list);
 
 		Game g = new Game(list);
 
@@ -25,9 +26,7 @@ public class GameTest {
 
 		assertEquals(winners, g.endGame());
 
-		for (Player p : list) {
-			EasyMock.verify(p);
-		}
+		EasyMock.verify(list);
 	}
 
 	@Test
@@ -37,8 +36,9 @@ public class GameTest {
 		for (int i = 0; i < 4; i++) {
 			list[i] = EasyMock.mock(Player.class);
 			EasyMock.expect(list[i].getPoints()).andStubReturn(points[i]);
-			EasyMock.replay(list[i]);
 		}
+
+		EasyMock.replay(list);
 
 		Game g = new Game(list);
 		Set<Player> winners = new HashSet<>();
@@ -46,9 +46,7 @@ public class GameTest {
 
 		assertEquals(winners, g.endGame());
 
-		for (Player p : list) {
-			EasyMock.verify(p);
-		}
+		EasyMock.verify(list);
 	}
 	
 	@Test
@@ -80,8 +78,9 @@ public class GameTest {
 			list[i] = EasyMock.mock(Player.class);
 			EasyMock.expect(list[i].getPoints()).andStubReturn(points[i]);
 			EasyMock.expect(list[i].getName()).andStubReturn(String.format("%d", i));
-			EasyMock.replay(list[i]);
 		}
+
+		EasyMock.replay(list);
 
 		Set<Player> winners = new HashSet<>();
 		winners.add(list[2]);
@@ -92,9 +91,7 @@ public class GameTest {
 		g.endTurn();
 		assertEquals(winners, g.endGame());
 
-		for (Player p : list) {
-			EasyMock.verify(p);
-		}
+		EasyMock.verify(list);
 	}
 
 	@Test
@@ -104,8 +101,9 @@ public class GameTest {
 		for (int i = 0; i < 4; i++) {
 			list[i] = EasyMock.mock(Player.class);
 			EasyMock.expect(list[i].getPoints()).andStubReturn(points[i]);
-			EasyMock.replay(list[i]);
 		}
+
+		EasyMock.replay(list);
 
 		Set<Player> winners = new HashSet<Player>();
 		winners.add(list[3]);
@@ -115,9 +113,7 @@ public class GameTest {
 		g.endTurn();
 		assertEquals(winners, g.endGame());
 
-		for (Player p : list) {
-			EasyMock.verify(p);
-		}
+		EasyMock.verify(list);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -126,8 +122,9 @@ public class GameTest {
 		for (int i = 0; i < 5; i++) {
 			list[i] = EasyMock.mock(Player.class);
 			EasyMock.expect(list[i].getPoints()).andStubReturn(0);
-			EasyMock.replay(list[i]);
 		}
+
+		EasyMock.replay(list);
 
 		new Game(list);
 	}
