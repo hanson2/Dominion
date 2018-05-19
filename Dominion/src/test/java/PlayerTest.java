@@ -191,6 +191,7 @@ public class PlayerTest {
 		player.drawNewHand();
 		
 		assertTrue(player.trashCardFromHand(Copper.class));
+		assertEquals(player.sizeOfHand(), 4);
 	}
 	
 	@Test
@@ -198,6 +199,29 @@ public class PlayerTest {
 		player.drawNewHand();
 		
 		assertFalse(player.trashCardFromHand(Silver.class));
+		assertEquals(player.sizeOfHand(), 5);
+	}
+	
+	@Test
+	public void testDiscardCardInHand() {
+		Player player = new Player("John");
+		
+		player.drawNewHand();
+		
+		assertTrue(player.discardCardFromHand(Copper.class));
+		assertEquals(player.sizeOfHand(), 4);
+		assertEquals(player.sizeOfDiscardPile(), 1);
+	}
+	
+	@Test
+	public void testDiscardCardNotInHand(){
+		Player player = new Player("John");
+		
+		player.drawNewHand();
+		
+		assertFalse(player.discardCardFromHand(Silver.class));
+		assertEquals(player.sizeOfHand(), 5);
+		assertEquals(player.sizeOfDiscardPile(), 0);
 	}
 	
 	@Test
