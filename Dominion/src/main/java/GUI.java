@@ -3,14 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.concurrent.CompletableFuture;
-
-/**
- * Graphical User Interface implementation for the game Dominion.
- * 
- * @author bakerne, hanson2
- */
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame {
@@ -128,10 +121,10 @@ public class GUI extends JFrame {
 		BorderLayout layout = new BorderLayout();
 		pane.setLayout(layout);
 
-		pane.add(startB, layout.CENTER);
+		pane.add(startB, BorderLayout.CENTER);
 		//
 		// Adds QuitButton
-		pane.add(quitB, layout.PAGE_END);
+		pane.add(quitB, BorderLayout.PAGE_END);
 
 		setSize(300, 200);
 		setVisible(true);
@@ -175,6 +168,24 @@ public class GUI extends JFrame {
 		pane.repaint();
 	}
 
+	private class InitButtonHandler implements ActionListener {
+
+		GUI gui;
+		int numPlayers;
+
+		InitButtonHandler(GUI gui, int numPlayers) {
+			this.gui = gui;
+			this.numPlayers = numPlayers;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+	}
+
 	public void game(int players) {
 		setTitle("DOMINION W/ " + players + " PLAYERS");
 		setSize(500, 500);
@@ -199,6 +210,16 @@ public class GUI extends JFrame {
 		Spring.putConstraint(SpringLayout.EAST, quitB, 0, SpringLayout.EAST, pane);
 
 		pane.repaint();
+	}
+
+	private class EndTurnButtonHandler implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+
+		}
+
 	}
 
 }
