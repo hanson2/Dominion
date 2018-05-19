@@ -57,4 +57,6 @@ public class GameConstants {
 	public static final int WOODCUTTERCOST = 3;
 	public static final int WOODCUTTERCOINSADDED = 2;
 	public static final int WOODCUTTERBUYSADDED = 1;
+	
+	public static final int CHAPELCOST = 2;
 }
