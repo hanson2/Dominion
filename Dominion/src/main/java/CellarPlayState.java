@@ -3,26 +3,26 @@ public class CellarPlayState extends CardPlayState {
 	
 	@Override
 	public void run(Turn turn){
-		boolean response;
 		int numCardsToAdd = 0;
+		Player player = turn.player;
 		
-		int handSize = turn.player.sizeOfHand();
+		int handSize = player.sizeOfHand();
 		
-		while(handSize != 0) {
-			response = turn.player.promptYesNo("cellarPrompt");
+		while(handSize > 0) {
+			boolean response = player.promptYesNo("cellarPrompt");
 			if(response) {
-				Card card = turn.player.chooseCardFromHand();
-				turn.player.discardCardFromHand(card.getClass());
+				Card card = player.chooseCardFromHand();
+				player.discardCardFromHand(card.getClass());
 				numCardsToAdd++;
 			}
 			else{
 				break;
 			}
-			handSize = turn.player.sizeOfHand();			
+			handSize = player.sizeOfHand();			
 		}
 		
 		for(int i = 0; i < numCardsToAdd; i++) {
-			turn.player.drawACard();
+			player.drawACard();
 		}
 	}
 
