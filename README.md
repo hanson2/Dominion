@@ -38,7 +38,7 @@
           they have no action cards, if they voluntarily end phase with card
           and action, cards and action, card and actions, cards and actions
 	
-    - [ ] The buy phase begins once a player exits the action phase. All that
+    - [x] The buy phase begins once a player exits the action phase. All that
       player’s remaining treasure cards get put into play at this point. That
       player has as many buys as they have accumulated during the action phase
       plus their automatic 1 buy. The player may use their treasure from the
