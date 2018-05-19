@@ -44,7 +44,7 @@
       plus their automatic 1 buy. The player may use their treasure from the
       turn to buy cards from non-empty supply piles. Once the player is out of
       money, out of buys, or doesn’t want to buy anything more, the buy phase
-      ends.
+      ends. (Implemented with 647fb588)
 	
         - [ ] BVA: If the player has buys or money remaining after they have
           exited the buy phase, their buys and money are set to 0.
