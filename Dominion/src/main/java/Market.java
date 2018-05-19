@@ -12,26 +12,26 @@ public class Market extends Card {
 
 	@Override
 	public int getCost() {
-		return 5;
+		return GameConstants.MARKETCOST;
 	}
 
 	@Override
 	public int getCoinsAdded() {
-		return 1;
+		return GameConstants.MARKETCOINSADDED;
 	}
 
 	@Override
 	public int getActionsAdded() {
-		return 1;
+		return GameConstants.MARKETACTIONSADDED;
 	}
 
 	@Override
 	public int getBuysAdded() {
-		return 1;
+		return GameConstants.MARKETBUYSADDED;
 	}
 
 	@Override
 	public int getCardsAdded() {
-		return 1;
+		return GameConstants.MARKETCARDSADDED;
 	}
 }

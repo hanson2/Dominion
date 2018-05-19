@@ -102,7 +102,7 @@ public class Player {
 		return totalPoints;
 	}
 
-	public boolean promptYesNo(String message) {
+	public boolean promptYesNo(String messageKey) {
 		return false;
 	}
 	

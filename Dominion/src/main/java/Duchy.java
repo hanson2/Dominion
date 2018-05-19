@@ -5,12 +5,12 @@ public class Duchy extends Card {
 
 	@Override
 	public int getVictoryValue() {
-		return 3;
+		return GameConstants.DUCHYVICTORYVALUE;
 	}
 
 	@Override
 	public int getCost() {
-		return 5;
+		return GameConstants.DUCHYCOST;
 	}
 
 	@Override

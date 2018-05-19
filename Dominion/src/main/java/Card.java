@@ -5,23 +5,23 @@ public abstract class Card {
 	public abstract Set<CardType> getType();
 
 	public int getCoinsAdded() {
-		return 0;
+		return GameConstants.DEFAULTCARDATTRIBUTE;
 	}
 
 	public int getActionsAdded() {
-		return 0;
+		return GameConstants.DEFAULTCARDATTRIBUTE;
 	}
 
 	public int getBuysAdded() {
-		return 0;
+		return GameConstants.DEFAULTCARDATTRIBUTE;
 	}
 
 	public int getCardsAdded() {
-		return 0;
+		return GameConstants.DEFAULTCARDATTRIBUTE;
 	}
 
 	public int getVictoryValue() {
-		return 0;
+		return GameConstants.DEFAULTCARDATTRIBUTE;
 	}
 
 	public abstract int getCost();

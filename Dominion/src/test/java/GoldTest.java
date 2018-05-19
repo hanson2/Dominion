@@ -10,11 +10,11 @@ public class GoldTest {
 
 		assertTrue(card.getType().contains(CardType.TREASURE));
 		assertEquals(card.getPlayState().getClass(), CardPlayState.class);
-		assertEquals(card.getCoinsAdded(), 3);
-		assertEquals(card.getActionsAdded(), 0);
-		assertEquals(card.getBuysAdded(), 0);
-		assertEquals(card.getCardsAdded(), 0);
-		assertEquals(card.getVictoryValue(), 0);
-		assertEquals(card.getCost(), 6);
+		assertEquals(card.getCoinsAdded(), GameConstants.GOLDCOINSADDED);
+		assertEquals(card.getActionsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getBuysAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getCardsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getVictoryValue(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getCost(), GameConstants.GOLDCOST);
 	}
 }

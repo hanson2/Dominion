@@ -12,21 +12,21 @@ public class Festival extends Card {
 
 	@Override
 	public int getCost() {
-		return 5;
+		return GameConstants.FESTIVALCOST;
 	}
 	
 	@Override
 	public int getCoinsAdded() {
-		return 2;
+		return GameConstants.FESTIVALCOINSADDED;
 	}
 	
 	@Override
 	public int getActionsAdded() {
-		return 2;
+		return GameConstants.FESTIVALACTIONSADDED;
 	}
 
 	@Override
 	public int getBuysAdded() {
-		return 1;
+		return GameConstants.FESTIVALBUYSADDED;
 	}
 }

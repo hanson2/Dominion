@@ -1,7 +1,5 @@
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.easymock.EasyMock;
 import org.junit.Test;
@@ -19,42 +17,42 @@ public class MoneylenderTest {
 	public void testGetCost() {
 		Card card = new Moneylender();
 
-		assertEquals(card.getCost(), 4);
+		assertEquals(card.getCost(), GameConstants.MONEYLENDERCOST);
 	}
 
 	@Test
 	public void testGetCoinsAdded() {
 		Card card = new Moneylender();
 
-		assertEquals(card.getCoinsAdded(), 0);
+		assertEquals(card.getCoinsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetActionsAdded() {
 		Card card = new Moneylender();
 
-		assertEquals(card.getActionsAdded(), 0);
+		assertEquals(card.getActionsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetBuysAdded() {
 		Card card = new Moneylender();
 
-		assertEquals(card.getBuysAdded(), 0);
+		assertEquals(card.getBuysAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetCardsAdded() {
 		Card card = new Moneylender();
 
-		assertEquals(card.getCardsAdded(), 0);
+		assertEquals(card.getCardsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetVictoryValue() {
 		Card card = new Moneylender();
 
-		assertEquals(card.getVictoryValue(), 0);
+		assertEquals(card.getVictoryValue(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
@@ -71,7 +69,7 @@ public class MoneylenderTest {
 		Turn turn = new Turn(player);
 		player.drawNewHand();
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a Copper card from your hand for 3 coins?"))
+		EasyMock.expect(player.promptYesNo("moneylenderPrompt"))
 				.andReturn(true);
 
 		EasyMock.replay(player);
@@ -94,7 +92,7 @@ public class MoneylenderTest {
 		player.gainCard(new Silver());
 		player.drawACard();
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a Copper card from your hand for 3 coins?"))
+		EasyMock.expect(player.promptYesNo("moneylenderPrompt"))
 				.andReturn(true);
 
 		player.trashCardFromHand(Copper.class);
@@ -118,7 +116,7 @@ public class MoneylenderTest {
 		Turn turn = new Turn(player);
 		player.drawNewHand();
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a Copper card from your hand for 3 coins?"))
+		EasyMock.expect(player.promptYesNo("moneylenderPrompt"))
 				.andReturn(false);
 
 		EasyMock.replay(player);
@@ -139,7 +137,7 @@ public class MoneylenderTest {
 				.createMock();
 		Turn turn = new Turn(player);
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a Copper card from your hand for 3 coins?"))
+		EasyMock.expect(player.promptYesNo("moneylenderPrompt"))
 				.andReturn(false);
 
 		EasyMock.replay(player);

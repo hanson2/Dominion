@@ -1,4 +1,6 @@
 import java.util.HashSet;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Set;
 
 public class Game {
@@ -10,6 +12,7 @@ public class Game {
 			throw new IllegalArgumentException();
 		}
 		this.players = players;
+		GameConstants.messages = ResourceBundle.getBundle("MessagesBundle", new Locale("en"));
 	}
 
 	public Set<Player> endGame() {

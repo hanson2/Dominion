@@ -5,12 +5,12 @@ public class Estate extends Card {
 
 	@Override
 	public int getVictoryValue() {
-		return 1;
+		return GameConstants.ESTATEVICTORYVALUE;
 	}
 
 	@Override
 	public int getCost() {
-		return 2;
+		return GameConstants.ESTATECOST;
 	}
 
 	@Override

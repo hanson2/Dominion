@@ -5,12 +5,12 @@ public class Curse extends Card {
 
 	@Override
 	public int getVictoryValue() {
-		return -1;
+		return GameConstants.CURSEVICTORYVALUE;
 	}
 
 	@Override
 	public int getCost() {
-		return 0;
+		return GameConstants.CURSECOST;
 	}
 
 	@Override

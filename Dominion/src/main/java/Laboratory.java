@@ -12,17 +12,17 @@ public class Laboratory extends Card {
 
 	@Override
 	public int getCost() {
-		return 5;
+		return GameConstants.LABORATORYCOST;
 	}
 	
 	@Override
 	public int getCardsAdded() {
-		return 2;
+		return GameConstants.LABORATORYCARDSADDED;
 	}
 	
 	@Override
 	public int getActionsAdded() {
-		return 1;
+		return GameConstants.LABORATORYACTIONSADDED;
 	}
 
 }

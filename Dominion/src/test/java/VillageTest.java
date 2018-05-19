@@ -13,37 +13,37 @@ public class VillageTest {
 	@Test
 	public void testGetCost() {
 		Card village = new Village();
-		assertEquals(village.getCost(), 3);
+		assertEquals(village.getCost(), GameConstants.VILLAGECOST);
 	}
 
 	@Test
 	public void testGetCoinsAdded() {
 		Card village = new Village();
-		assertEquals(village.getCoinsAdded(), 0);
+		assertEquals(village.getCoinsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetActionsAdded() {
 		Card village = new Village();
-		assertEquals(village.getActionsAdded(), 2);
+		assertEquals(village.getActionsAdded(), GameConstants.VILLAGEACTIONSADDED);
 	}
 
 	@Test
 	public void testGetBuysAdded() {
 		Card village = new Village();
-		assertEquals(village.getBuysAdded(), 0);
+		assertEquals(village.getBuysAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetCardsAdded() {
 		Card village = new Village();
-		assertEquals(village.getCardsAdded(), 1);
+		assertEquals(village.getCardsAdded(), GameConstants.VILLAGECARDSADDED);
 	}
 
 	@Test
 	public void testGetVictoryValue() {
 		Card village = new Village();
-		assertEquals(village.getVictoryValue(), 0);
+		assertEquals(village.getVictoryValue(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test

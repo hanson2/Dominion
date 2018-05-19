@@ -12,7 +12,7 @@ public class Moneylender extends Card {
 
 	@Override
 	public int getCost() {
-		return 4;
+		return GameConstants.MONEYLENDERCOST;
 	}
 	
 	@Override

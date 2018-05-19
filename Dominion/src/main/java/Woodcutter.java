@@ -12,16 +12,16 @@ public class Woodcutter extends Card {
 
 	@Override
 	public int getCost() {
-		return 3;
+		return GameConstants.WOODCUTTERCOST;
 	}
 
 	@Override
 	public int getCoinsAdded() {
-		return 2;
+		return GameConstants.WOODCUTTERCOINSADDED;
 	}
 
 	@Override
 	public int getBuysAdded() {
-		return 1;
+		return GameConstants.WOODCUTTERBUYSADDED;
 	}
 }

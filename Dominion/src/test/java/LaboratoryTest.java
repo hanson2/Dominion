@@ -13,37 +13,37 @@ public class LaboratoryTest {
 	@Test
 	public void testGetCost() {
 		Card lab = new Laboratory();
-		assertEquals(lab.getCost(), 5);
+		assertEquals(lab.getCost(), GameConstants.LABORATORYCOST);
 	}
 
 	@Test
 	public void testGetCoinsAdded() {
 		Card lab = new Laboratory();
-		assertEquals(lab.getCoinsAdded(), 0);
+		assertEquals(lab.getCoinsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetActionsAdded() {
 		Card lab = new Laboratory();
-		assertEquals(lab.getActionsAdded(), 1);
+		assertEquals(lab.getActionsAdded(), GameConstants.LABORATORYACTIONSADDED);
 	}
 
 	@Test
 	public void testGetBuysAdded() {
 		Card lab = new Laboratory();
-		assertEquals(lab.getBuysAdded(), 0);
+		assertEquals(lab.getBuysAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetCardsAdded() {
 		Card lab = new Laboratory();
-		assertEquals(lab.getCardsAdded(), 2);
+		assertEquals(lab.getCardsAdded(), GameConstants.LABORATORYCARDSADDED);
 	}
 
 	@Test
 	public void testGetVictoryValue() {
 		Card lab = new Laboratory();
-		assertEquals(lab.getVictoryValue(), 0);
+		assertEquals(lab.getVictoryValue(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test

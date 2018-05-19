@@ -5,12 +5,12 @@ public class Silver extends Card {
 
 	@Override
 	public int getCoinsAdded() {
-		return 2;
+		return GameConstants.SILVERCOINSADDED;
 	}
 
 	@Override
 	public int getCost() {
-		return 3;
+		return GameConstants.SILVERCOST;
 	}
 
 	@Override

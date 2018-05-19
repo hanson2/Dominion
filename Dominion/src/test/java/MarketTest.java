@@ -15,42 +15,42 @@ public class MarketTest {
 	public void testGetCost() {
 		Card card = new Market();
 
-		assertEquals(card.getCost(), 5);
+		assertEquals(card.getCost(), GameConstants.MARKETCOST);
 	}
 
 	@Test
 	public void testGetCoinsAdded() {
 		Card card = new Market();
 
-		assertEquals(card.getCoinsAdded(), 1);
+		assertEquals(card.getCoinsAdded(), GameConstants.MARKETCOINSADDED);
 	}
 
 	@Test
 	public void testGetActionsAdded() {
 		Card card = new Market();
 
-		assertEquals(card.getActionsAdded(), 1);
+		assertEquals(card.getActionsAdded(), GameConstants.MARKETACTIONSADDED);
 	}
 
 	@Test
 	public void testGetBuysAdded() {
 		Card card = new Market();
 
-		assertEquals(card.getBuysAdded(), 1);
+		assertEquals(card.getBuysAdded(), GameConstants.MARKETBUYSADDED);
 	}
 
 	@Test
 	public void testGetCardsAdded() {
 		Card card = new Market();
 
-		assertEquals(card.getCardsAdded(), 1);
+		assertEquals(card.getCardsAdded(), GameConstants.MARKETCARDSADDED);
 	}
 
 	@Test
 	public void testGetVictoryValue() {
 		Card card = new Market();
 
-		assertEquals(card.getVictoryValue(), 0);
+		assertEquals(card.getVictoryValue(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test

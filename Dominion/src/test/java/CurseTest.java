@@ -10,11 +10,11 @@ public class CurseTest {
 
 		assertTrue(card.getType().contains(CardType.CURSE));
 		assertEquals(card.getPlayState().getClass(), CardPlayState.class);
-		assertEquals(card.getCoinsAdded(), 0);
-		assertEquals(card.getActionsAdded(), 0);
-		assertEquals(card.getBuysAdded(), 0);
-		assertEquals(card.getCardsAdded(), 0);
-		assertEquals(card.getVictoryValue(), -1);
-		assertEquals(card.getCost(), 0);
+		assertEquals(card.getCoinsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getActionsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getBuysAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getCardsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
+		assertEquals(card.getVictoryValue(), GameConstants.CURSEVICTORYVALUE);
+		assertEquals(card.getCost(), GameConstants.CURSECOST);
 	}
 }

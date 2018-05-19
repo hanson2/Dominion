@@ -5,7 +5,7 @@ public class Copper extends Card {
 
 	@Override
 	public int getCoinsAdded() {
-		return 1;
+		return GameConstants.COPPERCOINSADDED;
 	}
 
 	@Override
@@ -17,7 +17,7 @@ public class Copper extends Card {
 
 	@Override
 	public int getCost() {
-		return 0;
+		return GameConstants.COPPERCOST;
 	}
 
 }

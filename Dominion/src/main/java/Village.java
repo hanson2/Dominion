@@ -12,15 +12,15 @@ public class Village extends Card {
 
 	@Override
 	public int getCost() {
-		return 3;
+		return GameConstants.VILLAGECOST;
 	}
 	
 	public int getActionsAdded() {
-		return 2;
+		return GameConstants.VILLAGEACTIONSADDED;
 	}
 	
 	public int getCardsAdded() {
-		return 1;
+		return GameConstants.VILLAGECARDSADDED;
 	}
 
 }
