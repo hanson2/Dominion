@@ -115,4 +115,9 @@ public class Player {
 		}
 		return false;
 	}
+	
+	public Card chooseCardFromHand() {
+		//TODO will eventually interact with the GUI
+		return new Copper();
+	}
 }
