@@ -64,15 +64,13 @@ public class ChancellorTest {
 	
 	@Test
 	public void testPlayStateDoAction() {
-		Player player = EasyMock.partialMockBuilder(Player.class)
-				.withConstructor("test")
-				.addMockedMethod("promptYesNo")
-				.createMock();
+		Player player = EasyMock.mock(Player.class);
 		Turn turn = EasyMock.mock(Turn.class);
 		
 		EasyMock.expect(player.promptYesNo("chancellorPrompt")).andReturn(true);
 		
 		player.discardDrawPile();
+		EasyMock.expectLastCall();
 		
 		EasyMock.replay(player, turn);
 		
@@ -82,7 +80,23 @@ public class ChancellorTest {
 		
 		state.run(turn);
 		
-		assertEquals(player.sizeOfDrawPile(), 0);
+		EasyMock.verify(turn, player);
+	}
+	
+	@Test
+	public void testPlayStateDoNotDoAction() {
+		Player player = EasyMock.mock(Player.class);
+		Turn turn = EasyMock.mock(Turn.class);
+		
+		EasyMock.expect(player.promptYesNo("chancellorPrompt")).andReturn(false);
+		
+		EasyMock.replay(player, turn);
+		
+		turn.player = player;
+		
+		ChancellorPlayState state = new ChancellorPlayState();
+		
+		state.run(turn);
 		
 		EasyMock.verify(turn, player);
 	}

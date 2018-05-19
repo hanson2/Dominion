@@ -37,6 +37,20 @@ public class PlayerTest {
 		assertEquals(player.sizeOfHand(), 10);
 		assertEquals(player.sizeOfDiscardPile(), 0);
 	}
+	
+	@Test
+	public void testDrawCardsEmptyDrawFullDiscard() {
+		Player player = new Player("John");
+		
+		player.drawNewHand();
+		player.discardHand();
+		player.drawNewHand();
+		player.drawACard();
+		
+		assertEquals(player.sizeOfDrawPile(), 4);
+		assertEquals(player.sizeOfHand(), 6);
+		assertEquals(player.sizeOfDiscardPile(), 0);	
+	}
 
 	@Test
 	public void testDiscardHandEmpty() {
@@ -120,6 +134,27 @@ public class PlayerTest {
 		player.gainCard(new Estate());
 
 		assertEquals(player.getPoints(), 4);
+	}
+	
+	@Test
+	public void testGetPointsAllCardsInHand() {
+		Player player = new Player("John");
+		
+		player.drawNewHand();
+		player.drawNewHand();
+		
+		assertEquals(player.getPoints(), 3);
+	}
+	
+	@Test
+	public void testGetPointsAllCardInDiscard() {
+		Player player = new Player("John");
+		
+		player.drawNewHand();
+		player.drawNewHand();
+		player.discardHand();
+		
+		assertEquals(player.getPoints(), 3);
 	}
 
 	@Test
