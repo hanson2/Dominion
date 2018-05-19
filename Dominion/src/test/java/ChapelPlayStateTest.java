@@ -13,7 +13,7 @@ public class ChapelPlayStateTest {
 		turn.player = player;
 		turn.state = state;
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(false);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(false);
 
 		EasyMock.replay(player, turn);
 
@@ -31,11 +31,11 @@ public class ChapelPlayStateTest {
 		turn.player = player;
 		turn.state = state;
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(cardToTrash);
 		EasyMock.expect(player.trashCardFromHand(cardToTrash.getClass())).andReturn(true);
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(false);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(false);
 
 		EasyMock.replay(player, turn);
 
@@ -53,15 +53,15 @@ public class ChapelPlayStateTest {
 		turn.player = player;
 		turn.state = state;
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(cardToTrash);
 		EasyMock.expect(player.trashCardFromHand(cardToTrash.getClass())).andReturn(true);
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(cardToTrash);
 		EasyMock.expect(player.trashCardFromHand(cardToTrash.getClass())).andReturn(true);
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(false);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(false);
 
 		EasyMock.replay(player, turn);
 
@@ -79,19 +79,19 @@ public class ChapelPlayStateTest {
 		turn.player = player;
 		turn.state = state;
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(cardToTrash);
 		EasyMock.expect(player.trashCardFromHand(cardToTrash.getClass())).andReturn(true);
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(cardToTrash);
 		EasyMock.expect(player.trashCardFromHand(cardToTrash.getClass())).andReturn(true);
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(cardToTrash);
 		EasyMock.expect(player.trashCardFromHand(cardToTrash.getClass())).andReturn(true);
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(false);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(false);
 
 		EasyMock.replay(player, turn);
 
@@ -109,19 +109,19 @@ public class ChapelPlayStateTest {
 		turn.player = player;
 		turn.state = state;
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(cardToTrash);
 		EasyMock.expect(player.trashCardFromHand(cardToTrash.getClass())).andReturn(true);
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(cardToTrash);
 		EasyMock.expect(player.trashCardFromHand(cardToTrash.getClass())).andReturn(true);
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(cardToTrash);
 		EasyMock.expect(player.trashCardFromHand(cardToTrash.getClass())).andReturn(true);
 
-		EasyMock.expect(player.promptYesNo("Would you like to trash a card from your hand?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(cardToTrash);
 		EasyMock.expect(player.trashCardFromHand(cardToTrash.getClass())).andReturn(true);
 
