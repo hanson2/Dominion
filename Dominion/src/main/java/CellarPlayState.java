@@ -9,8 +9,7 @@ public class CellarPlayState extends CardPlayState {
 		int handSize = player.sizeOfHand();
 		
 		while(handSize > 0) {
-			boolean response = player.promptYesNo("cellarPrompt");
-			if(response) {
+			if(player.promptYesNo("cellarPrompt")) {
 				Card card = player.chooseCardFromHand();
 				player.discardCardFromHand(card.getClass());
 				numCardsToAdd++;

@@ -12,8 +12,7 @@ public class VassalPlayState extends CardPlayState {
 		} else {
 			Card card = cardPossibility.get();
 			if (card.getType().contains(CardType.ACTION)) {
-				boolean response = player.promptYesNo("vassalPrompt");
-				if (response) {
+				if (player.promptYesNo("vassalPrompt")) {
 					turn.state = card.getPlayState();
 					turn.run();
 				}
