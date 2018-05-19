@@ -69,10 +69,11 @@ public class MoneylenderTest {
 		Turn turn = EasyMock.mock(Turn.class);
 		player.drawNewHand();
 
-		EasyMock.expect(player.promptYesNo("moneylenderPrompt"))
-				.andReturn(true);
+		EasyMock.expect(player.promptYesNo("moneylenderPrompt")).andReturn(true);
 
-		EasyMock.replay(player);
+		EasyMock.replay(player, turn);
+
+		turn.player = player;
 
 		MoneylenderPlayState state = new MoneylenderPlayState();
 
@@ -81,7 +82,7 @@ public class MoneylenderTest {
 		assertEquals(player.sizeOfHand(), 4);
 		assertEquals(turn.coins, 3);
 
-		EasyMock.verify(player);
+		EasyMock.verify(player, turn);
 	}
 
 	@Test
@@ -92,12 +93,13 @@ public class MoneylenderTest {
 		player.gainCard(new Silver());
 		player.drawACard();
 
-		EasyMock.expect(player.promptYesNo("moneylenderPrompt"))
-				.andReturn(true);
+		EasyMock.expect(player.promptYesNo("moneylenderPrompt")).andReturn(true);
 
 		player.trashCardFromHand(Copper.class);
 
-		EasyMock.replay(player);
+		EasyMock.replay(player, turn);
+
+		turn.player = player;
 
 		MoneylenderPlayState state = new MoneylenderPlayState();
 
@@ -106,9 +108,9 @@ public class MoneylenderTest {
 		assertEquals(player.sizeOfHand(), 1);
 		assertEquals(turn.coins, 0);
 
-		EasyMock.verify(player);
+		EasyMock.verify(player, turn);
 	}
-	
+
 	@Test
 	public void testPlayStateDoActionCopperInHandNo() {
 		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("test").addMockedMethod("promptYesNo")
@@ -116,10 +118,11 @@ public class MoneylenderTest {
 		Turn turn = EasyMock.mock(Turn.class);
 		player.drawNewHand();
 
-		EasyMock.expect(player.promptYesNo("moneylenderPrompt"))
-				.andReturn(false);
+		EasyMock.expect(player.promptYesNo("moneylenderPrompt")).andReturn(false);
 
-		EasyMock.replay(player);
+		EasyMock.replay(player, turn);
+
+		turn.player = player;
 
 		MoneylenderPlayState state = new MoneylenderPlayState();
 
@@ -128,20 +131,21 @@ public class MoneylenderTest {
 		assertEquals(player.sizeOfHand(), 5);
 		assertEquals(turn.coins, 0);
 
-		EasyMock.verify(player);
+		EasyMock.verify(player, turn);
 	}
-	
+
 	@Test
 	public void testPlayStateDoActionCopperNotInHandNo() {
 		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("test").addMockedMethod("promptYesNo")
 				.createMock();
 		Turn turn = EasyMock.mock(Turn.class);
 
-		EasyMock.expect(player.promptYesNo("moneylenderPrompt"))
-				.andReturn(false);
+		EasyMock.expect(player.promptYesNo("moneylenderPrompt")).andReturn(false);
 
-		EasyMock.replay(player);
+		EasyMock.replay(player, turn);
 
+		turn.player = player;
+		
 		MoneylenderPlayState state = new MoneylenderPlayState();
 
 		state.run(turn);
@@ -149,7 +153,7 @@ public class MoneylenderTest {
 		assertEquals(player.sizeOfHand(), 0);
 		assertEquals(turn.coins, 0);
 
-		EasyMock.verify(player);
+		EasyMock.verify(player, turn);
 	}
 
 }
