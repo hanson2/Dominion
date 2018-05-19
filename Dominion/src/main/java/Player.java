@@ -7,9 +7,9 @@ import java.util.Stack;
 public class Player {
 
 	private String name;
-	private List<Card> hand;
-	private Stack<Card> drawPile;
-	private Stack<Card> discardPile;
+	List<Card> hand;
+	Stack<Card> drawPile;
+	Stack<Card> discardPile;
 
 	public Player(String name) {
 		this.hand = new ArrayList<Card>();

@@ -52,7 +52,7 @@ public class VassalPlayStateTest {
 		turn.state = state;
 
 		EasyMock.expect(player.discardTopCardOfDrawPile()).andReturn(Optional.of(cardToPickUp));
-		EasyMock.expect(player.promptYesNo("Would you like to play this action card?")).andReturn(false);
+		EasyMock.expect(player.promptYesNo("vassalPrompt")).andReturn(false);
 
 		EasyMock.replay(player, turn);
 
@@ -74,7 +74,7 @@ public class VassalPlayStateTest {
 		turn.state = state;
 
 		EasyMock.expect(player.discardTopCardOfDrawPile()).andReturn(Optional.of(cardToPickUp));
-		EasyMock.expect(player.promptYesNo("Would you like to play this action card?")).andReturn(true);
+		EasyMock.expect(player.promptYesNo("vassalPrompt")).andReturn(true);
 		turn.run();
 		EasyMock.expectLastCall();
 
