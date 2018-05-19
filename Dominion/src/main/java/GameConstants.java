@@ -67,4 +67,6 @@ public class GameConstants {
 
 	public static final int CELLARCOST = 2;
 	public static final int CELLARACTIONSADDED = 1;
+	
+	public static final int REMODELCOST = 4;
 }
