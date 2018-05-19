@@ -61,44 +61,5 @@ public class ChancellorTest {
 		
 		assertEquals(card.getPlayState().getClass(), ChancellorPlayState.class);
 	}
-	
-	@Test
-	public void testPlayStateDoAction() {
-		Player player = EasyMock.mock(Player.class);
-		Turn turn = EasyMock.mock(Turn.class);
-		
-		EasyMock.expect(player.promptYesNo("chancellorPrompt")).andReturn(true);
-		
-		player.discardDrawPile();
-		EasyMock.expectLastCall();
-		
-		EasyMock.replay(player, turn);
-		
-		turn.player = player;
-		
-		ChancellorPlayState state = new ChancellorPlayState();
-		
-		state.run(turn);
-		
-		EasyMock.verify(turn, player);
-	}
-	
-	@Test
-	public void testPlayStateDoNotDoAction() {
-		Player player = EasyMock.mock(Player.class);
-		Turn turn = EasyMock.mock(Turn.class);
-		
-		EasyMock.expect(player.promptYesNo("chancellorPrompt")).andReturn(false);
-		
-		EasyMock.replay(player, turn);
-		
-		turn.player = player;
-		
-		ChancellorPlayState state = new ChancellorPlayState();
-		
-		state.run(turn);
-		
-		EasyMock.verify(turn, player);
-	}
 
 }

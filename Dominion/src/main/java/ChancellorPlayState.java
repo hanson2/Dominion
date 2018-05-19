@@ -3,9 +3,8 @@ public class ChancellorPlayState extends CardPlayState {
 	@Override
 	public void run(Turn turn){
 		Player player = turn.player;
-		boolean response = player.promptYesNo("chancellorPrompt");
 		
-		if(response){
+		if(player.promptYesNo("chancellorPrompt")){
 			player.discardDrawPile();
 		}
 	}
