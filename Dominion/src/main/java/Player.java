@@ -6,10 +6,10 @@ import java.util.Stack;
 
 public class Player {
 
-	String name;
-	List<Card> hand;
-	Stack<Card> drawPile;
-	Stack<Card> discardPile;
+	private String name;
+	private List<Card> hand;
+	private Stack<Card> drawPile;
+	private Stack<Card> discardPile;
 
 	public Player(String name) {
 		this.hand = new ArrayList<Card>();
