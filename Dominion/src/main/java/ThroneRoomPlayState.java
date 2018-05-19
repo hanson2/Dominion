@@ -5,7 +5,7 @@ public class ThroneRoomPlayState extends CardPlayState {
 	public void run(Turn turn) {
 		boolean response;
 
-		response = turn.player.promptYesNo("Would you like to play an Action card from your hand twice?");
+		response = turn.player.promptYesNo("throneroomPrompt");
 
 		if (response) {
 			Card card = turn.player.chooseCardFromHand();

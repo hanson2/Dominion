@@ -12,7 +12,7 @@ public class ThroneRoom extends Card {
 
 	@Override
 	public int getCost() {
-		return 4;
+		return GameConstants.THRONEROOMCOST;
 	}
 
 	@Override
