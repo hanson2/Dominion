@@ -19,32 +19,32 @@ public class VassalTest {
 
 	@Test
 	public void testGetCost() {
-		assertEquals(card.getCost(), 3);
+		assertEquals(card.getCost(), GameConstants.VASSALCOST);
 	}
 
 	@Test
 	public void testGetCoinsAdded() {
-		assertEquals(card.getCoinsAdded(), 2);
+		assertEquals(card.getCoinsAdded(), GameConstants.VASSALCOINSADDED);
 	}
 
 	@Test
 	public void testGetActionsAdded() {
-		assertEquals(card.getActionsAdded(), 0);
+		assertEquals(card.getActionsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetBuysAdded() {
-		assertEquals(card.getBuysAdded(), 0);
+		assertEquals(card.getBuysAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetCardsAdded() {
-		assertEquals(card.getCardsAdded(), 0);
+		assertEquals(card.getCardsAdded(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test
 	public void testGetVictoryValue() {
-		assertEquals(card.getVictoryValue(), 0);
+		assertEquals(card.getVictoryValue(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
 
 	@Test

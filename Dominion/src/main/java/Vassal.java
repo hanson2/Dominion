@@ -12,12 +12,12 @@ public class Vassal extends Card {
 
 	@Override
 	public int getCost() {
-		return 3;
+		return GameConstants.VASSALCOST;
 	}
 	
 	@Override
 	public int getCoinsAdded() {
-		return 2;
+		return GameConstants.VASSALCOINSADDED;
 	}
 	
 	@Override

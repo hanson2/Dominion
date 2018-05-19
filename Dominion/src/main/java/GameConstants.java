@@ -49,6 +49,9 @@ public class GameConstants {
 
 	public static final int SMITHYCOST = 4;
 	public static final int SMITHYCARDSADDED = 3;
+	
+	public static final int VASSALCOST = 3;
+	public static final int VASSALCOINSADDED = 2;
 
 	public static final int VILLAGECOST = 3;
 	public static final int VILLAGEACTIONSADDED = 2;
