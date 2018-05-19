@@ -1,14 +1,20 @@
 import static org.junit.Assert.*;
 
 import org.easymock.EasyMock;
+import org.junit.Before;
 import org.junit.Test;
 
 public class PlayerTest {
+	
+	Player player;
+	
+	@Before
+	public void setup() {
+		player = new Player("test");
+	}
 
 	@Test
 	public void testPlayerSetup() {
-		Player player = new Player("John");
-
 		assertEquals(player.sizeOfDrawPile(), 10);
 		assertEquals(player.sizeOfHand(), 0);
 		assertEquals(player.sizeOfDiscardPile(), 0);
@@ -16,8 +22,6 @@ public class PlayerTest {
 
 	@Test
 	public void testDrawCard() {
-		Player player = new Player("John");
-
 		player.drawACard();
 
 		assertEquals(player.sizeOfDrawPile(), 9);
@@ -27,8 +31,6 @@ public class PlayerTest {
 
 	@Test
 	public void testDrawManyCardsEmptyDiscard() {
-		Player player = new Player("John");
-
 		for (int i = 0; i < 12; i++) {
 			player.drawACard();
 		}
@@ -54,8 +56,6 @@ public class PlayerTest {
 
 	@Test
 	public void testDiscardHandEmpty() {
-		Player player = new Player("John");
-
 		player.discardHand();
 
 		assertEquals(player.sizeOfDrawPile(), 10);
@@ -65,8 +65,6 @@ public class PlayerTest {
 
 	@Test
 	public void testDiscardHandOneCard() {
-		Player player = new Player("John");
-
 		player.drawACard();
 		player.discardHand();
 
@@ -77,8 +75,6 @@ public class PlayerTest {
 	
 	@Test
 	public void testDiscardDrawPileEmpty() {
-		Player player = new Player("John");
-		
 		for(int i = 0; i < 10; i++){
 			player.drawACard();
 		}
@@ -92,8 +88,6 @@ public class PlayerTest {
 	
 	@Test
 	public void testDiscardDrawPileOneCard() {
-		Player player = new Player("John");
-		
 		for(int i = 0; i < 9; i++){
 			player.drawACard();
 		}
@@ -107,8 +101,6 @@ public class PlayerTest {
 
 	@Test
 	public void testDrawManyCardsNonEmptyDiscard() {
-		Player player = new Player("John");
-
 		player.drawACard();
 		player.discardHand();
 		for (int i = 0; i < 11; i++) {
@@ -122,15 +114,11 @@ public class PlayerTest {
 
 	@Test
 	public void testGetPointsStarter() {
-		Player player = new Player("John");
-
 		assertEquals(player.getPoints(), 3);
 	}
 
 	@Test
 	public void testGetPointsOneEstateAdded() {
-		Player player = new Player("John");
-
 		player.gainCard(new Estate());
 
 		assertEquals(player.getPoints(), 4);
@@ -159,8 +147,6 @@ public class PlayerTest {
 
 	@Test
 	public void testContentsOfHandOneCard() {
-		Player player = new Player("John");
-
 		player.drawACard();
 
 		assertTrue(player.getHand().get(0).getClass().equals(Copper.class)
@@ -169,8 +155,6 @@ public class PlayerTest {
 
 	@Test
 	public void testContentsOfHandTwoCards() {
-		Player player = new Player("John");
-
 		player.drawACard();
 		player.drawACard();
 
@@ -182,8 +166,6 @@ public class PlayerTest {
 
 	@Test
 	public void testContentsOfStarterHand() {
-		Player player = new Player("John");
-
 		player.drawNewHand();
 
 		for (Card card : player.getHand()) {
@@ -193,15 +175,11 @@ public class PlayerTest {
 
 	@Test
 	public void testContentsOfHandNoCards() {
-		Player player = new Player("John");
-
 		assertTrue(player.getHand().isEmpty());
 	}
 
 	@Test
 	public void testGainCard() {
-		Player player = new Player("John");
-
 		int discardPileSizeBefore = player.sizeOfDiscardPile();
 		player.gainCard(new Estate());
 
@@ -210,8 +188,6 @@ public class PlayerTest {
 	
 	@Test
 	public void testTrashCardInHand() {
-		Player player = new Player("John");
-		
 		player.drawNewHand();
 		
 		assertTrue(player.trashCardFromHand(Copper.class));
@@ -219,10 +195,41 @@ public class PlayerTest {
 	
 	@Test
 	public void testTrashCardNotInHand(){
-		Player player = new Player("John");
-		
 		player.drawNewHand();
 		
 		assertFalse(player.trashCardFromHand(Silver.class));
 	}
+	
+	@Test
+	public void testDiscardTopCardOfDrawPile() {
+		Card card = new Silver();
+		player.drawPile.push(card);
+		
+		assertEquals(player.discardTopCardOfDrawPile().get(), card);
+	}
+	
+	@Test
+	public void testDiscardTopCardOfDrawPileEmpty() {
+		player.drawNewHand();
+		player.drawNewHand();
+		
+		assertFalse(player.discardTopCardOfDrawPile().isPresent());
+	}
+	
+	@Test
+	public void testDiscardTopCardOfDrawPileNonEmpty() {
+		assertTrue(player.discardTopCardOfDrawPile().isPresent());
+		assertEquals(player.sizeOfDiscardPile(), 1);
+	}
+	
+	@Test
+	public void testDiscardTopCardOfDrawPileEmptyWithFullDiscardPile() {
+		player.drawNewHand();
+		player.discardHand();
+		player.drawNewHand();
+		
+		assertTrue(player.discardTopCardOfDrawPile().isPresent());
+		assertEquals(player.sizeOfDiscardPile(), 1);
+	}
+	
 }
