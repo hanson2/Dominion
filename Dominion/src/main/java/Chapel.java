@@ -12,7 +12,7 @@ public class Chapel extends Card {
 
 	@Override
 	public int getCost() {
-		return 2;
+		return GameConstants.CHAPELCOST;
 	}
 	
 	@Override
