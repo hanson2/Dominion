@@ -50,6 +50,27 @@ public class GameTest {
 			EasyMock.verify(p);
 		}
 	}
+	
+	@Test
+	public void testWinnableCloseGame() {
+		Player[] list = new Player[4];
+		int[] points = { 4, 5, 2, 1 };
+		for (int i = 0; i < 4; i++) {
+			list[i] = EasyMock.mock(Player.class);
+			EasyMock.expect(list[i].getPoints()).andStubReturn(points[i]);
+			EasyMock.replay(list[i]);
+		}
+
+		Game g = new Game(list);
+		Set<Player> winners = new HashSet<>();
+		winners.add(list[1]);
+
+		assertEquals(winners, g.endGame());
+
+		for (Player p : list) {
+			EasyMock.verify(p);
+		}
+	}
 
 	@Test
 	public void testWinnableTieWTiebreakers() {
@@ -99,7 +120,6 @@ public class GameTest {
 		}
 	}
 
-	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testMoreThan4Players() {
 		Player[] list = new Player[5];
@@ -109,17 +129,12 @@ public class GameTest {
 			EasyMock.replay(list[i]);
 		}
 
-		Game g = new Game(list);
-
-		for (Player p : list) {
-			EasyMock.verify(p);
-		}
+		new Game(list);
 	}
 
-	@SuppressWarnings("unused")
 	@Test(expected = IllegalArgumentException.class)
 	public void testLessThan2Players() {
-		Game g = new Game(new Player[0]);
+		new Game(new Player[0]);
 	}
 
 }

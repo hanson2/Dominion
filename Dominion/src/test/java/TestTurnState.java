@@ -147,12 +147,46 @@ public class TestTurnState {
 		EasyMock.replay(player, turn, coin, action);
 
 		turn.actions = 1;// base value
+		turn.coins = 0;
+		turn.player = player;
+
+		TurnActionState state = new TurnActionState();
+
+		state.run(turn);
+		
+		assertEquals(turn.coins, 1);
+
+		EasyMock.verify(player, turn, coin, action);
+	}
+	
+	@Test
+	public void testTurnActionStatePlayBuy() {
+		Player player = EasyMock.mock(Player.class);
+		Turn turn = EasyMock.mock(Turn.class);
+		Card coin = EasyMock.mock(Card.class);
+		Card action = EasyMock.mock(Card.class);
+
+		EasyMock.expect(player.playCard()).andReturn(action);
+		EasyMock.expect(action.getActionsAdded()).andReturn(0);
+		EasyMock.expect(action.getBuysAdded()).andReturn(1);
+		EasyMock.expect(action.getCoinsAdded()).andReturn(0);
+		EasyMock.expect(action.getType()).andReturn(this.getCardTypeSet(CardType.ACTION));
+		EasyMock.expect(action.getPlayState()).andReturn(new CardPlayState());
+
+		turn.run();
+		turn.run();
+
+		EasyMock.replay(player, turn, coin, action);
+
+		turn.actions = 1;
+		turn.buys = 1;
 		turn.player = player;
 
 		TurnActionState state = new TurnActionState();
 
 		state.run(turn);
 
+		assertEquals(turn.buys, 2);
 		EasyMock.verify(player, turn, coin, action);
 	}
 
