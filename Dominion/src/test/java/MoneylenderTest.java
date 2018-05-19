@@ -66,7 +66,7 @@ public class MoneylenderTest {
 	public void testPlayStateDoActionCopperInHandYes() {
 		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("test").addMockedMethod("promptYesNo")
 				.createMock();
-		Turn turn = new Turn(player);
+		Turn turn = EasyMock.mock(Turn.class);
 		player.drawNewHand();
 
 		EasyMock.expect(player.promptYesNo("moneylenderPrompt"))
@@ -88,7 +88,7 @@ public class MoneylenderTest {
 	public void testPlayStateDoActionCopperNotInHandYes() {
 		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("test").addMockedMethod("promptYesNo")
 				.createMock();
-		Turn turn = new Turn(player);
+		Turn turn = EasyMock.mock(Turn.class);
 		player.gainCard(new Silver());
 		player.drawACard();
 
@@ -113,7 +113,7 @@ public class MoneylenderTest {
 	public void testPlayStateDoActionCopperInHandNo() {
 		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("test").addMockedMethod("promptYesNo")
 				.createMock();
-		Turn turn = new Turn(player);
+		Turn turn = EasyMock.mock(Turn.class);
 		player.drawNewHand();
 
 		EasyMock.expect(player.promptYesNo("moneylenderPrompt"))
@@ -135,7 +135,7 @@ public class MoneylenderTest {
 	public void testPlayStateDoActionCopperNotInHandNo() {
 		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("test").addMockedMethod("promptYesNo")
 				.createMock();
-		Turn turn = new Turn(player);
+		Turn turn = EasyMock.mock(Turn.class);
 
 		EasyMock.expect(player.promptYesNo("moneylenderPrompt"))
 				.andReturn(false);
