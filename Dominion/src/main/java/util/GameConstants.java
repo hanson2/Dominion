@@ -110,4 +110,6 @@ public class GameConstants {
 
 	public static final int GUICARDSIZE = 300;
 
+	
+	public static final int REMODELCOST = 4;
 }
