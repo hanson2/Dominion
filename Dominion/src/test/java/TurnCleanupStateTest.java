@@ -11,8 +11,9 @@ public class TurnCleanupStateTest {
 
 	@Test
 	public void testPlayAllCards() {
-		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("John").addMockedMethod("drawNewHand")
-				.createMock();
+		GUI gui = EasyMock.mock(GUI.class);
+		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("John", gui)
+				.addMockedMethod("drawNewHand").createMock();
 		Turn turn = EasyMock.mock(Turn.class);
 
 		player.drawNewHand();
@@ -25,7 +26,7 @@ public class TurnCleanupStateTest {
 		}
 		turn.playArea.addAll(Arrays.asList(cardList));
 
-		EasyMock.replay(player, turn);
+		EasyMock.replay(player, turn, gui);
 		EasyMock.replay((Object[]) cardList);
 
 		turn.player = player;
@@ -37,14 +38,15 @@ public class TurnCleanupStateTest {
 		assertTrue(turn.playArea.isEmpty());
 		assertTrue(player.discardPile.containsAll(Arrays.asList(cardList)));
 
-		EasyMock.verify(player, turn);
+		EasyMock.verify(player, turn, gui);
 		EasyMock.verify((Object[]) cardList);
 	}
 
 	@Test
 	public void testPlaySomeCards() {
-		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("John").addMockedMethod("drawNewHand")
-				.createMock();
+		GUI gui = EasyMock.mock(GUI.class);
+		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("John", gui)
+				.addMockedMethod("drawNewHand").createMock();
 		Turn turn = EasyMock.mock(Turn.class);
 
 		player.drawNewHand();
@@ -60,7 +62,7 @@ public class TurnCleanupStateTest {
 			player.hand.add(cardList[i]);
 		}
 
-		EasyMock.replay(player, turn);
+		EasyMock.replay(player, turn, gui);
 		EasyMock.replay((Object[]) cardList);
 
 		turn.player = player;
@@ -72,14 +74,15 @@ public class TurnCleanupStateTest {
 		assertTrue(turn.playArea.isEmpty());
 		assertTrue(player.discardPile.containsAll(Arrays.asList(cardList)));
 
-		EasyMock.verify(player, turn);
+		EasyMock.verify(player, turn, gui);
 		EasyMock.verify((Object[]) cardList);
 	}
 
 	@Test
 	public void testPlayNoCards() {
-		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("John").addMockedMethod("drawNewHand")
-				.createMock();
+		GUI gui = EasyMock.mock(GUI.class);
+		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("John", gui)
+				.addMockedMethod("drawNewHand").createMock();
 		Turn turn = EasyMock.mock(Turn.class);
 
 		player.drawNewHand();
@@ -92,7 +95,7 @@ public class TurnCleanupStateTest {
 		}
 		player.hand.addAll(Arrays.asList(cardList));
 
-		EasyMock.replay(player, turn);
+		EasyMock.replay(player, turn, gui);
 		EasyMock.replay((Object[]) cardList);
 
 		turn.player = player;
@@ -104,7 +107,7 @@ public class TurnCleanupStateTest {
 		assertTrue(turn.playArea.isEmpty());
 		assertTrue(player.discardPile.containsAll(Arrays.asList(cardList)));
 
-		EasyMock.verify(player, turn);
+		EasyMock.verify(player, turn, gui);
 		EasyMock.verify((Object[]) cardList);
 	}
 
