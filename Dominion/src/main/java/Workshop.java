@@ -24,4 +24,7 @@ public class Workshop extends Card {
 		return GameConstants.WORKSHOPTEXT;
 	}
 
+	public CardPlayState getPlayState() {
+		return new WorkshopPlayState();
+	}
 }
