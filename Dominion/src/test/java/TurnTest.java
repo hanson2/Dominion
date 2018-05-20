@@ -9,7 +9,7 @@ import java.util.Stack;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-public class TestTurn {
+public class TurnTest {
 
 	@Test
 	public void testInitialStateSetup() {
