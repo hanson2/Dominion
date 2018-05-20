@@ -209,8 +209,8 @@ public class TurnActionStateTest {
 	public void testAddToPlayArea() {
 		Player player = EasyMock.mock(Player.class);
 		Turn turn = EasyMock.mock(Turn.class);
-		turn.playArea = new ArrayList<>();
 		Card action = EasyMock.mock(Card.class);
+		turn.playArea = new ArrayList<>();
 
 		EasyMock.expect(player.chooseCardToPlay()).andReturn(Optional.of(action));
 		EasyMock.expect(action.getActionsAdded()).andReturn(0);
@@ -234,6 +234,27 @@ public class TurnActionStateTest {
 		assertTrue(turn.playArea.contains(action));
 
 		EasyMock.verify(player, turn, action);
+	}
+	
+	@Test
+	public void testNoSelectedCard() {
+		Player player = EasyMock.mock(Player.class);
+		Turn turn = EasyMock.mock(Turn.class);
+		turn.playArea = new ArrayList<>();
+		
+		EasyMock.expect(player.chooseCardToPlay()).andReturn(Optional.empty());
+		
+		turn.run();
+		
+		EasyMock.replay(player, turn);
+		
+		turn.actions = 1;
+		turn.player = player;
+		
+		TurnActionState state = new TurnActionState();
+		state.run(turn);
+		
+		EasyMock.verify(turn);
 	}
 
 	private Set<CardType> getCardTypeSet(CardType type) {
