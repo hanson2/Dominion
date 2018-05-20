@@ -48,11 +48,11 @@ public class Player {
 	}
 
 	public Optional<Card> chooseCardToPlay() {
-		return Optional.empty();
+		return this.gui.chooseCardToPlay(this.hand).join();
 	}
 
-	public Optional<Card> buy() {
-		return Optional.empty();
+	public Optional<Card> buy(Supply supplyPiles) {
+		return this.gui.chooseCardToBuy(supplyPiles.getAvailableCards()).join();
 	}
 
 	public int getPoints() {
@@ -106,7 +106,7 @@ public class Player {
 	}
 
 	public boolean promptYesNo(String messageKey) {
-		return false;
+		return this.gui.promptYesNo(messageKey).join();
 	}
 
 	public boolean trashCardFromHand(Class<? extends Card> cardClass) {
@@ -134,8 +134,7 @@ public class Player {
 	}
 	
 	public Card chooseCardFromHand() {
-		//TODO will eventually interact with the GUI
-		return new Copper();
+		return gui.chooseCardFromHand(this.hand).join();
 	}
 
 	public boolean discardCardFromHand(Class<? extends Card> cardClass) {

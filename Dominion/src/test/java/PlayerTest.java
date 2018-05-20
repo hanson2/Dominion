@@ -1,5 +1,10 @@
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+
 import org.easymock.EasyMock;
 import org.junit.After;
 import org.junit.Before;
@@ -20,6 +25,11 @@ public class PlayerTest {
 	@After
 	public void tearDown() {
 		EasyMock.verify(gui);
+	}
+	
+	@Test
+	public void testGetName() {
+		assertEquals(player.getName(), "Test");
 	}
 
 	@Test
@@ -254,15 +264,117 @@ public class PlayerTest {
 		assertTrue(player.discardTopCardOfDrawPile().isPresent());
 		assertEquals(player.sizeOfDiscardPile(), 1);
 	}
-
+	
 	@Test
-	public void testPlayCard() {
+	public void testChooseCardToPlayEmpty() {
+		EasyMock.reset(gui);
+		CompletableFuture<Optional<Card>> response = new CompletableFuture<Optional<Card>>();
+		Optional<Card> potentialCardToPlay = Optional.empty();
+		response.complete(potentialCardToPlay);
 		
+		EasyMock.expect(gui.chooseCardToPlay(player.getHand())).andReturn(response);
+		
+		EasyMock.replay(gui);
+		
+		assertEquals(player.chooseCardToPlay(), potentialCardToPlay);
 	}
 	
 	@Test
-	public void testPlayCard() {
+	public void testChooseCardToPlayNotEmpty() {
+		EasyMock.reset(gui);
+		CompletableFuture<Optional<Card>> response = new CompletableFuture<Optional<Card>>();
+		Card cardReturned = EasyMock.mock(Card.class);
+		Optional<Card> potentialCardToPlay = Optional.of(cardReturned);
+		response.complete(potentialCardToPlay);
 		
+		EasyMock.expect(gui.chooseCardToPlay(player.getHand())).andReturn(response);
+		
+		EasyMock.replay(gui, cardReturned);
+		
+		assertEquals(player.chooseCardToPlay(), potentialCardToPlay);		
+		
+		EasyMock.verify(cardReturned);
 	}
 	
+	@Test
+	public void testBuyEndBuys() {
+		EasyMock.reset(gui);
+		CompletableFuture<Optional<Card>> response = new CompletableFuture<Optional<Card>>();
+		Optional<Card> potentialCardToBuy = Optional.empty();
+		response.complete(potentialCardToBuy);
+		Set<Card> availableCards = new HashSet<Card>();
+		Supply supplyPiles = EasyMock.mock(Supply.class);
+		
+		EasyMock.expect(supplyPiles.getAvailableCards()).andReturn(availableCards).anyTimes();
+		EasyMock.expect(gui.chooseCardToBuy(availableCards)).andReturn(response);
+		
+		EasyMock.replay(gui, supplyPiles);
+		
+		assertEquals(player.buy(supplyPiles), potentialCardToBuy);
+		
+		EasyMock.verify(supplyPiles);
+	}
+	
+	@Test
+	public void testBuyCard() {
+		EasyMock.reset(gui);
+		CompletableFuture<Optional<Card>> response = new CompletableFuture<Optional<Card>>();
+		Card cardToBuy = EasyMock.mock(Card.class);
+		Optional<Card> potentialCardToBuy = Optional.of(cardToBuy);
+		response.complete(potentialCardToBuy);
+		Set<Card> availableCards = new HashSet<Card>();
+		availableCards.add(cardToBuy);
+		Supply supplyPiles = EasyMock.mock(Supply.class);
+		
+		EasyMock.expect(supplyPiles.getAvailableCards()).andReturn(availableCards).anyTimes();
+		EasyMock.expect(gui.chooseCardToBuy(availableCards)).andReturn(response);
+		
+		EasyMock.replay(gui, supplyPiles);
+		
+		assertEquals(player.buy(supplyPiles), potentialCardToBuy);
+		
+		EasyMock.verify(supplyPiles);
+	}
+	
+	@Test
+	public void testChooseCardFromHand() {
+		EasyMock.reset(gui);
+		CompletableFuture<Card> chosenCardFuture = new CompletableFuture<Card>();
+		Card cardReturned = EasyMock.mock(Card.class);
+		chosenCardFuture.complete(cardReturned);
+		
+		EasyMock.expect(gui.chooseCardFromHand(player.hand)).andReturn(chosenCardFuture);
+		
+		EasyMock.replay(gui, cardReturned);
+		
+		assertEquals(player.chooseCardFromHand(), cardReturned);
+		
+		EasyMock.verify(cardReturned);
+	}
+	
+	@Test
+	public void testPromptYesNoAffirmative() {
+		EasyMock.reset(gui);
+		CompletableFuture<Boolean> response = new CompletableFuture<Boolean>();
+		response.complete(true);
+		
+		EasyMock.expect(gui.promptYesNo("throneroomPrompt")).andReturn(response);
+		
+		EasyMock.replay(gui);
+		
+		assertTrue(player.promptYesNo("throneroomPrompt"));
+	}
+	
+	@Test
+	public void testPromptYesNoNegative() {
+		EasyMock.reset(gui);
+		CompletableFuture<Boolean> response = new CompletableFuture<Boolean>();
+		response.complete(false);
+		
+		EasyMock.expect(gui.promptYesNo("throneroomPrompt")).andReturn(response);
+		
+		EasyMock.replay(gui);
+		
+		assertFalse(player.promptYesNo("throneroomPrompt"));
+	}
 }

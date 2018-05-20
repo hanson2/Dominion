@@ -14,7 +14,7 @@ public class TurnBuyStateTest {
 
 		EasyMock.expect(card.getCost()).andReturn(1).anyTimes();
 
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
+		EasyMock.expect(player.buy(turn.supplyPiles)).andReturn(Optional.of(card));
 		player.gainCard(card);
 
 		turn.run();
@@ -43,10 +43,10 @@ public class TurnBuyStateTest {
 
 		EasyMock.expect(card.getCost()).andReturn(1).anyTimes();
 
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
+		EasyMock.expect(player.buy(turn.supplyPiles)).andReturn(Optional.of(card));
 		player.gainCard(card);
 
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
+		EasyMock.expect(player.buy(turn.supplyPiles)).andReturn(Optional.of(card));
 		player.gainCard(card);
 
 		turn.run();
@@ -72,7 +72,7 @@ public class TurnBuyStateTest {
 		Player player = EasyMock.mock(Player.class);
 		Turn turn = EasyMock.mock(Turn.class);
 
-		EasyMock.expect(player.buy()).andReturn(Optional.empty());
+		EasyMock.expect(player.buy(turn.supplyPiles)).andReturn(Optional.empty());
 
 		turn.run();
 
@@ -94,10 +94,10 @@ public class TurnBuyStateTest {
 		Turn turn = EasyMock.mock(Turn.class);
 		Card card = EasyMock.mock(Card.class);
 
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
+		EasyMock.expect(player.buy(turn.supplyPiles)).andReturn(Optional.of(card));
 		EasyMock.expect(card.getCost()).andReturn(10);
 
-		EasyMock.expect(player.buy()).andReturn(Optional.empty());
+		EasyMock.expect(player.buy(turn.supplyPiles)).andReturn(Optional.empty());
 
 		turn.run();
 

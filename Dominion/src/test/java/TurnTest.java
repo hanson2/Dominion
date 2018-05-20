@@ -39,7 +39,7 @@ public class TurnTest {
 		EasyMock.expect(card.getCoinsAdded()).andReturn(0);
 		EasyMock.expect(card.getType()).andReturn(this.getCardTypeSet(CardType.ACTION));
 		EasyMock.expect(card.getPlayState()).andReturn(new CardPlayState());
-		EasyMock.expect(player.buy()).andReturn(Optional.empty());
+		EasyMock.expect(player.buy(turn.supplyPiles)).andReturn(Optional.empty());
 		player.discardHand();
 		player.drawNewHand();
 
