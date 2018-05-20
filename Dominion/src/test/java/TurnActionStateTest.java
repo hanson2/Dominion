@@ -163,6 +163,7 @@ public class TurnActionStateTest {
 		state.run(turn);
 
 		assertEquals(turn.coins, 1);
+
 		EasyMock.verify(player, turn, coin, action);
 	}
 
