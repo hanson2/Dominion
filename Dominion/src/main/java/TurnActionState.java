@@ -1,3 +1,4 @@
+import java.util.Optional;
 
 public class TurnActionState extends TurnState {
 
@@ -10,12 +11,16 @@ public class TurnActionState extends TurnState {
 		this.player = turn.player;
 
 		while (this.turn.actions > 0) {
-			Card card = this.player.chooseCardToPlay().get();
-			this.handleCard(card);
-			if (card.getType().contains(CardType.ACTION)) {
-				this.turn.actions--;
+			Optional<Card> potentialCard = this.player.chooseCardToPlay();
+			if(potentialCard.isPresent()) {
+				Card card = potentialCard.get();
+				this.handleCard(card);
+				if (card.getType().contains(CardType.ACTION)) {
+					this.turn.actions--;
+				}
+			} else {
+				break;
 			}
-
 		}
 
 		this.turn.state = new TurnBuyState();
