@@ -16,7 +16,7 @@ public class TurnBuyState extends TurnState {
 		this.player = turn.player;
 
 		while (this.turn.buys > 0) {
-			Optional<Card> possiblyBoughtCard = this.player.buy();
+			Optional<Card> possiblyBoughtCard = this.player.buy(this.turn.supplyPiles);
 			if (!possiblyBoughtCard.isPresent()) {
 				break;
 			}

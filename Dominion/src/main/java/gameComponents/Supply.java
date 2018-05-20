@@ -2,8 +2,10 @@ package gameComponents;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
 
 import cards.Card;
@@ -136,6 +138,21 @@ public class Supply {
 		}
 
 		return numPilesGone >= 3;
+	}
+
+	public Set<Card> getAvailableCards() {
+		Set<Card> availableCards = new HashSet<Card>();
+		for (Stack<Card> kingdomPile : this.kingdomCardList) {
+			if (!kingdomPile.isEmpty()) {
+				availableCards.add(kingdomPile.peek());
+			}
+		}
+		for (String cardName : this.supplyPiles.keySet()) {
+			if (!this.supplyPiles.get(cardName).isEmpty()) {
+				availableCards.add(this.supplyPiles.get(cardName).peek());
+			}
+		}
+		return availableCards;
 	}
 
 }

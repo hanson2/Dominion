@@ -9,34 +9,47 @@ import util.GameConstants;
 
 public class Main {
 
-	static GUI gui;
-
 	public static void main(String[] args) {
-		gui = new GUI();
+		boolean playAgain = true;
+		GUI gui = new GUI();
+		while (playAgain) {
+			gui = new GUI();
 
-		chooseLocale();
+			GameConstants.messages = ResourceBundle.getBundle("MessagesBundle", chooseLocale(gui));
 
-		int numPlayers = getNumPlayers();
-		Player[] players = new Player[numPlayers];
-		for (int i = 0; i < numPlayers; ++i) {
-			players[i] = createPlayer(i + 1);
+			int numPlayers = getNumPlayers(gui);
+			Player[] players = new Player[numPlayers];
+			for (int i = 0; i < numPlayers; ++i) {
+				players[i] = createPlayer(gui, i + 1);
+			}
+
+			Game game = new Game(players);
+
+			Set<Player> winners = game.runGame();
+
+			playAgain = promptPlayAgainDisplayWinners(gui, winners);
 		}
-
-		Game game = new Game(players);
-
-		Set<Player> winners = game.runGame();
+		closeGUI(gui);
 	}
 
-	static int getNumPlayers() {
+	static void closeGUI(GUI gui) {
+		gui.quitGame();
+	}
+
+	static boolean promptPlayAgainDisplayWinners(GUI gui, Set<Player> winners) {
+		return gui.getPlayAgainDisplayWinners(winners).join();
+	}
+
+	static int getNumPlayers(GUI gui) {
 		return gui.initNumPlayers().join();
 	}
 
-	static Player createPlayer(int number) {
+	static Player createPlayer(GUI gui, int number) {
 		String name = gui.getPlayerXName(number).join();
 		return new Player(name, gui);
 	}
 
-	static void chooseLocale() {
+	static Locale chooseLocale(GUI gui) {
 		AvailableLocales chosenLocale = gui.chooseLocale().join();
 		Locale locale;
 
@@ -46,7 +59,7 @@ public class Main {
 			locale = new Locale("es");
 		}
 
-		GameConstants.messages = ResourceBundle.getBundle("MessagesBundle", locale);
+		return locale;
 	}
 
 }
