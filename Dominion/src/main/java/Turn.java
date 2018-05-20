@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Turn {
 	Player player;
@@ -6,6 +8,7 @@ public class Turn {
 	int coins;
 	TurnState state;
 	Supply supplyPiles;
+	public List<Card> playArea;
 
 	public Turn(Player player, Supply supplyPiles) {
 		this.player = player;
@@ -14,6 +17,7 @@ public class Turn {
 		this.coins = 0;
 		this.state = new TurnActionState();
 		this.supplyPiles = supplyPiles;
+		this.playArea = new ArrayList<>();
 	}
 
 	public void run() {
