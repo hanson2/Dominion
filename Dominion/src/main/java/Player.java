@@ -148,4 +148,10 @@ public class Player {
 		}
 		return false;
 	}
+
+	public Card forcedBuy(int budget) {
+		// TODO make this interact with GUI
+		//budget is for display purposes only
+		return null;
+	}
 }
