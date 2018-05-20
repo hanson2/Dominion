@@ -20,4 +20,9 @@ public class Curse extends Card {
 		return toReturn;
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.CURSENAME;
+	}
+
 }

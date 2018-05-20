@@ -20,4 +20,9 @@ public class Duchy extends Card {
 		return toReturn;
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.DUCHYNAME;
+	}
+
 }

@@ -1,6 +1,8 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.easymock.EasyMock;
 import org.junit.Test;
 
@@ -60,6 +62,30 @@ public class ChancellorTest {
 		Card card = new Chancellor();
 		
 		assertEquals(card.getPlayState().getClass(), ChancellorPlayState.class);
+	}
+	
+	@Test
+	public void testGetName() {
+		Card card = new Chancellor();
+		
+		assertEquals(card.getName(), GameConstants.CHANCELLORNAME);
+	}
+	
+	@Test
+	public void testGetText() {
+		Card card = new Chancellor();
+		
+		assertEquals(card.getText(), GameConstants.CHANCELLORTEXT);
+	}
+	
+	@Test
+	public void testGetTypeTranslationKeys() {
+		Card card = new Chancellor();
+		
+		ArrayList<String> expectedTranslationKeys = new ArrayList<String>();
+		expectedTranslationKeys.add("cardtypeAction");
+		
+		assertEquals(card.getTypeTranslationKeys(), expectedTranslationKeys);
 	}
 
 }

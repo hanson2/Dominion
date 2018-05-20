@@ -24,4 +24,9 @@ public class Woodcutter extends Card {
 	public int getBuysAdded() {
 		return GameConstants.WOODCUTTERBUYSADDED;
 	}
+
+	@Override
+	public String getName() {
+		return GameConstants.WOODCUTTERNAME;
+	}
 }

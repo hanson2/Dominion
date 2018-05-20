@@ -1,17 +1,25 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
+import org.easymock.EasyMock;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class PlayerTest {
 
+	GUI gui;
 	Player player;
 
 	@Before
 	public void setup() {
-		player = new Player("test");
+		gui = EasyMock.mock(GUI.class);
+		player = new Player("Test", gui);
+	}
+
+	@After
+	public void tearDown() {
+		EasyMock.replay(gui);
+		EasyMock.verify(gui);
 	}
 
 	@Test
@@ -43,8 +51,6 @@ public class PlayerTest {
 
 	@Test
 	public void testDrawCardsEmptyDrawFullDiscard() {
-		Player player = new Player("John");
-
 		player.drawNewHand();
 		player.discardHand();
 		player.drawNewHand();
@@ -127,8 +133,6 @@ public class PlayerTest {
 
 	@Test
 	public void testGetPointsAllCardsInHand() {
-		Player player = new Player("John");
-
 		player.drawNewHand();
 		player.drawNewHand();
 
@@ -137,8 +141,6 @@ public class PlayerTest {
 
 	@Test
 	public void testGetPointsAllCardInDiscard() {
-		Player player = new Player("John");
-
 		player.drawNewHand();
 		player.drawNewHand();
 		player.discardHand();
@@ -205,8 +207,6 @@ public class PlayerTest {
 
 	@Test
 	public void testDiscardCardInHand() {
-		Player player = new Player("John");
-
 		player.drawNewHand();
 
 		assertTrue(player.discardCardFromHand(Copper.class));
@@ -216,8 +216,6 @@ public class PlayerTest {
 
 	@Test
 	public void testDiscardCardNotInHand() {
-		Player player = new Player("John");
-
 		player.drawNewHand();
 
 		assertFalse(player.discardCardFromHand(Silver.class));

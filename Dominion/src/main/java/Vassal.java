@@ -25,4 +25,14 @@ public class Vassal extends Card {
 		return new VassalPlayState();
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.VASSALNAME;
+	}
+	
+	@Override
+	public String getText() {
+		return GameConstants.VASSALTEXT;
+	}
+
 }

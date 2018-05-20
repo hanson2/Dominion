@@ -29,4 +29,9 @@ public class Festival extends Card {
 	public int getBuysAdded() {
 		return GameConstants.FESTIVALBUYSADDED;
 	}
+
+	@Override
+	public String getName() {
+		return GameConstants.FESTIVALNAME;
+	}
 }

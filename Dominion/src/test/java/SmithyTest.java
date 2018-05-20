@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class SmithyTest {
@@ -58,5 +60,29 @@ public class SmithyTest {
 		Card card = new Smithy();
 		
 		assertEquals(card.getCost(), GameConstants.SMITHYCOST);
+	}
+	
+	@Test
+	public void testSmithyName() {
+		Card card = new Smithy();
+		
+		assertEquals(card.getName(), GameConstants.SMITHYNAME);
+	}
+	
+	@Test
+	public void testSmithyText() {
+		Card card = new Smithy();
+		
+		assertEquals(card.getText(), GameConstants.DEFAULTCARDTEXT);
+	}
+	
+	@Test
+	public void testSmithyTypeTranslationKeys() {
+		Card card = new Smithy();
+		
+		ArrayList<String> expectedTranslationKeys = new ArrayList<String>();
+		expectedTranslationKeys.add("cardtypeAction");
+		
+		assertEquals(card.getTypeTranslationKeys(), expectedTranslationKeys);
 	}
 }

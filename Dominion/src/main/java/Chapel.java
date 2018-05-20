@@ -20,4 +20,14 @@ public class Chapel extends Card {
 		return new ChapelPlayState();
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.CHAPELNAME;
+	}
+	
+	@Override
+	public String getText() {
+		return GameConstants.CHAPELTEXT;
+	}
+
 }

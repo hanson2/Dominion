@@ -1,15 +1,32 @@
 import static org.junit.Assert.*;
 
 import org.easymock.EasyMock;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class MoneylenderPlayStateTest {
+	
+	Player player;
+	Turn turn;
+	GUI gui;
+	
+	@Before
+	public void setup() {
+		gui = EasyMock.mock(GUI.class);
+		player = EasyMock.partialMockBuilder(Player.class).withConstructor("test", gui).addMockedMethod("promptYesNo")
+				.createMock();
+		turn = EasyMock.mock(Turn.class);
+	}
+	
+	@After
+	public void tearDown() {
+		EasyMock.replay(gui);
+		EasyMock.verify(gui);
+	}
 
 	@Test
 	public void testPlayStateDoActionCopperInHandYes() {
-		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("test").addMockedMethod("promptYesNo")
-				.createMock();
-		Turn turn = EasyMock.mock(Turn.class);
 		player.drawNewHand();
 
 		EasyMock.expect(player.promptYesNo("moneylenderPrompt")).andReturn(true);
@@ -30,9 +47,6 @@ public class MoneylenderPlayStateTest {
 
 	@Test
 	public void testPlayStateDoActionCopperNotInHandYes() {
-		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("test").addMockedMethod("promptYesNo")
-				.createMock();
-		Turn turn = EasyMock.mock(Turn.class);
 		player.gainCard(new Silver());
 		player.drawACard();
 
@@ -56,9 +70,6 @@ public class MoneylenderPlayStateTest {
 
 	@Test
 	public void testPlayStateDoActionCopperInHandNo() {
-		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("test").addMockedMethod("promptYesNo")
-				.createMock();
-		Turn turn = EasyMock.mock(Turn.class);
 		player.drawNewHand();
 
 		EasyMock.expect(player.promptYesNo("moneylenderPrompt")).andReturn(false);
@@ -79,10 +90,6 @@ public class MoneylenderPlayStateTest {
 
 	@Test
 	public void testPlayStateDoActionCopperNotInHandNo() {
-		Player player = EasyMock.partialMockBuilder(Player.class).withConstructor("test").addMockedMethod("promptYesNo")
-				.createMock();
-		Turn turn = EasyMock.mock(Turn.class);
-
 		EasyMock.expect(player.promptYesNo("moneylenderPrompt")).andReturn(false);
 
 		EasyMock.replay(player, turn);

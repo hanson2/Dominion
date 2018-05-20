@@ -20,4 +20,9 @@ public class Province extends Card {
 		return toReturn;
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.PROVINCENAME;
+	}
+
 }

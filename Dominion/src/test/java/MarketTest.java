@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class MarketTest {
@@ -58,6 +60,30 @@ public class MarketTest {
 		Card card = new Market();
 
 		assertEquals(card.getPlayState().getClass(), CardPlayState.class);
+	}
+	
+	@Test
+	public void testGetName() {
+		Card card = new Market();
+		
+		assertEquals(card.getName(), GameConstants.MARKETNAME);
+	}
+	
+	@Test
+	public void testGetText() {
+		Card card = new Market();
+		
+		assertEquals(card.getText(), GameConstants.DEFAULTCARDTEXT);
+	}
+	
+	@Test
+	public void testGetTypeTranslationKeys() {
+		Card card = new Market();
+		
+		ArrayList<String> expectedTranslationKeys = new ArrayList<String>();
+		expectedTranslationKeys.add("cardtypeAction");
+		
+		assertEquals(card.getTypeTranslationKeys(), expectedTranslationKeys);
 	}
 
 }

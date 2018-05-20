@@ -23,4 +23,9 @@ public class Village extends Card {
 		return GameConstants.VILLAGECARDSADDED;
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.VILLAGENAME;
+	}
+
 }

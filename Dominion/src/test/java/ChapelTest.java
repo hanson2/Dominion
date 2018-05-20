@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,6 +52,24 @@ public class ChapelTest {
 	@Test
 	public void testGetPlayState() {
 		assertEquals(card.getPlayState().getClass(), ChapelPlayState.class);
+	}
+	
+	@Test
+	public void testGetName() {
+		assertEquals(card.getName(), GameConstants.CHAPELNAME);
+	}
+	
+	@Test
+	public void testGetText() {
+		assertEquals(card.getText(), GameConstants.CHAPELTEXT);
+	}
+	
+	@Test
+	public void testGetTypeTranslationKeys() {
+		ArrayList<String> expectedTranslationKeys = new ArrayList<String>();
+		expectedTranslationKeys.add("cardtypeAction");
+		
+		assertEquals(card.getTypeTranslationKeys(), expectedTranslationKeys);
 	}
 
 }

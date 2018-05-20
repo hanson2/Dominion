@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class WoodcutterTest {
@@ -58,5 +60,29 @@ public class WoodcutterTest {
 		Card card = new Woodcutter();
 
 		assertEquals(card.getCost(), GameConstants.WOODCUTTERCOST);
+	}
+	
+	@Test
+	public void testWoodcutterName() {
+		Card card = new Woodcutter();
+		
+		assertEquals(card.getName(), GameConstants.WOODCUTTERNAME);
+	}
+	
+	@Test
+	public void testWoodcutterText() {
+		Card card = new Woodcutter();
+		
+		assertEquals(card.getText(), GameConstants.DEFAULTCARDTEXT);
+	}
+	
+	@Test
+	public void testWoodcutterGetTypeTranslationKeys() {
+		Card card = new Woodcutter();
+		
+		ArrayList<String> expectedTranslationKeys = new ArrayList<String>();
+		expectedTranslationKeys.add("cardtypeAction");
+		
+		assertEquals(card.getTypeTranslationKeys(), expectedTranslationKeys);
 	}
 }

@@ -2,146 +2,286 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
 
-/**
- * Graphical User Interface implementation for the 
- * game Dominion.
- * 
- * @author bakerne
- */
-public class GUI extends JFrame{
-//	private JLabel lengthLabel,widthLabel,areaLabel;
-//	private JTextField lengthText,widthText,areaText;
-//	private JButton calculateButton,exitButton;
+@SuppressWarnings("serial")
+public class GUI extends JFrame {
 	private Container pane;
 	JButton quitB;
-	
-	public GUI(){
-		setTitle("DOMINION");
+
+	public GUI() {
+		setTitle(GameConstants.messages.getString("guiDominionTitle"));
 		pane = getContentPane();
-		
-		quitB = new JButton("QUIT");
+
+		quitB = new JButton(GameConstants.messages.getString("guiQuit"));
 		QuitButtonHandler quitBH = new QuitButtonHandler();
 		quitB.addActionListener(quitBH);
-		
-		start();
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		pane.add(quitB);
 	}
-	
-	private class StartButtonHandler implements ActionListener
-	{
-		GUI gui;
-		public StartButtonHandler(GUI g){
-			gui = g;
+
+	private class QuitButtonHandler implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			System.exit(DISPOSE_ON_CLOSE);
 		}
-		public void actionPerformed(ActionEvent e){
-			pane.removeAll();
-			gui.init();
-		}	
+
 	}
-	
-	private class QuitButtonHandler implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e){
-			System.exit(0);
-		}	
-	}
-	
-	private class EndTurnButtonHandler implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e){
-			
-		}	
-	}
-	
-	private class InitButtonHandler implements ActionListener
-	{
-		GUI gui;
-		int num;
-		public InitButtonHandler(GUI g,int p){
-			gui = g;
-			num = p;
+
+	public CompletableFuture<Card> displayCards(ArrayList<Card> supply, String message, String name) {
+		this.setTitle(message);
+		CompletableFuture<Card> ans = new CompletableFuture<Card>();
+		int supplySize = supply.size();
+
+		for (int i = 0; i < supplySize; i++) {
+			drawCard(supply.get(i), ans);
 		}
-		public void actionPerformed(ActionEvent e){
-			pane.removeAll();
-			gui.game(num);
-		}	
+		drawExitButton(ans);
+		return ans;
 	}
-	
-	
-	public void start(){
-		JButton startB = new JButton("START THE GAME OF DOMINION");
+
+	private void drawExitButton(CompletableFuture<Card> future) {
+		JButton end = new JButton();
+		end.setText(GameConstants.messages.getString("guiEndPhase"));
+		end.addActionListener(new EndTurnListener(future));
+
+	}
+
+	private void drawCard(Card card, CompletableFuture<Card> future) {
+		JButton box = new JButton();
+		String text = this.makeText(card);
+		box.setText(text);
+		box.addActionListener(new CardListener(future, card));
+		this.pane.add(box, -1);// add at the end
+	}
+
+	private class EndTurnListener implements ActionListener {
+		CompletableFuture<Card> future;
+
+		public EndTurnListener(CompletableFuture<Card> future) {
+			this.future = future;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			future.cancel(true);
+
+		}
+
+	}
+
+	private class CardListener implements ActionListener {
+		CompletableFuture<Card> future;
+		Card card;
+
+		public CardListener(CompletableFuture<Card> future, Card card) {
+			this.future = future;
+			this.card = card;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			this.future.complete(card);
+		}
+
+	}
+
+	private String makeText(Card card) {
+		StringBuilder cardText = new StringBuilder();
+		if (card.getCost() != 0) {
+			cardText.append(String.format(GameConstants.messages.getString("guiCardCost"), card.getCost()));
+			cardText.append(System.lineSeparator());
+		}
+		if (card.getActionsAdded() != 0) {
+			cardText.append(String.format(GameConstants.messages.getString("guiCardActions"), card.getActionsAdded()));
+			cardText.append(System.lineSeparator());
+		}
+		if (card.getBuysAdded() != 0) {
+			cardText.append(String.format(GameConstants.messages.getString("guiCardBuys"), card.getBuysAdded()));
+			cardText.append(System.lineSeparator());
+		}
+		if (card.getCardsAdded() != 0) {
+			cardText.append(String.format(GameConstants.messages.getString("guiCardCards"), card.getCardsAdded()));
+			cardText.append(System.lineSeparator());
+		}
+		if (card.getCoinsAdded() != 0) {
+			cardText.append(String.format(GameConstants.messages.getString("guiCardCoins"), card.getCoinsAdded()));
+			cardText.append(System.lineSeparator());
+		}
+		if (card.getVictoryValue() != 0) {
+			cardText.append(
+					String.format(GameConstants.messages.getString("guiCardVictoryPoints"), card.getVictoryValue()));
+			cardText.append(System.lineSeparator());
+		}
+		return cardText.toString();
+	}
+
+	public void start() {
+		JButton startB = new JButton(GameConstants.messages.getString("guiStartGame"));
 		StartButtonHandler startBH = new StartButtonHandler(this);
 		startB.addActionListener(startBH);
-		
+
 		BorderLayout layout = new BorderLayout();
 		pane.setLayout(layout);
-		
-		//Adds StartButton
-		pane.add(startB,layout.CENTER);
-//		
-		//Adds QuitButton
-		pane.add(quitB,layout.PAGE_END);
-		
-		setSize(300,200);
+
+		pane.add(startB, BorderLayout.CENTER);
+		pane.add(quitB, BorderLayout.PAGE_END);
+
+		setSize(300, 200);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
-	
-	public void init(){
-		setTitle("# OF PLAYERS?");
-		setSize(300,300);
-		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		pane.setLayout(new GridLayout(0,3));
-		
+
+	private class StartButtonHandler implements ActionListener {
+		GUI gui;
+
+		StartButtonHandler(GUI gui) {
+			this.gui = gui;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			this.gui.initNumPlayers();
+
+		}
+
+	}
+
+	public CompletableFuture<AvailableLocales> chooseLocale() {
+		this.setTitle(GameConstants.messages.getString("guiChooseLocale"));
+		this.setSize(300, 300);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+		pane.setLayout(new GridLayout(1, 2));
+
+		CompletableFuture<AvailableLocales> localeChosenFuture = new CompletableFuture<>();
+
+		JButton english = new JButton(GameConstants.messages.getString("languageChoiceEnglish"));
+		english.addActionListener(new ChooseLocaleButtonListener(AvailableLocales.EN, localeChosenFuture));
+
+		JButton spanish = new JButton(GameConstants.messages.getString("languageChoiceSpanish"));
+		spanish.addActionListener(new ChooseLocaleButtonListener(AvailableLocales.ES, localeChosenFuture));
+
+		pane.add(english);
+		pane.add(spanish);
+
+		pane.repaint();
+
+		return localeChosenFuture;
+	}
+
+	private class ChooseLocaleButtonListener implements ActionListener {
+
+		AvailableLocales localeChosen;
+		CompletableFuture<AvailableLocales> localeChosenFuture;
+
+		public ChooseLocaleButtonListener(AvailableLocales localeChosen,
+				CompletableFuture<AvailableLocales> localeChosenFuture) {
+			this.localeChosen = localeChosen;
+			this.localeChosenFuture = localeChosenFuture;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent localeButtonPressed) {
+			this.localeChosenFuture.complete(this.localeChosen);
+		}
+	}
+
+	public CompletableFuture<Integer> initNumPlayers() {
+		this.setTitle(GameConstants.messages.getString("guiNumPlayersTitle"));
+		this.setSize(300, 300);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+		pane.setLayout(new GridLayout(0, 3));
+
+		CompletableFuture<Integer> numPlayersFuture = new CompletableFuture<>();
+
 		JButton two = new JButton("2");
-		two.addActionListener(new InitButtonHandler(this,2));
+		two.addActionListener(new InitNumPlayersButtonListener(2, numPlayersFuture));
+
 		JButton three = new JButton("3");
-		three.addActionListener(new InitButtonHandler(this,3));
+		three.addActionListener(new InitNumPlayersButtonListener(3, numPlayersFuture));
+
 		JButton four = new JButton("4");
-		four.addActionListener(new InitButtonHandler(this,4));
-		
+		four.addActionListener(new InitNumPlayersButtonListener(4, numPlayersFuture));
+
 		pane.add(two);
 		pane.add(three);
 		pane.add(four);
-		
+
 		pane.repaint();
+
+		return numPlayersFuture;
 	}
-	
-	public void game(int players){
-		setTitle("DOMINION W/ " + players + " PLAYERS");
-		setSize(500,500);
+
+	private class InitNumPlayersButtonListener implements ActionListener {
+
+		int numPlayers;
+		CompletableFuture<Integer> numPlayersFuture;
+
+		InitNumPlayersButtonListener(int numPlayers, CompletableFuture<Integer> numPlayersFuture) {
+			this.numPlayers = numPlayers;
+			this.numPlayersFuture = numPlayersFuture;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent buttonPress) {
+			this.numPlayersFuture.complete(this.numPlayers);
+		}
+
+	}
+
+	public CompletableFuture<String> getPlayerXName(int number) {
+		this.setVisible(false);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+		CompletableFuture<String> playerXNameFuture = new CompletableFuture<>();
+
+		String textPrompt = String.format(GameConstants.messages.getString("guiPlayerNamePrompt"), number);
+		playerXNameFuture.complete((String) JOptionPane.showInputDialog(null, textPrompt));
+
+		return playerXNameFuture;
+	}
+
+	public void game(int numPlayers) {
+		String title = String.format(GameConstants.messages.getString("guiGameTitle"), numPlayers);
+		setTitle(title);
+		setSize(500, 500);
 		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+
 		SpringLayout Spring = new SpringLayout();
 		pane.setLayout(Spring);
-		
+
 		JButton endTurnB = new JButton("End Turn");
 		EndTurnButtonHandler endTurnBH = new EndTurnButtonHandler();
 		endTurnB.addActionListener(endTurnBH);
-		
-		//Adds TurnButton
+
+		// Adds TurnButton
 		pane.add(endTurnB);
-		Spring.putConstraint(SpringLayout.SOUTH, endTurnB,
-				0, SpringLayout.SOUTH, pane);
-		Spring.putConstraint(SpringLayout.NORTH, endTurnB,
-				400, SpringLayout.NORTH, pane);
-		Spring.putConstraint(SpringLayout.WEST, endTurnB,
-				210, SpringLayout.WEST, pane);
-		
-		//Adds QuitButton
+		Spring.putConstraint(SpringLayout.SOUTH, endTurnB, 0, SpringLayout.SOUTH, pane);
+		Spring.putConstraint(SpringLayout.NORTH, endTurnB, 400, SpringLayout.NORTH, pane);
+		Spring.putConstraint(SpringLayout.WEST, endTurnB, 210, SpringLayout.WEST, pane);
+
+		// Adds QuitButton
 		pane.add(quitB);
-		Spring.putConstraint(SpringLayout.NORTH, quitB,
-				0, SpringLayout.NORTH, pane);
-		Spring.putConstraint(SpringLayout.EAST, quitB,
-				0, SpringLayout.EAST, pane);
-		
+		Spring.putConstraint(SpringLayout.NORTH, quitB, 0, SpringLayout.NORTH, pane);
+		Spring.putConstraint(SpringLayout.EAST, quitB, 0, SpringLayout.EAST, pane);
+
 		pane.repaint();
 	}
-	
-	public static void main(String[] args){
-		GUI gui = new GUI();
+
+	private class EndTurnButtonHandler implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+
+		}
+
 	}
+
 }

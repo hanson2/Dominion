@@ -10,13 +10,15 @@ public class Player {
 	List<Card> hand;
 	Stack<Card> drawPile;
 	Stack<Card> discardPile;
+	private GUI gui;
 
-	public Player(String name) {
+	public Player(String name, GUI gui) {
 		this.hand = new ArrayList<Card>();
 		this.drawPile = new Stack<Card>();
 		this.discardPile = new Stack<Card>();
 		this.addStarterCards();
 		this.name = name;
+		this.gui = gui;
 	}
 
 	public void drawACard() {

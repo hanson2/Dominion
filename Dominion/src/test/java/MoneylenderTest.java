@@ -1,6 +1,8 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.easymock.EasyMock;
 import org.junit.Test;
 
@@ -60,6 +62,30 @@ public class MoneylenderTest {
 		Card card = new Moneylender();
 
 		assertEquals(card.getPlayState().getClass(), MoneylenderPlayState.class);
+	}
+	
+	@Test
+	public void testGetName() {
+		Card card = new Moneylender();
+		
+		assertEquals(card.getName(), GameConstants.MONEYLENDERNAME);
+	}
+	
+	@Test
+	public void testGetText() {
+		Card card = new Moneylender();
+		
+		assertEquals(card.getText(), GameConstants.MONEYLENDERTEXT);
+	}
+	
+	@Test
+	public void testGetTypeTranslationKeys() {
+		Card card = new Moneylender();
+		
+		ArrayList<String> expectedTranslationKeys = new ArrayList<String>();
+		expectedTranslationKeys.add("cardtypeAction");
+		
+		assertEquals(card.getTypeTranslationKeys(), expectedTranslationKeys);
 	}
 
 }

@@ -1,18 +1,33 @@
 import java.util.HashSet;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import java.util.Set;
 
 public class Game {
-	private Player[] players;
-	private int currentPlayer;
+	Player[] players;
+	int currentPlayer;
+	Supply supplyPiles;
 
 	public Game(Player... players) throws IllegalArgumentException {
 		if (players.length > 4 || players.length < 2) {
 			throw new IllegalArgumentException();
 		}
 		this.players = players;
-		GameConstants.messages = ResourceBundle.getBundle("MessagesBundle", new Locale("en"));
+		this.supplyPiles = new Supply();
+		this.currentPlayer = 0;
+	}
+
+	public Set<Player> runGame() {
+		while (true) {
+			Turn currentTurn = this.makeNewTurn();
+			currentTurn.run();
+
+			if (this.supplyPiles.isGameOver()) {
+				break;
+			}
+
+			this.endTurn();
+		}
+
+		return this.endGame();
 	}
 
 	public Set<Player> endGame() {
@@ -52,6 +67,10 @@ public class Game {
 	public void endTurn() {
 		this.currentPlayer++;
 		this.currentPlayer = this.currentPlayer % this.players.length;
+	}
+
+	public Turn makeNewTurn() {
+		return new Turn(this.players[this.currentPlayer], this.supplyPiles);
 	}
 
 }

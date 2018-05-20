@@ -14,20 +14,19 @@ public class GameTest {
 		for (int i = 0; i < 2; i++) {
 			list[i] = EasyMock.mock(Player.class);
 			EasyMock.expect(list[i].getPoints()).andStubReturn(0);
-			EasyMock.replay(list[i]);
 		}
 
-		Game g = new Game(list);
+		EasyMock.replay(list);
+
+		Game game = new Game(list);
 
 		Set<Player> winners = new HashSet<>();
 		winners.add(list[0]);
 		winners.add(list[1]);
 
-		assertEquals(winners, g.endGame());
+		assertEquals(winners, game.endGame());
 
-		for (Player p : list) {
-			EasyMock.verify(p);
-		}
+		EasyMock.verify(list);
 	}
 
 	@Test
@@ -37,20 +36,19 @@ public class GameTest {
 		for (int i = 0; i < 4; i++) {
 			list[i] = EasyMock.mock(Player.class);
 			EasyMock.expect(list[i].getPoints()).andStubReturn(points[i]);
-			EasyMock.replay(list[i]);
 		}
 
-		Game g = new Game(list);
+		EasyMock.replay(list);
+
+		Game game = new Game(list);
 		Set<Player> winners = new HashSet<>();
 		winners.add(list[0]);
 
-		assertEquals(winners, g.endGame());
+		assertEquals(winners, game.endGame());
 
-		for (Player p : list) {
-			EasyMock.verify(p);
-		}
+		EasyMock.verify(list);
 	}
-	
+
 	@Test
 	public void testWinnableCloseGame() {
 		Player[] list = new Player[4];
@@ -61,15 +59,13 @@ public class GameTest {
 			EasyMock.replay(list[i]);
 		}
 
-		Game g = new Game(list);
+		Game game = new Game(list);
 		Set<Player> winners = new HashSet<>();
 		winners.add(list[1]);
 
-		assertEquals(winners, g.endGame());
+		assertEquals(winners, game.endGame());
 
-		for (Player p : list) {
-			EasyMock.verify(p);
-		}
+		EasyMock.verify(list);
 	}
 
 	@Test
@@ -80,21 +76,20 @@ public class GameTest {
 			list[i] = EasyMock.mock(Player.class);
 			EasyMock.expect(list[i].getPoints()).andStubReturn(points[i]);
 			EasyMock.expect(list[i].getName()).andStubReturn(String.format("%d", i));
-			EasyMock.replay(list[i]);
 		}
+
+		EasyMock.replay(list);
 
 		Set<Player> winners = new HashSet<>();
 		winners.add(list[2]);
 		winners.add(list[3]);
 
-		Game g = new Game(list);
-		g.endTurn();
-		g.endTurn();
-		assertEquals(winners, g.endGame());
+		Game game = new Game(list);
+		game.endTurn();
+		game.endTurn();
+		assertEquals(winners, game.endGame());
 
-		for (Player p : list) {
-			EasyMock.verify(p);
-		}
+		EasyMock.verify(list);
 	}
 
 	@Test
@@ -104,20 +99,19 @@ public class GameTest {
 		for (int i = 0; i < 4; i++) {
 			list[i] = EasyMock.mock(Player.class);
 			EasyMock.expect(list[i].getPoints()).andStubReturn(points[i]);
-			EasyMock.replay(list[i]);
 		}
+
+		EasyMock.replay(list);
 
 		Set<Player> winners = new HashSet<Player>();
 		winners.add(list[3]);
 
-		Game g = new Game(list);
-		g.endTurn();
-		g.endTurn();
-		assertEquals(winners, g.endGame());
+		Game game = new Game(list);
+		game.endTurn();
+		game.endTurn();
+		assertEquals(winners, game.endGame());
 
-		for (Player p : list) {
-			EasyMock.verify(p);
-		}
+		EasyMock.verify(list);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -126,8 +120,9 @@ public class GameTest {
 		for (int i = 0; i < 5; i++) {
 			list[i] = EasyMock.mock(Player.class);
 			EasyMock.expect(list[i].getPoints()).andStubReturn(0);
-			EasyMock.replay(list[i]);
 		}
+
+		EasyMock.replay(list);
 
 		new Game(list);
 	}
@@ -137,4 +132,133 @@ public class GameTest {
 		new Game(new Player[0]);
 	}
 
+	@Test
+	public void testRunGameProperlyBreaksLoopFirstTime() {
+		Player[] list = new Player[4];
+		int[] points = { 5, 3, 2, 1 };
+		for (int i = 0; i < 4; i++) {
+			list[i] = EasyMock.mock(Player.class);
+		}
+		Supply supplyPiles = EasyMock.mock(Supply.class);
+		Game game = EasyMock.partialMockBuilder(Game.class).addMockedMethod("makeNewTurn").createMock();
+		Turn turn = EasyMock.mock(Turn.class);
+
+		EasyMock.expect(game.makeNewTurn()).andReturn(turn);
+		turn.run();
+
+		EasyMock.expect(supplyPiles.isGameOver()).andReturn(true);
+
+		for (int i = 0; i < 4; i++) {
+			EasyMock.expect(list[i].getPoints()).andStubReturn(points[i]);
+		}
+
+		EasyMock.replay(list);
+		EasyMock.replay(supplyPiles, game, turn);
+
+		game.supplyPiles = supplyPiles;
+		game.players = list;
+		Set<Player> winners = new HashSet<>();
+		winners.add(list[0]);
+
+		assertEquals(winners, game.runGame());
+		assertEquals(game.currentPlayer, 0);
+
+		EasyMock.verify(list);
+		EasyMock.verify(supplyPiles, game, turn);
+	}
+
+	@Test
+	public void testRunGameProperlyBreaksLoopSecondTime() {
+		Player[] list = new Player[4];
+		int[] points = { 5, 3, 2, 1 };
+		for (int i = 0; i < 4; i++) {
+			list[i] = EasyMock.mock(Player.class);
+		}
+		Supply supplyPiles = EasyMock.mock(Supply.class);
+		Game game = EasyMock.partialMockBuilder(Game.class).addMockedMethod("makeNewTurn").createMock();
+		Turn turn = EasyMock.mock(Turn.class);
+
+		EasyMock.expect(game.makeNewTurn()).andReturn(turn);
+		turn.run();
+
+		EasyMock.expect(supplyPiles.isGameOver()).andReturn(false);
+
+		EasyMock.expect(game.makeNewTurn()).andReturn(turn);
+		turn.run();
+
+		EasyMock.expect(supplyPiles.isGameOver()).andReturn(true);
+
+		for (int i = 0; i < 4; i++) {
+			EasyMock.expect(list[i].getPoints()).andStubReturn(points[i]);
+		}
+
+		EasyMock.replay(list);
+		EasyMock.replay(supplyPiles, game, turn);
+
+		game.supplyPiles = supplyPiles;
+		game.players = list;
+		Set<Player> winners = new HashSet<>();
+		winners.add(list[0]);
+
+		assertEquals(winners, game.runGame());
+		assertEquals(game.currentPlayer, 1);
+
+		EasyMock.verify(list);
+		EasyMock.verify(supplyPiles, game, turn);
+	}
+
+	@Test
+	public void testRunGameProperlyBreaksLoopAfterRollover() {
+		Player[] list = new Player[2];
+		int[] points = { 5, 3 };
+		for (int i = 0; i < 2; i++) {
+			list[i] = EasyMock.mock(Player.class);
+		}
+		Supply supplyPiles = EasyMock.mock(Supply.class);
+		Game game = EasyMock.partialMockBuilder(Game.class).addMockedMethod("makeNewTurn").createMock();
+		Turn turn = EasyMock.mock(Turn.class);
+
+		EasyMock.expect(game.makeNewTurn()).andReturn(turn);
+		turn.run();
+
+		EasyMock.expect(supplyPiles.isGameOver()).andReturn(false);
+
+		EasyMock.expect(game.makeNewTurn()).andReturn(turn);
+		turn.run();
+
+		EasyMock.expect(supplyPiles.isGameOver()).andReturn(false);
+
+		EasyMock.expect(game.makeNewTurn()).andReturn(turn);
+		turn.run();
+
+		EasyMock.expect(supplyPiles.isGameOver()).andReturn(true);
+
+		for (int i = 0; i < 2; i++) {
+			EasyMock.expect(list[i].getPoints()).andStubReturn(points[i]);
+		}
+
+		EasyMock.replay(list);
+		EasyMock.replay(supplyPiles, game, turn);
+
+		game.supplyPiles = supplyPiles;
+		game.players = list;
+		Set<Player> winners = new HashSet<>();
+		winners.add(list[0]);
+
+		assertEquals(winners, game.runGame());
+		assertEquals(game.currentPlayer, 0);
+
+		EasyMock.verify(list);
+		EasyMock.verify(supplyPiles, game, turn);
+	}
+
+	@Test
+	public void testMakeNewTurn() {
+		Player[] list = new Player[2];
+		Game game = new Game(list);
+		Turn turn = game.makeNewTurn();
+
+		assertEquals(turn.player, list[game.currentPlayer]);
+		assertEquals(turn.supplyPiles, game.supplyPiles);
+	}
 }
