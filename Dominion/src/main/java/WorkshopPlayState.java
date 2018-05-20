@@ -7,13 +7,11 @@ public class WorkshopPlayState extends CardPlayState {
 		int coins = 4;
 		Card card = null;
 		while (true) {
-			Optional<Card> possiblyBoughtCard = turn.player.buy();
-			if (possiblyBoughtCard.isPresent()) {
-				card = possiblyBoughtCard.get();
-				if (card.getCost() <= coins) {
-					turn.player.gainCard(card);
-					break;
-				}
+			card = turn.player.forcedBuy(coins);
+
+			if (card.getCost() <= coins) {
+				turn.player.gainCard(card);
+				break;
 			}
 		}
 

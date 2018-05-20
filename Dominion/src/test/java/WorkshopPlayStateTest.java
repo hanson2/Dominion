@@ -9,7 +9,7 @@ public class WorkshopPlayStateTest {
 		Player player = EasyMock.strictMock(Player.class);
 		Turn turn = EasyMock.strictMock(Turn.class);
 		Card card = new Copper();
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
+		EasyMock.expect(player.forcedBuy(4)).andReturn(card);
 		player.gainCard(card);
 		
 		EasyMock.replay(turn, player);
@@ -25,7 +25,7 @@ public class WorkshopPlayStateTest {
 		Player player = EasyMock.strictMock(Player.class);
 		Turn turn = EasyMock.strictMock(Turn.class);
 		Card card = new Moneylender();
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
+		EasyMock.expect(player.forcedBuy(4)).andReturn(card);
 		player.gainCard(card);
 		
 		EasyMock.replay(turn, player);
@@ -41,9 +41,9 @@ public class WorkshopPlayStateTest {
 		Player player = EasyMock.strictMock(Player.class);
 		Turn turn = EasyMock.strictMock(Turn.class);
 		Card card = new Market();
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
+		EasyMock.expect(player.forcedBuy(4)).andReturn(card);
 		card = new Copper();
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
+		EasyMock.expect(player.forcedBuy(4)).andReturn(card);
 		player.gainCard(card);
 		
 		EasyMock.replay(turn, player);
