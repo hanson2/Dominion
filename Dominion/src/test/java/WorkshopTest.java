@@ -60,6 +60,11 @@ Card card;
 	}
 	
 	@Test
+	public void testGetPlayState() {
+		assertEquals(card.getPlayState().getClass(), WorkshopPlayState.class);
+	}
+	
+	@Test
 	public void testGetTypeTranslationKeys() {
 		ArrayList<String> expectedTranslationKeys = new ArrayList<String>();
 		expectedTranslationKeys.add("cardtypeAction");
