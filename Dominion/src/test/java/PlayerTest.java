@@ -255,4 +255,9 @@ public class PlayerTest {
 		assertEquals(player.sizeOfDiscardPile(), 1);
 	}
 	
+	@Test
+	public void testPlayCard() {
+		
+	}
+	
 }
