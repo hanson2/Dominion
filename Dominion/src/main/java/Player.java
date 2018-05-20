@@ -110,8 +110,8 @@ public class Player {
 	}
 
 	public boolean trashCardFromHand(Class<? extends Card> cardClass) {
-		for(Card c : this.hand){
-			if(c.getClass() == cardClass){
+		for (Card c : this.hand) {
+			if (c.getClass() == cardClass) {
 				this.hand.remove(c);
 				return true;
 			}
@@ -132,20 +132,34 @@ public class Player {
 			return Optional.of(toMove);
 		}
 	}
-	
+
 	public Card chooseCardFromHand() {
-		//TODO will eventually interact with the GUI
+		// TODO will eventually interact with the GUI
 		return new Copper();
 	}
 
 	public boolean discardCardFromHand(Class<? extends Card> cardClass) {
-		for(Card c : this.hand){
-			if(c.getClass() == cardClass){	
-				this.hand.remove(c);	
+		for (Card c : this.hand) {
+			if (c.getClass() == cardClass) {
+				this.hand.remove(c);
 				this.discardPile.push(c);
 				return true;
 			}
 		}
 		return false;
+	}
+
+	public Card forcedBuy(int budget) {
+		// TODO Will Interact with GUI
+		// budget is for display only
+		return null;
+	}
+
+	public void gainCardToHand(Card card) {
+		this.hand.add(card);
+	}
+
+	public void placeOnDrawPile(Card card) {
+		this.drawPile.push(card);
 	}
 }

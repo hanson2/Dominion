@@ -11,72 +11,71 @@ public class ArtisanPlaysStateTest {
 	public void testBaseCase() {
 		Player player = EasyMock.strictMock(Player.class);
 		Turn turn = EasyMock.strictMock(Turn.class);
-		Stack<Card> pile = new Stack<Card>();
+
 		Card card = new Copper();
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
-		player.gainCard(card);
-		EasyMock.expect(player.chooseCardFromHand()).andReturn(new Curse());
-		
+		EasyMock.expect(player.forcedBuy(5)).andReturn(card);
+		player.gainCardToHand(card);
+
+		card = new Curse();
+		EasyMock.expect(player.chooseCardFromHand()).andReturn(card);
+		player.placeOnDrawPile(card);
 		EasyMock.expect(player.trashCardFromHand(Curse.class)).andReturn(true);
 
 		EasyMock.replay(turn, player);
-		
+
 		turn.player = player;
-		player.drawPile = pile;
 		ArtisanPlayState state = new ArtisanPlayState();
 		state.run(turn);
 
 		EasyMock.verify(turn, player);
-		assertEquals(pile.pop().getClass(), Curse.class);
 	}
+
 	@Test
-	public void testExactCostBuy(){
+	public void testExactCostBuy() {
 		Player player = EasyMock.strictMock(Player.class);
 		Turn turn = EasyMock.strictMock(Turn.class);
-		Stack<Card> pile = new Stack<Card>();
+
 		Card card = new Duchy();
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
-		player.gainCard(card);
-		
-		EasyMock.expect(player.chooseCardFromHand()).andReturn(new Curse());
-		
+		EasyMock.expect(player.forcedBuy(5)).andReturn(card);
+		player.gainCardToHand(card);
+
+		card = new Curse();
+		EasyMock.expect(player.chooseCardFromHand()).andReturn(card);
+		player.placeOnDrawPile(card);
 		EasyMock.expect(player.trashCardFromHand(Curse.class)).andReturn(true);
-		
 
 		EasyMock.replay(turn, player);
-		
+
 		turn.player = player;
-		player.drawPile = pile;
 		ArtisanPlayState state = new ArtisanPlayState();
 		state.run(turn);
 
 		EasyMock.verify(turn, player);
-		assertEquals(pile.pop().getClass(), Curse.class);
 	}
+
 	@Test
-	public void testBadPurchase(){
+	public void testBadPurchase() {
 		Player player = EasyMock.strictMock(Player.class);
 		Turn turn = EasyMock.strictMock(Turn.class);
-		Stack<Card> pile = new Stack<Card>();
+
 		Card card = new Gold();
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
+		EasyMock.expect(player.forcedBuy(5)).andReturn(card);
 		card = new Copper();
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
-		player.gainCard(card);
-		
-		EasyMock.expect(player.chooseCardFromHand()).andReturn(new Curse());
+		EasyMock.expect(player.forcedBuy(5)).andReturn(card);
+		player.gainCardToHand(card);
+
+		card = new Curse();
+		EasyMock.expect(player.chooseCardFromHand()).andReturn(card);
+		player.placeOnDrawPile(card);
 		EasyMock.expect(player.trashCardFromHand(Curse.class)).andReturn(true);
-		
 
 		EasyMock.replay(turn, player);
-		
+
 		turn.player = player;
-		player.drawPile = pile;
 		ArtisanPlayState state = new ArtisanPlayState();
 		state.run(turn);
 
 		EasyMock.verify(turn, player);
-		assertEquals(pile.pop().getClass(), Curse.class);
 	}
 
 }

@@ -12,13 +12,11 @@ public class Artisan extends Card {
 
 	@Override
 	public int getCost() {
-		// TODO Auto-generated method stub
 		return GameConstants.ARTISANCOST;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return GameConstants.ARTISANNAME;
 	}
 	
