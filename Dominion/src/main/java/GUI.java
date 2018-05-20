@@ -154,31 +154,32 @@ public class GUI extends JFrame {
 		this.setSize(300, 300);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+
 		pane.setLayout(new GridLayout(1, 2));
-		
+
 		CompletableFuture<AvailableLocales> localeChosenFuture = new CompletableFuture<>();
-		
+
 		JButton english = new JButton(GameConstants.messages.getString("languageChoiceEnglish"));
 		english.addActionListener(new ChooseLocaleButtonListener(AvailableLocales.EN, localeChosenFuture));
-		
+
 		JButton spanish = new JButton(GameConstants.messages.getString("languageChoiceSpanish"));
 		spanish.addActionListener(new ChooseLocaleButtonListener(AvailableLocales.ES, localeChosenFuture));
-		
+
 		pane.add(english);
 		pane.add(spanish);
-		
+
 		pane.repaint();
-		
+
 		return localeChosenFuture;
 	}
-	
+
 	private class ChooseLocaleButtonListener implements ActionListener {
-		
+
 		AvailableLocales localeChosen;
 		CompletableFuture<AvailableLocales> localeChosenFuture;
-		
-		public ChooseLocaleButtonListener(AvailableLocales localeChosen, CompletableFuture<AvailableLocales> localeChosenFuture) {
+
+		public ChooseLocaleButtonListener(AvailableLocales localeChosen,
+				CompletableFuture<AvailableLocales> localeChosenFuture) {
 			this.localeChosen = localeChosen;
 			this.localeChosenFuture = localeChosenFuture;
 		}
@@ -201,10 +202,10 @@ public class GUI extends JFrame {
 
 		JButton two = new JButton("2");
 		two.addActionListener(new InitNumPlayersButtonListener(2, numPlayersFuture));
-		
+
 		JButton three = new JButton("3");
 		three.addActionListener(new InitNumPlayersButtonListener(3, numPlayersFuture));
-		
+
 		JButton four = new JButton("4");
 		four.addActionListener(new InitNumPlayersButtonListener(4, numPlayersFuture));
 

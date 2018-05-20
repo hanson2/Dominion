@@ -1,5 +1,6 @@
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class Main {
 
@@ -15,6 +16,10 @@ public class Main {
 		for (int i = 0; i < numPlayers; ++i) {
 			players[i] = createPlayer(i + 1);
 		}
+
+		Game game = new Game(players);
+
+		Set<Player> winners = game.runGame();
 	}
 
 	static int getNumPlayers() {
