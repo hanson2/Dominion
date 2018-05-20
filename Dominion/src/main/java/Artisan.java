@@ -25,5 +25,9 @@ public class Artisan extends Card {
 	public String getText() {
 		return GameConstants.ARTISANTEXT;
 	}
+	
+	public CardPlayState getPlayState(){
+		return new ArtisanPlayState();
+	}
 
 }
