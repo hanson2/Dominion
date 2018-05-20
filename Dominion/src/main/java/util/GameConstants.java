@@ -104,6 +104,11 @@ public class GameConstants {
 	public static final String MOATNAME = "cardMoatName";
 	public static final String MOATTEXT = "cardMoatText";
 	
+	public static final int WORKSHOPCOST = 3;
+	public static final String WORKSHOPNAME = "cardWorkshopName";
+	public static final String WORKSHOPTEXT = "cardWorkshopText";
+	
+	
 	public static final int ARTISANCOST = 6;
 	public static final String ARTISANNAME = "cardArtisanName";
 	public static final String ARTISANTEXT = "cardArtisanText";
