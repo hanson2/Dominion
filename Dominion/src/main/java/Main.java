@@ -7,10 +7,10 @@ public class Main {
 	public static void main(String[] args) {
 		boolean playAgain = true;
 		GUI gui = new GUI();
-		while(playAgain) {
+		while (playAgain) {
 			gui = new GUI();
 
-			GameConstants.messages = ResourceBundle.getBundle("MessagesBundle", chooseLocale(gui));		
+			GameConstants.messages = ResourceBundle.getBundle("MessagesBundle", chooseLocale(gui));
 
 			int numPlayers = getNumPlayers(gui);
 			Player[] players = new Player[numPlayers];
@@ -21,7 +21,7 @@ public class Main {
 			Game game = new Game(players);
 
 			Set<Player> winners = game.runGame();
-			
+
 			playAgain = promptPlayAgainDisplayWinners(gui, winners);
 		}
 		closeGUI(gui);
@@ -53,7 +53,7 @@ public class Main {
 		} else {
 			locale = new Locale("es");
 		}
-		
+
 		return locale;
 	}
 

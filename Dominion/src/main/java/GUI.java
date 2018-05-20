@@ -1,5 +1,6 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -7,6 +8,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SpringLayout;
 
 @SuppressWarnings("serial")
 public class GUI extends JFrame {
@@ -321,16 +327,18 @@ public class GUI extends JFrame {
 	}
 
 	public CompletableFuture<Card> chooseCardFromHand(List<Card> availableCards) {
-		// TODO Prompt the player to choose a card from their hand(notice they must choose)
+		// TODO Prompt the player to choose a card from their hand(notice they must
+		// choose)
 		CompletableFuture<Card> chosenCardFuture = new CompletableFuture<Card>();
-		
+
 		chosenCardFuture.complete(new Copper());
-		
+
 		return chosenCardFuture;
 	}
 
 	public CompletableFuture<Optional<Card>> chooseCardToBuy(Set<Card> availableCards) {
-		// TODO Choose a card to buy from a list of cards or choose to stop buying(return Optional.empty())
+		// TODO Choose a card to buy from a list of cards or choose to stop
+		// buying(return Optional.empty())
 		CompletableFuture<Optional<Card>> cardToBuy = new CompletableFuture<Optional<Card>>();
 
 		cardToBuy.complete(Optional.empty());

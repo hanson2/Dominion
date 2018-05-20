@@ -131,13 +131,13 @@ public class Supply {
 
 	public Set<Card> getAvailableCards() {
 		Set<Card> availableCards = new HashSet<Card>();
-		for(Stack<Card> kingdomPile : this.kingdomCardList) {
-			if(!kingdomPile.isEmpty()) {
+		for (Stack<Card> kingdomPile : this.kingdomCardList) {
+			if (!kingdomPile.isEmpty()) {
 				availableCards.add(kingdomPile.peek());
 			}
 		}
-		for(String cardName : this.supplyPiles.keySet()) {
-			if(!this.supplyPiles.get(cardName).isEmpty()) {
+		for (String cardName : this.supplyPiles.keySet()) {
+			if (!this.supplyPiles.get(cardName).isEmpty()) {
 				availableCards.add(this.supplyPiles.get(cardName).peek());
 			}
 		}

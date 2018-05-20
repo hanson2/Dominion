@@ -1,4 +1,5 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.HashSet;
 import java.util.Locale;
@@ -11,14 +12,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MainTest {
-	
+
 	GUI gui;
-	
+
 	@Before
 	public void setup() {
 		gui = EasyMock.mock(GUI.class);
 	}
-	
+
 	@After
 	public void tearDown() {
 		EasyMock.verify(gui);
@@ -27,9 +28,9 @@ public class MainTest {
 	@Test
 	public void testCloseGUI() {
 		gui.quitGame();
-		
+
 		EasyMock.replay(gui);
-		
+
 		Main.closeGUI(gui);
 	}
 
@@ -40,13 +41,13 @@ public class MainTest {
 		response.complete(false);
 		Player winner = EasyMock.mock(Player.class);
 		winners.add(winner);
-		
+
 		EasyMock.expect(gui.getPlayAgainDisplayWinners(winners)).andReturn(response);
-		
+
 		EasyMock.replay(gui, winner);
-		
+
 		assertFalse(Main.promptPlayAgainDisplayWinners(gui, winners));
-		
+
 		EasyMock.verify(winner);
 	}
 
@@ -54,11 +55,11 @@ public class MainTest {
 	public void testGetNumPlayers() {
 		CompletableFuture<Integer> response = new CompletableFuture<Integer>();
 		response.complete(2);
-		
+
 		EasyMock.expect(gui.initNumPlayers()).andReturn(response);
-		
+
 		EasyMock.replay(gui);
-		
+
 		assertEquals(Main.getNumPlayers(gui), 2);
 	}
 
@@ -66,13 +67,13 @@ public class MainTest {
 	public void testCreatePlayer() {
 		CompletableFuture<String> response = new CompletableFuture<String>();
 		response.complete("test");
-		
+
 		EasyMock.expect(gui.getPlayerXName(1)).andReturn(response);
-		
+
 		EasyMock.replay(gui);
-		
+
 		Player player = Main.createPlayer(gui, 1);
-		
+
 		assertEquals(player.getName(), "test");
 	}
 
@@ -81,24 +82,24 @@ public class MainTest {
 		Locale expected = new Locale("en");
 		CompletableFuture<AvailableLocales> response = new CompletableFuture<AvailableLocales>();
 		response.complete(AvailableLocales.EN);
-		
+
 		EasyMock.expect(gui.chooseLocale()).andReturn(response);
-		
+
 		EasyMock.replay(gui);
-		
+
 		assertEquals(Main.chooseLocale(gui), expected);
 	}
-	
+
 	@Test
 	public void testChooseLocaleES() {
 		Locale expected = new Locale("es");
 		CompletableFuture<AvailableLocales> response = new CompletableFuture<AvailableLocales>();
 		response.complete(AvailableLocales.ES);
-		
+
 		EasyMock.expect(gui.chooseLocale()).andReturn(response);
-		
+
 		EasyMock.replay(gui);
-		
+
 		assertEquals(Main.chooseLocale(gui), expected);
 	}
 
