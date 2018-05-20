@@ -14,11 +14,11 @@ public class PlayerTest {
 	public void setup() {
 		gui = EasyMock.mock(GUI.class);
 		player = new Player("Test", gui);
+		EasyMock.replay(gui);
 	}
 
 	@After
 	public void tearDown() {
-		EasyMock.replay(gui);
 		EasyMock.verify(gui);
 	}
 
