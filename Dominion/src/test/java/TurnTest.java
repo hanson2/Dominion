@@ -1,13 +1,15 @@
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Optional;
+import java.util.Set;
+import java.util.Stack;
 
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-public class TestTurn {
+public class TurnTest {
 
 	@Test
 	public void testInitialStateSetup() {
@@ -24,8 +26,10 @@ public class TestTurn {
 		Supply supply = EasyMock.mock(Supply.class);
 		Card card = EasyMock.mock(Card.class);
 		Turn turn = new Turn(player, supply);
+		turn.playArea = new ArrayList<>();
+		player.discardPile = new Stack<>();
 
-		EasyMock.expect(player.playCard()).andReturn(card);
+		EasyMock.expect(player.chooseCardToPlay()).andReturn(Optional.of(card));
 		EasyMock.expect(card.getActionsAdded()).andReturn(0);
 		EasyMock.expect(card.getBuysAdded()).andReturn(0);
 		EasyMock.expect(card.getCoinsAdded()).andReturn(0);
