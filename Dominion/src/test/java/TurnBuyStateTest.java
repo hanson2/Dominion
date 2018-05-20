@@ -21,7 +21,7 @@ public class TurnBuyStateTest {
 
 		EasyMock.replay(player, turn, card);
 
-		turn.buys = 1;// base value
+		turn.buys = 1;
 		turn.coins = 1;
 		turn.player = player;
 
@@ -53,7 +53,7 @@ public class TurnBuyStateTest {
 
 		EasyMock.replay(player, turn, card);
 
-		turn.buys = 2;// base value
+		turn.buys = 2;
 		turn.coins = 2;
 		turn.player = player;
 
@@ -78,7 +78,7 @@ public class TurnBuyStateTest {
 
 		EasyMock.replay(player, turn);
 
-		turn.buys = 2;// base value
+		turn.buys = 2;
 		turn.player = player;
 
 		TurnBuyState state = new TurnBuyState();

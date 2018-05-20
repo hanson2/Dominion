@@ -102,7 +102,7 @@ public class TurnActionStateTest {
 		EasyMock.expect(action.getType()).andReturn(this.getCardTypeSet(CardType.ACTION));
 		EasyMock.expect(action.getPlayState()).andReturn(new CardPlayState());
 
-		EasyMock.expect(player.chooseCardToPlay()).andReturn(Optional.ofNullable(action));
+		EasyMock.expect(player.chooseCardToPlay()).andReturn(Optional.of(action));
 		EasyMock.expect(action.getActionsAdded()).andReturn(0);
 		EasyMock.expect(action.getBuysAdded()).andReturn(0);
 		EasyMock.expect(action.getCoinsAdded()).andReturn(0);
