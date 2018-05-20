@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("serial")
@@ -282,6 +283,19 @@ public class GUI extends JFrame {
 
 		}
 
+	}
+
+	public CompletableFuture<Boolean> getPlayAgainDisplayWinners(Set<Player> winners) {
+		//TODO make this display winners and give players option to play again
+		CompletableFuture<Boolean> playAgain = new CompletableFuture<Boolean>();
+		
+		playAgain.complete(false);
+		
+		return playAgain;
+	}
+
+	public void quitGame() {
+		System.exit(DISPOSE_ON_CLOSE);
 	}
 
 }
