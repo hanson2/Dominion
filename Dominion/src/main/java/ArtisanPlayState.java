@@ -1,21 +1,20 @@
 import java.util.Optional;
 
 public class ArtisanPlayState extends CardPlayState {
-	public void run(Turn turn){
+	public void run(Turn turn) {
 		int coins = 5;
 		Card card = null;
 		while (true) {
-			Optional<Card> possiblyBoughtCard = turn.player.buy();
-			if (possiblyBoughtCard.isPresent()) {
-				card = possiblyBoughtCard.get();
-				if (card.getCost() <= coins) {
-					turn.player.gainCard(card);
-					break;
-				}
+			card = turn.player.forcedBuy(coins);
+
+			if (card.getCost() <= coins) {
+				turn.player.gainCardToHand(card);
+				break;
 			}
+
 		}
 		card = turn.player.chooseCardFromHand();
-		turn.player.drawPile.push(card);
+		turn.player.placeOnDrawPile(card);
 		turn.player.trashCardFromHand(card.getClass());
 
 	}

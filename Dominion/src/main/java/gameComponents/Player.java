@@ -179,4 +179,18 @@ public class Player {
 		}
 		return false;
 	}
+
+	public Card forcedBuy(int budget) {
+		// TODO Will Interact with GUI
+		// budget is for display only
+		return null;
+	}
+
+	public void gainCardToHand(Card card) {
+		this.hand.add(card);
+	}
+
+	public void placeOnDrawPile(Card card) {
+		this.drawPile.push(card);
+	}
 }
