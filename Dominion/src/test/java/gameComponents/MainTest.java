@@ -1,3 +1,4 @@
+package gameComponents;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -10,6 +11,8 @@ import org.easymock.EasyMock;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import util.AvailableLocales;
 
 public class MainTest {
 

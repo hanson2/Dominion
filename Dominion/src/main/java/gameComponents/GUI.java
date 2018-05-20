@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SpringLayout;
 
 import cards.Card;
+import cards.Copper;
 import util.AvailableLocales;
 import util.GameConstants;
 

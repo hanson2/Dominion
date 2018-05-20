@@ -1,4 +1,4 @@
-package cards;
+package gameComponents;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -12,6 +12,14 @@ import java.util.Stack;
 import org.junit.Before;
 import org.junit.Test;
 
+import cards.Card;
+import cards.Copper;
+import cards.Curse;
+import cards.Duchy;
+import cards.Estate;
+import cards.Gold;
+import cards.Province;
+import cards.Silver;
 import gameComponents.Supply;
 
 public class SupplyPileTest {

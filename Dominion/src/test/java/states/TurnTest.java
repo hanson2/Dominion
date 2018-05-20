@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import cards.Card;
 import gameComponents.Player;
+import gameComponents.PlayerCreator;
 import gameComponents.Supply;
 import util.CardType;
 
@@ -33,12 +34,11 @@ public class TurnTest {
 
 	@Test
 	public void testFinalState() {
-		Player player = EasyMock.mock(Player.class);
+		Player player = PlayerCreator.makeMockedPlayer();
 		Supply supply = EasyMock.mock(Supply.class);
 		Card card = EasyMock.mock(Card.class);
 		Turn turn = new Turn(player, supply);
 		turn.playArea = new ArrayList<>();
-		player.discardPile = new Stack<>();
 
 		EasyMock.expect(player.chooseCardToPlay()).andReturn(Optional.of(card));
 		EasyMock.expect(card.getActionsAdded()).andReturn(0);
