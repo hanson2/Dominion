@@ -173,4 +173,10 @@ public class Player {
 		}
 		return false;
 	}
+
+	public Card forcedBuy(int budget) {
+		// TODO will eventually interact with the GUI
+		//budget is for display purposes only
+		return null;
+	}
 }

@@ -13,7 +13,7 @@ public class RemodelPlayStateTest {
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(new Curse());
 		EasyMock.expect(player.trashCardFromHand(Curse.class)).andReturn(true);
 		Card card = new Copper();
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
+		EasyMock.expect(player.forcedBuy(2)).andReturn(card);
 		
 		player.gainCard(card);
 
@@ -33,7 +33,7 @@ public class RemodelPlayStateTest {
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(new Curse());
 		EasyMock.expect(player.trashCardFromHand(Curse.class)).andReturn(true);
 		Card card = new Estate();
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
+		EasyMock.expect(player.forcedBuy(2)).andReturn(card);
 		
 		player.gainCard(card);
 
@@ -52,9 +52,9 @@ public class RemodelPlayStateTest {
 
 		EasyMock.expect(player.chooseCardFromHand()).andReturn(new Curse());
 		EasyMock.expect(player.trashCardFromHand(Curse.class)).andReturn(true);
-		EasyMock.expect(player.buy()).andReturn(Optional.of(new Gold()));
+		EasyMock.expect(player.forcedBuy(2)).andReturn(new Gold());
 		Card card = new Copper();
-		EasyMock.expect(player.buy()).andReturn(Optional.of(card));
+		EasyMock.expect(player.forcedBuy(2)).andReturn(card);
 
 		player.gainCard(card);
 
