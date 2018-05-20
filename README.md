@@ -49,19 +49,19 @@
         - [ ] BVA: If the player has buys or money remaining after they have
           exited the buy phase, their buys and money are set to 0.
 	
-    - [ ] The cleanup phase begins once the buy phase is over. The player has
+    - [x] The cleanup phase begins once the buy phase is over. The player has
       no input over this phase, but what happens is all played cards are
       discarded and all cards remaining in hand are discarded. The player then
       receives 5 new cards off the top of their deck. If there are not five
       cards. The player’s discard pile is shuffled and placed underneath the
       player’s drawpile. They then draw 5 new cards. The cleanup phase ends
       when the player has 5 new cards in their hand. The turn then gets passed
-      to the next player to have their action phase.
+      to the next player to have their action phase. (implemented in 350197eb)
 	
-        - [ ] Edges cases: if there are no cards in draw pile and discard
+        - [x] Edges cases: if there are no cards in draw pile and discard
           shuffles, if there are less than 5 cards in draw pile and discard
           shuffles, if there are no cards in draw or discards, you cannot draw
-          a card.
+          a card (implemented by aa1fcfd3).
 	
 - [ ] Have a number displayed on top of the draw pile to show how many cards
   are remaining in the draw pile.
