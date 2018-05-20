@@ -25,4 +25,9 @@ public class Laboratory extends Card {
 		return GameConstants.LABORATORYACTIONSADDED;
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.LABORATORYNAME;
+	}
+
 }

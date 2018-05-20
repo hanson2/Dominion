@@ -25,4 +25,14 @@ public class Chancellor extends Card {
 		return new ChancellorPlayState();
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.CHANCELLORNAME;
+	}
+	
+	@Override
+	public String getText() {
+		return GameConstants.CHANCELLORTEXT;
+	}
+
 }

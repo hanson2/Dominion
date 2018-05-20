@@ -20,4 +20,14 @@ public class ThroneRoom extends Card {
 		return new ThroneRoomPlayState();
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.THRONEROOMNAME;
+	}
+	
+	@Override
+	public String getText() {
+		return GameConstants.THRONEROOMTEXT;
+	}
+
 }

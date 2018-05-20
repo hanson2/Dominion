@@ -20,4 +20,14 @@ public class Moneylender extends Card {
 		return new MoneylenderPlayState();
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.MONEYLENDERNAME;
+	}
+	
+	@Override
+	public String getText() {
+		return GameConstants.MONEYLENDERTEXT;
+	}
+
 }

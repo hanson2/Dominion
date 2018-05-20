@@ -19,4 +19,9 @@ public class Estate extends Card {
 		toReturn.add(CardType.VICTORY);
 		return toReturn;
 	}
+
+	@Override
+	public String getName() {
+		return GameConstants.ESTATENAME;
+	}
 }

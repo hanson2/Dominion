@@ -20,4 +20,9 @@ public class Copper extends Card {
 		return GameConstants.COPPERCOST;
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.COPPERNAME;
+	}
+
 }

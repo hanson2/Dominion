@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class FestivalTest {
@@ -58,6 +60,30 @@ public class FestivalTest {
 		Card card = new Festival();
 		
 		assertEquals(card.getCost(), GameConstants.FESTIVALCOST);
+	}
+	
+	@Test
+	public void testFestivalName() {
+		Card card = new Festival();
+		
+		assertEquals(card.getName(), GameConstants.FESTIVALNAME);
+	}
+	
+	@Test
+	public void testFestivalText() {
+		Card card = new Festival();
+		
+		assertEquals(card.getText(), GameConstants.DEFAULTCARDTEXT);
+	}
+	
+	@Test
+	public void testFestivalTypeTranslationKeys() {
+		Card card = new Festival();
+		
+		ArrayList<String> expectedTranslationKeys = new ArrayList<String>();
+		expectedTranslationKeys.add("cardtypeAction");
+		
+		assertEquals(card.getTypeTranslationKeys(), expectedTranslationKeys);
 	}
 
 }

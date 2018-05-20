@@ -34,4 +34,9 @@ public class Market extends Card {
 	public int getCardsAdded() {
 		return GameConstants.MARKETCARDSADDED;
 	}
+
+	@Override
+	public String getName() {
+		return GameConstants.MARKETNAME;
+	}
 }

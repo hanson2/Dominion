@@ -2,6 +2,8 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -52,6 +54,24 @@ public class VassalTest {
 	@Test
 	public void testGetPlayState() {
 		assertEquals(card.getPlayState().getClass(), VassalPlayState.class);
+	}
+	
+	@Test
+	public void testGetName() {
+		assertEquals(card.getName(), GameConstants.VASSALNAME);
+	}
+	
+	@Test
+	public void testGetText() {
+		assertEquals(card.getText(), GameConstants.VASSALTEXT);
+	}
+	
+	@Test
+	public void testGetTypeTranslationKeys() {
+		ArrayList<String> expectedTranslationKeys = new ArrayList<String>();
+		expectedTranslationKeys.add("cardtypeAction");
+		
+		assertEquals(card.getTypeTranslationKeys(), expectedTranslationKeys);
 	}
 
 }

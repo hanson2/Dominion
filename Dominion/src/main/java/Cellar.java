@@ -25,4 +25,14 @@ public class Cellar extends Card {
 		return new CellarPlayState();
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.CELLARNAME;
+	}
+	
+	@Override
+	public String getText() {
+		return GameConstants.CELLARTEXT;
+	}
+	
 }

@@ -20,4 +20,9 @@ public class Smithy extends Card {
 		return GameConstants.SMITHYCARDSADDED;
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.SMITHYNAME;
+	}
+
 }

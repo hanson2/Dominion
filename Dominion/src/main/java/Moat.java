@@ -13,12 +13,22 @@ public class Moat extends Card {
 
 	@Override
 	public int getCost() {
-		return 2;
+		return GameConstants.MOATCOST;
 	}
-	
+
 	@Override
 	public int getCardsAdded() {
-		return 2;
+		return GameConstants.MOATCARDSADDED;
+	}
+
+	@Override
+	public String getName() {
+		return GameConstants.MOATNAME;
+	}
+
+	@Override
+	public String getText() {
+		return GameConstants.MOATTEXT;
 	}
 
 }

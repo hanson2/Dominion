@@ -6,6 +6,8 @@ public class Main {
 	public static void main(String[] args) {
 		gui = new GUI();
 		
+		chooseLocale();
+		
 		int numPlayers = getNumPlayers();
 		Player[] players = new Player[numPlayers]; 
 		for(int i = 0; i < numPlayers; ++i) {
@@ -20,6 +22,10 @@ public class Main {
 	static Player createPlayer(int number) {
 		String name = gui.getPlayerXName(number).join();
 		return new Player(name, gui);
+	}
+	
+	static void chooseLocale() {
+		
 	}
 
 }

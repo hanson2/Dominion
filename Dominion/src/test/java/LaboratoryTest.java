@@ -1,5 +1,9 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
+import javax.swing.tree.ExpandVetoException;
+
 import org.junit.Test;
 
 public class LaboratoryTest {
@@ -50,6 +54,28 @@ public class LaboratoryTest {
 	public void testGetPlayState() {
 		Card lab = new Laboratory();
 		assertEquals(lab.getPlayState().getClass(), CardPlayState.class);
+	}
+	
+	@Test
+	public void testGetName() {
+		Card lab = new Laboratory();
+		assertEquals(lab.getName(), GameConstants.LABORATORYNAME);
+	}
+	
+	@Test
+	public void testGetText() {
+		Card lab = new Laboratory();
+		assertEquals(lab.getText(), GameConstants.DEFAULTCARDTEXT);
+	}
+	
+	@Test
+	public void testGetTypeTranslationKeys() {
+		Card lab = new Laboratory();
+		
+		ArrayList<String> expectedTranslationKeys = new ArrayList<String>();
+		expectedTranslationKeys.add("cardtypeAction");
+		
+		assertEquals(lab.getTypeTranslationKeys(), expectedTranslationKeys);
 	}
 
 }

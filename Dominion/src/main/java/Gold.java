@@ -20,4 +20,9 @@ public class Gold extends Card {
 		return toReturn;
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.GOLDNAME;
+	}
+
 }

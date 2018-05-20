@@ -20,4 +20,9 @@ public class Silver extends Card {
 		return toReturn;
 	}
 
+	@Override
+	public String getName() {
+		return GameConstants.SILVERNAME;
+	}
+
 }

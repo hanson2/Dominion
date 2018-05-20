@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class VillageTest {
@@ -50,6 +52,28 @@ public class VillageTest {
 	public void testGetPlayState() {
 		Card village = new Village();
 		assertEquals(village.getPlayState().getClass(), CardPlayState.class);
+	}
+	
+	@Test
+	public void testGetName() {
+		Card village = new Village();
+		assertEquals(village.getName(), GameConstants.VILLAGENAME);
+	}
+	
+	@Test
+	public void testGetText() {
+		Card village = new Village();
+		assertEquals(village.getText(), GameConstants.DEFAULTCARDTEXT);
+	}
+	
+	@Test
+	public void testGetTypeTranslationKeys() {
+		Card village = new Village();
+		
+		ArrayList<String> expectedTranslationKeys = new ArrayList<String>();
+		expectedTranslationKeys.add("cardtypeAction");
+		
+		assertEquals(village.getTypeTranslationKeys(), expectedTranslationKeys);
 	}
 
 }
