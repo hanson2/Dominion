@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Stack;
 
@@ -17,7 +18,6 @@ import cards.Gold;
 import cards.Moneylender;
 import cards.Province;
 import cards.Silver;
-import cards.Smithy;
 
 public class Supply {
 	Stack<Card> copperSupply;
@@ -46,7 +46,7 @@ public class Supply {
 		for (int i = 0; i < 10; i++) {
 			this.kingdomCardList.add(new Stack<Card>());
 			for (int j = 0; j < 10; j++) {
-				//TODO replace with real kingdom Cards
+				// TODO replace with real kingdom Cards
 				this.kingdomCardList.get(i).push(new Moneylender());
 			}
 		}
@@ -134,8 +134,8 @@ public class Supply {
 				numPilesGone++;
 			}
 		}
-		for (String cardName : this.supplyPiles.keySet()) {
-			if (this.supplyPiles.get(cardName).isEmpty()) {
+		for (Entry<String, Stack<Card>> cardEntry : this.supplyPiles.entrySet()) {
+			if (cardEntry.getValue().isEmpty()) {
 				numPilesGone++;
 			}
 		}
@@ -150,9 +150,9 @@ public class Supply {
 				availableCards.add(kingdomPile.peek());
 			}
 		}
-		for (String cardName : this.supplyPiles.keySet()) {
-			if (!this.supplyPiles.get(cardName).isEmpty()) {
-				availableCards.add(this.supplyPiles.get(cardName).peek());
+		for (Entry<String, Stack<Card>> cardEntry : this.supplyPiles.entrySet()) {
+			if (!cardEntry.getValue().isEmpty()) {
+				availableCards.add(this.supplyPiles.get(cardEntry.getKey()).peek());
 			}
 		}
 		return availableCards;

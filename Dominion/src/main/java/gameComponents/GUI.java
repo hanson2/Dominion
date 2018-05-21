@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -17,10 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 
 import cards.Card;
-import cards.Copper;
 import util.AvailableLocales;
 import util.GameConstants;
 
@@ -34,8 +31,14 @@ public class GUI extends JFrame {
 		pane = getContentPane();
 
 		quitB = new JButton(GameConstants.messages.getString("guiQuit"));
-		QuitButtonHandler quitBH = new QuitButtonHandler();
-		quitB.addActionListener(quitBH);
+		quitB.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(DISPOSE_ON_CLOSE);
+			}
+
+		});
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pane.add(quitB);
 	}
@@ -45,19 +48,17 @@ public class GUI extends JFrame {
 		this.pane.setLayout(new GridLayout(0, 3, 0, 0));
 	}
 
-	private class QuitButtonHandler implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			System.exit(DISPOSE_ON_CLOSE);
-		}
-
-	}
-
 	private void drawExitButton(CompletableFuture<Optional<Card>> future) {
 		JButton end = new JButton();
 		end.setText(GameConstants.messages.getString("guiEndPhase"));
-		end.addActionListener(new EndTurnListener(future));
+		end.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				future.complete(Optional.empty());
+			}
+
+		});
 		this.pane.add(end);
 
 	}
@@ -66,39 +67,15 @@ public class GUI extends JFrame {
 		JButton box = new JButton();
 		String text = this.makeText(card);
 		box.setText(text);
-		box.addActionListener(new CardListener(future, card));
+		box.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				future.complete(Optional.of(card));
+			}
+
+		});
 		this.pane.add(box);// add at the end
-	}
-
-	private class EndTurnListener implements ActionListener {
-		CompletableFuture<Optional<Card>> future;
-
-		public EndTurnListener(CompletableFuture<Optional<Card>> future) {
-			this.future = future;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			future.complete(Optional.empty());
-
-		}
-
-	}
-
-	private class CardListener implements ActionListener {
-		CompletableFuture<Optional<Card>> future;
-		Card card;
-
-		public CardListener(CompletableFuture<Optional<Card>> future, Card card) {
-			this.future = future;
-			this.card = card;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			this.future.complete(Optional.of(card));
-		}
-
 	}
 
 	private String makeText(Card card) {
@@ -279,13 +256,19 @@ public class GUI extends JFrame {
 
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				// TODO Auto-generated method stub
 			}
 
 		});
 		this.pane.add(textField);
 		JButton submit = new JButton();
-		submit.addActionListener(new SubmitListener(textField, playerXNameFuture));
+		submit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				playerXNameFuture.complete(textField.getText());
+			}
+
+		});
 		submit.setText(GameConstants.messages.getString("submit"));
 		this.pane.add(submit);
 
@@ -293,60 +276,6 @@ public class GUI extends JFrame {
 		this.setSize(GameConstants.GUIWIDTH, GameConstants.GUIHEIGHT);
 
 		return playerXNameFuture;
-	}
-
-	private class SubmitListener implements ActionListener {
-		JTextField textField;
-		private CompletableFuture<String> future;
-
-		public SubmitListener(JTextField textField, CompletableFuture<String> playerXNameFuture) {
-			this.textField = textField;
-			this.future = playerXNameFuture;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			this.future.complete(this.textField.getText());
-		}
-
-	}
-
-	public void game(int numPlayers) {
-		this.clear();
-		String title = String.format(GameConstants.messages.getString("guiGameTitle"), numPlayers);
-		setTitle(title);
-		setSize(GameConstants.GUIWIDTH, GameConstants.GUIHEIGHT);
-		setVisible(true);
-
-		SpringLayout Spring = new SpringLayout();
-		pane.setLayout(Spring);
-
-		JButton endTurnB = new JButton("End Turn");
-		EndTurnButtonHandler endTurnBH = new EndTurnButtonHandler();
-		endTurnB.addActionListener(endTurnBH);
-
-		// Adds TurnButton
-		pane.add(endTurnB);
-		Spring.putConstraint(SpringLayout.SOUTH, endTurnB, 0, SpringLayout.SOUTH, pane);
-		Spring.putConstraint(SpringLayout.NORTH, endTurnB, 400, SpringLayout.NORTH, pane);
-		Spring.putConstraint(SpringLayout.WEST, endTurnB, 210, SpringLayout.WEST, pane);
-
-		// Adds QuitButton
-		pane.add(quitB);
-		Spring.putConstraint(SpringLayout.NORTH, quitB, 0, SpringLayout.NORTH, pane);
-		Spring.putConstraint(SpringLayout.EAST, quitB, 0, SpringLayout.EAST, pane);
-
-		pane.repaint();
-	}
-
-	private class EndTurnButtonHandler implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
 	}
 
 	public CompletableFuture<Boolean> getPlayAgainDisplayWinners(Set<Player> winners) {
@@ -422,24 +351,15 @@ public class GUI extends JFrame {
 		JButton box = new JButton();
 		String text = this.makeText(card);
 		box.setText(text);
-		box.addActionListener(new ForcedCardListener(future, card));
+		box.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				future.complete(card);
+			}
+
+		});
 		this.pane.add(box, -1);// add at the end
-
-	}
-
-	private class ForcedCardListener implements ActionListener {
-		CompletableFuture<Card> future;
-		Card card;
-
-		public ForcedCardListener(CompletableFuture<Card> future, Card card) {
-			this.future = future;
-			this.card = card;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			this.future.complete(card);
-		}
 
 	}
 
