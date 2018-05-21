@@ -173,46 +173,28 @@ public class SupplyPileTest {
 		Stack<Card> provinceSupply = supply.getBaseSupply(Cards.PROVINCE);
 		Card province = provinceSupply.peek();
 
-		supply.decrementPile(province);
-		supply.decrementPile(province);
-		supply.decrementPile(province);
-		supply.decrementPile(province);
-		supply.decrementPile(province);
-		supply.decrementPile(province);
-		supply.decrementPile(province);
-		supply.decrementPile(province);
-		supply.decrementPile(province);
-		supply.decrementPile(province);
-		supply.decrementPile(province);
-		supply.decrementPile(province);
-		supply.decrementPile(province);
+		for (int i = 0; i < 13; i++) {
+			supply.decrementPile(province);
+		}
 	}
 
 	@Test
 	public void testDecrementCardNonEmptyKingdom() {
-		Stack<Card> kingdom0Supply = supply.getKingdomCardList().get(0);
+		Stack<Card> kingdom1Supply = supply.getKingdomCardList().get(1);
 
-		supply.decrementPile(kingdom0Supply.peek());
+		supply.decrementPile(kingdom1Supply.peek());
 
-		assertEquals(kingdom0Supply.size(), 9);
+		assertEquals(kingdom1Supply.size(), 9);
 	}
 
 	@Test(expected = EmptyStackException.class)
 	public void testDecrementCardEmptyKingdom() {
-		Stack<Card> kingdom0Supply = supply.getKingdomCardList().get(0);
-		Card kingdomCard = kingdom0Supply.peek();
+		Stack<Card> kingdom1Supply = supply.getKingdomCardList().get(1);
+		Card kingdomCard = kingdom1Supply.peek();
 
-		supply.decrementPile(kingdomCard);
-		supply.decrementPile(kingdomCard);
-		supply.decrementPile(kingdomCard);
-		supply.decrementPile(kingdomCard);
-		supply.decrementPile(kingdomCard);
-		supply.decrementPile(kingdomCard);
-		supply.decrementPile(kingdomCard);
-		supply.decrementPile(kingdomCard);
-		supply.decrementPile(kingdomCard);
-		supply.decrementPile(kingdomCard);
-		supply.decrementPile(kingdomCard);
+		for (int i = 0; i < 11; i++) {
+			supply.decrementPile(kingdomCard);
+		}
 	}
 
 	@Test
