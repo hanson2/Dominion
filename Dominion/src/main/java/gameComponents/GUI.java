@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -20,7 +19,6 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import cards.Card;
-import cards.Copper;
 import util.AvailableLocales;
 import util.GameConstants;
 
@@ -365,8 +363,6 @@ public class GUI extends JFrame {
 	}
 
 	public CompletableFuture<Optional<Card>> chooseCardToPlay(List<Card> availableCards, String name) {
-		// TODO make this display player's hand and allow the player to choose
-		// one to play
 		this.clear();
 		this.pane.setLayout(new GridLayout(0, availableCards.size() + 1, 0, 0));
 		this.setVisible(true);
@@ -401,6 +397,7 @@ public class GUI extends JFrame {
 
 	public CompletableFuture<Card> chooseCardFromHand(List<Card> availableCards, String name) {
 		this.clear();
+		this.pane.setLayout(new GridLayout(0, availableCards.size(), 0, 0));
 		this.setVisible(true);
 		CompletableFuture<Card> chosenCardFuture = new CompletableFuture<Card>();
 		String title = GameConstants.messages.getString("chooseCardFromHand");
@@ -411,6 +408,8 @@ public class GUI extends JFrame {
 			this.drawForcedCard(card, chosenCardFuture);
 		}
 
+		this.setVisible(true);
+		this.setSize(GameConstants.GUICARDSIZE * availableCards.size(), GameConstants.GUICARDSIZE);
 		this.pane.repaint();
 		this.repaint();
 
