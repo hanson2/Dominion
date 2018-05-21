@@ -17,7 +17,6 @@ import cards.Estate;
 import cards.Gold;
 import cards.Province;
 import cards.Silver;
-import cards.Village;
 import util.CardFactory;
 import util.Cards;
 
