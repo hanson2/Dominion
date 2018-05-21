@@ -75,7 +75,7 @@ public class Supply {
 		this.baseSupplyPiles.put(Cards.COPPER, new Stack<Card>());
 		this.copperSupply = this.baseSupplyPiles.get(Cards.COPPER);
 		for (int i = 0; i < 60 - (7 * numPlayers); i++) {
-			this.copperSupply.push(new Copper());
+			this.copperSupply.push(CardFactory.makeCard(Copper.class));
 		}
 	}
 
@@ -83,7 +83,7 @@ public class Supply {
 		this.baseSupplyPiles.put(Cards.SILVER, new Stack<Card>());
 		this.silverSupply = this.baseSupplyPiles.get(Cards.SILVER);
 		for (int i = 0; i < 40; i++) {
-			this.silverSupply.push(new Silver());
+			this.silverSupply.push(CardFactory.makeCard(Silver.class));
 		}
 	}
 
@@ -91,7 +91,7 @@ public class Supply {
 		this.baseSupplyPiles.put(Cards.GOLD, new Stack<Card>());
 		this.goldSupply = this.baseSupplyPiles.get(Cards.GOLD);
 		for (int i = 0; i < 30; i++) {
-			this.goldSupply.push(new Gold());
+			this.goldSupply.push(CardFactory.makeCard(Gold.class));
 		}
 	}
 
@@ -99,7 +99,7 @@ public class Supply {
 		this.baseSupplyPiles.put(Cards.ESTATE, new Stack<Card>());
 		this.estateSupply = this.baseSupplyPiles.get(Cards.ESTATE);
 		for (int i = 0; i < 24 - (3 * numPlayers); i++) {
-			this.estateSupply.push(new Estate());
+			this.estateSupply.push(CardFactory.makeCard(Estate.class));
 		}
 	}
 
@@ -107,7 +107,7 @@ public class Supply {
 		this.baseSupplyPiles.put(Cards.DUCHY, new Stack<Card>());
 		this.duchySupply = this.baseSupplyPiles.get(Cards.DUCHY);
 		for (int i = 0; i < 12; i++) {
-			this.duchySupply.push(new Duchy());
+			this.duchySupply.push(CardFactory.makeCard(Duchy.class));
 		}
 	}
 
@@ -115,7 +115,7 @@ public class Supply {
 		this.baseSupplyPiles.put(Cards.PROVINCE, new Stack<Card>());
 		this.provinceSupply = this.baseSupplyPiles.get(Cards.PROVINCE);
 		for (int i = 0; i < 12; i++) {
-			this.provinceSupply.push(new Province());
+			this.provinceSupply.push(CardFactory.makeCard(Province.class));
 		}
 	}
 
@@ -123,7 +123,7 @@ public class Supply {
 		this.baseSupplyPiles.put(Cards.CURSE, new Stack<Card>());
 		this.curseSupply = this.baseSupplyPiles.get(Cards.CURSE);
 		for (int i = 0; i < 30; i++) {
-			this.curseSupply.push(new Curse());
+			this.curseSupply.push(CardFactory.makeCard(Curse.class));
 		}
 	}
 
