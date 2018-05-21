@@ -10,6 +10,7 @@ import java.util.Stack;
 import cards.Card;
 import cards.Copper;
 import cards.Estate;
+import util.CardFactory;
 
 public class Player {
 
@@ -103,11 +104,12 @@ public class Player {
 
 	private void addStarterCards() {
 		for (int i = 0; i < 7; i++) {
-			this.drawPile.push(new Copper());
+			this.drawPile.push(CardFactory.makeCard(Copper.class));
 		}
 		for (int i = 0; i < 3; i++) {
-			this.drawPile.push(new Estate());
+			this.drawPile.push(CardFactory.makeCard(Estate.class));
 		}
+		Collections.shuffle(drawPile);
 	}
 
 	private int addPointsFromPile(Collection<Card> cards) {
