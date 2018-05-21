@@ -21,13 +21,12 @@ public class TurnActionState extends TurnState {
 			if (potentialCard.isPresent()) {
 				Card card = potentialCard.get();
 				if (card.getType().contains(CardType.ACTION)) {
-					if (this.turn.actions<=0) {
-						break;
-					}else{
+					if (this.turn.actions > 0) {
 						this.handleCard(card);
-						this.turn.actions--;						
+						this.turn.actions--;
 					}
-				}else{
+
+				} else {
 					this.handleCard(card);
 				}
 			} else {

@@ -103,33 +103,35 @@ public class GUI extends JFrame {
 
 	private String makeText(Card card) {
 		StringBuilder cardText = new StringBuilder();
+		cardText.append("<html>");//only way to get newline on buttons
 		cardText.append(GameConstants.messages.getString(card.getName()));
-		cardText.append(System.lineSeparator());
+		cardText.append("<br />");
 		if (card.getCost() != 0) {
 			cardText.append(String.format(GameConstants.messages.getString("guiCardCost"), card.getCost()));
-			cardText.append(System.lineSeparator());
+			cardText.append("<br />");
 		}
 		if (card.getActionsAdded() != 0) {
 			cardText.append(String.format(GameConstants.messages.getString("guiCardActions"), card.getActionsAdded()));
-			cardText.append(System.lineSeparator());
+			cardText.append("<br />");
 		}
 		if (card.getBuysAdded() != 0) {
 			cardText.append(String.format(GameConstants.messages.getString("guiCardBuys"), card.getBuysAdded()));
-			cardText.append(System.lineSeparator());
+			cardText.append("<br />");
 		}
 		if (card.getCardsAdded() != 0) {
 			cardText.append(String.format(GameConstants.messages.getString("guiCardCards"), card.getCardsAdded()));
-			cardText.append(System.lineSeparator());
+			cardText.append("<br />");
 		}
 		if (card.getCoinsAdded() != 0) {
 			cardText.append(String.format(GameConstants.messages.getString("guiCardCoins"), card.getCoinsAdded()));
-			cardText.append(System.lineSeparator());
+			cardText.append("<br />");
 		}
 		if (card.getVictoryValue() != 0) {
 			cardText.append(
 					String.format(GameConstants.messages.getString("guiCardVictoryPoints"), card.getVictoryValue()));
-			cardText.append(System.lineSeparator());
+			cardText.append("<br />");
 		}
+		cardText.append("</html>");
 		return cardText.toString();
 	}
 
