@@ -72,6 +72,7 @@ public class MainTest {
 		response.complete("test");
 
 		EasyMock.expect(gui.getPlayerXName(1)).andReturn(response);
+		
 
 		EasyMock.replay(gui);
 

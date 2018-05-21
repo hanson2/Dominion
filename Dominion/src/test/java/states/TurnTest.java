@@ -6,12 +6,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.Stack;
 
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-import cards.Card;
 import gameComponents.Player;
 import gameComponents.PlayerCreator;
 import gameComponents.Supply;
@@ -36,20 +34,14 @@ public class TurnTest {
 	public void testFinalState() {
 		Player player = PlayerCreator.makeMockedPlayer();
 		Supply supply = EasyMock.mock(Supply.class);
-		Card card = EasyMock.mock(Card.class);
 		Turn turn = new Turn(player, supply);
 		turn.playArea = new ArrayList<>();
 
-		EasyMock.expect(player.chooseCardToPlay()).andReturn(Optional.of(card));
-		EasyMock.expect(card.getActionsAdded()).andReturn(0);
-		EasyMock.expect(card.getBuysAdded()).andReturn(0);
-		EasyMock.expect(card.getCoinsAdded()).andReturn(0);
-		EasyMock.expect(card.getType()).andReturn(this.getCardTypeSet(CardType.ACTION));
-		EasyMock.expect(card.getPlayState()).andReturn(new CardPlayState());
+		EasyMock.expect(player.chooseCardToPlay()).andReturn(Optional.empty());
 		EasyMock.expect(player.buy(turn.supplyPiles)).andReturn(Optional.empty());
 		player.cleanup(turn.playArea);
 
-		EasyMock.replay(player, card);
+		EasyMock.replay(player);
 
 		turn.run();
 

@@ -45,7 +45,6 @@ public class Main {
 	}
 
 	static Player createPlayer(GUI gui, int number) {
-		gui.clear();
 		String name = gui.getPlayerXName(number).join();
 		return new Player(name, gui);
 	}

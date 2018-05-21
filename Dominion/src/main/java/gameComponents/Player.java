@@ -2,6 +2,7 @@ package gameComponents;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Stack;
@@ -33,6 +34,7 @@ public class Player {
 		} else if (this.discardPile.size() > 0) {
 			this.drawPile.addAll(this.discardPile);
 			this.discardPile.clear();
+			Collections.shuffle(this.drawPile);
 			this.drawACard();
 		}
 	}
@@ -42,7 +44,7 @@ public class Player {
 			this.drawACard();
 		}
 	}
-	
+
 	public void cleanup(List<Card> playArea) {
 		this.discardPile.addAll(playArea);
 		playArea.clear();
