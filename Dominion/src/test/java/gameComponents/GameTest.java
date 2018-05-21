@@ -6,12 +6,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.easymock.EasyMock;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import states.Turn;
 import states.TurnCreator;
 
 public class GameTest {
+	
+	Supply supply;
+	
+	@Before
+	public void setup() {
+		supply = EasyMock.mock(Supply.class);
+		EasyMock.replay(supply);
+	}
+	
+	@After
+	public void tearDown() {
+		EasyMock.verify(supply);
+	}
 
 	@Test
 	public void testWinnable() {
@@ -23,7 +38,7 @@ public class GameTest {
 
 		EasyMock.replay(list);
 
-		Game game = new Game(list);
+		Game game = new Game(supply, list);
 
 		Set<Player> winners = new HashSet<>();
 		winners.add(list[0]);
@@ -45,7 +60,7 @@ public class GameTest {
 
 		EasyMock.replay(list);
 
-		Game game = new Game(list);
+		Game game = new Game(supply, list);
 		Set<Player> winners = new HashSet<>();
 		winners.add(list[0]);
 
@@ -64,7 +79,7 @@ public class GameTest {
 			EasyMock.replay(list[i]);
 		}
 
-		Game game = new Game(list);
+		Game game = new Game(supply, list);
 		Set<Player> winners = new HashSet<>();
 		winners.add(list[1]);
 
@@ -89,7 +104,7 @@ public class GameTest {
 		winners.add(list[2]);
 		winners.add(list[3]);
 
-		Game game = new Game(list);
+		Game game = new Game(supply, list);
 		game.endTurn();
 		game.endTurn();
 		assertEquals(winners, game.endGame());
@@ -111,7 +126,7 @@ public class GameTest {
 		Set<Player> winners = new HashSet<Player>();
 		winners.add(list[3]);
 
-		Game game = new Game(list);
+		Game game = new Game(supply, list);
 		game.endTurn();
 		game.endTurn();
 		assertEquals(winners, game.endGame());
@@ -129,12 +144,12 @@ public class GameTest {
 
 		EasyMock.replay(list);
 
-		new Game(list);
+		new Game(supply, list);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testLessThan2Players() {
-		new Game(new Player[0]);
+		new Game(supply, new Player[0]);
 	}
 
 	@Test
@@ -268,7 +283,7 @@ public class GameTest {
 	@Test
 	public void testMakeNewTurn() {
 		Player[] list = new Player[2];
-		Game game = new Game(list);
+		Game game = new Game(supply, list);
 		Turn turn = game.makeNewTurn();
 
 		assertEquals(TurnCreator.getPlayer(turn), list[game.currentPlayer]);

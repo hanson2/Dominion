@@ -1,9 +1,26 @@
 package gameComponents;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import cards.Card;
+import cards.Cellar;
+import cards.Chancellor;
+import cards.Chapel;
+import cards.Festival;
+import cards.Laboratory;
+import cards.Market;
+import cards.Moat;
+import cards.Moneylender;
+import cards.Smithy;
+import cards.ThroneRoom;
+import cards.Vassal;
+import cards.Village;
+import cards.Woodcutter;
 import util.AvailableLocales;
 import util.GameConstants;
 
@@ -23,7 +40,10 @@ public class Main {
 				players[i] = createPlayer(gui, i + 1);
 			}
 
-			Game game = new Game(players);
+			Supply supply = new Supply(numPlayers);
+			supply.makeKingdomCardList(Main.getAvailableKingdomCards(), new Random());
+
+			Game game = new Game(supply, players);
 
 			Set<Player> winners = game.runGame();
 
@@ -62,4 +82,23 @@ public class Main {
 		return locale;
 	}
 
+	static List<Card> getAvailableKingdomCards() {
+		List<Card> availableKingdomCards = new ArrayList<Card>();
+
+		availableKingdomCards.add(new Cellar());
+		availableKingdomCards.add(new Chancellor());
+		availableKingdomCards.add(new Chapel());
+		availableKingdomCards.add(new Festival());
+		availableKingdomCards.add(new Market());
+		availableKingdomCards.add(new Laboratory());
+		availableKingdomCards.add(new Moat());
+		availableKingdomCards.add(new Moneylender());
+		availableKingdomCards.add(new Smithy());
+		availableKingdomCards.add(new ThroneRoom());
+		availableKingdomCards.add(new Vassal());
+		availableKingdomCards.add(new Village());
+		availableKingdomCards.add(new Woodcutter());
+
+		return availableKingdomCards;
+	}
 }

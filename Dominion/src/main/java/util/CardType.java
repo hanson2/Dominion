@@ -2,5 +2,10 @@ package util;
 
 
 public enum CardType {
-	ACTION, VICTORY, TREASURE, ATTACK, REACTION, CURSE
+	ACTION,
+	VICTORY,
+	TREASURE,
+	ATTACK,
+	REACTION,
+	CURSE
 }

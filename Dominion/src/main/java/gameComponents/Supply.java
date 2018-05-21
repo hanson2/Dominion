@@ -14,10 +14,10 @@ import cards.Curse;
 import cards.Duchy;
 import cards.Estate;
 import cards.Gold;
-import cards.Moneylender;
 import cards.Province;
 import cards.Silver;
-import cards.Smithy;
+import util.CardFactory;
+import util.Cards;
 
 public class Supply {
 	Stack<Card> copperSupply;
@@ -29,95 +29,111 @@ public class Supply {
 	Stack<Card> curseSupply;
 	List<Stack<Card>> kingdomCardList;
 
-	Map<String, Stack<Card>> supplyPiles;
+	Map<Cards, Stack<Card>> baseSupplyPiles;
 
-	public Supply() {
-		this.supplyPiles = new HashMap<String, Stack<Card>>();
-		this.kingdomCardList = new ArrayList<Stack<Card>>();
+	public Supply(int numPlayers) {
+		this.baseSupplyPiles = new HashMap<Cards, Stack<Card>>();
 
-		this.setUpCopper();
+		this.setUpCopper(numPlayers);
 		this.setUpSilver();
 		this.setUpGold();
-		this.setUpEstate();
+		this.setUpEstate(numPlayers);
 		this.setUpDuchy();
 		this.setUpProvince();
 		this.setUpCurse();
-
-		for (int i = 0; i < 10; i++) {
-			this.kingdomCardList.add(new Stack<Card>());
-			for (int j = 0; j < 10; j++) {
-				//TODO replace with real kingdom Cards
-				this.kingdomCardList.get(i).push(new Moneylender());
-			}
-		}
 	}
 
-	private void setUpCopper() {
-		this.supplyPiles.put("COPPER", new Stack<Card>());
-		this.copperSupply = this.supplyPiles.get("COPPER");
-		for (int i = 0; i < 60; i++) {
-			this.copperSupply.push(new Copper());
+	public void makeKingdomCardList(List<Card> availableKingdomCards, Random random) {
+		ArrayList<Stack<Card>> cardList = new ArrayList<Stack<Card>>();
+		Set<Card> chosenKingdomCards = this.chooseKingdomCards(availableKingdomCards, random);
+		for (Card card : chosenKingdomCards) {
+			Stack<Card> cardStack = new Stack<Card>();
+			for (int j = 0; j < 10; j++) {
+				cardStack.push(CardFactory.makeCard(card.getClass()));
+			}
+			cardList.add(cardStack);
+		}
+		this.kingdomCardList = cardList;
+
+	}
+
+	private Set<Card> chooseKingdomCards(List<Card> availableKingdomCards, Random random) {
+		Set<Card> chosenKingdomCards = new HashSet<Card>();
+
+		while (chosenKingdomCards.size() < 10) {
+			int randomIndex = random.nextInt(availableKingdomCards.size());
+			chosenKingdomCards.add(availableKingdomCards.get(randomIndex));
+		}
+
+		return chosenKingdomCards;
+	}
+
+	private void setUpCopper(int numPlayers) {
+		this.baseSupplyPiles.put(Cards.COPPER, new Stack<Card>());
+		this.copperSupply = this.baseSupplyPiles.get(Cards.COPPER);
+		for (int i = 0; i < 60 - (7 * numPlayers); i++) {
+			this.copperSupply.push(CardFactory.makeCard(Copper.class));
 		}
 	}
 
 	private void setUpSilver() {
-		this.supplyPiles.put("SILVER", new Stack<Card>());
-		this.silverSupply = this.supplyPiles.get("SILVER");
+		this.baseSupplyPiles.put(Cards.SILVER, new Stack<Card>());
+		this.silverSupply = this.baseSupplyPiles.get(Cards.SILVER);
 		for (int i = 0; i < 40; i++) {
-			this.silverSupply.push(new Silver());
+			this.silverSupply.push(CardFactory.makeCard(Silver.class));
 		}
 	}
 
 	private void setUpGold() {
-		this.supplyPiles.put("GOLD", new Stack<Card>());
-		this.goldSupply = this.supplyPiles.get("GOLD");
+		this.baseSupplyPiles.put(Cards.GOLD, new Stack<Card>());
+		this.goldSupply = this.baseSupplyPiles.get(Cards.GOLD);
 		for (int i = 0; i < 30; i++) {
-			this.goldSupply.push(new Gold());
+			this.goldSupply.push(CardFactory.makeCard(Gold.class));
 		}
 	}
 
-	private void setUpEstate() {
-		this.supplyPiles.put("ESTATE", new Stack<Card>());
-		this.estateSupply = this.supplyPiles.get("ESTATE");
-		for (int i = 0; i < 24; i++) {
-			this.estateSupply.push(new Estate());
+	private void setUpEstate(int numPlayers) {
+		this.baseSupplyPiles.put(Cards.ESTATE, new Stack<Card>());
+		this.estateSupply = this.baseSupplyPiles.get(Cards.ESTATE);
+		for (int i = 0; i < 24 - (3 * numPlayers); i++) {
+			this.estateSupply.push(CardFactory.makeCard(Estate.class));
 		}
 	}
 
 	private void setUpDuchy() {
-		this.supplyPiles.put("DUCHY", new Stack<Card>());
-		this.duchySupply = this.supplyPiles.get("DUCHY");
+		this.baseSupplyPiles.put(Cards.DUCHY, new Stack<Card>());
+		this.duchySupply = this.baseSupplyPiles.get(Cards.DUCHY);
 		for (int i = 0; i < 12; i++) {
-			this.duchySupply.push(new Duchy());
+			this.duchySupply.push(CardFactory.makeCard(Duchy.class));
 		}
 	}
 
 	private void setUpProvince() {
-		this.supplyPiles.put("PROVINCE", new Stack<Card>());
-		this.provinceSupply = this.supplyPiles.get("PROVINCE");
+		this.baseSupplyPiles.put(Cards.PROVINCE, new Stack<Card>());
+		this.provinceSupply = this.baseSupplyPiles.get(Cards.PROVINCE);
 		for (int i = 0; i < 12; i++) {
-			this.provinceSupply.push(new Province());
+			this.provinceSupply.push(CardFactory.makeCard(Province.class));
 		}
 	}
 
 	private void setUpCurse() {
-		this.supplyPiles.put("CURSE", new Stack<Card>());
-		this.curseSupply = this.supplyPiles.get("CURSE");
+		this.baseSupplyPiles.put(Cards.CURSE, new Stack<Card>());
+		this.curseSupply = this.baseSupplyPiles.get(Cards.CURSE);
 		for (int i = 0; i < 30; i++) {
-			this.curseSupply.push(new Curse());
+			this.curseSupply.push(CardFactory.makeCard(Curse.class));
 		}
 	}
 
-	public List<Stack<Card>> getKingdomCardList() {
+	List<Stack<Card>> getKingdomCardList() {
 		return this.kingdomCardList;
 	}
 
-	public Stack<Card> getBaseSupply(String cardName) {
-		return this.supplyPiles.get(cardName);
+	public Stack<Card> getBaseSupply(Cards cardName) {
+		return this.baseSupplyPiles.get(cardName);
 	}
 
 	public boolean isGameOver() {
-		if (this.supplyPiles.get("PROVINCE").isEmpty()) {
+		if (this.baseSupplyPiles.get(Cards.PROVINCE).isEmpty()) {
 			return true;
 		}
 		if (this.isThreePilesGone()) {
@@ -134,8 +150,8 @@ public class Supply {
 				numPilesGone++;
 			}
 		}
-		for (String cardName : this.supplyPiles.keySet()) {
-			if (this.supplyPiles.get(cardName).isEmpty()) {
+		for (Cards cardName : this.baseSupplyPiles.keySet()) {
+			if (this.baseSupplyPiles.get(cardName).isEmpty()) {
 				numPilesGone++;
 			}
 		}
@@ -150,12 +166,28 @@ public class Supply {
 				availableCards.add(kingdomPile.peek());
 			}
 		}
-		for (String cardName : this.supplyPiles.keySet()) {
-			if (!this.supplyPiles.get(cardName).isEmpty()) {
-				availableCards.add(this.supplyPiles.get(cardName).peek());
+		for (Cards cardName : this.baseSupplyPiles.keySet()) {
+			if (!this.baseSupplyPiles.get(cardName).isEmpty()) {
+				availableCards.add(this.baseSupplyPiles.get(cardName).peek());
 			}
 		}
 		return availableCards;
 	}
 
+	public void decrementPile(Card card) {
+		for (Cards cardName : this.baseSupplyPiles.keySet()) {
+			Card baseCard = this.baseSupplyPiles.get(cardName).peek();
+			if (baseCard.getClass().equals(card.getClass())) {
+				this.baseSupplyPiles.get(cardName).pop();
+				return;
+			}
+		}
+		for (Stack<Card> kingdomPile : this.kingdomCardList) {
+			Card kingdomCard = kingdomPile.peek();
+			if (kingdomCard.getClass().equals(card.getClass())) {
+				kingdomPile.pop();
+				return;
+			}
+		}
+	}
 }

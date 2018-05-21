@@ -103,8 +103,6 @@ public class Player {
 
 	private void addStarterCards() {
 		for (int i = 0; i < 7; i++) {
-			// TODO Change Supply to include less of the starter cards based on
-			// num players
 			this.drawPile.push(new Copper());
 		}
 		for (int i = 0; i < 3; i++) {
