@@ -18,6 +18,8 @@ repositories {
 pitest {
     targetClasses = ["cards.*", "util.*", "states.*", "gameComponents.*"]
     threads = 4
+    timestampedReports = false
+    useClasspathFile = true
 }
 
 jacoco {
