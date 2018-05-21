@@ -103,7 +103,7 @@ public class GUI extends JFrame {
 
 	private String makeText(Card card) {
 		StringBuilder cardText = new StringBuilder();
-		cardText.append("<html>");//only way to get newline on buttons
+		cardText.append("<html>");// only way to get newline on buttons
 		cardText.append(GameConstants.messages.getString(card.getName()));
 		cardText.append("<br />");
 		if (card.getCost() != 0) {
@@ -127,10 +127,11 @@ public class GUI extends JFrame {
 			cardText.append("<br />");
 		}
 		if (card.getVictoryValue() != 0) {
-			cardText.append(String.format(GameConstants.messages.getString("guiCardVictoryPoints"), card.getVictoryValue()));
+			cardText.append(
+					String.format(GameConstants.messages.getString("guiCardVictoryPoints"), card.getVictoryValue()));
 			cardText.append("<br />");
 		}
-		if (card.getText().length()!=0){
+		if (card.getText().length() != 0) {
 			cardText.append(String.format(GameConstants.messages.getString(card.getText())));
 			cardText.append("<br />");
 		}
