@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.Stack;
 
@@ -17,6 +18,7 @@ import cards.Gold;
 import cards.Province;
 import cards.Silver;
 import cards.Village;
+import util.CardFactory;
 import util.Cards;
 
 public class Supply {
@@ -42,13 +44,31 @@ public class Supply {
 		this.setUpDuchy();
 		this.setUpProvince();
 		this.setUpCurse();
+		
+		List<Card> chosenKingdomCards = this.chooseKingdomCards(availableKingdomCards);
 
 		for (int i = 0; i < 10; i++) {
 			this.kingdomCardList.add(new Stack<Card>());
 			for (int j = 0; j < 10; j++) {
-				this.kingdomCardList.get(i).push(new Village());
+				Card toAdd = chosenKingdomCards.get(i);
+				this.kingdomCardList.get(i).push(CardFactory.makeCard(toAdd.getClass()));
 			}
 		}
+	}
+	
+	private List<Card> chooseKingdomCards(Set<Card> availableKingdomCards) {
+		//TODO test this
+		List<Card> chosenKingdomCards = new ArrayList<Card>();
+		Random random = new Random();
+		Card[] availableCardArray = new Card[availableKingdomCards.size()];
+		availableKingdomCards.toArray(availableCardArray);
+		
+		while(chosenKingdomCards.size() < 10) {
+			int randomIndex = random.nextInt(availableCardArray.length);
+			chosenKingdomCards.add(availableCardArray[randomIndex]);
+		}
+		
+		return chosenKingdomCards;
 	}
 
 	private void setUpCopper(int numPlayers) {
