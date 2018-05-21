@@ -25,7 +25,7 @@ import cards.Woodcutter;
 public class CardFactory {
 
 	public static Card makeCard(Class<? extends Card> cardClass) {
-		// TODO test this
+
 		if (cardClass.equals(Copper.class)) {
 			return new Copper();
 		} else if (cardClass.equals(Silver.class)) {
