@@ -8,5 +8,6 @@ build:
     - gradle build
   only:
     - master          # Only build the master git branch
+    - /^feature[-_].*$/
   tags:
-    - gradle      # Matches the tags you created for your runner
+    - gradle    # Matches the tags you created for your runner
