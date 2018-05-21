@@ -32,9 +32,8 @@ public class Supply {
 
 	Map<Cards, Stack<Card>> baseSupplyPiles;
 
-	public Supply(int numPlayers, Set<Card> availableKingdomCards) {
+	public Supply(int numPlayers) {
 		this.baseSupplyPiles = new HashMap<Cards, Stack<Card>>();
-		this.kingdomCardList = new ArrayList<Stack<Card>>();
 
 		this.setUpCopper(numPlayers);
 		this.setUpSilver();
@@ -43,21 +42,24 @@ public class Supply {
 		this.setUpDuchy();
 		this.setUpProvince();
 		this.setUpCurse();
+	}
 
-		List<Card> chosenKingdomCards = this.chooseKingdomCards(availableKingdomCards);
+	public void makeKingdomCardList(Set<Card> availableKingdomCards, Random random) {
+		ArrayList<Stack<Card>> cardList = new ArrayList<Stack<Card>>();
+		Set<Card> chosenKingdomCards = this.chooseKingdomCards(availableKingdomCards, random);
 		for (Card card : chosenKingdomCards) {
 			Stack<Card> cardStack = new Stack<Card>();
 			for (int j = 0; j < 10; j++) {
 				cardStack.push(CardFactory.makeCard(card.getClass()));
 			}
-			this.kingdomCardList.add(cardStack);
+			cardList.add(cardStack);
 		}
+		this.kingdomCardList = cardList;
+
 	}
 
-	private List<Card> chooseKingdomCards(Set<Card> availableKingdomCards) {
-		// TODO test this
-		List<Card> chosenKingdomCards = new ArrayList<Card>();
-		Random random = new Random();
+	private Set<Card> chooseKingdomCards(Set<Card> availableKingdomCards, Random random) {
+		Set<Card> chosenKingdomCards = new HashSet<Card>();
 		Card[] availableCardArray = new Card[availableKingdomCards.size()];
 		availableKingdomCards.toArray(availableCardArray);
 

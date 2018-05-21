@@ -7,9 +7,11 @@ import static org.junit.Assert.assertTrue;
 import java.util.EmptyStackException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.Stack;
 
+import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,12 +33,14 @@ public class SupplyPileTest {
 	@Before
 	public void setup() {
 		numPlayers = 3;
-		supply = new Supply(numPlayers, Main.getAvailableKingdomCards());
+		supply = new Supply(numPlayers);
+		supply.makeKingdomCardList(Main.getAvailableKingdomCards(), new Random());
 	}
 
 	@Test
 	public void testSupplySetup() {
 		List<Stack<Card>> kingdomeCardList = supply.getKingdomCardList();
+		supply.makeKingdomCardList(Main.getAvailableKingdomCards(), new Random());
 
 		assertEquals(kingdomeCardList.size(), 10);
 
@@ -48,6 +52,55 @@ public class SupplyPileTest {
 		assertEquals(supply.getBaseSupply(Cards.DUCHY).size(), 12);
 		assertEquals(supply.getBaseSupply(Cards.PROVINCE).size(), 12);
 		assertEquals(supply.getBaseSupply(Cards.CURSE).size(), 30);
+	}
+
+	@Test
+	public void testMakeKingdomCardListBase() {
+		Set<Card> availableCards = Main.getAvailableKingdomCards();
+		Random random = EasyMock.mock(Random.class);
+		for (int i = 0; i < 10; i++) {
+			EasyMock.expect(random.nextInt(availableCards.size())).andReturn(i);
+		}
+
+		EasyMock.replay(random);
+
+		supply.makeKingdomCardList(Main.getAvailableKingdomCards(), random);
+		assertEquals(supply.kingdomCardList.size(), 10);
+		EasyMock.verify(random);
+	}
+
+	@Test
+	public void testMakeKingdomCardListOneRepeat() {
+		Set<Card> availableCards = Main.getAvailableKingdomCards();
+		Random random = EasyMock.mock(Random.class);
+		EasyMock.expect(random.nextInt(availableCards.size())).andReturn(1);
+		for (int i = 0; i < 10; i++) {
+			EasyMock.expect(random.nextInt(availableCards.size())).andReturn(i);
+		}
+
+		EasyMock.replay(random);
+
+		supply.makeKingdomCardList(Main.getAvailableKingdomCards(), random);
+		assertEquals(supply.kingdomCardList.size(), 10);
+		EasyMock.verify(random);
+	}
+
+	@Test
+	public void testMakeKingdomCardListMulitpleRepeats() {
+		Set<Card> availableCards = Main.getAvailableKingdomCards();
+		Random random = EasyMock.mock(Random.class);
+		EasyMock.expect(random.nextInt(availableCards.size())).andReturn(1);
+		EasyMock.expect(random.nextInt(availableCards.size())).andReturn(1);
+		EasyMock.expect(random.nextInt(availableCards.size())).andReturn(1);
+		for (int i = 0; i < 10; i++) {
+			EasyMock.expect(random.nextInt(availableCards.size())).andReturn(i);
+		}
+
+		EasyMock.replay(random);
+
+		supply.makeKingdomCardList(Main.getAvailableKingdomCards(), random);
+		assertEquals(supply.kingdomCardList.size(), 10);
+		EasyMock.verify(random);
 	}
 
 	@Test

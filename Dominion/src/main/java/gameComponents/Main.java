@@ -2,6 +2,7 @@ package gameComponents;
 
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -38,7 +39,8 @@ public class Main {
 				players[i] = createPlayer(gui, i + 1);
 			}
 
-			Supply supply = new Supply(numPlayers, Main.getAvailableKingdomCards());
+			Supply supply = new Supply(numPlayers);
+			supply.makeKingdomCardList(Main.getAvailableKingdomCards(), new Random());
 
 			Game game = new Game(supply, players);
 
