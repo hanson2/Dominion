@@ -14,6 +14,7 @@ import cards.Curse;
 import cards.Duchy;
 import cards.Estate;
 import cards.Gold;
+import cards.Moneylender;
 import cards.Province;
 import cards.Silver;
 import cards.Smithy;
@@ -46,7 +47,7 @@ public class Supply {
 			this.kingdomCardList.add(new Stack<Card>());
 			for (int j = 0; j < 10; j++) {
 				//TODO replace with real kingdom Cards
-				this.kingdomCardList.get(i).push(new Smithy());
+				this.kingdomCardList.get(i).push(new Moneylender());
 			}
 		}
 	}

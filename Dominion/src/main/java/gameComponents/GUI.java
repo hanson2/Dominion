@@ -127,8 +127,11 @@ public class GUI extends JFrame {
 			cardText.append("<br />");
 		}
 		if (card.getVictoryValue() != 0) {
-			cardText.append(
-					String.format(GameConstants.messages.getString("guiCardVictoryPoints"), card.getVictoryValue()));
+			cardText.append(String.format(GameConstants.messages.getString("guiCardVictoryPoints"), card.getVictoryValue()));
+			cardText.append("<br />");
+		}
+		if (card.getText().length()!=0){
+			cardText.append(String.format(GameConstants.messages.getString(card.getText())));
 			cardText.append("<br />");
 		}
 		cardText.append("</html>");
