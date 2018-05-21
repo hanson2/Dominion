@@ -1,7 +1,7 @@
 package states;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 
 import java.util.Optional;
 
@@ -66,7 +66,7 @@ public class VassalPlayStateTest {
 
 		state.run(turn);
 
-		assertFalse(turn.state.getClass() == cardToPickUp.getPlayState().getClass());
+		assertNotEquals(turn.state, cardToPickUp.getPlayState());
 
 		EasyMock.verify(player, turn);
 	}

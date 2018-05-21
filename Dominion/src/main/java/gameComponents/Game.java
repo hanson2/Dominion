@@ -57,18 +57,13 @@ public class Game {
 			tieBreaker = true;
 		}
 		for (int i = 0; i < players.length; i++) {
-			// first winner
 			if (players[i].getPoints() == maxPoints && winners.isEmpty()) {
 				winners.add(players[i]);
-			}
-			// winner with fewest turns
-			else if (i >= this.currentPlayer && this.players[i].getPoints() == maxPoints && !tieBreaker) {
+			} else if (i >= this.currentPlayer && this.players[i].getPoints() == maxPoints && !tieBreaker) {
 				winners.clear();
 				winners.add(players[i]);
 				tieBreaker = true;
-			}
-			// co-winners
-			else if (players[i].getPoints() == maxPoints) {
+			} else if (players[i].getPoints() == maxPoints) {
 				winners.add(players[i]);
 			}
 
