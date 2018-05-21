@@ -100,4 +100,10 @@ public class GameConstants {
 	public static final int MOATCARDSADDED = 2;
 	public static final String MOATNAME = "cardMoatName";
 	public static final String MOATTEXT = "cardMoatText";
+
+	public static final int GUIWIDTH = 900;
+	public static final int GUIHEIGHT = 300;
+	
+	public static final int GUICARDSIZE = 300;
+	
 }

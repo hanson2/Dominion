@@ -61,11 +61,11 @@ public class Player {
 	}
 
 	public Optional<Card> chooseCardToPlay() {
-		return this.gui.chooseCardToPlay(this.hand).join();
+		return this.gui.chooseCardToPlay(this.hand, name).join();
 	}
 
 	public Optional<Card> buy(Supply supplyPiles) {
-		return this.gui.chooseCardToBuy(supplyPiles.getAvailableCards()).join();
+		return this.gui.chooseCardToBuy(supplyPiles.getAvailableCards(), this.name).join();
 	}
 
 	public int getPoints() {
@@ -119,7 +119,7 @@ public class Player {
 	}
 
 	public boolean promptYesNo(String messageKey) {
-		return this.gui.promptYesNo(messageKey).join();
+		return this.gui.promptYesNo(messageKey, this.name).join();
 	}
 
 	public boolean trashCardFromHand(Class<? extends Card> cardClass) {
@@ -147,7 +147,7 @@ public class Player {
 	}
 
 	public Card chooseCardFromHand() {
-		return gui.chooseCardFromHand(this.hand).join();
+		return gui.chooseCardFromHand(this.hand, this.name).join();
 	}
 
 	public boolean discardCardFromHand(Class<? extends Card> cardClass) {
