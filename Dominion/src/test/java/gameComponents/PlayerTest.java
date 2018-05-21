@@ -36,7 +36,6 @@ public class PlayerTest {
 
 	@After
 	public void tearDown() {
-		EasyMock.replay(gui);
 		EasyMock.verify(gui);
 	}
 
