@@ -5,7 +5,20 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import cards.*;
+import cards.Card;
+import cards.Cellar;
+import cards.Chancellor;
+import cards.Chapel;
+import cards.Festival;
+import cards.Laboratory;
+import cards.Market;
+import cards.Moat;
+import cards.Moneylender;
+import cards.Smithy;
+import cards.ThroneRoom;
+import cards.Vassal;
+import cards.Village;
+import cards.Woodcutter;
 import util.AvailableLocales;
 import util.GameConstants;
 
@@ -24,7 +37,7 @@ public class Main {
 			for (int i = 0; i < numPlayers; ++i) {
 				players[i] = createPlayer(gui, i + 1);
 			}
-			
+
 			Supply supply = new Supply(numPlayers, Main.getAvailableKingdomCards());
 
 			Game game = new Game(supply, players);
@@ -65,10 +78,10 @@ public class Main {
 
 		return locale;
 	}
-	
+
 	static Set<Card> getAvailableKingdomCards() {
 		Set<Card> availableKingdomCards = new HashSet<Card>();
-		
+
 		availableKingdomCards.add(new Cellar());
 		availableKingdomCards.add(new Chancellor());
 		availableKingdomCards.add(new Chapel());
@@ -82,7 +95,7 @@ public class Main {
 		availableKingdomCards.add(new Vassal());
 		availableKingdomCards.add(new Village());
 		availableKingdomCards.add(new Woodcutter());
-		
+
 		return availableKingdomCards;
 	}
 }
