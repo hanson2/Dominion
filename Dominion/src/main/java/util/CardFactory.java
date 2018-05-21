@@ -1,11 +1,31 @@
 package util;
 
-import cards.*;
+import cards.Card;
+import cards.Cellar;
+import cards.Chancellor;
+import cards.Chapel;
+import cards.Copper;
+import cards.Curse;
+import cards.Duchy;
+import cards.Estate;
+import cards.Festival;
+import cards.Gold;
+import cards.Laboratory;
+import cards.Market;
+import cards.Moat;
+import cards.Moneylender;
+import cards.Province;
+import cards.Silver;
+import cards.Smithy;
+import cards.ThroneRoom;
+import cards.Vassal;
+import cards.Village;
+import cards.Woodcutter;
 
 public class CardFactory {
 
 	public static Card makeCard(Class<? extends Card> cardClass) {
-		//TODO test this
+		// TODO test this
 		if (cardClass.equals(Copper.class)) {
 			return new Copper();
 		} else if (cardClass.equals(Silver.class)) {

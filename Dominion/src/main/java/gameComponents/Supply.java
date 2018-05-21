@@ -43,30 +43,29 @@ public class Supply {
 		this.setUpDuchy();
 		this.setUpProvince();
 		this.setUpCurse();
-		
-		List<Card> chosenKingdomCards = this.chooseKingdomCards(availableKingdomCards);
 
-		for (int i = 0; i < 10; i++) {
-			this.kingdomCardList.add(new Stack<Card>());
+		List<Card> chosenKingdomCards = this.chooseKingdomCards(availableKingdomCards);
+		for (Card card : chosenKingdomCards) {
+			Stack<Card> cardStack = new Stack<Card>();
 			for (int j = 0; j < 10; j++) {
-				Card toAdd = chosenKingdomCards.get(i);
-				this.kingdomCardList.get(i).push(CardFactory.makeCard(toAdd.getClass()));
+				cardStack.push(CardFactory.makeCard(card.getClass()));
 			}
+			this.kingdomCardList.add(cardStack);
 		}
 	}
-	
+
 	private List<Card> chooseKingdomCards(Set<Card> availableKingdomCards) {
-		//TODO test this
+		// TODO test this
 		List<Card> chosenKingdomCards = new ArrayList<Card>();
 		Random random = new Random();
 		Card[] availableCardArray = new Card[availableKingdomCards.size()];
 		availableKingdomCards.toArray(availableCardArray);
-		
-		while(chosenKingdomCards.size() < 10) {
+
+		while (chosenKingdomCards.size() < 10) {
 			int randomIndex = random.nextInt(availableCardArray.length);
 			chosenKingdomCards.add(availableCardArray[randomIndex]);
 		}
-		
+
 		return chosenKingdomCards;
 	}
 
@@ -177,16 +176,16 @@ public class Supply {
 	}
 
 	public void decrementPile(Card card) {
-		for(Cards cardName : this.baseSupplyPiles.keySet()) {
+		for (Cards cardName : this.baseSupplyPiles.keySet()) {
 			Card baseCard = this.baseSupplyPiles.get(cardName).peek();
-			if(baseCard.getClass().equals(card.getClass())) {
+			if (baseCard.getClass().equals(card.getClass())) {
 				this.baseSupplyPiles.get(cardName).pop();
 				return;
 			}
 		}
 		for (Stack<Card> kingdomPile : this.kingdomCardList) {
 			Card kingdomCard = kingdomPile.peek();
-			if(kingdomCard.getClass().equals(card.getClass())) {
+			if (kingdomCard.getClass().equals(card.getClass())) {
 				kingdomPile.pop();
 				return;
 			}
