@@ -21,14 +21,17 @@ import cards.Gold;
 import cards.Province;
 import cards.Silver;
 import gameComponents.Supply;
+import util.Cards;
 
 public class SupplyPileTest {
 
 	Supply supply;
+	int numPlayers;
 
 	@Before
 	public void setup() {
-		supply = new Supply();
+		numPlayers = 3;
+		supply = new Supply(numPlayers);
 	}
 
 	@Test
@@ -37,76 +40,75 @@ public class SupplyPileTest {
 
 		assertEquals(kingdomeCardList.size(), 10);
 
-		assertEquals(supply.getBaseSupply("COPPER").size(), 60);
-		assertEquals(supply.getBaseSupply("SILVER").size(), 40);
-		assertEquals(supply.getBaseSupply("GOLD").size(), 30);
+		assertEquals(supply.getBaseSupply(Cards.COPPER).size(), 60 - (7 * numPlayers));
+		assertEquals(supply.getBaseSupply(Cards.SILVER).size(), 40);
+		assertEquals(supply.getBaseSupply(Cards.GOLD).size(), 30);
 
-		assertEquals(supply.getBaseSupply("ESTATE").size(), 24);
-		assertEquals(supply.getBaseSupply("DUCHY").size(), 12);
-		assertEquals(supply.getBaseSupply("PROVINCE").size(), 12);
-		assertEquals(supply.getBaseSupply("CURSE").size(), 30);
+		assertEquals(supply.getBaseSupply(Cards.ESTATE).size(), 24 - (3 * numPlayers));
+		assertEquals(supply.getBaseSupply(Cards.DUCHY).size(), 12);
+		assertEquals(supply.getBaseSupply(Cards.PROVINCE).size(), 12);
+		assertEquals(supply.getBaseSupply(Cards.CURSE).size(), 30);
 	}
 
 	@Test
 	public void testCopperValidity() {
-		Card top = supply.getBaseSupply("COPPER").peek();
+		Card top = supply.getBaseSupply(Cards.COPPER).peek();
 
 		assertEquals(top.getClass(), Copper.class);
-		assertEquals(supply.getBaseSupply("COPPER"), supply.getBaseSupply("COPPER"));
+		assertEquals(supply.getBaseSupply(Cards.COPPER), supply.getBaseSupply(Cards.COPPER));
 	}
 
 	@Test
 	public void testSilverValidity() {
-		Card top = supply.getBaseSupply("SILVER").peek();
+		Card top = supply.getBaseSupply(Cards.SILVER).peek();
 
 		assertEquals(top.getClass(), Silver.class);
-		assertEquals(supply.getBaseSupply("SILVER"), supply.getBaseSupply("SILVER"));
+		assertEquals(supply.getBaseSupply(Cards.SILVER), supply.getBaseSupply(Cards.SILVER));
 	}
 
 	@Test
 	public void testGoldValidity() {
-		Card top = supply.getBaseSupply("GOLD").peek();
+		Card top = supply.getBaseSupply(Cards.GOLD).peek();
 
 		assertEquals(top.getClass(), Gold.class);
-		assertEquals(supply.getBaseSupply("GOLD"), supply.getBaseSupply("GOLD"));
+		assertEquals(supply.getBaseSupply(Cards.GOLD), supply.getBaseSupply(Cards.GOLD));
 	}
 
 	@Test
 	public void testEstateValidity() {
-		Card top = supply.getBaseSupply("ESTATE").peek();
+		Card top = supply.getBaseSupply(Cards.ESTATE).peek();
 
 		assertEquals(top.getClass(), Estate.class);
-		assertEquals(supply.getBaseSupply("ESTATE"), supply.getBaseSupply("ESTATE"));
+		assertEquals(supply.getBaseSupply(Cards.ESTATE), supply.getBaseSupply(Cards.ESTATE));
 	}
 
 	@Test
 	public void testDuchyValidity() {
-		Card top = supply.getBaseSupply("DUCHY").peek();
+		Card top = supply.getBaseSupply(Cards.DUCHY).peek();
 
 		assertEquals(top.getClass(), Duchy.class);
-		assertEquals(supply.getBaseSupply("DUCHY"), supply.getBaseSupply("DUCHY"));
+		assertEquals(supply.getBaseSupply(Cards.DUCHY), supply.getBaseSupply(Cards.DUCHY));
 	}
 
 	@Test
 	public void testProvinceValidity() {
-		Supply supply = new Supply();
-		Card top = supply.getBaseSupply("PROVINCE").peek();
+		Card top = supply.getBaseSupply(Cards.PROVINCE).peek();
 
 		assertEquals(top.getClass(), Province.class);
-		assertEquals(supply.getBaseSupply("PROVINCE"), supply.getBaseSupply("PROVINCE"));
+		assertEquals(supply.getBaseSupply(Cards.PROVINCE), supply.getBaseSupply(Cards.PROVINCE));
 	}
 
 	@Test
 	public void testCurseValidity() {
-		Card top = supply.getBaseSupply("CURSE").peek();
+		Card top = supply.getBaseSupply(Cards.CURSE).peek();
 
 		assertEquals(top.getClass(), Curse.class);
-		assertEquals(supply.getBaseSupply("CURSE"), supply.getBaseSupply("CURSE"));
+		assertEquals(supply.getBaseSupply(Cards.CURSE), supply.getBaseSupply(Cards.CURSE));
 	}
 
 	@Test
 	public void testGameOverProvinceGone() {
-		Stack<Card> provinceSupply = supply.getBaseSupply("PROVINCE");
+		Stack<Card> provinceSupply = supply.getBaseSupply(Cards.PROVINCE);
 
 		for (int i = 0; i < 12; i++) {
 			provinceSupply.pop();
@@ -122,7 +124,7 @@ public class SupplyPileTest {
 
 	@Test
 	public void testGameOverOneBaseSupplyGoneNotProvince() {
-		Stack<Card> duchySupply = supply.getBaseSupply("DUCHY");
+		Stack<Card> duchySupply = supply.getBaseSupply(Cards.DUCHY);
 
 		for (int i = 0; i < 12; i++) {
 			duchySupply.pop();
@@ -133,9 +135,9 @@ public class SupplyPileTest {
 
 	@Test
 	public void testGameOverThreeBaseSupplyGoneNotProvince() {
-		Stack<Card> duchySupply = supply.getBaseSupply("DUCHY");
-		Stack<Card> goldSupply = supply.getBaseSupply("GOLD");
-		Stack<Card> copperSupply = supply.getBaseSupply("COPPER");
+		Stack<Card> duchySupply = supply.getBaseSupply(Cards.DUCHY);
+		Stack<Card> goldSupply = supply.getBaseSupply(Cards.GOLD);
+		Stack<Card> copperSupply = supply.getBaseSupply(Cards.COPPER);
 
 		for (int i = 0; i < 12; i++) {
 			duchySupply.pop();
@@ -143,7 +145,7 @@ public class SupplyPileTest {
 		for (int i = 0; i < 30; i++) {
 			goldSupply.pop();
 		}
-		for (int i = 0; i < 60; i++) {
+		for (int i = 0; i < 60 - (7 * numPlayers); i++) {
 			copperSupply.pop();
 		}
 
@@ -152,10 +154,10 @@ public class SupplyPileTest {
 
 	@Test
 	public void testGameOverMoreThanThreeBaseSupplyGoneNotProvince() {
-		Stack<Card> duchySupply = supply.getBaseSupply("DUCHY");
-		Stack<Card> goldSupply = supply.getBaseSupply("GOLD");
-		Stack<Card> copperSupply = supply.getBaseSupply("COPPER");
-		Stack<Card> estateSupply = supply.getBaseSupply("ESTATE");
+		Stack<Card> duchySupply = supply.getBaseSupply(Cards.DUCHY);
+		Stack<Card> goldSupply = supply.getBaseSupply(Cards.GOLD);
+		Stack<Card> copperSupply = supply.getBaseSupply(Cards.COPPER);
+		Stack<Card> silverSupply = supply.getBaseSupply(Cards.SILVER);
 
 		for (int i = 0; i < 12; i++) {
 			duchySupply.pop();
@@ -163,11 +165,11 @@ public class SupplyPileTest {
 		for (int i = 0; i < 30; i++) {
 			goldSupply.pop();
 		}
-		for (int i = 0; i < 60; i++) {
+		for (int i = 0; i < 60 - (7 * numPlayers); i++) {
 			copperSupply.pop();
 		}
-		for (int i = 0; i < 24; i++) {
-			estateSupply.pop();
+		for (int i = 0; i < 40; i++) {
+			silverSupply.pop();
 		}
 
 		assertTrue(supply.isGameOver());
@@ -175,7 +177,6 @@ public class SupplyPileTest {
 
 	@Test
 	public void testGameOverThreeKingdomSupplyGone() {
-
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 10; j++) {
 				supply.getKingdomCardList().get(i).pop();
@@ -187,7 +188,6 @@ public class SupplyPileTest {
 
 	@Test
 	public void testGameOverFourKingdomSupplyGone() {
-
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 10; j++) {
 				supply.getKingdomCardList().get(i).pop();
@@ -199,7 +199,6 @@ public class SupplyPileTest {
 
 	@Test
 	public void testGameOverOneKingdomSupplyGone() {
-
 		for (int j = 0; j < 10; j++) {
 			supply.getKingdomCardList().get(0).pop();
 		}
@@ -209,8 +208,8 @@ public class SupplyPileTest {
 
 	@Test
 	public void testGameOverMixedThreeSupplyGone() {
-		Stack<Card> duchySupply = supply.getBaseSupply("DUCHY");
-		Stack<Card> goldSupply = supply.getBaseSupply("GOLD");
+		Stack<Card> duchySupply = supply.getBaseSupply(Cards.DUCHY);
+		Stack<Card> goldSupply = supply.getBaseSupply(Cards.GOLD);
 
 		for (int j = 0; j < 10; j++) {
 			supply.getKingdomCardList().get(0).pop();
@@ -227,8 +226,8 @@ public class SupplyPileTest {
 
 	@Test
 	public void testGameOverMixedFourSupplyGone() {
-		Stack<Card> duchySupply = supply.getBaseSupply("DUCHY");
-		Stack<Card> goldSupply = supply.getBaseSupply("GOLD");
+		Stack<Card> duchySupply = supply.getBaseSupply(Cards.DUCHY);
+		Stack<Card> goldSupply = supply.getBaseSupply(Cards.GOLD);
 
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 10; j++) {
@@ -307,7 +306,7 @@ public class SupplyPileTest {
 
 	@Test
 	public void testGetAvailableCardBasePileGone() {
-		for (int j = 0; j < 60; j++) {
+		for (int j = 0; j < 60 - (7 * numPlayers); j++) {
 			supply.copperSupply.pop();
 		}
 

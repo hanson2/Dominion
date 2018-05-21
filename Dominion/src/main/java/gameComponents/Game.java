@@ -15,7 +15,7 @@ public class Game {
 			throw new IllegalArgumentException();
 		}
 		this.players = players;
-		this.supplyPiles = new Supply();
+		this.supplyPiles = new Supply(players.length);
 		this.currentPlayer = 0;
 	}
 
