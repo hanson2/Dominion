@@ -67,7 +67,7 @@ public class GameConstants {
 	public static final int SMITHYCOST = 4;
 	public static final int SMITHYCARDSADDED = 3;
 	public static final String SMITHYNAME = "cardSmithyName";
-	
+
 	public static final int VASSALCOST = 3;
 	public static final int VASSALCOINSADDED = 2;
 	public static final String VASSALNAME = "cardVassalName";
@@ -82,7 +82,7 @@ public class GameConstants {
 	public static final int WOODCUTTERCOINSADDED = 2;
 	public static final int WOODCUTTERBUYSADDED = 1;
 	public static final String WOODCUTTERNAME = "cardWoodcutterName";
-	
+
 	public static final int CHAPELCOST = 2;
 	public static final String CHAPELNAME = "cardChapelName";
 	public static final String CHAPELTEXT = "cardChapelText";
@@ -95,9 +95,15 @@ public class GameConstants {
 	public static final int CELLARACTIONSADDED = 1;
 	public static final String CELLARNAME = "cardCellarName";
 	public static final String CELLARTEXT = "cardCellarText";
-	
+
 	public static final int MOATCOST = 2;
 	public static final int MOATCARDSADDED = 2;
 	public static final String MOATNAME = "cardMoatName";
 	public static final String MOATTEXT = "cardMoatText";
+
+	public static final int GUIWIDTH = 900;
+	public static final int GUIHEIGHT = 300;
+
+	public static final int GUICARDSIZE = 300;
+
 }

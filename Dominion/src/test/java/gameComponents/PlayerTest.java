@@ -284,7 +284,7 @@ public class PlayerTest {
 		Optional<Card> potentialCardToPlay = Optional.empty();
 		response.complete(potentialCardToPlay);
 
-		EasyMock.expect(gui.chooseCardToPlay(player.getHand())).andReturn(response);
+		EasyMock.expect(gui.chooseCardToPlay(player.getHand(), "Test")).andReturn(response);
 
 		EasyMock.replay(gui);
 
@@ -299,7 +299,7 @@ public class PlayerTest {
 		Optional<Card> potentialCardToPlay = Optional.of(cardReturned);
 		response.complete(potentialCardToPlay);
 
-		EasyMock.expect(gui.chooseCardToPlay(player.getHand())).andReturn(response);
+		EasyMock.expect(gui.chooseCardToPlay(player.getHand(), "Test")).andReturn(response);
 
 		EasyMock.replay(gui, cardReturned);
 
@@ -318,7 +318,7 @@ public class PlayerTest {
 		Supply supplyPiles = EasyMock.mock(Supply.class);
 
 		EasyMock.expect(supplyPiles.getAvailableCards()).andReturn(availableCards).anyTimes();
-		EasyMock.expect(gui.chooseCardToBuy(availableCards)).andReturn(response);
+		EasyMock.expect(gui.chooseCardToBuy(availableCards, "Test")).andReturn(response);
 
 		EasyMock.replay(gui, supplyPiles);
 
@@ -339,7 +339,7 @@ public class PlayerTest {
 		Supply supplyPiles = EasyMock.mock(Supply.class);
 
 		EasyMock.expect(supplyPiles.getAvailableCards()).andReturn(availableCards).anyTimes();
-		EasyMock.expect(gui.chooseCardToBuy(availableCards)).andReturn(response);
+		EasyMock.expect(gui.chooseCardToBuy(availableCards, "Test")).andReturn(response);
 
 		EasyMock.replay(gui, supplyPiles);
 
@@ -355,7 +355,7 @@ public class PlayerTest {
 		Card cardReturned = EasyMock.mock(Card.class);
 		chosenCardFuture.complete(cardReturned);
 
-		EasyMock.expect(gui.chooseCardFromHand(player.hand)).andReturn(chosenCardFuture);
+		EasyMock.expect(gui.chooseCardFromHand(player.hand, "Test")).andReturn(chosenCardFuture);
 
 		EasyMock.replay(gui, cardReturned);
 
@@ -370,7 +370,7 @@ public class PlayerTest {
 		CompletableFuture<Boolean> response = new CompletableFuture<Boolean>();
 		response.complete(true);
 
-		EasyMock.expect(gui.promptYesNo("throneroomPrompt")).andReturn(response);
+		EasyMock.expect(gui.promptYesNo("throneroomPrompt", "Test")).andReturn(response);
 
 		EasyMock.replay(gui);
 
@@ -383,7 +383,7 @@ public class PlayerTest {
 		CompletableFuture<Boolean> response = new CompletableFuture<Boolean>();
 		response.complete(false);
 
-		EasyMock.expect(gui.promptYesNo("throneroomPrompt")).andReturn(response);
+		EasyMock.expect(gui.promptYesNo("throneroomPrompt", "Test")).andReturn(response);
 
 		EasyMock.replay(gui);
 

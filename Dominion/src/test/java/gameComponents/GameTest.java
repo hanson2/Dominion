@@ -147,6 +147,9 @@ public class GameTest {
 		Supply supplyPiles = EasyMock.mock(Supply.class);
 		Game game = EasyMock.partialMockBuilder(Game.class).addMockedMethod("makeNewTurn").createMock();
 		Turn turn = EasyMock.mock(Turn.class);
+		for (int i = 0; i < list.length; i++) {
+			list[i].drawNewHand();
+		}
 
 		EasyMock.expect(game.makeNewTurn()).andReturn(turn);
 		turn.run();
@@ -181,6 +184,9 @@ public class GameTest {
 		}
 		Supply supplyPiles = EasyMock.mock(Supply.class);
 		Game game = EasyMock.partialMockBuilder(Game.class).addMockedMethod("makeNewTurn").createMock();
+		for (int i = 0; i < list.length; i++) {
+			list[i].drawNewHand();
+		}
 		Turn turn = EasyMock.mock(Turn.class);
 
 		EasyMock.expect(game.makeNewTurn()).andReturn(turn);
@@ -221,6 +227,9 @@ public class GameTest {
 		Supply supplyPiles = EasyMock.mock(Supply.class);
 		Game game = EasyMock.partialMockBuilder(Game.class).addMockedMethod("makeNewTurn").createMock();
 		Turn turn = EasyMock.mock(Turn.class);
+		for (int i = 0; i < list.length; i++) {
+			list[i].drawNewHand();
+		}
 
 		EasyMock.expect(game.makeNewTurn()).andReturn(turn);
 		turn.run();

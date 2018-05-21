@@ -20,6 +20,9 @@ public class Game {
 	}
 
 	public Set<Player> runGame() {
+
+		this.initializePlayers();
+
 		while (true) {
 			Turn currentTurn = this.makeNewTurn();
 			currentTurn.run();
@@ -32,6 +35,12 @@ public class Game {
 		}
 
 		return this.endGame();
+	}
+
+	private void initializePlayers() {
+		for (int i = 0; i < players.length; i++) {
+			players[i].drawNewHand();
+		}
 	}
 
 	public Set<Player> endGame() {

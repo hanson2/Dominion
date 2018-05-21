@@ -2,6 +2,7 @@ package gameComponents;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Stack;
@@ -33,6 +34,7 @@ public class Player {
 		} else if (this.discardPile.size() > 0) {
 			this.drawPile.addAll(this.discardPile);
 			this.discardPile.clear();
+			Collections.shuffle(this.drawPile);
 			this.drawACard();
 		}
 	}
@@ -42,7 +44,7 @@ public class Player {
 			this.drawACard();
 		}
 	}
-	
+
 	public void cleanup(List<Card> playArea) {
 		this.discardPile.addAll(playArea);
 		playArea.clear();
@@ -61,11 +63,11 @@ public class Player {
 	}
 
 	public Optional<Card> chooseCardToPlay() {
-		return this.gui.chooseCardToPlay(this.hand).join();
+		return this.gui.chooseCardToPlay(this.hand, name).join();
 	}
 
 	public Optional<Card> buy(Supply supplyPiles) {
-		return this.gui.chooseCardToBuy(supplyPiles.getAvailableCards()).join();
+		return this.gui.chooseCardToBuy(supplyPiles.getAvailableCards(), this.name).join();
 	}
 
 	public int getPoints() {
@@ -119,7 +121,7 @@ public class Player {
 	}
 
 	public boolean promptYesNo(String messageKey) {
-		return this.gui.promptYesNo(messageKey).join();
+		return this.gui.promptYesNo(messageKey, this.name).join();
 	}
 
 	public boolean trashCardFromHand(Class<? extends Card> cardClass) {
@@ -147,7 +149,7 @@ public class Player {
 	}
 
 	public Card chooseCardFromHand() {
-		return gui.chooseCardFromHand(this.hand).join();
+		return gui.chooseCardFromHand(this.hand, this.name).join();
 	}
 
 	public boolean discardCardFromHand(Class<? extends Card> cardClass) {
