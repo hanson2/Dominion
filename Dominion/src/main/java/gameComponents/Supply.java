@@ -28,10 +28,10 @@ public class Supply {
 	Stack<Card> curseSupply;
 	List<Stack<Card>> kingdomCardList;
 
-	Map<Cards, Stack<Card>> supplyPiles;
+	Map<Cards, Stack<Card>> baseSupplyPiles;
 
 	public Supply(int numPlayers) {
-		this.supplyPiles = new HashMap<Cards, Stack<Card>>();
+		this.baseSupplyPiles = new HashMap<Cards, Stack<Card>>();
 		this.kingdomCardList = new ArrayList<Stack<Card>>();
 
 		this.setUpCopper(numPlayers);
@@ -51,71 +51,71 @@ public class Supply {
 	}
 
 	private void setUpCopper(int numPlayers) {
-		this.supplyPiles.put(Cards.COPPER, new Stack<Card>());
-		this.copperSupply = this.supplyPiles.get(Cards.COPPER);
+		this.baseSupplyPiles.put(Cards.COPPER, new Stack<Card>());
+		this.copperSupply = this.baseSupplyPiles.get(Cards.COPPER);
 		for (int i = 0; i < 60 - (7 * numPlayers); i++) {
 			this.copperSupply.push(new Copper());
 		}
 	}
 
 	private void setUpSilver() {
-		this.supplyPiles.put(Cards.SILVER, new Stack<Card>());
-		this.silverSupply = this.supplyPiles.get(Cards.SILVER);
+		this.baseSupplyPiles.put(Cards.SILVER, new Stack<Card>());
+		this.silverSupply = this.baseSupplyPiles.get(Cards.SILVER);
 		for (int i = 0; i < 40; i++) {
 			this.silverSupply.push(new Silver());
 		}
 	}
 
 	private void setUpGold() {
-		this.supplyPiles.put(Cards.GOLD, new Stack<Card>());
-		this.goldSupply = this.supplyPiles.get(Cards.GOLD);
+		this.baseSupplyPiles.put(Cards.GOLD, new Stack<Card>());
+		this.goldSupply = this.baseSupplyPiles.get(Cards.GOLD);
 		for (int i = 0; i < 30; i++) {
 			this.goldSupply.push(new Gold());
 		}
 	}
 
 	private void setUpEstate(int numPlayers) {
-		this.supplyPiles.put(Cards.ESTATE, new Stack<Card>());
-		this.estateSupply = this.supplyPiles.get(Cards.ESTATE);
+		this.baseSupplyPiles.put(Cards.ESTATE, new Stack<Card>());
+		this.estateSupply = this.baseSupplyPiles.get(Cards.ESTATE);
 		for (int i = 0; i < 24 - (3 * numPlayers); i++) {
 			this.estateSupply.push(new Estate());
 		}
 	}
 
 	private void setUpDuchy() {
-		this.supplyPiles.put(Cards.DUCHY, new Stack<Card>());
-		this.duchySupply = this.supplyPiles.get(Cards.DUCHY);
+		this.baseSupplyPiles.put(Cards.DUCHY, new Stack<Card>());
+		this.duchySupply = this.baseSupplyPiles.get(Cards.DUCHY);
 		for (int i = 0; i < 12; i++) {
 			this.duchySupply.push(new Duchy());
 		}
 	}
 
 	private void setUpProvince() {
-		this.supplyPiles.put(Cards.PROVINCE, new Stack<Card>());
-		this.provinceSupply = this.supplyPiles.get(Cards.PROVINCE);
+		this.baseSupplyPiles.put(Cards.PROVINCE, new Stack<Card>());
+		this.provinceSupply = this.baseSupplyPiles.get(Cards.PROVINCE);
 		for (int i = 0; i < 12; i++) {
 			this.provinceSupply.push(new Province());
 		}
 	}
 
 	private void setUpCurse() {
-		this.supplyPiles.put(Cards.CURSE, new Stack<Card>());
-		this.curseSupply = this.supplyPiles.get(Cards.CURSE);
+		this.baseSupplyPiles.put(Cards.CURSE, new Stack<Card>());
+		this.curseSupply = this.baseSupplyPiles.get(Cards.CURSE);
 		for (int i = 0; i < 30; i++) {
 			this.curseSupply.push(new Curse());
 		}
 	}
 
-	public List<Stack<Card>> getKingdomCardList() {
+	List<Stack<Card>> getKingdomCardList() {
 		return this.kingdomCardList;
 	}
 
 	public Stack<Card> getBaseSupply(Cards cardName) {
-		return this.supplyPiles.get(cardName);
+		return this.baseSupplyPiles.get(cardName);
 	}
 
 	public boolean isGameOver() {
-		if (this.supplyPiles.get(Cards.PROVINCE).isEmpty()) {
+		if (this.baseSupplyPiles.get(Cards.PROVINCE).isEmpty()) {
 			return true;
 		}
 		if (this.isThreePilesGone()) {
@@ -132,8 +132,8 @@ public class Supply {
 				numPilesGone++;
 			}
 		}
-		for (Cards cardName : this.supplyPiles.keySet()) {
-			if (this.supplyPiles.get(cardName).isEmpty()) {
+		for (Cards cardName : this.baseSupplyPiles.keySet()) {
+			if (this.baseSupplyPiles.get(cardName).isEmpty()) {
 				numPilesGone++;
 			}
 		}
@@ -148,12 +148,11 @@ public class Supply {
 				availableCards.add(kingdomPile.peek());
 			}
 		}
-		for (Cards cardName : this.supplyPiles.keySet()) {
-			if (!this.supplyPiles.get(cardName).isEmpty()) {
-				availableCards.add(this.supplyPiles.get(cardName).peek());
+		for (Cards cardName : this.baseSupplyPiles.keySet()) {
+			if (!this.baseSupplyPiles.get(cardName).isEmpty()) {
+				availableCards.add(this.baseSupplyPiles.get(cardName).peek());
 			}
 		}
 		return availableCards;
 	}
-
 }
