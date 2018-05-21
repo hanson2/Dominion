@@ -10,12 +10,12 @@ public class Game {
 	int currentPlayer;
 	Supply supplyPiles;
 
-	public Game(Player... players) throws IllegalArgumentException {
+	public Game(Supply supply, Player... players) throws IllegalArgumentException {
 		if (players.length > 4 || players.length < 2) {
 			throw new IllegalArgumentException();
 		}
 		this.players = players;
-		this.supplyPiles = new Supply(players.length);
+		this.supplyPiles = supply;
 		this.currentPlayer = 0;
 	}
 

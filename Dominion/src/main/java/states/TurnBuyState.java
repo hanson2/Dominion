@@ -25,6 +25,7 @@ public class TurnBuyState extends TurnState {
 				this.turn.buys--;
 				this.turn.coins -= card.getCost();
 				this.player.gainCard(card);
+				this.turn.supplyPiles.decrementPile(card);
 			}
 		}
 

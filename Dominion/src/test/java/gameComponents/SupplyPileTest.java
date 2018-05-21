@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.EmptyStackException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +32,7 @@ public class SupplyPileTest {
 	@Before
 	public void setup() {
 		numPlayers = 3;
-		supply = new Supply(numPlayers);
+		supply = new Supply(numPlayers, Main.getAvailableKingdomCards());
 	}
 
 	@Test
@@ -104,6 +105,62 @@ public class SupplyPileTest {
 
 		assertEquals(top.getClass(), Curse.class);
 		assertEquals(supply.getBaseSupply(Cards.CURSE), supply.getBaseSupply(Cards.CURSE));
+	}
+	
+	@Test
+	public void testDecrementCardNonEmptyBase() {
+		Stack<Card> provinceSupply = supply.getBaseSupply(Cards.PROVINCE);
+		
+		supply.decrementPile(provinceSupply.peek());
+		
+		assertEquals(provinceSupply.size(), 11);
+	}
+	
+	@Test(expected = EmptyStackException.class)
+	public void testDecrementCardEmptyBase() {
+		Stack<Card> provinceSupply = supply.getBaseSupply(Cards.PROVINCE);
+		Card province = provinceSupply.peek();
+		
+		supply.decrementPile(province);
+		supply.decrementPile(province);
+		supply.decrementPile(province);
+		supply.decrementPile(province);
+		supply.decrementPile(province);
+		supply.decrementPile(province);
+		supply.decrementPile(province);
+		supply.decrementPile(province);
+		supply.decrementPile(province);
+		supply.decrementPile(province);
+		supply.decrementPile(province);
+		supply.decrementPile(province);
+		supply.decrementPile(province);
+	}
+	
+	@Test
+	public void testDecrementCardNonEmptyKingdom() {
+		Stack<Card> kingdom0Supply = supply.getKingdomCardList().get(0);
+		
+		supply.decrementPile(kingdom0Supply.peek());
+		
+		assertEquals(kingdom0Supply.size(), 9);
+	}
+	
+	@Test(expected = EmptyStackException.class)
+	public void testDecrementCardEmptyKingdom() {
+		Stack<Card> kingdom0Supply = supply.getKingdomCardList().get(0);
+		Card kingdomCard = kingdom0Supply.peek();
+		
+		supply.decrementPile(kingdomCard);
+		supply.decrementPile(kingdomCard);
+		supply.decrementPile(kingdomCard);
+		supply.decrementPile(kingdomCard);
+		supply.decrementPile(kingdomCard);
+		supply.decrementPile(kingdomCard);
+		supply.decrementPile(kingdomCard);
+		supply.decrementPile(kingdomCard);
+		supply.decrementPile(kingdomCard);
+		supply.decrementPile(kingdomCard);
+		supply.decrementPile(kingdomCard);
 	}
 
 	@Test

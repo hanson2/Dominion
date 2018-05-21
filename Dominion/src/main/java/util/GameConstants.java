@@ -1,6 +1,10 @@
 package util;
 
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
+
+import cards.Card;
 
 public class GameConstants {
 

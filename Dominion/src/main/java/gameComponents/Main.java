@@ -1,9 +1,11 @@
 package gameComponents;
 
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import cards.*;
 import util.AvailableLocales;
 import util.GameConstants;
 
@@ -22,8 +24,10 @@ public class Main {
 			for (int i = 0; i < numPlayers; ++i) {
 				players[i] = createPlayer(gui, i + 1);
 			}
+			
+			Supply supply = new Supply(numPlayers, Main.getAvailableKingdomCards());
 
-			Game game = new Game(players);
+			Game game = new Game(supply, players);
 
 			Set<Player> winners = game.runGame();
 
@@ -61,5 +65,24 @@ public class Main {
 
 		return locale;
 	}
-
+	
+	static Set<Card> getAvailableKingdomCards() {
+		Set<Card> availableKingdomCards = new HashSet<Card>();
+		
+		availableKingdomCards.add(new Cellar());
+		availableKingdomCards.add(new Chancellor());
+		availableKingdomCards.add(new Chapel());
+		availableKingdomCards.add(new Festival());
+		availableKingdomCards.add(new Market());
+		availableKingdomCards.add(new Laboratory());
+		availableKingdomCards.add(new Moat());
+		availableKingdomCards.add(new Moneylender());
+		availableKingdomCards.add(new Smithy());
+		availableKingdomCards.add(new ThroneRoom());
+		availableKingdomCards.add(new Vassal());
+		availableKingdomCards.add(new Village());
+		availableKingdomCards.add(new Woodcutter());
+		
+		return availableKingdomCards;
+	}
 }

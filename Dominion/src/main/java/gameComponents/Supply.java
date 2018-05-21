@@ -16,6 +16,7 @@ import cards.Estate;
 import cards.Gold;
 import cards.Province;
 import cards.Silver;
+import cards.Village;
 import util.Cards;
 
 public class Supply {
@@ -30,7 +31,7 @@ public class Supply {
 
 	Map<Cards, Stack<Card>> baseSupplyPiles;
 
-	public Supply(int numPlayers) {
+	public Supply(int numPlayers, Set<Card> availableKingdomCards) {
 		this.baseSupplyPiles = new HashMap<Cards, Stack<Card>>();
 		this.kingdomCardList = new ArrayList<Stack<Card>>();
 
@@ -45,7 +46,7 @@ public class Supply {
 		for (int i = 0; i < 10; i++) {
 			this.kingdomCardList.add(new Stack<Card>());
 			for (int j = 0; j < 10; j++) {
-				this.kingdomCardList.get(i).push(new Copper());
+				this.kingdomCardList.get(i).push(new Village());
 			}
 		}
 	}
@@ -154,5 +155,22 @@ public class Supply {
 			}
 		}
 		return availableCards;
+	}
+
+	public void decrementPile(Card card) {
+		for(Cards cardName : this.baseSupplyPiles.keySet()) {
+			Card baseCard = this.baseSupplyPiles.get(cardName).peek();
+			if(baseCard.getClass().equals(card.getClass())) {
+				this.baseSupplyPiles.get(cardName).pop();
+				return;
+			}
+		}
+		for (Stack<Card> kingdomPile : this.kingdomCardList) {
+			Card kingdomCard = kingdomPile.peek();
+			if(kingdomCard.getClass().equals(card.getClass())) {
+				kingdomPile.pop();
+				return;
+			}
+		}
 	}
 }
