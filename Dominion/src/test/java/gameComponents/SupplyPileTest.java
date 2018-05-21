@@ -56,7 +56,7 @@ public class SupplyPileTest {
 
 	@Test
 	public void testMakeKingdomCardListBase() {
-		Set<Card> availableCards = Main.getAvailableKingdomCards();
+		List<Card> availableCards = Main.getAvailableKingdomCards();
 		Random random = EasyMock.mock(Random.class);
 		for (int i = 0; i < 10; i++) {
 			EasyMock.expect(random.nextInt(availableCards.size())).andReturn(i);
@@ -71,7 +71,7 @@ public class SupplyPileTest {
 
 	@Test
 	public void testMakeKingdomCardListOneRepeat() {
-		Set<Card> availableCards = Main.getAvailableKingdomCards();
+		List<Card> availableCards = Main.getAvailableKingdomCards();
 		Random random = EasyMock.mock(Random.class);
 		EasyMock.expect(random.nextInt(availableCards.size())).andReturn(1);
 		for (int i = 0; i < 10; i++) {
@@ -87,7 +87,7 @@ public class SupplyPileTest {
 
 	@Test
 	public void testMakeKingdomCardListMulitpleRepeats() {
-		Set<Card> availableCards = Main.getAvailableKingdomCards();
+		List<Card> availableCards = Main.getAvailableKingdomCards();
 		Random random = EasyMock.mock(Random.class);
 		EasyMock.expect(random.nextInt(availableCards.size())).andReturn(1);
 		EasyMock.expect(random.nextInt(availableCards.size())).andReturn(1);
@@ -195,6 +195,27 @@ public class SupplyPileTest {
 		for (int i = 0; i < 11; i++) {
 			supply.decrementPile(kingdomCard);
 		}
+	}
+
+	@Test
+	public void testDecrementKingdomCardInvalid() {
+		List<Card> availableCards = Main.getAvailableKingdomCards();
+		Random random = EasyMock.mock(Random.class);
+		for (int i = 0; i < 10; i++) {
+			EasyMock.expect(random.nextInt(availableCards.size())).andReturn(i);
+		}
+
+		EasyMock.replay(random);
+
+		supply.makeKingdomCardList(Main.getAvailableKingdomCards(), random);
+
+		supply.decrementPile(availableCards.get(10));
+
+		for (Stack<Card> kingdomPile : supply.kingdomCardList) {
+			assertEquals(kingdomPile.size(), 10);
+		}
+
+		EasyMock.verify(random);
 	}
 
 	@Test

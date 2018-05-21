@@ -44,7 +44,7 @@ public class Supply {
 		this.setUpCurse();
 	}
 
-	public void makeKingdomCardList(Set<Card> availableKingdomCards, Random random) {
+	public void makeKingdomCardList(List<Card> availableKingdomCards, Random random) {
 		ArrayList<Stack<Card>> cardList = new ArrayList<Stack<Card>>();
 		Set<Card> chosenKingdomCards = this.chooseKingdomCards(availableKingdomCards, random);
 		for (Card card : chosenKingdomCards) {
@@ -58,14 +58,12 @@ public class Supply {
 
 	}
 
-	private Set<Card> chooseKingdomCards(Set<Card> availableKingdomCards, Random random) {
+	private Set<Card> chooseKingdomCards(List<Card> availableKingdomCards, Random random) {
 		Set<Card> chosenKingdomCards = new HashSet<Card>();
-		Card[] availableCardArray = new Card[availableKingdomCards.size()];
-		availableKingdomCards.toArray(availableCardArray);
 
 		while (chosenKingdomCards.size() < 10) {
-			int randomIndex = random.nextInt(availableCardArray.length);
-			chosenKingdomCards.add(availableCardArray[randomIndex]);
+			int randomIndex = random.nextInt(availableKingdomCards.size());
+			chosenKingdomCards.add(availableKingdomCards.get(randomIndex));
 		}
 
 		return chosenKingdomCards;

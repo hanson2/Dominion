@@ -1,6 +1,7 @@
 package gameComponents;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -81,8 +82,8 @@ public class Main {
 		return locale;
 	}
 
-	static Set<Card> getAvailableKingdomCards() {
-		Set<Card> availableKingdomCards = new HashSet<Card>();
+	static List<Card> getAvailableKingdomCards() {
+		List<Card> availableKingdomCards = new ArrayList<Card>();
 
 		availableKingdomCards.add(new Cellar());
 		availableKingdomCards.add(new Chancellor());
