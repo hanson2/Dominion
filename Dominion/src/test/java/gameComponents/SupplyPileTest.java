@@ -4,11 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.EmptyStackException;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 import java.util.Stack;
 
 import org.easymock.EasyMock;
@@ -168,7 +166,7 @@ public class SupplyPileTest {
 		assertEquals(provinceSupply.size(), 11);
 	}
 
-	@Test(expected = EmptyStackException.class)
+	@Test
 	public void testDecrementCardEmptyBase() {
 		Stack<Card> provinceSupply = supply.getBaseSupply(Cards.PROVINCE);
 		Card province = provinceSupply.peek();
@@ -176,6 +174,8 @@ public class SupplyPileTest {
 		for (int i = 0; i < 13; i++) {
 			supply.decrementPile(province);
 		}
+
+		assertTrue(provinceSupply.isEmpty());
 	}
 
 	@Test
@@ -187,7 +187,7 @@ public class SupplyPileTest {
 		assertEquals(kingdom1Supply.size(), 9);
 	}
 
-	@Test(expected = EmptyStackException.class)
+	@Test
 	public void testDecrementCardEmptyKingdom() {
 		Stack<Card> kingdom1Supply = supply.getKingdomCardList().get(1);
 		Card kingdomCard = kingdom1Supply.peek();
@@ -195,6 +195,8 @@ public class SupplyPileTest {
 		for (int i = 0; i < 11; i++) {
 			supply.decrementPile(kingdomCard);
 		}
+
+		assertTrue(kingdom1Supply.isEmpty());
 	}
 
 	@Test
@@ -358,10 +360,8 @@ public class SupplyPileTest {
 
 	@Test
 	public void testGetAvailableCardsNoPilesGone() {
-		Set<Card> expectedCards = new HashSet<Card>();
-		for (Stack<Card> kingdomPile : supply.kingdomCardList) {
-			expectedCards.add(kingdomPile.peek());
-		}
+		List<Card> expectedCards = new ArrayList<Card>();
+
 		expectedCards.add(new Copper());
 		expectedCards.add(new Silver());
 		expectedCards.add(new Gold());
@@ -369,14 +369,17 @@ public class SupplyPileTest {
 		expectedCards.add(new Duchy());
 		expectedCards.add(new Province());
 		expectedCards.add(new Curse());
+		for (Stack<Card> kingdomPile : supply.kingdomCardList) {
+			expectedCards.add(kingdomPile.peek());
+		}
 
-		Set<String> expectedCardNames = new HashSet<String>();
+		List<String> expectedCardNames = new ArrayList<String>();
 		for (Card card : expectedCards) {
 			expectedCardNames.add(card.getName());
 		}
 
-		Set<Card> actualCards = supply.getAvailableCards();
-		Set<String> actualCardNames = new HashSet<String>();
+		List<Card> actualCards = supply.getAvailableCards();
+		List<String> actualCardNames = new ArrayList<String>();
 		for (Card card : actualCards) {
 			actualCardNames.add(card.getName());
 		}
@@ -389,11 +392,8 @@ public class SupplyPileTest {
 		for (int j = 0; j < 10; j++) {
 			supply.getKingdomCardList().get(0).pop();
 		}
+		List<Card> expectedCards = new ArrayList<Card>();
 
-		Set<Card> expectedCards = new HashSet<Card>();
-		for (int i = 1; i < 10; i++) {
-			expectedCards.add(supply.kingdomCardList.get(i).peek());
-		}
 		expectedCards.add(new Copper());
 		expectedCards.add(new Silver());
 		expectedCards.add(new Gold());
@@ -401,14 +401,17 @@ public class SupplyPileTest {
 		expectedCards.add(new Duchy());
 		expectedCards.add(new Province());
 		expectedCards.add(new Curse());
+		for (int i = 1; i < 10; i++) {
+			expectedCards.add(supply.kingdomCardList.get(i).peek());
+		}
 
-		Set<String> expectedCardNames = new HashSet<String>();
+		List<String> expectedCardNames = new ArrayList<String>();
 		for (Card card : expectedCards) {
 			expectedCardNames.add(card.getName());
 		}
 
-		Set<Card> actualCards = supply.getAvailableCards();
-		Set<String> actualCardNames = new HashSet<String>();
+		List<Card> actualCards = supply.getAvailableCards();
+		List<String> actualCardNames = new ArrayList<String>();
 		for (Card card : actualCards) {
 			actualCardNames.add(card.getName());
 		}
@@ -422,24 +425,24 @@ public class SupplyPileTest {
 			supply.copperSupply.pop();
 		}
 
-		Set<Card> expectedCards = new HashSet<Card>();
-		for (int i = 0; i < 10; i++) {
-			expectedCards.add(supply.kingdomCardList.get(i).peek());
-		}
+		List<Card> expectedCards = new ArrayList<Card>();
 		expectedCards.add(new Silver());
 		expectedCards.add(new Gold());
 		expectedCards.add(new Estate());
 		expectedCards.add(new Duchy());
 		expectedCards.add(new Province());
 		expectedCards.add(new Curse());
+		for (int i = 0; i < 10; i++) {
+			expectedCards.add(supply.kingdomCardList.get(i).peek());
+		}
 
-		Set<String> expectedCardNames = new HashSet<String>();
+		List<String> expectedCardNames = new ArrayList<String>();
 		for (Card card : expectedCards) {
 			expectedCardNames.add(card.getName());
 		}
 
-		Set<Card> actualCards = supply.getAvailableCards();
-		Set<String> actualCardNames = new HashSet<String>();
+		List<Card> actualCards = supply.getAvailableCards();
+		List<String> actualCardNames = new ArrayList<String>();
 		for (Card card : actualCards) {
 			actualCardNames.add(card.getName());
 		}

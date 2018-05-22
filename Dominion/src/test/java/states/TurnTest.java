@@ -37,8 +37,10 @@ public class TurnTest {
 		Turn turn = new Turn(player, supply);
 		turn.playArea = new ArrayList<>();
 
-		EasyMock.expect(player.chooseCardToPlay()).andReturn(Optional.empty());
-		EasyMock.expect(player.buy(turn.supplyPiles)).andReturn(Optional.empty());
+		EasyMock.expect(player.chooseCardToPlay("guiActionPhase", turn.actions, turn.buys, turn.coins))
+				.andReturn(Optional.empty());
+		EasyMock.expect(player.buy(turn.supplyPiles, "guiBuyPhase", turn.actions, turn.buys, turn.coins))
+				.andReturn(Optional.empty());
 		player.cleanup(turn.playArea);
 
 		EasyMock.replay(player);

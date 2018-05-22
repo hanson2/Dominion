@@ -1,13 +1,11 @@
 package gameComponents;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -17,10 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 
 import cards.Card;
-import cards.Copper;
 import util.AvailableLocales;
 import util.GameConstants;
 
@@ -106,29 +102,34 @@ public class GUI extends JFrame {
 		cardText.append("<html>");// only way to get newline on buttons
 		cardText.append(GameConstants.messages.getString(card.getName()));
 		cardText.append("<br />");
-		if (card.getCost() != 0) {
-			cardText.append(String.format(GameConstants.messages.getString("guiCardCost"), card.getCost()));
-			cardText.append("<br />");
-		}
+
+		cardText.append(
+				String.format(GameConstants.messages.getString("guiCardCost"), card.getCost()));
+		cardText.append("<br />");
+
 		if (card.getActionsAdded() != 0) {
-			cardText.append(String.format(GameConstants.messages.getString("guiCardActions"), card.getActionsAdded()));
+			cardText.append(String.format(GameConstants.messages.getString("guiCardActions"),
+					card.getActionsAdded()));
 			cardText.append("<br />");
 		}
 		if (card.getBuysAdded() != 0) {
-			cardText.append(String.format(GameConstants.messages.getString("guiCardBuys"), card.getBuysAdded()));
+			cardText.append(String.format(GameConstants.messages.getString("guiCardBuys"),
+					card.getBuysAdded()));
 			cardText.append("<br />");
 		}
 		if (card.getCardsAdded() != 0) {
-			cardText.append(String.format(GameConstants.messages.getString("guiCardCards"), card.getCardsAdded()));
+			cardText.append(String.format(GameConstants.messages.getString("guiCardCards"),
+					card.getCardsAdded()));
 			cardText.append("<br />");
 		}
 		if (card.getCoinsAdded() != 0) {
-			cardText.append(String.format(GameConstants.messages.getString("guiCardCoins"), card.getCoinsAdded()));
+			cardText.append(String.format(GameConstants.messages.getString("guiCardCoins"),
+					card.getCoinsAdded()));
 			cardText.append("<br />");
 		}
 		if (card.getVictoryValue() != 0) {
-			cardText.append(
-					String.format(GameConstants.messages.getString("guiCardVictoryPoints"), card.getVictoryValue()));
+			cardText.append(String.format(GameConstants.messages.getString("guiCardVictoryPoints"),
+					card.getVictoryValue()));
 			cardText.append("<br />");
 		}
 		if (card.getText().length() != 0) {
@@ -137,37 +138,6 @@ public class GUI extends JFrame {
 		}
 		cardText.append("</html>");
 		return cardText.toString();
-	}
-
-	public void start() {
-		JButton startB = new JButton(GameConstants.messages.getString("guiStartGame"));
-		StartButtonHandler startBH = new StartButtonHandler(this);
-		startB.addActionListener(startBH);
-
-		BorderLayout layout = new BorderLayout();
-		pane.setLayout(layout);
-
-		pane.add(startB, BorderLayout.CENTER);
-		pane.add(quitB, BorderLayout.PAGE_END);
-
-		setSize(300, 200);
-		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-	}
-
-	private class StartButtonHandler implements ActionListener {
-		GUI gui;
-
-		StartButtonHandler(GUI gui) {
-			this.gui = gui;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			this.gui.initNumPlayers();
-
-		}
-
 	}
 
 	public CompletableFuture<AvailableLocales> chooseLocale() {
@@ -180,10 +150,12 @@ public class GUI extends JFrame {
 		CompletableFuture<AvailableLocales> localeChosenFuture = new CompletableFuture<>();
 
 		JButton english = new JButton(GameConstants.messages.getString("languageChoiceEnglish"));
-		english.addActionListener(new ChooseLocaleButtonListener(AvailableLocales.EN, localeChosenFuture));
+		english.addActionListener(
+				new ChooseLocaleButtonListener(AvailableLocales.EN, localeChosenFuture));
 
 		JButton spanish = new JButton(GameConstants.messages.getString("languageChoiceSpanish"));
-		spanish.addActionListener(new ChooseLocaleButtonListener(AvailableLocales.ES, localeChosenFuture));
+		spanish.addActionListener(
+				new ChooseLocaleButtonListener(AvailableLocales.ES, localeChosenFuture));
 
 		pane.add(english);
 		pane.add(spanish);
@@ -266,7 +238,8 @@ public class GUI extends JFrame {
 
 		CompletableFuture<String> playerXNameFuture = new CompletableFuture<>();
 
-		String textPrompt = String.format(GameConstants.messages.getString("guiPlayerNamePrompt"), number);
+		String textPrompt = String.format(GameConstants.messages.getString("guiPlayerNamePrompt"),
+				number);
 		this.setTitle(textPrompt);
 
 		JTextField textField = new JTextField(textPrompt);
@@ -311,67 +284,71 @@ public class GUI extends JFrame {
 
 	}
 
-	public void game(int numPlayers) {
-		this.clear();
-		String title = String.format(GameConstants.messages.getString("guiGameTitle"), numPlayers);
-		setTitle(title);
-		setSize(GameConstants.GUIWIDTH, GameConstants.GUIHEIGHT);
-		setVisible(true);
-
-		SpringLayout Spring = new SpringLayout();
-		pane.setLayout(Spring);
-
-		JButton endTurnB = new JButton("End Turn");
-		EndTurnButtonHandler endTurnBH = new EndTurnButtonHandler();
-		endTurnB.addActionListener(endTurnBH);
-
-		// Adds TurnButton
-		pane.add(endTurnB);
-		Spring.putConstraint(SpringLayout.SOUTH, endTurnB, 0, SpringLayout.SOUTH, pane);
-		Spring.putConstraint(SpringLayout.NORTH, endTurnB, 400, SpringLayout.NORTH, pane);
-		Spring.putConstraint(SpringLayout.WEST, endTurnB, 210, SpringLayout.WEST, pane);
-
-		// Adds QuitButton
-		pane.add(quitB);
-		Spring.putConstraint(SpringLayout.NORTH, quitB, 0, SpringLayout.NORTH, pane);
-		Spring.putConstraint(SpringLayout.EAST, quitB, 0, SpringLayout.EAST, pane);
-
-		pane.repaint();
-	}
-
-	private class EndTurnButtonHandler implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
 	public CompletableFuture<Boolean> getPlayAgainDisplayWinners(Set<Player> winners) {
-		// TODO make this display winners and give players option to play again
 		this.clear();
 		this.setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		CompletableFuture<Boolean> playAgain = new CompletableFuture<Boolean>();
+		StringBuilder title = new StringBuilder();
+		title.append(GameConstants.messages.getString("guiWinGameTitle"));
+		for (Player winner : winners) {
+			title.append(" : ");
+			title.append(winner.getName());
+		}
+		title.append(". ");
+		title.append(GameConstants.messages.getString("guiPromptPlayAgain"));
+		this.setTitle(title.toString());
 
-		playAgain.complete(false);
+		pane.setLayout(new GridLayout(1, 2));
+
+		JButton playAgainButton = new JButton(GameConstants.messages.getString("guiYes"));
+		playAgainButton.addActionListener(new PlayAgainButtonListener(true, playAgain));
+
+		JButton quitButton = new JButton(GameConstants.messages.getString("guiNo"));
+		quitButton.addActionListener(new PlayAgainButtonListener(false, playAgain));
+
+		pane.add(playAgainButton);
+		pane.add(quitButton);
+
+		this.pane.repaint();
+		this.pack();
+		this.setSize(GameConstants.GUIWIDTH, GameConstants.GUIHEIGHT);
 
 		return playAgain;
+	}
+
+	private class PlayAgainButtonListener implements ActionListener {
+
+		boolean choice;
+		CompletableFuture<Boolean> futureChoice;
+
+		public PlayAgainButtonListener(boolean b, CompletableFuture<Boolean> playAgain) {
+			choice = b;
+			futureChoice = playAgain;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent makeChoice) {
+			futureChoice.complete(choice);
+		}
+
 	}
 
 	public void quitGame() {
 		System.exit(DISPOSE_ON_CLOSE);
 	}
 
-	public CompletableFuture<Optional<Card>> chooseCardToPlay(List<Card> availableCards, String name) {
-		// TODO make this display player's hand and allow the player to choose
-		// one to play
+	public CompletableFuture<Optional<Card>> chooseCardToPlay(List<Card> availableCards,
+			String name, String phaseKey, int actions, int buys, int coins, int discardSize,
+			int drawSize) {
 		this.clear();
 		this.pane.setLayout(new GridLayout(0, availableCards.size() + 1, 0, 0));
 		this.setVisible(true);
 		CompletableFuture<Optional<Card>> cardToPlay = new CompletableFuture<Optional<Card>>();
-		this.setTitle(name + ": " + GameConstants.messages.getString("chooseCardToPlay"));
+		this.setTitle(name + ": " + GameConstants.messages.getString(phaseKey) + " : "
+				+ GameConstants.messages.getString("chooseCardToPlay") + "    "
+				+ String.format(GameConstants.messages.getString("guiHeaderInfo"), actions, buys,
+						coins, discardSize, drawSize));
 
 		for (Card card : availableCards) {
 			this.drawCard(card, cardToPlay);
@@ -399,18 +376,26 @@ public class GUI extends JFrame {
 		return response;
 	}
 
-	public CompletableFuture<Card> chooseCardFromHand(List<Card> availableCards, String name) {
+	public CompletableFuture<Card> chooseCardFromHand(List<Card> availableCards, String name,
+			String phaseKey, int actions, int buys, int coins, int discardSize, int drawSize) {
 		this.clear();
+		this.pane.setLayout(new GridLayout(0, availableCards.size(), 0, 0));
 		this.setVisible(true);
+
 		CompletableFuture<Card> chosenCardFuture = new CompletableFuture<Card>();
 		String title = GameConstants.messages.getString("chooseCardFromHand");
-		title = name + ": " + title;
+		title = name + ": " + GameConstants.messages.getString(phaseKey) + " : " + title + "    "
+				+ String.format(GameConstants.messages.getString("guiHeaderInfo"), actions, buys,
+						coins, discardSize, drawSize);
+
 		this.setTitle(title);
 
 		for (Card card : availableCards) {
 			this.drawForcedCard(card, chosenCardFuture);
 		}
 
+		this.setVisible(true);
+		this.setSize(GameConstants.GUICARDSIZE * availableCards.size(), GameConstants.GUICARDSIZE);
 		this.pane.repaint();
 		this.repaint();
 
@@ -423,7 +408,7 @@ public class GUI extends JFrame {
 		String text = this.makeText(card);
 		box.setText(text);
 		box.addActionListener(new ForcedCardListener(future, card));
-		this.pane.add(box, -1);// add at the end
+		this.pane.add(box, -1);
 
 	}
 
@@ -443,14 +428,15 @@ public class GUI extends JFrame {
 
 	}
 
-	public CompletableFuture<Optional<Card>> chooseCardToBuy(Set<Card> availableCards, String name) {
-		// TODO Choose a card to buy from a list of cards or choose to stop
-		// buying(return Optional.empty())
+	public CompletableFuture<Optional<Card>> chooseCardToBuy(List<Card> availableCards, String name,
+			String phaseKey, int actions, int buys, int coins, int discardSize, int drawSize) {
 		this.clear();
 		CompletableFuture<Optional<Card>> cardToBuy = new CompletableFuture<Optional<Card>>();
 
 		String title = GameConstants.messages.getString("chooseCardToBuy");
-		title = name + ": " + title;
+		title = name + ": " + GameConstants.messages.getString(phaseKey) + " : " + title + "    "
+				+ String.format(GameConstants.messages.getString("guiHeaderInfo"), actions, buys,
+						coins, discardSize, drawSize);
 		this.setTitle(title);
 
 		for (Card card : availableCards) {

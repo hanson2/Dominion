@@ -19,20 +19,21 @@ public class TurnBuyStateTest {
 		Card card = EasyMock.mock(Card.class);
 		Supply supply = EasyMock.mock(Supply.class);
 
+		turn.buys = 1;
+		turn.coins = 1;
+		turn.player = player;
+		turn.supplyPiles = supply;
+
 		EasyMock.expect(card.getCost()).andReturn(1).anyTimes();
 
-		EasyMock.expect(player.buy(supply)).andReturn(Optional.of(card));
+		EasyMock.expect(player.buy(supply, "guiBuyPhase", turn.actions, turn.buys, turn.coins))
+				.andReturn(Optional.of(card));
 		player.gainCard(card);
 		supply.decrementPile(card);
 
 		turn.run();
 
 		EasyMock.replay(player, turn, card, supply);
-
-		turn.buys = 1;
-		turn.coins = 1;
-		turn.player = player;
-		turn.supplyPiles = supply;
 
 		TurnBuyState state = new TurnBuyState();
 
@@ -51,13 +52,18 @@ public class TurnBuyStateTest {
 		Card card = EasyMock.mock(Card.class);
 		Supply supply = EasyMock.mock(Supply.class);
 
+		turn.buys = 2;
+		turn.coins = 2;
+
 		EasyMock.expect(card.getCost()).andReturn(1).anyTimes();
 
-		EasyMock.expect(player.buy(supply)).andReturn(Optional.of(card));
+		EasyMock.expect(player.buy(supply, "guiBuyPhase", turn.actions, turn.buys, turn.coins))
+				.andReturn(Optional.of(card));
 		player.gainCard(card);
 		supply.decrementPile(card);
 
-		EasyMock.expect(player.buy(supply)).andReturn(Optional.of(card));
+		EasyMock.expect(player.buy(supply, "guiBuyPhase", turn.actions, turn.buys - 1, turn.coins - 1))
+				.andReturn(Optional.of(card));
 		player.gainCard(card);
 		supply.decrementPile(card);
 
@@ -65,8 +71,6 @@ public class TurnBuyStateTest {
 
 		EasyMock.replay(player, turn, card, supply);
 
-		turn.buys = 2;
-		turn.coins = 2;
 		turn.player = player;
 		turn.supplyPiles = supply;
 
@@ -85,14 +89,15 @@ public class TurnBuyStateTest {
 		Player player = EasyMock.mock(Player.class);
 		Turn turn = EasyMock.mock(Turn.class);
 
-		EasyMock.expect(player.buy(turn.supplyPiles)).andReturn(Optional.empty());
+		turn.buys = 2;
+		turn.player = player;
+
+		EasyMock.expect(player.buy(turn.supplyPiles, "guiBuyPhase", turn.actions, turn.buys, turn.coins))
+				.andReturn(Optional.empty());
 
 		turn.run();
 
 		EasyMock.replay(player, turn);
-
-		turn.buys = 2;
-		turn.player = player;
 
 		TurnBuyState state = new TurnBuyState();
 
@@ -107,18 +112,20 @@ public class TurnBuyStateTest {
 		Turn turn = EasyMock.mock(Turn.class);
 		Card card = EasyMock.mock(Card.class);
 
-		EasyMock.expect(player.buy(turn.supplyPiles)).andReturn(Optional.of(card));
+		turn.buys = 1;
+		turn.coins = 1;
+		turn.player = player;
+
+		EasyMock.expect(player.buy(turn.supplyPiles, "guiBuyPhase", turn.actions, turn.buys, turn.coins))
+				.andReturn(Optional.of(card));
 		EasyMock.expect(card.getCost()).andReturn(10);
 
-		EasyMock.expect(player.buy(turn.supplyPiles)).andReturn(Optional.empty());
+		EasyMock.expect(player.buy(turn.supplyPiles, "guiBuyPhase", turn.actions, turn.buys, turn.coins))
+				.andReturn(Optional.empty());
 
 		turn.run();
 
 		EasyMock.replay(player, turn, card);
-
-		turn.buys = 1;
-		turn.coins = 1;
-		turn.player = player;
 
 		TurnBuyState state = new TurnBuyState();
 
