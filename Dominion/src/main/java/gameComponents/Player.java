@@ -10,6 +10,7 @@ import java.util.Stack;
 import cards.Card;
 import cards.Copper;
 import cards.Estate;
+import cards.Gardens;
 import util.CardFactory;
 
 public class Player {
@@ -88,9 +89,10 @@ public class Player {
 	}
 
 	public int getPoints() {
-		int totalPoints = this.addPointsFromPile(this.drawPile);
-		totalPoints += this.addPointsFromPile(this.hand);
-		totalPoints += this.addPointsFromPile(this.discardPile);
+		int deckSize = this.hand.size() + this.drawPile.size() + this.discardPile.size();
+		int totalPoints = this.addPointsFromPile(this.drawPile, deckSize);
+		totalPoints += this.addPointsFromPile(this.hand, deckSize);
+		totalPoints += this.addPointsFromPile(this.discardPile, deckSize);
 		return totalPoints;
 	}
 
@@ -128,10 +130,13 @@ public class Player {
 		Collections.shuffle(drawPile);
 	}
 
-	private int addPointsFromPile(Collection<Card> cards) {
+	private int addPointsFromPile(Collection<Card> cards, int deckSize) {
 		int totalPoints = 0;
 		for (Card card : cards) {
 			totalPoints += card.getVictoryValue();
+			if (card.getClass().equals(Gardens.class)) {
+				totalPoints += (deckSize / 10);
+			}
 		}
 		return totalPoints;
 	}

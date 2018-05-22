@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -19,6 +18,8 @@ import org.junit.Test;
 import cards.Card;
 import cards.Copper;
 import cards.Estate;
+import cards.Gardens;
+import cards.Province;
 import cards.Silver;
 
 public class PlayerTest {
@@ -167,6 +168,15 @@ public class PlayerTest {
 		player.discardHand();
 
 		assertEquals(player.getPoints(), 3);
+	}
+
+	@Test
+	public void testGetPointsWithTenGardens() {
+		for (int i = 0; i < 10; i++) {
+			player.gainCard(new Gardens());
+		}
+
+		assertEquals(player.getPoints(), 23);
 	}
 
 	@Test
@@ -524,6 +534,22 @@ public class PlayerTest {
 		assertEquals(player.drawPile.peek(), card);
 
 		EasyMock.verify(card);
+	}
+
+	@Test
+	public void testHasCardInHandTrue() {
+		Card card = new Copper();
+
+		player.hand.add(card);
+
+		assertTrue(player.hasCardInHand(Copper.class));
+	}
+
+	@Test
+	public void testHasCardInHandFalse() {
+		Card card = new Province();
+
+		assertFalse(player.hasCardInHand(Province.class));
 	}
 
 }
