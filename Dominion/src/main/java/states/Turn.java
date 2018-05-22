@@ -9,6 +9,7 @@ import gameComponents.Supply;
 
 public class Turn {
 	Player player;
+	List<Player> subsequentPlayers;
 	int buys;
 	int actions;
 	int coins;
@@ -16,7 +17,7 @@ public class Turn {
 	Supply supplyPiles;
 	public List<Card> playArea;
 
-	public Turn(Player player, Supply supplyPiles) {
+	public Turn(Player player, Supply supplyPiles, List<Player> subsequentPlayers) {
 		this.player = player;
 		this.buys = 1;
 		this.actions = 1;
@@ -24,6 +25,7 @@ public class Turn {
 		this.state = new TurnActionState();
 		this.supplyPiles = supplyPiles;
 		this.playArea = new ArrayList<>();
+		this.subsequentPlayers = subsequentPlayers;
 	}
 
 	public void run() {

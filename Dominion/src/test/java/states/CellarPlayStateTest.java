@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import cards.Card;
 import gameComponents.Player;
+import util.GameConstants;
 
 public class CellarPlayStateTest {
 
@@ -54,7 +55,7 @@ public class CellarPlayStateTest {
 
 		EasyMock.expect(player.sizeOfHand()).andReturn(1);
 		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(true);
-		EasyMock.expect(player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys, turn.coins))
+		EasyMock.expect(player.chooseCardFromHand(GameConstants.CELLARPROMPTKEY, turn.actions, turn.buys, turn.coins))
 				.andReturn(card);
 		EasyMock.expect(player.discardCardFromHand(card.getClass())).andReturn(true);
 
@@ -81,7 +82,7 @@ public class CellarPlayStateTest {
 
 		EasyMock.expect(player.sizeOfHand()).andReturn(2);
 		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(true);
-		EasyMock.expect(player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys, turn.coins))
+		EasyMock.expect(player.chooseCardFromHand(GameConstants.CELLARPROMPTKEY, turn.actions, turn.buys, turn.coins))
 				.andReturn(card);
 		EasyMock.expect(player.discardCardFromHand(card.getClass())).andReturn(true);
 
@@ -109,13 +110,13 @@ public class CellarPlayStateTest {
 
 		EasyMock.expect(player.sizeOfHand()).andReturn(2);
 		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(true);
-		EasyMock.expect(player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys, turn.coins))
+		EasyMock.expect(player.chooseCardFromHand(GameConstants.CELLARPROMPTKEY, turn.actions, turn.buys, turn.coins))
 				.andReturn(card);
 		EasyMock.expect(player.discardCardFromHand(card.getClass())).andReturn(true);
 
 		EasyMock.expect(player.sizeOfHand()).andReturn(1);
 		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(true);
-		EasyMock.expect(player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys, turn.coins))
+		EasyMock.expect(player.chooseCardFromHand(GameConstants.CELLARPROMPTKEY, turn.actions, turn.buys, turn.coins))
 				.andReturn(card);
 		EasyMock.expect(player.discardCardFromHand(card.getClass())).andReturn(true);
 
@@ -144,13 +145,13 @@ public class CellarPlayStateTest {
 
 		EasyMock.expect(player.sizeOfHand()).andReturn(5);
 		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(true);
-		EasyMock.expect(player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys, turn.coins))
+		EasyMock.expect(player.chooseCardFromHand(GameConstants.CELLARPROMPTKEY, turn.actions, turn.buys, turn.coins))
 				.andReturn(card);
 		EasyMock.expect(player.discardCardFromHand(card.getClass())).andReturn(true);
 
 		EasyMock.expect(player.sizeOfHand()).andReturn(4);
 		EasyMock.expect(player.promptYesNo("cellarPrompt")).andReturn(true);
-		EasyMock.expect(player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys, turn.coins))
+		EasyMock.expect(player.chooseCardFromHand(GameConstants.CELLARPROMPTKEY, turn.actions, turn.buys, turn.coins))
 				.andReturn(card);
 		EasyMock.expect(player.discardCardFromHand(card.getClass())).andReturn(true);
 

@@ -1,5 +1,6 @@
 package gameComponents;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -78,7 +79,14 @@ public class Game {
 	}
 
 	public Turn makeNewTurn() {
-		return new Turn(this.players[this.currentPlayer], this.supplyPiles);
+		ArrayList<Player> subsequentPlayers = new ArrayList<Player>();
+		for (int i = this.currentPlayer + 1; i < players.length; i++) {
+			subsequentPlayers.add(this.players[i]);
+		}
+		for (int i = 0; i < this.currentPlayer; i++) {
+			subsequentPlayers.add(this.players[i]);
+		}
+		return new Turn(this.players[this.currentPlayer], this.supplyPiles, subsequentPlayers);
 	}
 
 }

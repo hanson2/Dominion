@@ -179,4 +179,13 @@ public class Player {
 		}
 		return false;
 	}
+
+	public boolean hasCardInHand(Class<? extends Card> cardClass) {
+		for (Card c : this.hand) {
+			if (c.getClass() == cardClass) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
