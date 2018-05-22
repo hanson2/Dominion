@@ -125,4 +125,8 @@ public class GameConstants {
 	public static final String TRASHPROMPTKEY = "trashPrompt";
 	public static final String MOATPROMPT = "moatPrompt";
 
+	public static final int BANDITCOST = 5;
+	public static final String BANDITNAME = "cardBanditName";// TODO
+	public static final String BANDITTEXT = "cardBanditText";// TODO
+
 }
