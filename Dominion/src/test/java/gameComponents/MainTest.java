@@ -1,4 +1,5 @@
 package gameComponents;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -72,7 +73,6 @@ public class MainTest {
 		response.complete("test");
 
 		EasyMock.expect(gui.getPlayerXName(1)).andReturn(response);
-		
 
 		EasyMock.replay(gui);
 
@@ -99,6 +99,19 @@ public class MainTest {
 		Locale expected = new Locale("es");
 		CompletableFuture<AvailableLocales> response = new CompletableFuture<AvailableLocales>();
 		response.complete(AvailableLocales.ES);
+
+		EasyMock.expect(gui.chooseLocale()).andReturn(response);
+
+		EasyMock.replay(gui);
+
+		assertEquals(Main.chooseLocale(gui), expected);
+	}
+
+	@Test
+	public void testInvalidLocale() {
+		Locale expected = new Locale("en");
+		CompletableFuture<AvailableLocales> response = new CompletableFuture<AvailableLocales>();
+		response.complete(AvailableLocales.INVALID);
 
 		EasyMock.expect(gui.chooseLocale()).andReturn(response);
 

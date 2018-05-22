@@ -1,10 +1,6 @@
 package util;
 
-import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
-
-import cards.Card;
 
 public class GameConstants {
 
@@ -105,11 +101,12 @@ public class GameConstants {
 	public static final String MOATNAME = "cardMoatName";
 	public static final String MOATTEXT = "cardMoatText";
 
+	public static final int REMODELCOST = 4;
+	public static final String REMODELNAME = "cardRemodelName";
+	public static final String REMODELTEXT = "cardRemodelText";
+
 	public static final int GUIWIDTH = 900;
 	public static final int GUIHEIGHT = 300;
 
 	public static final int GUICARDSIZE = 300;
-
-	
-	public static final int REMODELCOST = 4;
 }

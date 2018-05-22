@@ -1,12 +1,18 @@
+package cards;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import states.RemodelPlayState;
+import util.CardType;
+import util.GameConstants;
+
 public class RemodelTest {
-Card card;
-	
+	Card card;
+
 	@Before
 	public void setup() {
 		card = new Remodel();
@@ -50,5 +56,15 @@ Card card;
 	@Test
 	public void testGetPlayState() {
 		assertEquals(card.getPlayState().getClass(), RemodelPlayState.class);
+	}
+
+	@Test
+	public void testGetName() {
+		assertEquals(card.getName(), GameConstants.REMODELNAME);
+	}
+
+	@Test
+	public void testGetText() {
+		assertEquals(card.getText(), GameConstants.REMODELTEXT);
 	}
 }
