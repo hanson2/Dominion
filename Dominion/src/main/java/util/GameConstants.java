@@ -125,8 +125,4 @@ public class GameConstants {
 	public static final String BANDITNAME = "cardBanditName";// TODO
 	public static final String BANDITTEXT = "cardBanditText";// TODO
 
-	public static final int BANDITCOST = 5;
-	public static final String BANDITNAME = "cardBanditName";// TODO
-	public static final String BANDITTEXT = "cardBanditText";// TODO
-
 }
