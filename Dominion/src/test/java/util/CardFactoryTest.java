@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import cards.Artisan;
 import cards.Card;
 import cards.Cellar;
 import cards.Chancellor;
@@ -19,6 +20,7 @@ import cards.Market;
 import cards.Moat;
 import cards.Moneylender;
 import cards.Province;
+import cards.Remodel;
 import cards.Silver;
 import cards.Smithy;
 import cards.ThroneRoom;
@@ -126,6 +128,16 @@ public class CardFactoryTest {
 	@Test
 	public void testWoodcutter() {
 		assertEquals(Woodcutter.class, CardFactory.makeCard(Woodcutter.class).getClass());
+	}
+
+	@Test
+	public void testRemodel() {
+		assertEquals(Remodel.class, CardFactory.makeCard(Remodel.class).getClass());
+	}
+
+	@Test
+	public void testArtisan() {
+		assertEquals(Artisan.class, CardFactory.makeCard(Artisan.class).getClass());
 	}
 
 	@Test

@@ -7,7 +7,7 @@ public class ArtisanPlayState extends CardPlayState {
 		int coins = 5;
 		Card card = null;
 		while (true) {
-			card = turn.player.forcedBuy(coins);
+			card = turn.player.forcedBuy(turn.supplyPiles, "guiActionPhase", coins);
 
 			if (card.getCost() <= coins) {
 				turn.player.gainCardToHand(card);

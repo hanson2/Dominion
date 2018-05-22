@@ -1,7 +1,7 @@
 package cards;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import states.ArtisanPlayState;
 import states.CardPlayState;
@@ -12,7 +12,7 @@ public class Artisan extends Card {
 
 	@Override
 	public Set<CardType> getType() {
-		TreeSet<CardType> ans = new TreeSet<CardType>();
+		Set<CardType> ans = new HashSet<CardType>();
 		ans.add(CardType.ACTION);
 		return ans;
 	}
