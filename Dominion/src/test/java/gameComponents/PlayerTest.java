@@ -284,7 +284,8 @@ public class PlayerTest {
 		Optional<Card> potentialCardToPlay = Optional.empty();
 		response.complete(potentialCardToPlay);
 
-		EasyMock.expect(gui.chooseCardToPlay(player.getHand(), "Test")).andReturn(response);
+		EasyMock.expect(gui.chooseCardToPlay(player.getHand(), "Test", "", 0, 0, 0, player.discardPile.size(),
+				player.drawPile.size())).andReturn(response);
 
 		EasyMock.replay(gui);
 
@@ -299,7 +300,8 @@ public class PlayerTest {
 		Optional<Card> potentialCardToPlay = Optional.of(cardReturned);
 		response.complete(potentialCardToPlay);
 
-		EasyMock.expect(gui.chooseCardToPlay(player.getHand(), "Test")).andReturn(response);
+		EasyMock.expect(gui.chooseCardToPlay(player.getHand(), "Test", "", 0, 0, 0, player.discardPile.size(),
+				player.drawPile.size())).andReturn(response);
 
 		EasyMock.replay(gui, cardReturned);
 
@@ -318,7 +320,8 @@ public class PlayerTest {
 		Supply supplyPiles = EasyMock.mock(Supply.class);
 
 		EasyMock.expect(supplyPiles.getAvailableCards()).andReturn(availableCards).anyTimes();
-		EasyMock.expect(gui.chooseCardToBuy(availableCards, "Test")).andReturn(response);
+		EasyMock.expect(gui.chooseCardToBuy(availableCards, "Test", "", 0, 0, 0, player.discardPile.size(),
+				player.drawPile.size())).andReturn(response);
 
 		EasyMock.replay(gui, supplyPiles);
 
@@ -339,7 +342,8 @@ public class PlayerTest {
 		Supply supplyPiles = EasyMock.mock(Supply.class);
 
 		EasyMock.expect(supplyPiles.getAvailableCards()).andReturn(availableCards).anyTimes();
-		EasyMock.expect(gui.chooseCardToBuy(availableCards, "Test")).andReturn(response);
+		EasyMock.expect(gui.chooseCardToBuy(availableCards, "Test", "", 0, 0, 0, player.discardPile.size(),
+				player.drawPile.size())).andReturn(response);
 
 		EasyMock.replay(gui, supplyPiles);
 
@@ -355,7 +359,8 @@ public class PlayerTest {
 		Card cardReturned = EasyMock.mock(Card.class);
 		chosenCardFuture.complete(cardReturned);
 
-		EasyMock.expect(gui.chooseCardFromHand(player.hand, "Test")).andReturn(chosenCardFuture);
+		EasyMock.expect(gui.chooseCardFromHand(player.hand, "Test", "", 0, 0, 0, player.discardPile.size(),
+				player.drawPile.size())).andReturn(chosenCardFuture);
 
 		EasyMock.replay(gui, cardReturned);
 
@@ -431,4 +436,47 @@ public class PlayerTest {
 		assertTrue(playArea.isEmpty());
 		assertTrue(player.discardPile.containsAll(Arrays.asList(cardList)));
 	}
+
+	@Test
+	public void testPlayCardIsInHand() {
+		Card card = EasyMock.mock(Card.class);
+		EasyMock.replay(card);
+		player.hand.add(card);
+
+		List<Card> playArea = new ArrayList<Card>();
+		List<Card> expectedPlayArea = new ArrayList<Card>();
+		expectedPlayArea.add(card);
+
+		playArea = player.playCard(card, playArea);
+
+		assertTrue(playArea.contains(card));
+		assertFalse(player.hand.contains(card));
+		assertEquals(playArea, expectedPlayArea);
+
+		EasyMock.verify(card);
+	}
+
+	@Test
+	public void testPlayCardNotInHand() {
+		Card card = EasyMock.mock(Card.class);
+		Card action = EasyMock.mock(Card.class);
+		EasyMock.replay(card, action);
+		player.hand.add(action);
+
+		List<Card> playArea = new ArrayList<Card>();
+		List<Card> expectedPlayArea = new ArrayList<Card>();
+		expectedPlayArea.add(action);
+
+		playArea = player.playCard(card, playArea);
+		playArea = player.playCard(action, playArea);
+
+		assertTrue(playArea.contains(action));
+		assertFalse(playArea.contains(card));
+		assertFalse(player.hand.contains(card));
+		assertFalse(player.hand.contains(action));
+		assertEquals(playArea, expectedPlayArea);
+
+		EasyMock.verify(card, action);
+	}
+
 }

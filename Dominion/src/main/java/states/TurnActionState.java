@@ -44,13 +44,12 @@ public class TurnActionState extends TurnState {
 		this.turn.actions += card.getActionsAdded();
 		this.turn.buys += card.getBuysAdded();
 		this.turn.coins += card.getCoinsAdded();
-		this.turn.playArea.add(card);
 		int cardsAdded = card.getCardsAdded();
 		for (int i = 0; i < cardsAdded; i++) {
 			this.player.drawACard();
 		}
 
-		this.player.discardCardFromHand(card.getClass());
+		this.turn.playArea = this.player.playCard(card, this.turn.playArea);
 		this.turn.state = card.getPlayState();
 		this.turn.run();
 

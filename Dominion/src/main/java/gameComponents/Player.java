@@ -29,6 +29,14 @@ public class Player {
 		this.gui = gui;
 	}
 
+	public List<Card> playCard(Card card, List<Card> playArea) {
+		if (this.hand.contains(card)) {
+			playArea.add(card);
+			this.hand.remove(card);
+		}
+		return playArea;
+	}
+
 	public void drawACard() {
 		if (this.drawPile.size() > 0) {
 			this.hand.add(this.drawPile.pop());
@@ -64,11 +72,13 @@ public class Player {
 	}
 
 	public Optional<Card> chooseCardToPlay(String phaseKey, int actions, int buys, int coins) {
-		return this.gui.chooseCardToPlay(this.hand, name).join();
+		return this.gui.chooseCardToPlay(this.hand, name, phaseKey, actions, buys, coins, this.discardPile.size(),
+				this.drawPile.size()).join();
 	}
 
 	public Optional<Card> buy(Supply supplyPiles, String phaseKey, int actions, int buys, int coins) {
-		return this.gui.chooseCardToBuy(supplyPiles.getAvailableCards(), this.name).join();
+		return this.gui.chooseCardToBuy(supplyPiles.getAvailableCards(), this.name, phaseKey, actions, buys, coins,
+				this.discardPile.size(), this.drawPile.size()).join();
 	}
 
 	public int getPoints() {
@@ -149,7 +159,8 @@ public class Player {
 	}
 
 	public Card chooseCardFromHand(String phaseKey, int actions, int buys, int coins) {
-		return gui.chooseCardFromHand(this.hand, this.name).join();
+		return gui.chooseCardFromHand(this.hand, this.name, phaseKey, actions, buys, coins, this.discardPile.size(),
+				this.drawPile.size()).join();
 	}
 
 	public boolean discardCardFromHand(Class<? extends Card> cardClass) {

@@ -362,12 +362,14 @@ public class GUI extends JFrame {
 		System.exit(DISPOSE_ON_CLOSE);
 	}
 
-	public CompletableFuture<Optional<Card>> chooseCardToPlay(List<Card> availableCards, String name) {
+	public CompletableFuture<Optional<Card>> chooseCardToPlay(List<Card> availableCards, String name, String phaseKey,
+			int actions, int buys, int coins, int discardSize, int drawSize) {
 		this.clear();
 		this.pane.setLayout(new GridLayout(0, availableCards.size() + 1, 0, 0));
 		this.setVisible(true);
 		CompletableFuture<Optional<Card>> cardToPlay = new CompletableFuture<Optional<Card>>();
-		this.setTitle(name + ": " + GameConstants.messages.getString("chooseCardToPlay"));
+		this.setTitle(name + ": " + GameConstants.messages.getString("chooseCardToPlay") + "    " + String.format(
+				GameConstants.messages.getString("guiHeaderInfo"), actions, buys, coins, discardSize, drawSize));
 
 		for (Card card : availableCards) {
 			this.drawCard(card, cardToPlay);
@@ -395,14 +397,17 @@ public class GUI extends JFrame {
 		return response;
 	}
 
-	public CompletableFuture<Card> chooseCardFromHand(List<Card> availableCards, String name) {
+	public CompletableFuture<Card> chooseCardFromHand(List<Card> availableCards, String name, String phaseKey,
+			int actions, int buys, int coins, int discardSize, int drawSize) {
 		this.clear();
 		this.pane.setLayout(new GridLayout(0, availableCards.size(), 0, 0));
 		this.setVisible(true);
 
 		CompletableFuture<Card> chosenCardFuture = new CompletableFuture<Card>();
 		String title = GameConstants.messages.getString("chooseCardFromHand");
-		title = name + ": " + title;
+		title = name + ": " + title + "    " + String.format(GameConstants.messages.getString("guiHeaderInfo"), actions,
+				buys, coins, discardSize, drawSize);
+
 		this.setTitle(title);
 
 		for (Card card : availableCards) {
@@ -443,14 +448,14 @@ public class GUI extends JFrame {
 
 	}
 
-	public CompletableFuture<Optional<Card>> chooseCardToBuy(Set<Card> availableCards, String name) {
-		// TODO Choose a card to buy from a list of cards or choose to stop
-		// buying(return Optional.empty())
+	public CompletableFuture<Optional<Card>> chooseCardToBuy(Set<Card> availableCards, String name, String phaseKey,
+			int actions, int buys, int coins, int discardSize, int drawSize) {
 		this.clear();
 		CompletableFuture<Optional<Card>> cardToBuy = new CompletableFuture<Optional<Card>>();
 
 		String title = GameConstants.messages.getString("chooseCardToBuy");
-		title = name + ": " + title;
+		title = name + ": " + title + "    " + String.format(GameConstants.messages.getString("guiHeaderInfo"), actions,
+				buys, coins, discardSize, drawSize);
 		this.setTitle(title);
 
 		for (Card card : availableCards) {
