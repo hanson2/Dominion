@@ -165,4 +165,13 @@ public class Player {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public boolean hasCardInHand(Class<? extends Card> cardClass) {
+		for (Card c : this.hand) {
+			if (c.getClass() == cardClass) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
