@@ -6,7 +6,11 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+<<<<<<< HEAD
 import states.BanditPlayState;
+=======
+import states.CardPlayState;
+>>>>>>> added Bandit without playstate
 import util.CardType;
 import util.GameConstants;
 
@@ -56,7 +60,11 @@ public class BanditTest {
 
 	@Test
 	public void testGetPlayState() {
+<<<<<<< HEAD
 		assertEquals(card.getPlayState().getClass(), BanditPlayState.class);
+=======
+		assertEquals(card.getPlayState().getClass(), CardPlayState.class);
+>>>>>>> added Bandit without playstate
 	}
 
 	@Test

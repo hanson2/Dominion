@@ -3,7 +3,10 @@ package cards;
 import java.util.Set;
 import java.util.TreeSet;
 
+<<<<<<< HEAD
 import states.BanditPlayState;
+=======
+>>>>>>> added Bandit without playstate
 import util.CardType;
 import util.GameConstants;
 
@@ -31,8 +34,11 @@ public class Bandit extends Card {
 		return GameConstants.BANDITTEXT;
 	}
 
+<<<<<<< HEAD
 	public BanditPlayState getPlayState() {
 		return new BanditPlayState();
 	}
 
+=======
+>>>>>>> added Bandit without playstate
 }
