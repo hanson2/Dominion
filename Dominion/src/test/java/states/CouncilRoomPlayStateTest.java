@@ -7,14 +7,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import cards.Copper;
 import gameComponents.Player;
 
 public class CouncilRoomPlayStateTest {
 	Turn turn;
-	Player player;
 	ArrayList<Player> subsequentPlayers;
-	Copper toDiscard;
 
 	@Before
 	public void setup() {

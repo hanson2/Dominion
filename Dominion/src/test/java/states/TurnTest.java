@@ -72,7 +72,6 @@ public class TurnTest {
 	public void testTrashMostRecentlyPlayedCardNoCardPlayed() {
 		Player player = PlayerCreator.makeMockedPlayer();
 		Supply supply = EasyMock.mock(Supply.class);
-		Card card = EasyMock.mock(Card.class);
 		ArrayList<Player> subsequentPlayers = new ArrayList<Player>();
 		Turn turn = new Turn(player, supply, subsequentPlayers);
 		turn.playArea = new ArrayList<>();
