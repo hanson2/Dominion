@@ -86,18 +86,18 @@ public class GameConstants {
 	public static final int CHAPELCOST = 2;
 	public static final String CHAPELNAME = "cardChapelName";
 	public static final String CHAPELTEXT = "cardChapelText";
-	public static final String CHAPELPROMPTKEY = "cardChapelPrompt";
+	public static final String CHAPELPROMPTKEY = "chapelPrompt";
 
 	public static final int THRONEROOMCOST = 4;
 	public static final String THRONEROOMNAME = "cardThroneRoomName";
 	public static final String THRONEROOMTEXT = "cardThroneRoomText";
-	public static final String THRONEROOMPROMPTKEY = "cardThroneRoomPrompt";
+	public static final String THRONEROOMPROMPTKEY = "throneroomPrompt";
 
 	public static final int CELLARCOST = 2;
 	public static final int CELLARACTIONSADDED = 1;
 	public static final String CELLARNAME = "cardCellarName";
 	public static final String CELLARTEXT = "cardCellarText";
-	public static final String CELLARPROMPTKEY = "cardCellarPrompt";
+	public static final String CELLARPROMPTKEY = "cellarPrompt";
 
 	public static final int MOATCOST = 2;
 	public static final int MOATCARDSADDED = 2;
