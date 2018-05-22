@@ -1,5 +1,12 @@
+package cards;
+
 import java.util.Set;
 import java.util.TreeSet;
+
+import states.CardPlayState;
+import states.WorkshopPlayState;
+import util.CardType;
+import util.GameConstants;
 
 public class Workshop extends Card {
 
@@ -19,7 +26,7 @@ public class Workshop extends Card {
 	public String getName() {
 		return GameConstants.WORKSHOPNAME;
 	}
-	
+
 	public String getText() {
 		return GameConstants.WORKSHOPTEXT;
 	}

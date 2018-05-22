@@ -26,6 +26,7 @@ import cards.ThroneRoom;
 import cards.Vassal;
 import cards.Village;
 import cards.Woodcutter;
+import cards.Workshop;
 
 public class CardFactory {
 
@@ -81,6 +82,8 @@ public class CardFactory {
 			return new CouncilRoom();
 		} else if (cardClass.equals(Gardens.class)) {
 			return new Gardens();
+		} else if (cardClass.equals(Workshop.class)) {
+			return new Workshop();
 		} else {
 			return new Copper();
 		}

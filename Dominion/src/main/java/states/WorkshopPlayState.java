@@ -1,4 +1,6 @@
-import java.util.Optional;
+package states;
+
+import cards.Card;
 
 public class WorkshopPlayState extends CardPlayState {
 
@@ -7,10 +9,11 @@ public class WorkshopPlayState extends CardPlayState {
 		int coins = 4;
 		Card card = null;
 		while (true) {
-			card = turn.player.forcedBuy(coins);
+			card = turn.player.forcedBuy(turn.supplyPiles, "guiActionPhase", coins);
 
 			if (card.getCost() <= coins) {
 				turn.player.gainCard(card);
+				turn.supplyPiles.decrementPile(card);
 				break;
 			}
 		}

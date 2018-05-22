@@ -26,6 +26,7 @@ import cards.ThroneRoom;
 import cards.Vassal;
 import cards.Village;
 import cards.Woodcutter;
+import cards.Workshop;
 import util.AvailableLocales;
 import util.GameConstants;
 
@@ -112,6 +113,7 @@ public class Main {
 		availableKingdomCards.add(new Feast());
 		availableKingdomCards.add(new CouncilRoom());
 		availableKingdomCards.add(new Gardens());
+		availableKingdomCards.add(new Workshop());
 
 		return availableKingdomCards;
 	}

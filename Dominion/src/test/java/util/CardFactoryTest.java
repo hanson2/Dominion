@@ -30,6 +30,7 @@ import cards.ThroneRoom;
 import cards.Vassal;
 import cards.Village;
 import cards.Woodcutter;
+import cards.Workshop;
 
 public class CardFactoryTest {
 
@@ -156,6 +157,11 @@ public class CardFactoryTest {
 	@Test
 	public void testGardens() {
 		assertEquals(Gardens.class, CardFactory.makeCard(Gardens.class).getClass());
+	}
+
+	@Test
+	public void testWorkshop() {
+		assertEquals(Workshop.class, CardFactory.makeCard(Workshop.class).getClass());
 	}
 
 	@Test
