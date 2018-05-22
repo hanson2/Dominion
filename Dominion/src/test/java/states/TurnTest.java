@@ -3,9 +3,7 @@ package states;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 import org.easymock.EasyMock;
 import org.junit.Test;
@@ -13,7 +11,6 @@ import org.junit.Test;
 import gameComponents.Player;
 import gameComponents.PlayerCreator;
 import gameComponents.Supply;
-import util.CardType;
 
 public class TurnTest {
 
@@ -21,7 +18,8 @@ public class TurnTest {
 	public void testInitialStateSetup() {
 		Player player = EasyMock.mock(Player.class);
 		Supply supply = EasyMock.mock(Supply.class);
-		Turn turn = new Turn(player, supply);
+		ArrayList<Player> subsequentPlayers = new ArrayList<Player>();
+		Turn turn = new Turn(player, supply, subsequentPlayers);
 
 		EasyMock.replay(player);
 
@@ -34,7 +32,8 @@ public class TurnTest {
 	public void testFinalState() {
 		Player player = PlayerCreator.makeMockedPlayer();
 		Supply supply = EasyMock.mock(Supply.class);
-		Turn turn = new Turn(player, supply);
+		ArrayList<Player> subsequentPlayers = new ArrayList<Player>();
+		Turn turn = new Turn(player, supply, subsequentPlayers);
 		turn.playArea = new ArrayList<>();
 
 		EasyMock.expect(player.chooseCardToPlay()).andReturn(Optional.empty());
@@ -46,12 +45,6 @@ public class TurnTest {
 		turn.run();
 
 		assertEquals(TurnCleanupState.class, turn.getCurrentStateType());
-	}
-
-	private Set<CardType> getCardTypeSet(CardType type) {
-		Set<CardType> toReturn = new HashSet<CardType>();
-		toReturn.add(type);
-		return toReturn;
 	}
 
 }

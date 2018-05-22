@@ -146,8 +146,8 @@ public class Player {
 		}
 	}
 
-	public Card chooseCardFromHand() {
-		return gui.chooseCardFromHand(this.hand, this.name).join();
+	public Card chooseCardFromHand(String messageKey) {
+		return gui.chooseCardFromHand(this.hand, this.name, messageKey).join();
 	}
 
 	public boolean discardCardFromHand(Class<? extends Card> cardClass) {
@@ -159,5 +159,10 @@ public class Player {
 			}
 		}
 		return false;
+	}
+
+	public int getHandSize() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
