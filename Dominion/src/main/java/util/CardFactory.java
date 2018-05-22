@@ -23,6 +23,7 @@ import cards.ThroneRoom;
 import cards.Vassal;
 import cards.Village;
 import cards.Woodcutter;
+import cards.Workshop;
 
 public class CardFactory {
 
@@ -72,6 +73,8 @@ public class CardFactory {
 			return new Remodel();
 		} else if (cardClass.equals(Artisan.class)) {
 			return new Artisan();
+		} else if (cardClass.equals(Workshop.class)) {
+			return new Workshop();
 		} else {
 			return new Copper();
 		}

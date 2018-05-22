@@ -1,3 +1,5 @@
+package cards;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -6,9 +8,13 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import states.WorkshopPlayState;
+import util.CardType;
+import util.GameConstants;
+
 public class WorkshopTest {
-Card card;
-	
+	Card card;
+
 	@Before
 	public void setup() {
 		card = new Workshop();
@@ -16,7 +22,7 @@ Card card;
 
 	@Test
 	public void testGetType() {
-		assertTrue(card.getType().contains(CardType.ACTION));		
+		assertTrue(card.getType().contains(CardType.ACTION));
 	}
 
 	@Test
@@ -48,27 +54,27 @@ Card card;
 	public void testGetVictoryValue() {
 		assertEquals(card.getVictoryValue(), GameConstants.DEFAULTCARDATTRIBUTE);
 	}
-	
+
 	@Test
 	public void testGetName() {
 		assertEquals(card.getName(), GameConstants.WORKSHOPNAME);
 	}
-	
+
 	@Test
 	public void testGetText() {
 		assertEquals(card.getText(), GameConstants.WORKSHOPTEXT);
 	}
-	
+
 	@Test
 	public void testGetPlayState() {
 		assertEquals(card.getPlayState().getClass(), WorkshopPlayState.class);
 	}
-	
+
 	@Test
 	public void testGetTypeTranslationKeys() {
 		ArrayList<String> expectedTranslationKeys = new ArrayList<String>();
 		expectedTranslationKeys.add("cardtypeAction");
-		
+
 		assertEquals(card.getTypeTranslationKeys(), expectedTranslationKeys);
 	}
 }
