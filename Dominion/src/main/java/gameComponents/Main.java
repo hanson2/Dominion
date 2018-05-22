@@ -14,6 +14,7 @@ import cards.Chancellor;
 import cards.Chapel;
 import cards.Feast;
 import cards.Festival;
+import cards.Gardens;
 import cards.Laboratory;
 import cards.Market;
 import cards.Moat;
@@ -108,6 +109,7 @@ public class Main {
 		availableKingdomCards.add(new Remodel());
 		availableKingdomCards.add(new Artisan());
 		availableKingdomCards.add(new Feast());
+		availableKingdomCards.add(new Gardens());
 
 		return availableKingdomCards;
 	}
