@@ -1,5 +1,6 @@
 package util;
 
+import cards.Artisan;
 import cards.Card;
 import cards.Cellar;
 import cards.Chancellor;
@@ -69,6 +70,8 @@ public class CardFactory {
 			return new Woodcutter();
 		} else if (cardClass.equals(Remodel.class)) {
 			return new Remodel();
+		} else if (cardClass.equals(Artisan.class)) {
+			return new Artisan();
 		} else {
 			return new Copper();
 		}

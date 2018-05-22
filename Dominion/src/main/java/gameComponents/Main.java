@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import cards.Artisan;
 import cards.Card;
 import cards.Cellar;
 import cards.Chancellor;
@@ -104,6 +105,7 @@ public class Main {
 		availableKingdomCards.add(new Village());
 		availableKingdomCards.add(new Woodcutter());
 		availableKingdomCards.add(new Remodel());
+		availableKingdomCards.add(new Artisan());
 
 		return availableKingdomCards;
 	}

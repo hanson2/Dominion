@@ -1,4 +1,6 @@
-import java.util.Optional;
+package states;
+
+import cards.Card;
 
 public class ArtisanPlayState extends CardPlayState {
 	public void run(Turn turn) {
@@ -13,7 +15,8 @@ public class ArtisanPlayState extends CardPlayState {
 			}
 
 		}
-		card = turn.player.chooseCardFromHand();
+		card = turn.player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys,
+				turn.coins);
 		turn.player.placeOnDrawPile(card);
 		turn.player.trashCardFromHand(card.getClass());
 

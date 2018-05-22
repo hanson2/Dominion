@@ -1,5 +1,12 @@
+package cards;
+
 import java.util.Set;
 import java.util.TreeSet;
+
+import states.ArtisanPlayState;
+import states.CardPlayState;
+import util.CardType;
+import util.GameConstants;
 
 public class Artisan extends Card {
 
@@ -19,12 +26,12 @@ public class Artisan extends Card {
 	public String getName() {
 		return GameConstants.ARTISANNAME;
 	}
-	
+
 	public String getText() {
 		return GameConstants.ARTISANTEXT;
 	}
-	
-	public CardPlayState getPlayState(){
+
+	public CardPlayState getPlayState() {
 		return new ArtisanPlayState();
 	}
 
