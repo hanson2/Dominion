@@ -10,6 +10,7 @@ import cards.Cellar;
 import cards.Chancellor;
 import cards.Chapel;
 import cards.Copper;
+import cards.CouncilRoom;
 import cards.Curse;
 import cards.Duchy;
 import cards.Estate;
@@ -144,6 +145,11 @@ public class CardFactoryTest {
 	@Test
 	public void testFeast() {
 		assertEquals(Feast.class, CardFactory.makeCard(Feast.class).getClass());
+	}
+
+	@Test
+	public void testCouncilRoom() {
+		assertEquals(CouncilRoom.class, CardFactory.makeCard(CouncilRoom.class).getClass());
 	}
 
 	@Test

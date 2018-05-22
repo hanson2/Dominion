@@ -129,4 +129,10 @@ public class GameConstants {
 	public static final String TRASHPROMPTKEY = "trashPrompt";
 	public static final String MOATPROMPT = "moatPrompt";
 
+	public static final int COUNCILROOMCOST = 5;
+	public static final int COUNCILROOMCARDSADDED = 4;
+	public static final int COUNCILROOMBUYS = 1;
+	public static final String COUNCILROOMTEXT = "cardCouncilRoomText";
+	public static final String COUNCILROOMNAME = "cardCouncilRoomName";
+
 }

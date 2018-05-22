@@ -13,6 +13,7 @@ import cards.Cellar;
 import cards.Chancellor;
 import cards.Chapel;
 import cards.Feast;
+import cards.CouncilRoom;
 import cards.Festival;
 import cards.Laboratory;
 import cards.Market;
@@ -108,6 +109,7 @@ public class Main {
 		availableKingdomCards.add(new Remodel());
 		availableKingdomCards.add(new Artisan());
 		availableKingdomCards.add(new Feast());
+		availableKingdomCards.add(new CouncilRoom());
 
 		return availableKingdomCards;
 	}
