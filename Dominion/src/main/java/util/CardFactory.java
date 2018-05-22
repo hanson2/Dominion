@@ -6,6 +6,7 @@ import cards.Cellar;
 import cards.Chancellor;
 import cards.Chapel;
 import cards.Copper;
+import cards.CouncilRoom;
 import cards.Curse;
 import cards.Duchy;
 import cards.Estate;
@@ -72,6 +73,8 @@ public class CardFactory {
 			return new Remodel();
 		} else if (cardClass.equals(Artisan.class)) {
 			return new Artisan();
+		} else if (cardClass.equals(CouncilRoom.class)) {
+			return new CouncilRoom();
 		} else {
 			return new Copper();
 		}

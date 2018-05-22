@@ -12,6 +12,7 @@ import cards.Card;
 import cards.Cellar;
 import cards.Chancellor;
 import cards.Chapel;
+import cards.CouncilRoom;
 import cards.Festival;
 import cards.Laboratory;
 import cards.Market;
@@ -106,6 +107,7 @@ public class Main {
 		availableKingdomCards.add(new Woodcutter());
 		availableKingdomCards.add(new Remodel());
 		availableKingdomCards.add(new Artisan());
+		availableKingdomCards.add(new CouncilRoom());
 
 		return availableKingdomCards;
 	}

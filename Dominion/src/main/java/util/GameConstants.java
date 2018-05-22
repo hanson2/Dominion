@@ -103,7 +103,7 @@ public class GameConstants {
 	public static final int MOATCARDSADDED = 2;
 	public static final String MOATNAME = "cardMoatName";
 	public static final String MOATTEXT = "cardMoatText";
-	
+
 	public static final int ARTISANCOST = 6;
 	public static final String ARTISANNAME = "cardArtisanName";
 	public static final String ARTISANTEXT = "cardArtisanText";
@@ -124,5 +124,11 @@ public class GameConstants {
 	public static final String DISCARDPROMPTKEY = "discardPrompt";
 	public static final String TRASHPROMPTKEY = "trashPrompt";
 	public static final String MOATPROMPT = "moatPrompt";
+
+	public static final int COUNCILROOMCOST = 5;
+	public static final int COUNCILROOMCARDSADDED = 4;
+	public static final int COUNCILROOMBUYS = 1;
+	public static final String COUNCILROOMTEXT = "cardCouncilRoomText";// TODO
+	public static final String COUNCILROOMNAME = "cardCouncilRoomName";// TODO
 
 }
