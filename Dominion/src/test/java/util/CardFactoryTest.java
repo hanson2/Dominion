@@ -14,6 +14,7 @@ import cards.Curse;
 import cards.Duchy;
 import cards.Estate;
 import cards.Festival;
+import cards.Gardens;
 import cards.Gold;
 import cards.Laboratory;
 import cards.Market;
@@ -138,6 +139,11 @@ public class CardFactoryTest {
 	@Test
 	public void testArtisan() {
 		assertEquals(Artisan.class, CardFactory.makeCard(Artisan.class).getClass());
+	}
+
+	@Test
+	public void testGardens() {
+		assertEquals(Gardens.class, CardFactory.makeCard(Gardens.class).getClass());
 	}
 
 	@Test

@@ -10,6 +10,7 @@ import cards.Curse;
 import cards.Duchy;
 import cards.Estate;
 import cards.Festival;
+import cards.Gardens;
 import cards.Gold;
 import cards.Laboratory;
 import cards.Market;
@@ -72,6 +73,8 @@ public class CardFactory {
 			return new Remodel();
 		} else if (cardClass.equals(Artisan.class)) {
 			return new Artisan();
+		} else if (cardClass.equals(Gardens.class)) {
+			return new Gardens();
 		} else {
 			return new Copper();
 		}
