@@ -15,6 +15,7 @@ import cards.Chapel;
 import cards.Festival;
 import cards.Laboratory;
 import cards.Market;
+import cards.Militia;
 import cards.Moat;
 import cards.Moneylender;
 import cards.Remodel;
@@ -106,6 +107,7 @@ public class Main {
 		availableKingdomCards.add(new Woodcutter());
 		availableKingdomCards.add(new Remodel());
 		availableKingdomCards.add(new Artisan());
+		availableKingdomCards.add(new Militia());
 
 		return availableKingdomCards;
 	}

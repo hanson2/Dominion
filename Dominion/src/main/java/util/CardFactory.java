@@ -13,6 +13,7 @@ import cards.Festival;
 import cards.Gold;
 import cards.Laboratory;
 import cards.Market;
+import cards.Militia;
 import cards.Moat;
 import cards.Moneylender;
 import cards.Province;
@@ -72,6 +73,8 @@ public class CardFactory {
 			return new Remodel();
 		} else if (cardClass.equals(Artisan.class)) {
 			return new Artisan();
+		} else if (cardClass.equals(Militia.class)) {
+			return new Militia();
 		} else {
 			return new Copper();
 		}
