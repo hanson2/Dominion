@@ -2,6 +2,7 @@ package states;
 
 import cards.Card;
 import gameComponents.Player;
+import util.GameConstants;
 
 public class CellarPlayState extends CardPlayState {
 
@@ -14,7 +15,7 @@ public class CellarPlayState extends CardPlayState {
 
 		while (handSize > 0) {
 			if (player.promptYesNo("cellarPrompt")) {
-				Card card = player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys, turn.coins);
+				Card card = player.chooseCardFromHand(GameConstants.CELLARPROMPTKEY, turn.actions, turn.buys, turn.coins);
 				player.discardCardFromHand(card.getClass());
 				numCardsToAdd++;
 			} else {
