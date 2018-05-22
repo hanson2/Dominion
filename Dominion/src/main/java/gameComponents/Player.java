@@ -37,6 +37,10 @@ public class Player {
 		return playArea;
 	}
 
+	public Card drawACardAndReturn() {
+		return drawPile.pop();
+	}
+
 	public void drawACard() {
 		if (this.drawPile.size() > 0) {
 			this.hand.add(this.drawPile.pop());
@@ -72,19 +76,18 @@ public class Player {
 	}
 
 	public Optional<Card> chooseCardToPlay(String phaseKey, int actions, int buys, int coins) {
-		return this.gui.chooseCardToPlay(this.hand, name, phaseKey, actions, buys, coins,
+		return this.gui.chooseCardToPlay(this.hand, name, phaseKey, actions, buys, coins, this.discardPile.size(),
+				this.drawPile.size()).join();
+	}
+
+	public Optional<Card> buy(Supply supplyPiles, String phaseKey, int actions, int buys, int coins) {
+		return this.gui.chooseCardToBuy(supplyPiles.getAvailableCards(), this.name, phaseKey, actions, buys, coins,
 				this.discardPile.size(), this.drawPile.size()).join();
 	}
 
-	public Optional<Card> buy(Supply supplyPiles, String phaseKey, int actions, int buys,
-			int coins) {
-		return this.gui.chooseCardToBuy(supplyPiles.getAvailableCards(), this.name, phaseKey,
-				actions, buys, coins, this.discardPile.size(), this.drawPile.size()).join();
-	}
-
 	public Card forcedBuy(Supply supplyPiles, String phaseKey, int tempCoins) {
-		return this.gui.forceCardToBuy(supplyPiles.getAvailableCards(), this.name, phaseKey,
-				tempCoins, this.discardPile.size(), this.drawPile.size()).join();
+		return this.gui.forceCardToBuy(supplyPiles.getAvailableCards(), this.name, phaseKey, tempCoins,
+				this.discardPile.size(), this.drawPile.size()).join();
 	}
 
 	public int getPoints() {
@@ -114,7 +117,8 @@ public class Player {
 		return this.hand;
 	}
 
-	public void gainCard(Card card) {
+	public void gainCard(Card card, Supply supply) {
+		supply.decrementPile(card);
 		this.discardPile.push(card);
 	}
 
@@ -165,8 +169,8 @@ public class Player {
 	}
 
 	public Card chooseCardFromHand(String phaseKey, int actions, int buys, int coins) {
-		return gui.chooseCardFromHand(this.hand, this.name, phaseKey, actions, buys, coins,
-				this.discardPile.size(), this.drawPile.size()).join();
+		return gui.chooseCardFromHand(this.hand, this.name, phaseKey, actions, buys, coins, this.discardPile.size(),
+				this.drawPile.size()).join();
 	}
 
 	public boolean discardCardFromHand(Class<? extends Card> cardClass) {
@@ -195,5 +199,9 @@ public class Player {
 
 	public void placeOnDrawPile(Card card) {
 		this.drawPile.push(card);
+	}
+
+	public Card chooseCardFromSelection(ArrayList<Card> list, String phaseKey) {
+		return gui.chooseCardFromSelection(this.hand, this.name, phaseKey).join();
 	}
 }

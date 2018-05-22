@@ -6,8 +6,7 @@ public class RemodelPlayState extends CardPlayState {
 
 	@Override
 	public void run(Turn turn) {
-		Card card = turn.player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys,
-				turn.coins);
+		Card card = turn.player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys, turn.coins);
 		turn.player.trashCardFromHand(card.getClass());
 		int coins = card.getCost() + 2;
 

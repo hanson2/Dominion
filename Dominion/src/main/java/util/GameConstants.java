@@ -103,7 +103,7 @@ public class GameConstants {
 	public static final int MOATCARDSADDED = 2;
 	public static final String MOATNAME = "cardMoatName";
 	public static final String MOATTEXT = "cardMoatText";
-	
+
 	public static final int ARTISANCOST = 6;
 	public static final String ARTISANNAME = "cardArtisanName";
 	public static final String ARTISANTEXT = "cardArtisanText";
@@ -128,5 +128,6 @@ public class GameConstants {
 	public static final int BANDITCOST = 5;
 	public static final String BANDITNAME = "cardBanditName";// TODO
 	public static final String BANDITTEXT = "cardBanditText";// TODO
+	public static final String BANDITPROMPT = "cardBanditPrompt";// TODO
 
 }

@@ -17,8 +17,8 @@ import cards.Estate;
 import cards.Gold;
 import cards.Province;
 import cards.Silver;
-import util.CardFactory;
 import util.BaseCards;
+import util.CardFactory;
 
 public class Supply {
 	Stack<Card> copperSupply;
@@ -198,7 +198,7 @@ public class Supply {
 		for (BaseCards cardName : this.baseSupplyPiles.keySet()) {
 			if (!this.baseSupplyPiles.get(cardName).isEmpty()) {
 				Card baseCard = this.baseSupplyPiles.get(cardName).peek();
-				if (baseCard.getClass().equals(card.getClass())) {
+				if (baseCard.getClass().equals(card)) {
 					this.baseSupplyPiles.get(cardName).pop();
 					return;
 				}
@@ -207,7 +207,7 @@ public class Supply {
 		for (Stack<Card> kingdomPile : this.kingdomCardList) {
 			if (!kingdomPile.isEmpty()) {
 				Card kingdomCard = kingdomPile.peek();
-				if (kingdomCard.getClass().equals(card.getClass())) {
+				if (kingdomCard.getClass().equals(card)) {
 					kingdomPile.pop();
 					return;
 				}
