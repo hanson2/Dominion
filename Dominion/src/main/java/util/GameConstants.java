@@ -103,7 +103,7 @@ public class GameConstants {
 	public static final int MOATCARDSADDED = 2;
 	public static final String MOATNAME = "cardMoatName";
 	public static final String MOATTEXT = "cardMoatText";
-	
+
 	public static final int ARTISANCOST = 6;
 	public static final String ARTISANNAME = "cardArtisanName";
 	public static final String ARTISANTEXT = "cardArtisanText";
@@ -111,6 +111,10 @@ public class GameConstants {
 	public static final int REMODELCOST = 4;
 	public static final String REMODELNAME = "cardRemodelName";
 	public static final String REMODELTEXT = "cardRemodelText";
+
+	public static final int FEASTCOST = 4;
+	public static final String FEASTNAME = "cardFeastName";
+	public static final String FEASTTEXT = "cardFeastText";
 
 	public static final int GUIWIDTH = 900;
 	public static final int GUIHEIGHT = 300;

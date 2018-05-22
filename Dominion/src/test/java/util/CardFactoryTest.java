@@ -13,6 +13,7 @@ import cards.Copper;
 import cards.Curse;
 import cards.Duchy;
 import cards.Estate;
+import cards.Feast;
 import cards.Festival;
 import cards.Gold;
 import cards.Laboratory;
@@ -138,6 +139,11 @@ public class CardFactoryTest {
 	@Test
 	public void testArtisan() {
 		assertEquals(Artisan.class, CardFactory.makeCard(Artisan.class).getClass());
+	}
+
+	@Test
+	public void testFeast() {
+		assertEquals(Feast.class, CardFactory.makeCard(Feast.class).getClass());
 	}
 
 	@Test

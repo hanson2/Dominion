@@ -36,4 +36,10 @@ public class Turn {
 		return this.state.getClass();
 	}
 
+	public void trashMostRecentlyPlayedCard() {
+		if (!playArea.isEmpty()) {
+			playArea.remove(playArea.size() - 1);
+		}
+	}
+
 }

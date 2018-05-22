@@ -2,24 +2,24 @@ package states;
 
 import cards.Card;
 
-public class ArtisanPlayState extends CardPlayState {
+public class FeastPlayState extends CardPlayState {
+
+	@Override
 	public void run(Turn turn) {
+		turn.trashMostRecentlyPlayedCard();
+
 		int coins = 5;
 		Card card = null;
+
 		while (true) {
 			card = turn.player.forcedBuy(turn.supplyPiles, "guiActionPhase", coins);
 
 			if (card.getCost() <= coins) {
-				turn.player.gainCardToHand(card);
+				turn.player.gainCard(card);
 				turn.supplyPiles.decrementPile(card);
 				break;
 			}
-
 		}
-		card = turn.player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys,
-				turn.coins);
-		turn.player.placeOnDrawPile(card);
-		turn.player.trashCardFromHand(card.getClass());
-
 	}
+
 }
