@@ -6,10 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import org.easymock.EasyMock;
@@ -194,7 +192,8 @@ public class PlayerTest {
 		player.drawNewHand();
 
 		for (Card card : player.getHand()) {
-			assertTrue(card.getClass().equals(Copper.class) || card.getClass().equals(Estate.class));
+			assertTrue(
+					card.getClass().equals(Copper.class) || card.getClass().equals(Estate.class));
 		}
 	}
 
@@ -284,8 +283,8 @@ public class PlayerTest {
 		Optional<Card> potentialCardToPlay = Optional.empty();
 		response.complete(potentialCardToPlay);
 
-		EasyMock.expect(gui.chooseCardToPlay(player.getHand(), "Test", "", 0, 0, 0, player.discardPile.size(),
-				player.drawPile.size())).andReturn(response);
+		EasyMock.expect(gui.chooseCardToPlay(player.getHand(), "Test", "", 0, 0, 0,
+				player.discardPile.size(), player.drawPile.size())).andReturn(response);
 
 		EasyMock.replay(gui);
 
@@ -300,8 +299,8 @@ public class PlayerTest {
 		Optional<Card> potentialCardToPlay = Optional.of(cardReturned);
 		response.complete(potentialCardToPlay);
 
-		EasyMock.expect(gui.chooseCardToPlay(player.getHand(), "Test", "", 0, 0, 0, player.discardPile.size(),
-				player.drawPile.size())).andReturn(response);
+		EasyMock.expect(gui.chooseCardToPlay(player.getHand(), "Test", "", 0, 0, 0,
+				player.discardPile.size(), player.drawPile.size())).andReturn(response);
 
 		EasyMock.replay(gui, cardReturned);
 
@@ -316,12 +315,12 @@ public class PlayerTest {
 		CompletableFuture<Optional<Card>> response = new CompletableFuture<Optional<Card>>();
 		Optional<Card> potentialCardToBuy = Optional.empty();
 		response.complete(potentialCardToBuy);
-		Set<Card> availableCards = new HashSet<Card>();
+		List<Card> availableCards = new ArrayList<Card>();
 		Supply supplyPiles = EasyMock.mock(Supply.class);
 
 		EasyMock.expect(supplyPiles.getAvailableCards()).andReturn(availableCards).anyTimes();
-		EasyMock.expect(gui.chooseCardToBuy(availableCards, "Test", "", 0, 0, 0, player.discardPile.size(),
-				player.drawPile.size())).andReturn(response);
+		EasyMock.expect(gui.chooseCardToBuy(availableCards, "Test", "", 0, 0, 0,
+				player.discardPile.size(), player.drawPile.size())).andReturn(response);
 
 		EasyMock.replay(gui, supplyPiles);
 
@@ -337,13 +336,13 @@ public class PlayerTest {
 		Card cardToBuy = EasyMock.mock(Card.class);
 		Optional<Card> potentialCardToBuy = Optional.of(cardToBuy);
 		response.complete(potentialCardToBuy);
-		Set<Card> availableCards = new HashSet<Card>();
+		List<Card> availableCards = new ArrayList<Card>();
 		availableCards.add(cardToBuy);
 		Supply supplyPiles = EasyMock.mock(Supply.class);
 
 		EasyMock.expect(supplyPiles.getAvailableCards()).andReturn(availableCards).anyTimes();
-		EasyMock.expect(gui.chooseCardToBuy(availableCards, "Test", "", 0, 0, 0, player.discardPile.size(),
-				player.drawPile.size())).andReturn(response);
+		EasyMock.expect(gui.chooseCardToBuy(availableCards, "Test", "", 0, 0, 0,
+				player.discardPile.size(), player.drawPile.size())).andReturn(response);
 
 		EasyMock.replay(gui, supplyPiles);
 
@@ -359,8 +358,8 @@ public class PlayerTest {
 		Card cardReturned = EasyMock.mock(Card.class);
 		chosenCardFuture.complete(cardReturned);
 
-		EasyMock.expect(gui.chooseCardFromHand(player.hand, "Test", "", 0, 0, 0, player.discardPile.size(),
-				player.drawPile.size())).andReturn(chosenCardFuture);
+		EasyMock.expect(gui.chooseCardFromHand(player.hand, "Test", "", 0, 0, 0,
+				player.discardPile.size(), player.drawPile.size())).andReturn(chosenCardFuture);
 
 		EasyMock.replay(gui, cardReturned);
 

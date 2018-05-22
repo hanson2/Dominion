@@ -326,6 +326,12 @@ public class GUI extends JFrame {
 		this.clear();
 		this.setVisible(true);
 		CompletableFuture<Boolean> playAgain = new CompletableFuture<Boolean>();
+		StringBuilder title = new StringBuilder();
+		title.append(GameConstants.messages.getString("guiWinGameTitle"));
+		for (Player winner : winners) {
+			title.append(" : ");
+			title.append(winner.getName());
+		}
 
 		playAgain.complete(false);
 
@@ -426,7 +432,7 @@ public class GUI extends JFrame {
 
 	}
 
-	public CompletableFuture<Optional<Card>> chooseCardToBuy(Set<Card> availableCards, String name,
+	public CompletableFuture<Optional<Card>> chooseCardToBuy(List<Card> availableCards, String name,
 			String phaseKey, int actions, int buys, int coins, int discardSize, int drawSize) {
 		this.clear();
 		CompletableFuture<Optional<Card>> cardToBuy = new CompletableFuture<Optional<Card>>();

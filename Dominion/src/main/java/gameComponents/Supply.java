@@ -160,18 +160,37 @@ public class Supply {
 		return numPilesGone >= 3;
 	}
 
-	public Set<Card> getAvailableCards() {
-		Set<Card> availableCards = new HashSet<Card>();
+	public List<Card> getAvailableCards() {
+		List<Card> availableCards = new ArrayList<Card>();
+
+		if (!this.copperSupply.isEmpty()) {
+			availableCards.add(this.copperSupply.peek());
+		}
+		if (!this.silverSupply.isEmpty()) {
+			availableCards.add(this.silverSupply.peek());
+		}
+		if (!this.goldSupply.isEmpty()) {
+			availableCards.add(this.goldSupply.peek());
+		}
+		if (!this.estateSupply.isEmpty()) {
+			availableCards.add(this.estateSupply.peek());
+		}
+		if (!this.duchySupply.isEmpty()) {
+			availableCards.add(this.duchySupply.peek());
+		}
+		if (!this.provinceSupply.isEmpty()) {
+			availableCards.add(this.provinceSupply.peek());
+		}
+		if (!this.curseSupply.isEmpty()) {
+			availableCards.add(this.curseSupply.peek());
+		}
+
 		for (Stack<Card> kingdomPile : this.kingdomCardList) {
 			if (!kingdomPile.isEmpty()) {
 				availableCards.add(kingdomPile.peek());
 			}
 		}
-		for (Cards cardName : this.baseSupplyPiles.keySet()) {
-			if (!this.baseSupplyPiles.get(cardName).isEmpty()) {
-				availableCards.add(this.baseSupplyPiles.get(cardName).peek());
-			}
-		}
+
 		return availableCards;
 	}
 
