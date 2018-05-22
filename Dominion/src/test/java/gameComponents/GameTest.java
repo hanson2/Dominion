@@ -14,15 +14,15 @@ import states.Turn;
 import states.TurnCreator;
 
 public class GameTest {
-	
+
 	Supply supply;
-	
+
 	@Before
 	public void setup() {
 		supply = EasyMock.mock(Supply.class);
 		EasyMock.replay(supply);
 	}
-	
+
 	@After
 	public void tearDown() {
 		EasyMock.verify(supply);
@@ -160,7 +160,8 @@ public class GameTest {
 			list[i] = EasyMock.mock(Player.class);
 		}
 		Supply supplyPiles = EasyMock.mock(Supply.class);
-		Game game = EasyMock.partialMockBuilder(Game.class).addMockedMethod("makeNewTurn").createMock();
+		Game game = EasyMock.partialMockBuilder(Game.class).addMockedMethod("makeNewTurn")
+				.createMock();
 		Turn turn = EasyMock.mock(Turn.class);
 		for (int i = 0; i < list.length; i++) {
 			list[i].drawNewHand();
@@ -198,7 +199,8 @@ public class GameTest {
 			list[i] = EasyMock.mock(Player.class);
 		}
 		Supply supplyPiles = EasyMock.mock(Supply.class);
-		Game game = EasyMock.partialMockBuilder(Game.class).addMockedMethod("makeNewTurn").createMock();
+		Game game = EasyMock.partialMockBuilder(Game.class).addMockedMethod("makeNewTurn")
+				.createMock();
 		for (int i = 0; i < list.length; i++) {
 			list[i].drawNewHand();
 		}
@@ -240,7 +242,8 @@ public class GameTest {
 			list[i] = EasyMock.mock(Player.class);
 		}
 		Supply supplyPiles = EasyMock.mock(Supply.class);
-		Game game = EasyMock.partialMockBuilder(Game.class).addMockedMethod("makeNewTurn").createMock();
+		Game game = EasyMock.partialMockBuilder(Game.class).addMockedMethod("makeNewTurn")
+				.createMock();
 		Turn turn = EasyMock.mock(Turn.class);
 		for (int i = 0; i < list.length; i++) {
 			list[i].drawNewHand();
@@ -285,6 +288,17 @@ public class GameTest {
 		Player[] list = new Player[2];
 		Game game = new Game(supply, list);
 		Turn turn = game.makeNewTurn();
+
+		assertEquals(TurnCreator.getPlayer(turn), list[game.currentPlayer]);
+		assertEquals(TurnCreator.getSupply(turn), game.supplyPiles);
+	}
+
+	@Test
+	public void testMakeNewTurnSubsequentPlayersLoop() {
+		Player[] list = new Player[4];
+		Game game = new Game(supply, list);
+		Turn turn = game.makeNewTurn();
+		game.currentPlayer = 2;
 
 		assertEquals(TurnCreator.getPlayer(turn), list[game.currentPlayer]);
 		assertEquals(TurnCreator.getSupply(turn), game.supplyPiles);

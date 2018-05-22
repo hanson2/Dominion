@@ -12,6 +12,7 @@ import cards.Duchy;
 import cards.Estate;
 import cards.Feast;
 import cards.Festival;
+import cards.Gardens;
 import cards.Gold;
 import cards.Laboratory;
 import cards.Market;
@@ -78,6 +79,8 @@ public class CardFactory {
 			return new Feast();
 		} else if (cardClass.equals(CouncilRoom.class)) {
 			return new CouncilRoom();
+		} else if (cardClass.equals(Gardens.class)) {
+			return new Gardens();
 		} else {
 			return new Copper();
 		}

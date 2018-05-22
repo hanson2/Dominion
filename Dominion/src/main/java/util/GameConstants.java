@@ -116,6 +116,10 @@ public class GameConstants {
 	public static final String FEASTNAME = "cardFeastName";
 	public static final String FEASTTEXT = "cardFeastText";
 
+	public static final int GARDENSCOST = 4;
+	public static final String GARDENSNAME = "cardGardensName";
+	public static final String GARDENSTEXT = "cardGardensText";
+
 	public static final int GUIWIDTH = 900;
 	public static final int GUIHEIGHT = 300;
 
