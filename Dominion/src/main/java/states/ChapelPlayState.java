@@ -11,7 +11,7 @@ public class ChapelPlayState extends CardPlayState {
 
 		for (int i = 0; i < 4 && player.sizeOfHand() > 0; i++) {
 			if (player.promptYesNo("chapelPrompt")) {
-				Card toTrash = player.chooseCardFromHand();
+				Card toTrash = player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys, turn.coins);
 				player.trashCardFromHand(toTrash.getClass());
 			} else {
 				break;

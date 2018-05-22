@@ -45,7 +45,8 @@ public class ThroneRoomPlayStateTest {
 		turn.state = state;
 
 		EasyMock.expect(player.promptYesNo("throneroomPrompt")).andReturn(true);
-		EasyMock.expect(player.chooseCardFromHand()).andReturn(card);
+		EasyMock.expect(player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys, turn.coins))
+				.andReturn(card);
 		EasyMock.expect(card.getType()).andReturn(cardType);
 
 		EasyMock.replay(player, turn, card);
@@ -69,7 +70,8 @@ public class ThroneRoomPlayStateTest {
 		turn.state = state;
 
 		EasyMock.expect(player.promptYesNo("throneroomPrompt")).andReturn(true);
-		EasyMock.expect(player.chooseCardFromHand()).andReturn(card);
+		EasyMock.expect(player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys, turn.coins))
+				.andReturn(card);
 		EasyMock.expect(card.getType()).andReturn(cardType);
 		EasyMock.expect(card.getPlayState()).andReturn(new CardPlayState());
 		turn.run();

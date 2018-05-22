@@ -17,7 +17,8 @@ public class TurnActionState extends TurnState {
 		this.player = turn.player;
 
 		while (true) {
-			Optional<Card> potentialCard = this.player.chooseCardToPlay();
+			Optional<Card> potentialCard = this.player.chooseCardToPlay("guiActionPhase", turn.actions, turn.buys,
+					turn.coins);
 			if (potentialCard.isPresent()) {
 				Card card = potentialCard.get();
 				if (card.getType().contains(CardType.ACTION)) {

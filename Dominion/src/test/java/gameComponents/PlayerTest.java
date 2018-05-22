@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -288,7 +288,7 @@ public class PlayerTest {
 
 		EasyMock.replay(gui);
 
-		assertEquals(player.chooseCardToPlay(), potentialCardToPlay);
+		assertEquals(player.chooseCardToPlay("", 0, 0, 0), potentialCardToPlay);
 	}
 
 	@Test
@@ -303,7 +303,7 @@ public class PlayerTest {
 
 		EasyMock.replay(gui, cardReturned);
 
-		assertEquals(player.chooseCardToPlay(), potentialCardToPlay);
+		assertEquals(player.chooseCardToPlay("", 0, 0, 0), potentialCardToPlay);
 
 		EasyMock.verify(cardReturned);
 	}
@@ -322,7 +322,7 @@ public class PlayerTest {
 
 		EasyMock.replay(gui, supplyPiles);
 
-		assertEquals(player.buy(supplyPiles), potentialCardToBuy);
+		assertEquals(player.buy(supplyPiles, "", 0, 0, 0), potentialCardToBuy);
 
 		EasyMock.verify(supplyPiles);
 	}
@@ -343,7 +343,7 @@ public class PlayerTest {
 
 		EasyMock.replay(gui, supplyPiles);
 
-		assertEquals(player.buy(supplyPiles), potentialCardToBuy);
+		assertEquals(player.buy(supplyPiles, "", 0, 0, 0), potentialCardToBuy);
 
 		EasyMock.verify(supplyPiles);
 	}
@@ -359,7 +359,7 @@ public class PlayerTest {
 
 		EasyMock.replay(gui, cardReturned);
 
-		assertEquals(player.chooseCardFromHand(), cardReturned);
+		assertEquals(player.chooseCardFromHand("", 0, 0, 0), cardReturned);
 
 		EasyMock.verify(cardReturned);
 	}
@@ -422,10 +422,10 @@ public class PlayerTest {
 
 	@Test
 	public void testCleanupPlayArea() {
-		Card[] cardList = {EasyMock.mock(Card.class), EasyMock.mock(Card.class)}; 
+		Card[] cardList = { EasyMock.mock(Card.class), EasyMock.mock(Card.class) };
 		List<Card> playArea = new ArrayList<>();
 		playArea.addAll(Arrays.asList(cardList));
-		
+
 		player.cleanup(playArea);
 
 		assertTrue(playArea.isEmpty());

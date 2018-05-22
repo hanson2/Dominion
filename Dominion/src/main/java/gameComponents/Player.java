@@ -63,11 +63,11 @@ public class Player {
 		this.drawPile.clear();
 	}
 
-	public Optional<Card> chooseCardToPlay() {
+	public Optional<Card> chooseCardToPlay(String phaseKey, int actions, int buys, int coins) {
 		return this.gui.chooseCardToPlay(this.hand, name).join();
 	}
 
-	public Optional<Card> buy(Supply supplyPiles) {
+	public Optional<Card> buy(Supply supplyPiles, String phaseKey, int actions, int buys, int coins) {
 		return this.gui.chooseCardToBuy(supplyPiles.getAvailableCards(), this.name).join();
 	}
 
@@ -148,7 +148,7 @@ public class Player {
 		}
 	}
 
-	public Card chooseCardFromHand() {
+	public Card chooseCardFromHand(String phaseKey, int actions, int buys, int coins) {
 		return gui.chooseCardFromHand(this.hand, this.name).join();
 	}
 
