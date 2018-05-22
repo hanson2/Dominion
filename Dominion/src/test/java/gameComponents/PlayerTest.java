@@ -547,8 +547,6 @@ public class PlayerTest {
 
 	@Test
 	public void testHasCardInHandFalse() {
-		Card card = new Province();
-
 		assertFalse(player.hasCardInHand(Province.class));
 	}
 

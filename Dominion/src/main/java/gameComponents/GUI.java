@@ -30,8 +30,12 @@ public class GUI extends JFrame {
 		pane = getContentPane();
 
 		quitB = new JButton(GameConstants.messages.getString("guiQuit"));
-		QuitButtonHandler quitBH = new QuitButtonHandler();
-		quitB.addActionListener(quitBH);
+		quitB.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(DISPOSE_ON_CLOSE);
+			}
+		});
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pane.add(quitB);
 	}
@@ -39,15 +43,6 @@ public class GUI extends JFrame {
 	public void clear() {
 		this.pane.removeAll();
 		this.pane.setLayout(new GridLayout(0, 3, 0, 0));
-	}
-
-	private class QuitButtonHandler implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			System.exit(DISPOSE_ON_CLOSE);
-		}
-
 	}
 
 	private void drawExitButton(CompletableFuture<Optional<Card>> future) {
@@ -252,7 +247,7 @@ public class GUI extends JFrame {
 
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				// TODO Auto-generated method stub
+
 			}
 
 		});
