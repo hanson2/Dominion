@@ -1,7 +1,7 @@
 package cards;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import states.CouncilRoomPlayState;
 import util.CardType;
@@ -11,7 +11,7 @@ public class CouncilRoom extends Card {
 
 	@Override
 	public Set<CardType> getType() {
-		Set<CardType> set = new TreeSet<CardType>();
+		Set<CardType> set = new HashSet<CardType>();
 		set.add(CardType.ACTION);
 		return set;
 	}
