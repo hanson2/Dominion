@@ -16,6 +16,7 @@ import cards.Laboratory;
 import cards.Market;
 import cards.Moat;
 import cards.Moneylender;
+import cards.Remodel;
 import cards.Smithy;
 import cards.ThroneRoom;
 import cards.Vassal;
@@ -77,8 +78,10 @@ public class Main {
 
 		if (chosenLocale.equals(AvailableLocales.EN)) {
 			locale = new Locale("en");
-		} else {
+		} else if (chosenLocale.equals(AvailableLocales.ES)) {
 			locale = new Locale("es");
+		} else {
+			locale = new Locale("en");
 		}
 
 		return locale;
@@ -100,6 +103,7 @@ public class Main {
 		availableKingdomCards.add(new Vassal());
 		availableKingdomCards.add(new Village());
 		availableKingdomCards.add(new Woodcutter());
+		availableKingdomCards.add(new Remodel());
 
 		return availableKingdomCards;
 	}

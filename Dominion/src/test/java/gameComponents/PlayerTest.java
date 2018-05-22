@@ -352,6 +352,27 @@ public class PlayerTest {
 	}
 
 	@Test
+	public void testForceBuy() {
+		EasyMock.reset(gui);
+		CompletableFuture<Card> response = new CompletableFuture<Card>();
+		Card cardToBuy = EasyMock.mock(Card.class);
+		response.complete(cardToBuy);
+		List<Card> availableCards = new ArrayList<Card>();
+		availableCards.add(cardToBuy);
+		Supply supplyPiles = EasyMock.mock(Supply.class);
+
+		EasyMock.expect(supplyPiles.getAvailableCards()).andReturn(availableCards).anyTimes();
+		EasyMock.expect(gui.forceCardToBuy(availableCards, "Test", "", 0,
+				player.sizeOfDiscardPile(), player.sizeOfDrawPile())).andReturn(response);
+
+		EasyMock.replay(gui, supplyPiles);
+
+		assertEquals(player.forcedBuy(supplyPiles, "", 0), cardToBuy);
+
+		EasyMock.verify(supplyPiles);
+	}
+
+	@Test
 	public void testChooseCardFromHand() {
 		EasyMock.reset(gui);
 		CompletableFuture<Card> chosenCardFuture = new CompletableFuture<Card>();

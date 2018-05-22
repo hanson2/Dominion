@@ -452,4 +452,27 @@ public class GUI extends JFrame {
 		return cardToBuy;
 	}
 
+	public CompletableFuture<Card> forceCardToBuy(List<Card> availableCards, String name,
+			String phaseKey, int tempCoins, int discardSize, int drawSize) {
+		this.clear();
+		CompletableFuture<Card> cardToBuy = new CompletableFuture<Card>();
+
+		String title = GameConstants.messages.getString("chooseCardToBuy");
+		title = name + ": " + GameConstants.messages.getString(phaseKey) + " : " + title + "    "
+				+ String.format(GameConstants.messages.getString("guiHeaderInfoForcedBuy"), 1,
+						tempCoins, discardSize, drawSize);
+		this.setTitle(title);
+
+		for (Card card : availableCards) {
+			this.drawForcedCard(card, cardToBuy);
+		}
+
+		this.setSize(GameConstants.GUICARDSIZE * 3, GameConstants.GUICARDSIZE * 3);
+		this.setVisible(true);
+		this.pane.repaint();
+		this.repaint();
+
+		return cardToBuy;
+	}
+
 }

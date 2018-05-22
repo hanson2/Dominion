@@ -72,13 +72,19 @@ public class Player {
 	}
 
 	public Optional<Card> chooseCardToPlay(String phaseKey, int actions, int buys, int coins) {
-		return this.gui.chooseCardToPlay(this.hand, name, phaseKey, actions, buys, coins, this.discardPile.size(),
-				this.drawPile.size()).join();
+		return this.gui.chooseCardToPlay(this.hand, name, phaseKey, actions, buys, coins,
+				this.discardPile.size(), this.drawPile.size()).join();
 	}
 
-	public Optional<Card> buy(Supply supplyPiles, String phaseKey, int actions, int buys, int coins) {
-		return this.gui.chooseCardToBuy(supplyPiles.getAvailableCards(), this.name, phaseKey, actions, buys, coins,
-				this.discardPile.size(), this.drawPile.size()).join();
+	public Optional<Card> buy(Supply supplyPiles, String phaseKey, int actions, int buys,
+			int coins) {
+		return this.gui.chooseCardToBuy(supplyPiles.getAvailableCards(), this.name, phaseKey,
+				actions, buys, coins, this.discardPile.size(), this.drawPile.size()).join();
+	}
+
+	public Card forcedBuy(Supply supplyPiles, String phaseKey, int tempCoins) {
+		return this.gui.forceCardToBuy(supplyPiles.getAvailableCards(), this.name, phaseKey,
+				tempCoins, this.discardPile.size(), this.drawPile.size()).join();
 	}
 
 	public int getPoints() {
@@ -159,8 +165,8 @@ public class Player {
 	}
 
 	public Card chooseCardFromHand(String phaseKey, int actions, int buys, int coins) {
-		return gui.chooseCardFromHand(this.hand, this.name, phaseKey, actions, buys, coins, this.discardPile.size(),
-				this.drawPile.size()).join();
+		return gui.chooseCardFromHand(this.hand, this.name, phaseKey, actions, buys, coins,
+				this.discardPile.size(), this.drawPile.size()).join();
 	}
 
 	public boolean discardCardFromHand(Class<? extends Card> cardClass) {

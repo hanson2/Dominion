@@ -15,6 +15,7 @@ import cards.Market;
 import cards.Moat;
 import cards.Moneylender;
 import cards.Province;
+import cards.Remodel;
 import cards.Silver;
 import cards.Smithy;
 import cards.ThroneRoom;
@@ -66,6 +67,8 @@ public class CardFactory {
 			return new Village();
 		} else if (cardClass.equals(Woodcutter.class)) {
 			return new Woodcutter();
+		} else if (cardClass.equals(Remodel.class)) {
+			return new Remodel();
 		} else {
 			return new Copper();
 		}
