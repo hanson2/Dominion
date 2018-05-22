@@ -7,7 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import states.BanditPlayState;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 890b5b6578573bd456891d2c6ba588395026b04f
 import util.CardType;
 import util.GameConstants;
 
@@ -58,7 +61,10 @@ public class BanditTest {
 	@Test
 	public void testGetPlayState() {
 		assertEquals(card.getPlayState().getClass(), BanditPlayState.class);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 890b5b6578573bd456891d2c6ba588395026b04f
 	}
 
 	@Test
