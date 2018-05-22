@@ -1,10 +1,6 @@
 package util;
 
-import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
-
-import cards.Card;
 
 public class GameConstants {
 
@@ -109,5 +105,10 @@ public class GameConstants {
 	public static final int GUIHEIGHT = 300;
 
 	public static final int GUICARDSIZE = 300;
+
+	public static final int MILITIACOST = 4;
+	public static final int MILITIACOINSADDED = 2;
+	public static final String MILITIANAME = "cardMilitiaName";
+	public static final String MILITIATEXT = "cardMilitiaText";
 
 }
