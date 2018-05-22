@@ -1,0 +1,36 @@
+package states;
+
+import cards.Card;
+import gameComponents.Player;
+import util.GameConstants;
+
+public class CellarPlayState extends CardPlayState {
+
+	@Override
+	public void run(Turn turn) {
+		int numCardsToAdd = 0;
+		Player player = turn.player;
+
+		int handSize = player.sizeOfHand();
+
+		while (handSize > 0) {
+			if (player.promptYesNo("cellarPrompt")) {
+<<<<<<< HEAD
+				Card card = player.chooseCardFromHand(GameConstants.CELLARPROMPTKEY, turn.actions, turn.buys, turn.coins);
+=======
+				Card card = player.chooseCardFromHand(GameConstants.CELLARPROMPTKEY);
+>>>>>>> 3987e4ece965db1f8d6b40251bc6af0d7daf2b18
+				player.discardCardFromHand(card.getClass());
+				numCardsToAdd++;
+			} else {
+				break;
+			}
+			handSize = player.sizeOfHand();
+		}
+
+		for (int i = 0; i < numCardsToAdd; i++) {
+			player.drawACard();
+		}
+	}
+
+}

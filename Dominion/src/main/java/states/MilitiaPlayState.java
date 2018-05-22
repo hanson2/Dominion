@@ -14,7 +14,8 @@ public class MilitiaPlayState extends CardPlayState {
 				ignore = player.promptYesNo(GameConstants.MOATPROMPT);
 			}
 			while (!ignore && player.getHandSize() > 3) {
-				Card card = player.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY);
+				Card card = player.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY, turn.actions, turn.buys,
+						turn.coins);
 				player.discardCardFromHand(card.getClass());
 			}
 		}
