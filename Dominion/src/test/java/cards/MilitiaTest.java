@@ -3,6 +3,8 @@ package cards;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -67,5 +69,14 @@ public class MilitiaTest {
 	@Test
 	public void testGetText() {
 		assertEquals(card.getText(), GameConstants.MILITIATEXT);
+	}
+
+	@Test
+	public void testGetTypeTranslationKeys() {
+		ArrayList<String> expectedTranslationKeys = new ArrayList<String>();
+		expectedTranslationKeys.add("cardtypeAction");
+		expectedTranslationKeys.add("cardtypeAttack");
+
+		assertEquals(card.getTypeTranslationKeys(), expectedTranslationKeys);
 	}
 }

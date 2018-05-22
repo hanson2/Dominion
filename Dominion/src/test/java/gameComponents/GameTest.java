@@ -297,8 +297,8 @@ public class GameTest {
 	public void testMakeNewTurnSubsequentPlayersLoop() {
 		Player[] list = new Player[4];
 		Game game = new Game(supply, list);
-		Turn turn = game.makeNewTurn();
 		game.currentPlayer = 2;
+		Turn turn = game.makeNewTurn();
 
 		assertEquals(TurnCreator.getPlayer(turn), list[game.currentPlayer]);
 		assertEquals(TurnCreator.getSupply(turn), game.supplyPiles);
