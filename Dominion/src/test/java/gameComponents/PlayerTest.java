@@ -500,4 +500,30 @@ public class PlayerTest {
 		EasyMock.verify(card, action);
 	}
 
+	@Test
+	public void testGainCardToHand() {
+		Card card = EasyMock.mock(Card.class);
+
+		EasyMock.replay(card);
+
+		player.gainCardToHand(card);
+
+		assertTrue(player.hand.contains(card));
+
+		EasyMock.verify(card);
+	}
+
+	@Test
+	public void testPlaceCardOnDrawPile() {
+		Card card = EasyMock.mock(Card.class);
+
+		EasyMock.replay(card);
+
+		player.placeOnDrawPile(card);
+
+		assertEquals(player.drawPile.peek(), card);
+
+		EasyMock.verify(card);
+	}
+
 }
