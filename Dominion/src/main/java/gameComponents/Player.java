@@ -173,4 +173,9 @@ public class Player {
 		}
 		return false;
 	}
+
+	public int getHandSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

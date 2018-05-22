@@ -110,5 +110,6 @@ public class GameConstants {
 	public static final int MILITIACOINSADDED = 2;
 	public static final String MILITIANAME = "cardMilitiaName";
 	public static final String MILITIATEXT = "cardMilitiaText";
+	public static final String MILITIAPROMPTKEY = "cardMilitiaPrompt";
 
 }
