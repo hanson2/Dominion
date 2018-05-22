@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -355,11 +355,11 @@ public class PlayerTest {
 		Card cardReturned = EasyMock.mock(Card.class);
 		chosenCardFuture.complete(cardReturned);
 
-		EasyMock.expect(gui.chooseCardFromHand(player.hand, "Test")).andReturn(chosenCardFuture);
+		EasyMock.expect(gui.chooseCardFromHand(player.hand, "Test", null)).andReturn(chosenCardFuture);
 
 		EasyMock.replay(gui, cardReturned);
 
-		assertEquals(player.chooseCardFromHand(), cardReturned);
+		assertEquals(player.chooseCardFromHand(null), cardReturned);
 
 		EasyMock.verify(cardReturned);
 	}
@@ -422,10 +422,10 @@ public class PlayerTest {
 
 	@Test
 	public void testCleanupPlayArea() {
-		Card[] cardList = {EasyMock.mock(Card.class), EasyMock.mock(Card.class)}; 
+		Card[] cardList = { EasyMock.mock(Card.class), EasyMock.mock(Card.class) };
 		List<Card> playArea = new ArrayList<>();
 		playArea.addAll(Arrays.asList(cardList));
-		
+
 		player.cleanup(playArea);
 
 		assertTrue(playArea.isEmpty());
