@@ -97,13 +97,12 @@ public class GameConstants {
 	public static final int CELLARACTIONSADDED = 1;
 	public static final String CELLARNAME = "cardCellarName";
 	public static final String CELLARTEXT = "cardCellarText";
-	public static final String CELLARPROMPTKEY = "cardCellarPrompt";// TODO
+	public static final String CELLARPROMPTKEY = "cardCellarPrompt";
 
 	public static final int MOATCOST = 2;
 	public static final int MOATCARDSADDED = 2;
 	public static final String MOATNAME = "cardMoatName";
 	public static final String MOATTEXT = "cardMoatText";
-	public static final String MOATPROMPTKEY = "cardMoatPrompt";// TODO
 
 	public static final int GUIWIDTH = 900;
 	public static final int GUIHEIGHT = 300;
@@ -112,8 +111,10 @@ public class GameConstants {
 
 	public static final int MILITIACOST = 4;
 	public static final int MILITIACOINSADDED = 2;
-	public static final String MILITIANAME = "cardMilitiaName";// TODO es
-	public static final String MILITIATEXT = "cardMilitiaText";// TODO es
-	public static final String MILITIAPROMPTKEY = "cardMilitiaPrompt";// TODO es
+	public static final String MILITIANAME = "cardMilitiaName";
+	public static final String MILITIATEXT = "cardMilitiaText";
+
+	public static final String DISCARDPROMPTKEY = "discardPrompt";
+	public static final String TRASHPROMPTKEY = "trashPrompt";
 
 }
