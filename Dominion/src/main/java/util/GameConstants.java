@@ -139,4 +139,9 @@ public class GameConstants {
 	public static final String COUNCILROOMTEXT = "cardCouncilRoomText";
 	public static final String COUNCILROOMNAME = "cardCouncilRoomName";
 
+	
+	public static final int WORKSHOPCOST = 3;
+	public static final String WORKSHOPNAME = "cardWorkshopName";
+	public static final String WORKSHOPTEXT = "cardWorkshopText";
+	
 }
