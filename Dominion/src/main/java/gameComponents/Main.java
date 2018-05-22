@@ -18,6 +18,7 @@ import cards.Festival;
 import cards.Gardens;
 import cards.Laboratory;
 import cards.Market;
+import cards.Militia;
 import cards.Moat;
 import cards.Moneylender;
 import cards.Remodel;
@@ -114,6 +115,7 @@ public class Main {
 		availableKingdomCards.add(new CouncilRoom());
 		availableKingdomCards.add(new Gardens());
 		availableKingdomCards.add(new Workshop());
+		availableKingdomCards.add(new Militia());
 
 		return availableKingdomCards;
 	}

@@ -16,6 +16,7 @@ import cards.Gardens;
 import cards.Gold;
 import cards.Laboratory;
 import cards.Market;
+import cards.Militia;
 import cards.Moat;
 import cards.Moneylender;
 import cards.Province;
@@ -84,6 +85,8 @@ public class CardFactory {
 			return new Gardens();
 		} else if (cardClass.equals(Workshop.class)) {
 			return new Workshop();
+		} else if (cardClass.equals(Militia.class)) {
+			return new Militia();
 		} else {
 			return new Copper();
 		}
