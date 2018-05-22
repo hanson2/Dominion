@@ -3,6 +3,7 @@ package cards;
 import java.util.Set;
 import java.util.TreeSet;
 
+import states.BanditPlayState;
 import util.CardType;
 import util.GameConstants;
 
@@ -28,6 +29,10 @@ public class Bandit extends Card {
 
 	public String getText() {
 		return GameConstants.BANDITTEXT;
+	}
+
+	public BanditPlayState getPlayState() {
+		return new BanditPlayState();
 	}
 
 }
