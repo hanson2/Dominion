@@ -196,17 +196,21 @@ public class Supply {
 
 	public void decrementPile(Card card) {
 		for (Cards cardName : this.baseSupplyPiles.keySet()) {
-			Card baseCard = this.baseSupplyPiles.get(cardName).peek();
-			if (baseCard.getClass().equals(card.getClass())) {
-				this.baseSupplyPiles.get(cardName).pop();
-				return;
+			if (!this.baseSupplyPiles.get(cardName).isEmpty()) {
+				Card baseCard = this.baseSupplyPiles.get(cardName).peek();
+				if (baseCard.getClass().equals(card.getClass())) {
+					this.baseSupplyPiles.get(cardName).pop();
+					return;
+				}
 			}
 		}
 		for (Stack<Card> kingdomPile : this.kingdomCardList) {
-			Card kingdomCard = kingdomPile.peek();
-			if (kingdomCard.getClass().equals(card.getClass())) {
-				kingdomPile.pop();
-				return;
+			if (!kingdomPile.isEmpty()) {
+				Card kingdomCard = kingdomPile.peek();
+				if (kingdomCard.getClass().equals(card.getClass())) {
+					kingdomPile.pop();
+					return;
+				}
 			}
 		}
 	}

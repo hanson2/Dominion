@@ -5,7 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.EmptyStackException;
 import java.util.List;
 import java.util.Random;
 import java.util.Stack;
@@ -167,7 +166,7 @@ public class SupplyPileTest {
 		assertEquals(provinceSupply.size(), 11);
 	}
 
-	@Test(expected = EmptyStackException.class)
+	@Test
 	public void testDecrementCardEmptyBase() {
 		Stack<Card> provinceSupply = supply.getBaseSupply(Cards.PROVINCE);
 		Card province = provinceSupply.peek();
@@ -175,6 +174,8 @@ public class SupplyPileTest {
 		for (int i = 0; i < 13; i++) {
 			supply.decrementPile(province);
 		}
+
+		assertTrue(provinceSupply.isEmpty());
 	}
 
 	@Test
@@ -186,7 +187,7 @@ public class SupplyPileTest {
 		assertEquals(kingdom1Supply.size(), 9);
 	}
 
-	@Test(expected = EmptyStackException.class)
+	@Test
 	public void testDecrementCardEmptyKingdom() {
 		Stack<Card> kingdom1Supply = supply.getKingdomCardList().get(1);
 		Card kingdomCard = kingdom1Supply.peek();
@@ -194,6 +195,8 @@ public class SupplyPileTest {
 		for (int i = 0; i < 11; i++) {
 			supply.decrementPile(kingdomCard);
 		}
+
+		assertTrue(kingdom1Supply.isEmpty());
 	}
 
 	@Test

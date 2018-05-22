@@ -48,6 +48,8 @@ public class Main {
 			Set<Player> winners = game.runGame();
 
 			playAgain = promptPlayAgainDisplayWinners(gui, winners);
+			gui.clear();
+			gui.setVisible(false);
 		}
 		closeGUI(gui);
 	}

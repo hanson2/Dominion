@@ -15,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 
 import cards.Card;
 import util.AvailableLocales;
@@ -285,46 +284,10 @@ public class GUI extends JFrame {
 
 	}
 
-	public void game(int numPlayers) {
-		this.clear();
-		String title = String.format(GameConstants.messages.getString("guiGameTitle"), numPlayers);
-		setTitle(title);
-		setSize(GameConstants.GUIWIDTH, GameConstants.GUIHEIGHT);
-		setVisible(true);
-
-		SpringLayout Spring = new SpringLayout();
-		pane.setLayout(Spring);
-
-		JButton endTurnB = new JButton("End Turn");
-		EndTurnButtonHandler endTurnBH = new EndTurnButtonHandler();
-		endTurnB.addActionListener(endTurnBH);
-
-		pane.add(endTurnB);
-		Spring.putConstraint(SpringLayout.SOUTH, endTurnB, 0, SpringLayout.SOUTH, pane);
-		Spring.putConstraint(SpringLayout.NORTH, endTurnB, 400, SpringLayout.NORTH, pane);
-		Spring.putConstraint(SpringLayout.WEST, endTurnB, 210, SpringLayout.WEST, pane);
-
-		pane.add(quitB);
-		Spring.putConstraint(SpringLayout.NORTH, quitB, 0, SpringLayout.NORTH, pane);
-		Spring.putConstraint(SpringLayout.EAST, quitB, 0, SpringLayout.EAST, pane);
-
-		pane.repaint();
-	}
-
-	private class EndTurnButtonHandler implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
 	public CompletableFuture<Boolean> getPlayAgainDisplayWinners(Set<Player> winners) {
-		// TODO make this display winners and give players option to play again
 		this.clear();
 		this.setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		CompletableFuture<Boolean> playAgain = new CompletableFuture<Boolean>();
 		StringBuilder title = new StringBuilder();
 		title.append(GameConstants.messages.getString("guiWinGameTitle"));
@@ -332,10 +295,43 @@ public class GUI extends JFrame {
 			title.append(" : ");
 			title.append(winner.getName());
 		}
+		title.append(". ");
+		title.append(GameConstants.messages.getString("guiPromptPlayAgain"));
+		this.setTitle(title.toString());
 
-		playAgain.complete(false);
+		pane.setLayout(new GridLayout(1, 2));
+
+		JButton playAgainButton = new JButton(GameConstants.messages.getString("guiYes"));
+		playAgainButton.addActionListener(new PlayAgainButtonListener(true, playAgain));
+
+		JButton quitButton = new JButton(GameConstants.messages.getString("guiNo"));
+		quitButton.addActionListener(new PlayAgainButtonListener(false, playAgain));
+
+		pane.add(playAgainButton);
+		pane.add(quitButton);
+
+		this.pane.repaint();
+		this.pack();
+		this.setSize(GameConstants.GUIWIDTH, GameConstants.GUIHEIGHT);
 
 		return playAgain;
+	}
+
+	private class PlayAgainButtonListener implements ActionListener {
+
+		boolean choice;
+		CompletableFuture<Boolean> futureChoice;
+
+		public PlayAgainButtonListener(boolean b, CompletableFuture<Boolean> playAgain) {
+			choice = b;
+			futureChoice = playAgain;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent makeChoice) {
+			futureChoice.complete(choice);
+		}
+
 	}
 
 	public void quitGame() {
