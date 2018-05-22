@@ -11,6 +11,7 @@ public class ArtisanPlayState extends CardPlayState {
 
 			if (card.getCost() <= coins) {
 				turn.player.gainCardToHand(card);
+				turn.supplyPiles.decrementPile(card);
 				break;
 			}
 

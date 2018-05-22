@@ -7,13 +7,12 @@ import org.junit.Test;
 
 import cards.Card;
 import cards.Copper;
-import cards.Curse;
 import cards.Duchy;
 import cards.Gold;
 import gameComponents.Player;
 import gameComponents.Supply;
 
-public class ArtisanPlaysStateTest {
+public class FeastPlayStateTest {
 
 	Player player;
 	Turn turn;
@@ -35,58 +34,48 @@ public class ArtisanPlaysStateTest {
 
 	@Test
 	public void testBaseCase() {
+		turn.trashMostRecentlyPlayedCard();
+
 		Card card = new Copper();
 		EasyMock.expect(player.forcedBuy(supplyPiles, "guiActionPhase", 5)).andReturn(card);
-		player.gainCardToHand(card);
+		player.gainCard(card);
 		supplyPiles.decrementPile(card);
-
-		card = new Curse();
-		EasyMock.expect(player.chooseCardFromHand("guiActionPhase", 0, 0, 0)).andReturn(card);
-		player.placeOnDrawPile(card);
-		EasyMock.expect(player.trashCardFromHand(Curse.class)).andReturn(true);
 
 		EasyMock.replay(turn, player, supplyPiles);
 
-		ArtisanPlayState state = new ArtisanPlayState();
+		FeastPlayState state = new FeastPlayState();
 		state.run(turn);
 	}
 
 	@Test
 	public void testExactCostBuy() {
+		turn.trashMostRecentlyPlayedCard();
+
 		Card card = new Duchy();
 		EasyMock.expect(player.forcedBuy(supplyPiles, "guiActionPhase", 5)).andReturn(card);
-		player.gainCardToHand(card);
+		player.gainCard(card);
 		supplyPiles.decrementPile(card);
-
-		card = new Curse();
-		EasyMock.expect(player.chooseCardFromHand("guiActionPhase", 0, 0, 0)).andReturn(card);
-		player.placeOnDrawPile(card);
-		EasyMock.expect(player.trashCardFromHand(Curse.class)).andReturn(true);
 
 		EasyMock.replay(turn, player, supplyPiles);
 
-		ArtisanPlayState state = new ArtisanPlayState();
+		FeastPlayState state = new FeastPlayState();
 		state.run(turn);
 	}
 
 	@Test
 	public void testBadPurchase() {
+		turn.trashMostRecentlyPlayedCard();
+
 		Card card = new Gold();
 		EasyMock.expect(player.forcedBuy(supplyPiles, "guiActionPhase", 5)).andReturn(card);
 		card = new Copper();
 		EasyMock.expect(player.forcedBuy(supplyPiles, "guiActionPhase", 5)).andReturn(card);
-		player.gainCardToHand(card);
+		player.gainCard(card);
 		supplyPiles.decrementPile(card);
-
-		card = new Curse();
-		EasyMock.expect(player.chooseCardFromHand("guiActionPhase", 0, 0, 0)).andReturn(card);
-		player.placeOnDrawPile(card);
-		EasyMock.expect(player.trashCardFromHand(Curse.class)).andReturn(true);
 
 		EasyMock.replay(turn, player, supplyPiles);
 
-		ArtisanPlayState state = new ArtisanPlayState();
+		FeastPlayState state = new FeastPlayState();
 		state.run(turn);
 	}
-
 }
