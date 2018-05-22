@@ -129,7 +129,6 @@ public class ChapelPlayStateTest {
 		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(true);
 		EasyMock.expect(player.chooseCardFromHand(GameConstants.CHAPELPROMPTKEY, turn.actions, turn.buys, turn.coins))
 				.andReturn(cardToTrash);
-		EasyMock.expect(player.chooseCardFromHand(GameConstants.CHAPELPROMPTKEY)).andReturn(cardToTrash);
 		EasyMock.expect(player.trashCardFromHand(cardToTrash.getClass())).andReturn(true);
 
 		EasyMock.expect(player.sizeOfHand()).andReturn(4);
@@ -163,7 +162,7 @@ public class ChapelPlayStateTest {
 
 		EasyMock.expect(player.sizeOfHand()).andReturn(1);
 		EasyMock.expect(player.promptYesNo("chapelPrompt")).andReturn(true);
-		EasyMock.expect(player.chooseCardFromHand("guiActionPhase", turn.actions, turn.buys, turn.coins))
+		EasyMock.expect(player.chooseCardFromHand(GameConstants.CHAPELPROMPTKEY, turn.actions, turn.buys, turn.coins))
 				.andReturn(cardToTrash);
 		EasyMock.expect(player.trashCardFromHand(cardToTrash.getClass())).andReturn(true);
 

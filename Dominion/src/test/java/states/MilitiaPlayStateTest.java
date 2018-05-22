@@ -54,11 +54,11 @@ public class MilitiaPlayStateTest {
 		for (Player player2 : subsequentPlayers) {
 			EasyMock.expect(player2.hasCardInHand(Moat.class)).andReturn(false);
 			EasyMock.expect(player2.getHandSize()).andReturn(5);
-			EasyMock.expect(player2.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY)).andReturn(toDiscard);
+			EasyMock.expect(player2.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY, 1, 1, 0)).andReturn(toDiscard);
 			EasyMock.expect(player2.discardCardFromHand(toDiscard.getClass())).andReturn(true);
 
 			EasyMock.expect(player2.getHandSize()).andReturn(4);
-			EasyMock.expect(player2.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY)).andReturn(toDiscard);
+			EasyMock.expect(player2.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY, 1, 1, 0)).andReturn(toDiscard);
 			EasyMock.expect(player2.discardCardFromHand(toDiscard.getClass())).andReturn(true);
 
 			EasyMock.expect(player2.getHandSize()).andReturn(3);
@@ -79,11 +79,11 @@ public class MilitiaPlayStateTest {
 		for (Player player2 : subsequentPlayers) {
 			EasyMock.expect(player2.hasCardInHand(Moat.class)).andReturn(false);
 			EasyMock.expect(player2.getHandSize()).andReturn(5);
-			EasyMock.expect(player2.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY)).andReturn(toDiscard);
+			EasyMock.expect(player2.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY, 1, 1, 0)).andReturn(toDiscard);
 			EasyMock.expect(player2.discardCardFromHand(toDiscard.getClass())).andReturn(true);
 
 			EasyMock.expect(player2.getHandSize()).andReturn(4);
-			EasyMock.expect(player2.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY)).andReturn(toDiscard);
+			EasyMock.expect(player2.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY, 1, 1, 0)).andReturn(toDiscard);
 			EasyMock.expect(player2.discardCardFromHand(toDiscard.getClass())).andReturn(true);
 
 			EasyMock.expect(player2.getHandSize()).andReturn(3);
@@ -105,11 +105,11 @@ public class MilitiaPlayStateTest {
 		for (Player player2 : subsequentPlayers) {
 			EasyMock.expect(player2.hasCardInHand(Moat.class)).andReturn(false);
 			EasyMock.expect(player2.getHandSize()).andReturn(5);
-			EasyMock.expect(player2.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY)).andReturn(toDiscard);
+			EasyMock.expect(player2.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY, 1, 1, 0)).andReturn(toDiscard);
 			EasyMock.expect(player2.discardCardFromHand(toDiscard.getClass())).andReturn(true);
 
 			EasyMock.expect(player2.getHandSize()).andReturn(4);
-			EasyMock.expect(player2.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY)).andReturn(toDiscard);
+			EasyMock.expect(player2.chooseCardFromHand(GameConstants.DISCARDPROMPTKEY, 1, 1, 0)).andReturn(toDiscard);
 			EasyMock.expect(player2.discardCardFromHand(toDiscard.getClass())).andReturn(true);
 
 			EasyMock.expect(player2.getHandSize()).andReturn(3);
