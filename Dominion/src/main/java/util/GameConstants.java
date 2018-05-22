@@ -116,6 +116,6 @@ public class GameConstants {
 
 	public static final String DISCARDPROMPTKEY = "discardPrompt";
 	public static final String TRASHPROMPTKEY = "trashPrompt";
-	public static final String MOATPROMPT = "trashPrompt";
+	public static final String MOATPROMPT = "moatPrompt";
 
 }
