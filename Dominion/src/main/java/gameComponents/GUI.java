@@ -104,10 +104,10 @@ public class GUI extends JFrame {
 		cardText.append("<html>");// only way to get newline on buttons
 		cardText.append(GameConstants.messages.getString(card.getName()));
 		cardText.append("<br />");
-		if (card.getCost() != 0) {
-			cardText.append(String.format(GameConstants.messages.getString("guiCardCost"), card.getCost()));
-			cardText.append("<br />");
-		}
+
+		cardText.append(String.format(GameConstants.messages.getString("guiCardCost"), card.getCost()));
+		cardText.append("<br />");
+
 		if (card.getActionsAdded() != 0) {
 			cardText.append(String.format(GameConstants.messages.getString("guiCardActions"), card.getActionsAdded()));
 			cardText.append("<br />");
@@ -399,6 +399,7 @@ public class GUI extends JFrame {
 		this.clear();
 		this.pane.setLayout(new GridLayout(0, availableCards.size(), 0, 0));
 		this.setVisible(true);
+
 		CompletableFuture<Card> chosenCardFuture = new CompletableFuture<Card>();
 		String title = GameConstants.messages.getString("chooseCardFromHand");
 		title = name + ": " + title;
